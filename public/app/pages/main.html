@@ -1,0 +1,48 @@
+<div layout="column" md-theme="altTheme" class="md-primary">
+    <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch  class="rtl">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">אליעזר ארמה</span>
+                <span class="md-subhead"> ברוך הבא</span>
+            </md-card-title-text>
+            <md-card-title-media>
+                <div class="md-media-sm card-media"><img ng-src="img/avatar.png"></div>
+            </md-card-title-media>
+        </md-card-title>
+
+    </md-card> 
+</div>
+
+<md-content class="md-padding">
+    <md-nav-bar layout="row" layout-align="center end"
+                md-selected-nav-item="currentNavItem"
+                nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-sref="main.search" name="history">
+            <i class="material-icons">&#xE8B6;</i>  <!-- history -->
+        </md-nav-item>
+        <md-nav-item md-nav-sref="main.favorites" name="favorites">
+            <i class="material-icons">&#xE87E;</i> <!-- favorites -->
+        </md-nav-item>
+        <md-nav-item md-nav-sref="main.clubes" name="nearest">
+            <i class="material-icons">&#xE0C8;</i> <!-- clubes around -->
+        </md-nav-item>
+        <!-- these require actual routing with ui-router or ng-route, so they
+        won't work in the demo
+        <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
+        <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
+        You can also add options for the <code>ui-sref-opts</code> attribute.
+        <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
+          Page Six
+        </md-nav-item>
+        -->
+    </md-nav-bar>
+    <div class="ext-content">
+        <div ui-view></div>
+        <!--  External content for `<span>{{currentNavItem}}</span>`. -->
+
+    </div>
+
+
+</md-content>
+
+

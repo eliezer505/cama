@@ -1,0 +1,20 @@
+<div ng-controller='loginCtrl'>
+
+			<div>Current User:</div>
+			<br>
+    	<img ng-src="{{ currentUser.profileImageURL }}">
+    	<br>
+      <div>Display Name: {{ currentUser.displayName }}</div>
+      <br>
+      <div> User ID: {{ currentUser.id }}</div>
+      <br>
+
+    	<button ng-click='login()'>
+      	Login
+      </button>
+
+      <button ng-click='logout()'>
+        Logout
+      </button>
+      
+  	</div>

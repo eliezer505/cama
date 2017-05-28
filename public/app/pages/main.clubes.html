@@ -1,0 +1,16 @@
+
+<div ng-controller="mainClubesCtrl">
+    <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch ng-repeat="club in clubes" class="rtl" ng-click="enterClub(club)">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{club.name}}</span>
+                <span class="md-subhead"> קילומטר {{club.distance}}</span>
+            </md-card-title-text>
+            <md-card-title-media>
+                <div class="md-media-sm card-media"><img ng-src="{{club.photo}}"></div>
+            </md-card-title-media>
+        </md-card-title>
+
+    </md-card> 
+</div>
+
