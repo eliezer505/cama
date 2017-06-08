@@ -1,13 +1,19 @@
-<div class="form">
-  <div class="username">
-    <input type="text" placeholder="התחברו"/>
-  </div>
-  <div class="password">
-    <input type="text" placeholder="עם"/>
-  </div>
-  <div class="login">
-    <span>Facebook</span>
-    
-  </div>
+<div class="form" ng-hide="currentAuth">
+    <div class="username">
+        <input type="text" placeholder="התחברו"/>
+    </div>
+    <div class="password">
+        <input type="text" placeholder="עם"/>
+    </div>
+    <div class="login">
 
+        <button class="btn btn-primary btn-lg" ng-click="SignIn()"> <span>Facebook</span></button>
+    </div>
+
+</div>
+
+<div class="login-screen" ng-show="currentAuth">
+    <div class="jumbotron text-center">
+        loading data...
+    </div>
 </div>

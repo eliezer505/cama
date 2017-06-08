@@ -1,0 +1,68 @@
+
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+    <!-- Header section containing title -->
+    <header class="mdl-layout__header mdl-color-text--white mdl-color--light-blue-700">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
+            <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
+                <h3>אימות מספר הטלפון</h3>
+            </div>
+        </div>
+    </header>
+
+    <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
+
+            <!-- Container for the demo -->
+            <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+
+                <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                    <p>הקלד את מספר הטלפון למטה</p>
+
+                    <form name="signInForm" role="form" ng-submit="signInSub()" ng-show="signIn">
+
+
+                        <!-- firebse ui format for country code that i changed in this script -->
+                        <div class="firebaseui-phone-number">
+                            <button class="firebaseui-id-country-selector firebaseui-country-selector mdl-button mdl-js-button" data-upgraded=",MaterialButton">
+                                <span class="firebaseui-flag firebaseui-country-selector-flag firebaseui-id-country-selector-flag firebaseui-flag-IL"></span>
+                                <span class="firebaseui-id-country-selector-code" ng-bind="countryId">‎{{countryId}}</span>
+                            </button>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" name="phone" type="text" ng-model="phoneNumber" required ng-change="checkPhone()">
+                                <label class="mdl-textfield__label" for="phone">מספר טלפון...</label>
+                                <span ng-show="signInForm.phone.$error.$invalid" class="mdl-textfield__error">נא להזין ספרות בלבד!</span>
+                            </div>
+                        </div>
+
+                        <!-- Container to display the re-captcha check -->
+                        <div id="recaptcha-container"></div>
+
+                        <!-- Button that handles sign-in -->
+
+                        <button class="mdl-button mdl-js-button mdl-button--raised" type="submit" data-ng-disabled="!recaptcha || !phoneComplete">אמת קוד</button>
+            </form>
+            
+            <!-- Button that handles sign-out
+            <button class="mdl-button mdl-js-button mdl-button--raised" id="sign-out-button">Sign-out</button>
+                        -->
+                        <form name="verificationCodeForm" ng-show="verifyCode" role="form" ng-submit="onVerifyCodeSubmit()">
+                            <!-- Input to enter the verification code -->
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" name="verificationCode" ng-model="verificationCode" required min="6" max="6"  ng-change="checkCode()">
+                                <label class="mdl-textfield__label" for="verification-code">נא להקליד את קוד האימות שהתקבל במכשירך...</label>
+                                <span class="mdl-textfield__error" ng-show="verificationCodeForm.verificationCode.$error.$invalid">יש להזין קוד תקני בלבד!</span>
+                            </div>
+
+                            <!-- Button that triggers code verification -->
+                            <button class="mdl-button mdl-js-button mdl-button--raised" type="submit" ng-disabled="!codeComplete">אמת טלפון</button>
+
+                            <!-- Button to cancel code verification -->
+                            <button class="mdl-button mdl-js-button mdl-button--raised" ng-click="">ביטול</button>
+                        </form>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>

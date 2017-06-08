@@ -2,11 +2,11 @@
     <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch  class="rtl">
         <md-card-title>
             <md-card-title-text>
-                <span class="md-headline">אליעזר ארמה</span>
+                <span class="md-headline" ng-bind="name">{{name}}</span>
                 <span class="md-subhead"> ברוך הבא</span>
             </md-card-title-text>
             <md-card-title-media>
-                <div class="md-media-sm card-media"><img ng-src="img/avatar.png"></div>
+                <div class="md-media-sm card-media"><img ng-src="{{picture}}"></div>
             </md-card-title-media>
         </md-card-title>
 

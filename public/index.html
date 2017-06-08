@@ -1,218 +1,234 @@
 <html ng-app="app">
 
-	<!--
-	To change this license header, choose License Headers in Project Properties.
-	To change this template file, choose Tools | Templates
-	and open the template in the editor.
-	-->
-	<head>
-		<title>TODO supply a title</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="../node_modules/angular-material/angular-material.css">
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
-		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	
-		<link rel="stylesheet" href="css/style.css">
-	</head>
-	<body >
+    <!--
+    To change this license header, choose License Headers in Project Properties.
+    To change this template file, choose Tools | Templates
+    and open the template in the editor.
+    -->
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.css" />
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body >
 
-		<div ng-controller="AppCtrl" layout="column" style="height: 100%;">
+        <div ng-controller="AppCtrl" layout="column" style="height: 100%;">
 
-			<!-- Upper toolbar with bottons to serve the user -->
-			<md-toolbar md-theme="altTheme" class="md-primary">
-				<div class="md-toolbar-tools">
-					<md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
-						<md-tooltip>
-							Side Panel
-						</md-tooltip>
-						<md-icon class="md-default-theme" class="material-icons">
-							&#xE5D2;
-						</md-icon>
-					</md-button>
+            <!-- Upper toolbar with bottons to serve the user -->
+            <md-toolbar md-theme="altTheme" class="md-primary">
+                <div class="md-toolbar-tools">
+                    <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+                        <md-tooltip>
+                            Side Panel
+                        </md-tooltip>
+                        <md-icon class="md-default-theme" class="material-icons">
+                            &#xE5D2;
+                        </md-icon>
+                    </md-button>
 
-					<span class="margin-left-1" ><h1>C</h1></span>
-					<span><h3>lu</h3></span>
-					<span><h1>B</h1></span>
-					<span><h3>ears</h3></span>
+                    <span class="margin-left-1" ><h1>C</h1></span>
+                    <span><h3>lu</h3></span>
+                    <span><h1>B</h1></span>
+                    <span><h3>ears</h3></span>
 
-					<span flex></span>
-					<md-button class="md-icon-button" aria-label="Messages">
-						<md-tooltip>
-							הודעות
-						</md-tooltip>
-						<md-icon class="md-default-theme" class="material-icons">
-							&#xE0CB;
-						</md-icon>
-					</md-button>
-					<md-button class="md-icon-button" aria-label="User">
-						<md-tooltip >
-							פרופיל
-						</md-tooltip>
-						<a ui-sref="profile">
-						<md-icon class="md-default-theme" class="material-icons" >
-							&#xE7F5;
-						</md-icon></a>
+                    <span flex></span>
+                    <md-button class="md-icon-button" aria-label="Messages">
+                        <md-tooltip>
+                            הודעות
+                        </md-tooltip>
+                        <md-icon class="md-default-theme" class="material-icons">
+                            &#xE0CB;
+                        </md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="User">
+                        <md-tooltip >
+                            פרופיל
+                        </md-tooltip>
+                        <a ui-sref="profile">
+                            <md-icon class="md-default-theme" class="material-icons" >
+                                &#xE7F5;
+                            </md-icon></a>
 
-					</md-button>
-					
-				</div>
-			</md-toolbar>
+                    </md-button>
 
-			<div ui-view></div>
+                </div>
+            </md-toolbar>
 
-			<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-				<md-toolbar layout="row" md-theme="altTheme" class="md-primary">
-					<div class="md-toolbar-tools">
-						<span class="margin-left-1" ><h1>C</h1></span>
-						<span><h3>lu</h3></span>
-						<span><h1>B</h1></span>
-						<span><h3>ears</h3></span>
-						<span flex></span>
-						<md-button class="md-icon-button" aria-label="Close Side Panel" ng-click="closeSideNavPanel()">
-							<md-tooltip>
-								סגירת פאנל צד
-							</md-tooltip>
-							<md-icon class="md-default-theme" class="material-icons">
-								&#xE5CD;
-							</md-icon>
-						</md-button>
-					</div>
-				</md-toolbar>
-				<md-content layout-padding="">
-					<md-list class="rtl">
+            <div ui-view></div>
 
-						<!-- pay attantion from class margin-left-32. used to help in hebrew language -->
-						<md-subheader class="md-no-sticky">
-							מועדפים
-						</md-subheader>
-						
-						<md-list-item >
-							<md-icon class="md-default-theme margin-left-32" class="material-icons" ui-sref="profile" ng-click="closeSideNavPanel()">
-								&#xE7FD;
-							</md-icon>
-							<p ui-sref="profile" ng-click="closeSideNavPanel()">
-								פרופיל
-							</p>
-							<div class="md-secondary">
-								2
-							</div>
-						</md-list-item>
-						<md-list-item>
-							<md-icon class="md-default-theme margin-left-32" class="material-icons">
-								&#xE0C9;
-							</md-icon>
-							<p>
-								הודעות
-							</p>
-							<div class="md-secondary">
-								2
-							</div>
-						</md-list-item>
-						<md-list-item>
-							<md-icon class="md-default-theme margin-left-32" class="material-icons">
-								&#xE878;
-							</md-icon>
-							<p ui-sref="events" ng-click="closeSideNavPanel()">
-								ארועים
-							</p>
-							<md-icon class="md-secondary">
-								2
-							</md-icon>
-						</md-list-item>
-						<md-list-item>
-							<md-icon class="md-default-theme margin-left-32" class="material-icons">
-								&#xE251;
-							</md-icon>
-							<p ui-sref="pictures" ng-click="closeSideNavPanel()">
-								תמונות
-							</p>
-							<md-icon class="md-secondary">
-								2
-							</md-icon>
-						</md-list-item>
-						<md-divider></md-divider>
-						<md-subheader class="md-no-sticky">
-							תחזוקה
-						</md-subheader>
-						<md-list-item>
-							<md-icon class="md-default-theme margin-left-32" class="material-icons">
-								&#xE8B8;
-							</md-icon>
-							<p>
-								הגדרות
-							</p>
-							<div class="md-secondary">
-								2
-							</div>
-						</md-list-item>
-						<md-divider></md-divider>
-						<md-subheader class="md-no-sticky">
-							מידע
-						</md-subheader>
-						<md-list-item>
-							<md-icon class="md-default-theme margin-left-32" class="material-icons">
-								&#xE88F;
-							</md-icon>
-							<p>
-								אודות
-							</p>
-							<div class="md-secondary">
-								20+
-							</div>
-						</md-list-item>
-						<md-list-item>
-							<md-icon class="md-default-theme margin-left-32" class="material-icons">
-								&#xE0AF;
-							</md-icon>
-							<p>
-								בעל עסק
-							</p>
-							<div class="md-secondary">
-								20+
-							</div>
-						</md-list-item>
-					</md-list>
-				</md-content>
-			</md-sidenav>
+            <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+                <md-toolbar layout="row" md-theme="altTheme" class="md-primary">
+                    <div class="md-toolbar-tools">
+                        <span class="margin-left-1" ><h1>C</h1></span>
+                        <span><h3>lu</h3></span>
+                        <span><h1>B</h1></span>
+                        <span><h3>ears</h3></span>
+                        <span flex></span>
+                        <md-button class="md-icon-button" aria-label="Close Side Panel" ng-click="closeSideNavPanel()">
+                            <md-tooltip>
+                                סגירת פאנל צד
+                            </md-tooltip>
+                            <md-icon class="md-default-theme" class="material-icons">
+                                &#xE5CD;
+                            </md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-content layout-padding="">
+                    <md-list class="rtl">
 
-		</div>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<!-- Angular Material requires Angular.js Libraries -->
-		<script src="../node_modules/angular/angular.js"></script>
-		<script src="../node_modules/angular-animate/angular-animate.min.js"></script>
-		<script src="../node_modules/angular-aria/angular-aria.min.js"></script>
-		<script src="../node_modules/angular-messages/angular-messages.min.js"></script>
+                        <!-- pay attantion from class margin-left-32. used to help in hebrew language -->
+                        <md-subheader class="md-no-sticky">
+                            מועדפים
+                        </md-subheader>
 
-		<!-- Angular UI Router -->
-		<script src="../node_modules/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript"></script>
-		<!-- Angular Material Library -->
-		<script src="../node_modules/angular-material/angular-material.min.js"></script>
+                        <md-list-item >
+                            <md-icon class="md-default-theme margin-left-32" class="material-icons" ui-sref="profile" ng-click="closeSideNavPanel()">
+                                &#xE7FD;
+                            </md-icon>
+                            <p ui-sref="profile" ng-click="closeSideNavPanel()">
+                                פרופיל
+                            </p>
+                            <div class="md-secondary">
+                                2
+                            </div>
+                        </md-list-item>
+                        <md-list-item>
+                            <md-icon class="md-default-theme margin-left-32" class="material-icons">
+                                &#xE0C9;
+                            </md-icon>
+                            <p>
+                                הודעות
+                            </p>
+                            <div class="md-secondary">
+                                2
+                            </div>
+                        </md-list-item>
+                        <md-list-item>
+                            <md-icon class="md-default-theme margin-left-32" class="material-icons">
+                                &#xE878;
+                            </md-icon>
+                            <p ui-sref="events" ng-click="closeSideNavPanel()">
+                                ארועים
+                            </p>
+                            <md-icon class="md-secondary">
+                                2
+                            </md-icon>
+                        </md-list-item>
+                        <md-list-item>
+                            <md-icon class="md-default-theme margin-left-32" class="material-icons">
+                                &#xE251;
+                            </md-icon>
+                            <p ui-sref="pictures" ng-click="closeSideNavPanel()">
+                                תמונות
+                            </p>
+                            <md-icon class="md-secondary">
+                                2
+                            </md-icon>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                        <md-subheader class="md-no-sticky">
+                            תחזוקה
+                        </md-subheader>
+                        <md-list-item>
+                            <md-icon class="md-default-theme margin-left-32" class="material-icons">
+                                &#xE8B8;
+                            </md-icon>
+                            <p>
+                                הגדרות
+                            </p>
+                            <div class="md-secondary">
+                                2
+                            </div>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                        <md-subheader class="md-no-sticky">
+                            מידע
+                        </md-subheader>
+                        <md-list-item>
+                            <md-icon class="md-default-theme margin-left-32" class="material-icons">
+                                &#xE88F;
+                            </md-icon>
+                            <p>
+                                אודות
+                            </p>
+                            <div class="md-secondary">
+                                20+
+                            </div>
+                        </md-list-item>
+                        <md-list-item>
+                            <md-icon class="md-default-theme margin-left-32" class="material-icons">
+                                &#xE0AF;
+                            </md-icon>
+                            <p>
+                                בעל עסק
+                            </p>
+                            <div class="md-secondary">
+                                20+
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-sidenav>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.1/masonry.pkgd.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
-		<script src="js/angular-masonry.js"></script>
-		<!-- Angular Config File -->
-		<script src="app/config.js"></script>
-		<script src="app/router.js"></script>
-		<!-- Controllers -->
-		<script src="app/controllers/AppCtrl.js"></script>
-		<script src="app/controllers/mainClubesCtrl.js" type="text/javascript"></script>
-		<script src="app/controllers/mainFavoritesCtrl.js" type="text/javascript"></script>
-		<script src="app/controllers/mainSearchCtrl.js" type="text/javascript"></script>
-		<script src="app/controllers/clubesCtrl.js" type="text/javascript"></script>
-		<script src="app/controllers/spaceGalleryCtrl.js" type="text/javascript"></script>
-		<script src="app/controllers/profileCtrl.js" type="text/javascript"></script>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
 
-		<script src="app/controllers/profileImagesCtrl.js" type="text/javascript"></script>
-		<script src="app/controllers/profileUpdate.js" type="text/javascript"></script>
-		<script src="app/controllers/clubPartyCtrl.js" type="text/javascript"></script>
-		<script src="app/controllers/clubAboutCtrl.js" type="text/javascript"></script>
-				<script src="app/controllers/spaceBoysCtrl.js" type="text/javascript"></script>
-		<script src="app/controllers/spaceGirlsCtrl.js" type="text/javascript"></script>
-				<script src="app/controllers/eventsCtrl.js" type="text/javascript"></script>
-<script src="app/controllers/picturesCtrl.js" type="text/javascript"></script>
-	</body>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-animate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-aria.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-messages.min.js"></script>
+
+        <!-- Firebase Script -->
+        <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+
+        <!-- Angular UI Router -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+        <!-- Angular Material Library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.1/masonry.pkgd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
+        <script src="js/angular-masonry.js"></script>
+        <!-- Angular Config File -->
+        <script src="app/config.js"></script>
+
+        <!-- Angular Services Files -->
+        <script src="app/services/userServ.js"></script>
+        <!-- Angular router file -->
+        <script src="app/router.js"></script>
+        <!-- Controllers -->
+        <script src="app/controllers/loginCtrl.js"></script>
+        <script src="app/controllers/phoneCtrl.js"></script>
+        <script src="app/controllers/mainCtrl.js"></script>
+        <script src="app/controllers/AppCtrl.js"></script>
+        <script src="app/controllers/mainClubesCtrl.js" type="text/javascript"></script>
+        <script src="app/controllers/mainFavoritesCtrl.js" type="text/javascript"></script>
+        <script src="app/controllers/mainSearchCtrl.js" type="text/javascript"></script>
+        <script src="app/controllers/clubesCtrl.js" type="text/javascript"></script>
+        <script src="app/controllers/spaceGalleryCtrl.js" type="text/javascript"></script>
+        <script src="app/controllers/profileCtrl.js" type="text/javascript"></script>
+
+        <script src="app/controllers/profileImagesCtrl.js" type="text/javascript"></script>
+        <script src="app/controllers/profileUpdate.js" type="text/javascript"></script>
+        <script src="app/controllers/clubPartyCtrl.js" type="text/javascript"></script>
+        <script src="app/controllers/clubAboutCtrl.js" type="text/javascript"></script>
+        <script src="app/controllers/spaceBoysCtrl.js" type="text/javascript"></script>
+        <script src="app/controllers/spaceGirlsCtrl.js" type="text/javascript"></script>
+        <script src="app/controllers/eventsCtrl.js" type="text/javascript"></script>
+        <script src="app/controllers/picturesCtrl.js" type="text/javascript"></script>
+    </body>
 
 </html>
