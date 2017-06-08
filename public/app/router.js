@@ -95,6 +95,10 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             .state('profile', {
                 url: "/profile",
                 templateUrl: "app/pages/profile.html",
+                controller: "profileCtrl",
+                params: {
+                    userObj: null
+                },
                 resolve: {
                     "currentAuth": ["Auth", function (Auth) {
                             return Auth.$requireSignIn();
