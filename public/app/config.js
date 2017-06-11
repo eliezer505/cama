@@ -18,10 +18,60 @@
         }
     ]);
 
+    club.factory("currentUser",
+            function () {
+                return firebase.auth().currentUser;
+            }
+    );
+
+
+    club.service('getData', function ($q, Auth,$firebaseObject) {
+//	var service = {};
+        this.user = null;
+        this.getInitialData = function () {
+            //define my promises
+            var one = $q.defer();
+//		var two = $q.defer();
+//		var all = $q.all([one.promise, two.promise]);
+
+
+            Auth.$onAuthStateChanged(function (authData) {
+                if (authData)
+                {
+                    var user = $firebaseObject(firebase.database().ref().child('users').child(authData.uid));
+                    user.$loaded().then(function (user) {
+                         this.user = user;
+                        one.resolve(user);
+
+                    }).catch(function (error) {
+                        one.reject(error);
+                    })
+
+
+                            ;
+
+                }else
+                {
+                    one.resolve(null);
+                }
+
+            });
+
+
+
+
+
+            return one.promise;
+        };
+
+
+    });
+
+
     // UI.ROUTER STUFF
     club.run(["$rootScope", "$state", function ($rootScope, $state) {
 
-            $rootScope.user = null;
+
 
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
                 console.log('enter rootscope');

@@ -8,18 +8,20 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                 templateUrl: "app/pages/login.html",
                 controller: "loginCtrl",
                 resolve: {
-                    "currentAuth": ["Auth", function (Auth) {
+                    currentAuth:  function (Auth) {
                             return Auth.$waitForSignIn();
-                        }]
+                        },
+                    userObj: function (getData) {
+                        return getData.getInitialData();
+                    }
+
                 }
+
             })
             .state('phone', {
                 url: "/phone-check",
                 templateUrl: "app/pages/phone.html",
                 controller: "phoneCtrl",
-                params: {
-                    userObj: null
-                },
                 resolve: {
                     "currentAuth": ["Auth", function (Auth) {
                             return Auth.$requireSignIn();
@@ -30,9 +32,6 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                 url: "/main",
                 templateUrl: "app/pages/main.html",
                 controller: "mainCtrl",
-                params: {
-                    userObj: null
-                },
                 resolve: {
                     "currentAuth": ["Auth", function (Auth) {
                             return Auth.$requireSignIn();

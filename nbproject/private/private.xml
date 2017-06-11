@@ -3,17 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/amfront/package.json</file>
-            <file>file:/C:/xampp/htdocs/amfront/public/app/router.js</file>
-            <file>file:/C:/xampp/htdocs/amfront/public/app/controllers/AppCtrl.js</file>
-            <file>file:/C:/xampp/htdocs/amfront/public/index.html</file>
-            <file>file:/C:/xampp/htdocs/amfront/restrict/config.json</file>
-            <file>file:/C:/xampp/htdocs/amfront/public/app/config.js</file>
-            <file>file:/C:/xampp/htdocs/amfront/public/app/controllers/mainClubesCtrl.js</file>
-            <file>file:/C:/xampp/htdocs/amfront/public/app/controllers/clubPartyCtrl.js</file>
-            <file>file:/C:/xampp/htdocs/amfront/public/app/controllers/loginCtrl.js</file>
-            <file>file:/C:/xampp/htdocs/amfront/public/app/pages/login.html</file>
-            <file>file:/C:/xampp/htdocs/amfront/public/app/factory/factories.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/pages/main.html</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/router.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/pages/phone.html</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/pages/login.html</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/controllers/AppCtrl.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/pages/profile.html</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/controllers/loginCtrl.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/index.html</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/controllers/mainCtrl.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/controllers/phoneCtrl.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/controllers/profileCtrl.js</file>
         </group>
     </open-files>
 </project-private>
