@@ -28,17 +28,16 @@
                     console.log(userObj);
                     if (result.credential && result.user && !userObj.$value)
                     {
-                        var user = {
-                            email: result.additionalUserInfo.profile.email,
-                            first_name: result.additionalUserInfo.profile.first_name,
-                            last_name: result.additionalUserInfo.profile.last_name,
-                            gender: result.additionalUserInfo.profile.gender,
-                            face_link: result.additionalUserInfo.profile.link,
-                            picture: result.additionalUserInfo.profile.picture.data.url,
-                            created: Date.now()
-                        };
-                        var ref = firebase.database().ref().child('users').child(result.user.uid);
-                        ref.set(user);
+
+                        userObj.email = result.additionalUserInfo.profile.email;
+                        userObj.first_name = result.additionalUserInfo.profile.first_name;
+                        userObj.last_name = result.additionalUserInfo.profile.last_name;
+                        userObj.gender = result.additionalUserInfo.profile.gender;
+                        userObj.face_link = result.additionalUserInfo.profile.link;
+                        userObj.picture = result.additionalUserInfo.profile.picture.data.url;
+                        userObj.created = Date.now()
+
+                        userObj.$save();
 //                    USERS.AddUser(user, result.user.uid);          // save user basic profile on DB
                         console.log('after save ');
                         console.log(userObj);
@@ -66,7 +65,7 @@
                             else
                             {
                                 $state.go('phone');                     // send user to auth phone incase phone not stored on DB
-                                console.log(USERS.getUser());
+                            //    console.log(USERS.getUser());
                             }
                         } else
                         {

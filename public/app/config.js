@@ -25,9 +25,9 @@
     );
 
 
-    club.service('getData', function ($q, Auth,$firebaseObject) {
-//	var service = {};
-        this.user = null;
+    club.service('getData', function ($q, Auth) {
+	var service = {};
+        
         this.getInitialData = function () {
             //define my promises
             var one = $q.defer();
@@ -38,17 +38,7 @@
             Auth.$onAuthStateChanged(function (authData) {
                 if (authData)
                 {
-                    var user = $firebaseObject(firebase.database().ref().child('users').child(authData.uid));
-                    user.$loaded().then(function (user) {
-                         this.user = user;
-                        one.resolve(user);
-
-                    }).catch(function (error) {
-                        one.reject(error);
-                    })
-
-
-                            ;
+                     one.resolve(authData.uid);
 
                 }else
                 {

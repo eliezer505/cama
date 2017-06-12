@@ -8,26 +8,39 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                 templateUrl: "app/pages/login.html",
                 controller: "loginCtrl",
                 resolve: {
-                    currentAuth:  function (Auth) {
-                            return Auth.$waitForSignIn();
-                        },
-                    userObj: function (getData) {
+                    currentAuth: function (Auth) {
+                        return Auth.$waitForSignIn();
+                    },
+                    userId: function (getData) {
                         return getData.getInitialData();
+                    },
+                    userObj: function (userId, USERS) {
+                        if (userId)
+                            return USERS.getUser(userId);
+                        else
+                            return null;
                     }
-
                 }
 
             })
             .state('phone', {
-                url: "/phone-check",
+                url: "/phone",
                 templateUrl: "app/pages/phone.html",
                 controller: "phoneCtrl",
-                resolve: {
-                    "currentAuth": ["Auth", function (Auth) {
-                            return Auth.$requireSignIn();
-                        }]
+                currentAuth: function (Auth) {
+                    return Auth.$requireSignIn();
+                },
+                userId: function (getData) {
+                    return getData.getInitialData();
+                },
+                userObj: function (userId, USERS) {
+                    if (userId)
+                        return USERS.getUser(userId);
+                    else
+                        return null;
                 }
-            })
+            }
+            )
             .state('main', {
                 url: "/main",
                 templateUrl: "app/pages/main.html",

@@ -1,7 +1,7 @@
 (function () {
 
-    angular.module('app').controller("phoneCtrl", ["$scope", "$state", "$rootScope", "currentAuth", "Auth", "USERS", "$stateParams",
-        function ($scope, $state, $rootScope, currentAuth, Auth, USERS, $stateParams) {
+    angular.module('app').controller("phoneCtrl", 
+        function ($scope, $state, currentAuth, Auth, USERS,userObj) {
 
             // initialize all of the important varibles at controller load.
 
@@ -13,7 +13,7 @@
             $scope.verificationCode = '';
             $scope.checkPhone = false;
             $scope.countryId = '+972';               // for now put only israel for testing later their is plugin of google to get all countries.
-            $scope.refUser = $stateParams.userObj;
+        
 
             /**
              * Set up UI event listeners and registering Firebase auth listeners.
@@ -112,7 +112,7 @@
              */
             $scope.onVerifyCodeSubmit = function () {
 
-                var currentUser = firebase.auth().currentUser;          // get current authnticate user
+                var currentUser = userObj.$id;         // get current authnticate user
 
                 // [START verifyCode]
                 var credential = firebase.auth.PhoneAuthProvider.credential($scope.confirmationResult.verificationId, $scope.verificationCode);
@@ -194,6 +194,6 @@
 
             });
         }
-    ]);
+    );
 
 })();

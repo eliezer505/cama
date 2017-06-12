@@ -1,13 +1,13 @@
 (function () {
 
     angular.module('app').service("USERS",
-            function ($firebaseObject, $firebaseArray, Auth,getData) {
+            function ($firebaseObject, $firebaseArray, Auth, $q) {
                 if (Auth) {
 //                    console.log(currentUser);
 //                    var user = Auth.$getAuth();
 //                    var userData = null;
-//                    var UsersRef = firebase.database().ref('users');
-                    this.getUser = function () {
+                    var UsersRef = firebase.database().ref('users');
+                    this.getUser = function (Key) {
 //                        var UsersRef = firebase.database().ref('users');
 //                        if (!user || !user.uid)
 //                            return null;
@@ -16,9 +16,19 @@
 //                            var UserRef = $firebaseObject(UsersRef.child(user.uid));
 //                            userData = UserRef.$loaded();
 //                        }
-                        return getData.user;
+                        var one = $q.defer();
+                        var user = $firebaseObject(UsersRef.child(Key));
+
+                        user.$loaded().then(function () {
+
+                            one.resolve(user);
+
+                        });
+
+
+                        return one.promise;
                     };
-                    
+
                     this.AddUser = function (User, Key) {
                         console.log('add user');
                         firebase.database().ref().child('users').child(Key).set(User);
