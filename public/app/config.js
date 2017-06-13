@@ -18,44 +18,44 @@
         }
     ]);
 
-    club.factory("currentUser",
-            function () {
-                return firebase.auth().currentUser;
-            }
-    );
+//    club.factory("currentUser",
+//            function () {
+//                return firebase.auth().currentUser;
+//            }
+//    );
 
 
-    club.service('getData', function ($q, Auth) {
-	var service = {};
-        
-        this.getInitialData = function () {
-            //define my promises
-            var one = $q.defer();
-//		var two = $q.defer();
-//		var all = $q.all([one.promise, two.promise]);
-
-
-            Auth.$onAuthStateChanged(function (authData) {
-                if (authData)
-                {
-                     one.resolve(authData.uid);
-
-                }else
-                {
-                    one.resolve(null);
-                }
-
-            });
-
-
-
-
-
-            return one.promise;
-        };
-
-
-    });
+//    club.service('getData', function ($q, Auth) {
+//	var service = {};
+//        
+//        this.getInitialData = function () {
+//            //define my promises
+//            var one = $q.defer();
+////		var two = $q.defer();
+////		var all = $q.all([one.promise, two.promise]);
+//
+//
+//            Auth.$onAuthStateChanged(function (authData) {
+//                if (authData)
+//                {
+//                     one.resolve(authData.uid);
+//
+//                }else
+//                {
+//                    one.resolve(null);
+//                }
+//
+//            });
+//
+//
+//
+//
+//
+//            return one.promise;
+//        };
+//
+//
+//    });
 
 
     // UI.ROUTER STUFF

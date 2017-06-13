@@ -24,7 +24,8 @@
                             one.resolve(user);
 
                         });
-
+                        
+                        // Avner remmber that you didn't handle errores in load userr object. For later add catch
 
                         return one.promise;
                     };

@@ -1,12 +1,11 @@
 (function () {
 
     angular.module('app').controller("phoneCtrl", 
-        function ($scope, $state, currentAuth, Auth, USERS,userObj) {
+        function ($scope, $state, Auth, USERS,userObj,currentAuth) {
 
             // initialize all of the important varibles at controller load.
-
-            $scope.auth = Auth;
-            $scope.currentAuth = currentAuth;
+        
+                  
             $scope.confirmationResult = null;
             $scope.recaptcha = false;
             $scope.phoneNumber = '';
@@ -112,16 +111,16 @@
              */
             $scope.onVerifyCodeSubmit = function () {
 
-                var currentUser = userObj.$id;         // get current authnticate user
+//                var currentUser = userObj.$id;         // get current authnticate user
 
                 // [START verifyCode]
                 var credential = firebase.auth.PhoneAuthProvider.credential($scope.confirmationResult.verificationId, $scope.verificationCode);
 
                 // link user phone auth to facebook auth on the same instance in firebase
-                currentUser.linkWithCredential(credential).then(function (user) {
-                    $scope.refUser.phone = $scope.phoneNumber;
-                    $scope.refUser.$save();
-                    $state.go('main', {userObj: user},);
+                currentAuth.linkWithCredential(credential).then(function (user) {
+                   userObj.phone = $scope.phoneNumber;
+                   userObj.$save();
+                    $state.go('main');
                 }, function (error) {
                     console.log("Account linking error", error);
                 });
@@ -187,7 +186,7 @@
                 }
             }
 
-            $scope.auth.$onAuthStateChanged(function (authData) {
+            Auth.$onAuthStateChanged(function (authData) {
 
                 updateSignInFormUI();
                 updateVerificationCodeFormUI();

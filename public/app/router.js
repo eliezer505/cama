@@ -11,12 +11,9 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     currentAuth: function (Auth) {
                         return Auth.$waitForSignIn();
                     },
-                    userId: function (getData) {
-                        return getData.getInitialData();
-                    },
-                    userObj: function (userId, USERS) {
-                        if (userId)
-                            return USERS.getUser(userId);
+                    userObj: function (USERS, currentAuth) {
+                        if (currentAuth && currentAuth.uid)
+                            return USERS.getUser(currentAuth.uid);
                         else
                             return null;
                     }
@@ -27,28 +24,26 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                 url: "/phone",
                 templateUrl: "app/pages/phone.html",
                 controller: "phoneCtrl",
-                currentAuth: function (Auth) {
-                    return Auth.$requireSignIn();
-                },
-                userId: function (getData) {
-                    return getData.getInitialData();
-                },
-                userObj: function (userId, USERS) {
-                    if (userId)
-                        return USERS.getUser(userId);
-                    else
-                        return null;
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                    userObj: function (USERS, currentAuth) {
+                        return USERS.getUser(currentAuth.uid);
+                    }
                 }
-            }
-            )
+            })
             .state('main', {
                 url: "/main",
                 templateUrl: "app/pages/main.html",
                 controller: "mainCtrl",
                 resolve: {
-                    "currentAuth": ["Auth", function (Auth) {
-                            return Auth.$requireSignIn();
-                        }]
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                    userObj: function (USERS, currentAuth) {
+                        return USERS.getUser(currentAuth.uid);
+                    }
                 }
             })
             .state('main.clubes', {

@@ -2,12 +2,11 @@
 
     angular.module('app').controller("loginCtrl",
             function ($scope, Auth, $state, currentAuth, USERS, userObj) {
-
-                $scope.auth = Auth;
-                console.log('login Auth');
-                console.log($scope.auth);
+   
+                console.log('Current Auth');
+                console.log(currentAuth);
                 $scope.currentAuth = currentAuth;
-                console.log('enter login');
+                console.log('userObj');
                 console.log(userObj);
                 /**
                  * Function called when clicking the Login/Logout button.
@@ -26,7 +25,7 @@
                     console.log('in redirect');
                     console.log(result);
                     console.log(userObj);
-                    if (result.credential && result.user && !userObj.$value)
+                    if (result.credential && result.user && !userObj.email)
                     {
 
                         userObj.email = result.additionalUserInfo.profile.email;
@@ -54,7 +53,7 @@
                     // ...
                 });
 
-                $scope.auth.$onAuthStateChanged(function (authData) {
+                Auth.$onAuthStateChanged(function (authData) {
                     if (authData)
                     {
 
@@ -65,7 +64,7 @@
                             else
                             {
                                 $state.go('phone');                     // send user to auth phone incase phone not stored on DB
-                            //    console.log(USERS.getUser());
+                                //    console.log(USERS.getUser());
                             }
                         } else
                         {
