@@ -2,7 +2,7 @@
 
     angular.module('app').controller("loginCtrl",
             function ($scope, Auth, $state, currentAuth, USERS, userObj) {
-   
+
                 console.log('Current Auth');
                 console.log(currentAuth);
                 $scope.currentAuth = currentAuth;
@@ -66,12 +66,12 @@
                                 $state.go('phone');                     // send user to auth phone incase phone not stored on DB
                                 //    console.log(USERS.getUser());
                             }
-                        } else
-                        {
+                        }
+                    } else
+                    {
 
 //                            console.log(USERS.currentUser);
-                            $state.go('phone');
-                        }
+                        $state.go('login');
                     }
 
                 });
