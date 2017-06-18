@@ -61,7 +61,23 @@
     // UI.ROUTER STUFF
     club.run(["$rootScope", "$state", function ($rootScope, $state) {
 
+            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
+                console.log(fromState);
+                console.log(toState);
+                // check if root scope
+                if (fromState.name == '') {
 
+                    // add resolve dependency to root's child
+                    if (!toState.resolve)
+                        toState.resolve = {};
+                    toState.resolve.currentAuth = ["Auth", function (Auth) {
+                            console.log(Auth);
+                            return Auth.$waitForSignIn();
+                        }];
+
+
+                }
+            });
 
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
                 console.log('enter rootscope');

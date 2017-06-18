@@ -9,17 +9,18 @@ angular
             // from default
         })
 
-        .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $mdMedia, $http) {
+        .controller('AppCtrl', ["$scope", "$mdSidenav", "currentAuth",
+            function ($scope, $mdSidenav, currentAuth) {
 
-        
+                $scope.isLoged = currentAuth;
 
-            $scope.showMobileMainHeader = true;
-            $scope.openSideNavPanel = function () {
-                $mdSidenav('left').open();
-            };
-            $scope.closeSideNavPanel = function () {
-                $mdSidenav('left').close();
-            };
+                $scope.showMobileMainHeader = true;
+                $scope.openSideNavPanel = function () {
+                    $mdSidenav('left').open();
+                };
+                $scope.closeSideNavPanel = function () {
+                    $mdSidenav('left').close();
+                };
 //            $scope.toggleLeft = buildToggler('right');
 //            $scope.toggleRight = buildToggler('left');
 //
@@ -28,5 +29,5 @@ angular
 //                    $mdSidenav(componentId).toggle();
 //                };
 //            }
-        });
+            }]);
   

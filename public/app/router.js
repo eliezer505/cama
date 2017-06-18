@@ -3,6 +3,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
     // For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise("/login");
     $stateProvider
+
             .state('login', {
                 url: "/login",
                 templateUrl: "app/pages/login.html",

@@ -18,12 +18,12 @@
         <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.css" />
         <link rel="stylesheet" href="css/style.css">
     </head>
-    <body >
+    <body ng-controller="AppCtrl">
 
-        <div ng-controller="AppCtrl" layout="column" style="height: 100%;">
+        <div layout="column" style="height: 100%;">
 
             <!-- Upper toolbar with bottons to serve the user -->
-            <md-toolbar md-theme="altTheme" class="md-primary">
+            <md-toolbar md-theme="altTheme" class="md-primary" ng-show="isLoged">
                 <div class="md-toolbar-tools">
                     <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
                         <md-tooltip>
@@ -64,7 +64,7 @@
 
             <div ui-view></div>
 
-            <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+            <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" ng-show="isLoged">
                 <md-toolbar layout="row" md-theme="altTheme" class="md-primary">
                     <div class="md-toolbar-tools">
                         <span class="margin-left-1" ><h1>C</h1></span>
@@ -210,10 +210,10 @@
         <!-- Angular router file -->
         <script src="app/router.js"></script>
         <!-- Controllers -->
+        <script src="app/controllers/AppCtrl.js"></script>       
         <script src="app/controllers/loginCtrl.js"></script>
         <script src="app/controllers/phoneCtrl.js"></script>
         <script src="app/controllers/mainCtrl.js"></script>
-        <script src="app/controllers/AppCtrl.js"></script>
         <script src="app/controllers/mainClubesCtrl.js" type="text/javascript"></script>
         <script src="app/controllers/mainFavoritesCtrl.js" type="text/javascript"></script>
         <script src="app/controllers/mainSearchCtrl.js" type="text/javascript"></script>
