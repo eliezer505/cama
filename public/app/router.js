@@ -68,6 +68,16 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         //        $scope.items = ["A", "List", "Of", "Items"];
                         //      }
             })
+            .state('friends', {
+                url: "/friends",
+                templateUrl: "app/pages/friends.html",
+                controller: "friendsChatCtrl",
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    }
+                }
+            })
             .state('space', {
                 url: "/space",
                 templateUrl: "app/pages/space.html"
