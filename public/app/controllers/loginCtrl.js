@@ -60,7 +60,7 @@
                         if (userObj && userObj.email)
                         {
                             if (userObj.phone)
-                                $state.go('main');                   // send user to profile because everything is good and stored
+                                $state.go('clubears.main');                   // send user to profile because everything is good and stored
                             else
                             {
                                 $state.go('phone');                     // send user to auth phone incase phone not stored on DB

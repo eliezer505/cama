@@ -34,35 +34,51 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     }
                 }
             })
-            .state('main', {
-                url: "/main",
-                templateUrl: "app/pages/main.html",
-                controller: "mainCtrl",
+               .state('clubears', {
+                url: "/clubears",
+                abstract:true,
+                templateUrl: "app/pages/clubears.html",
+                controller: "clubearsCtrl",
                 resolve: {
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
                     }
                 }
             })
-            .state('main.clubes', {
-                url: "/clubes",
-                templateUrl: "app/pages/main.clubes.html"
+            .state('clubears.main', {
+            	 
+                url: "",
+                templateUrl: "app/pages/clubears.main.html",
+                controller: "mainCtrl",
+                 onEnter: function($state){
+        $state.go('clubears.main.clubes');  
+      },
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    }
+                }
+            })
+
+            .state('clubears.main.clubes', {
+                url: "/main",
+                templateUrl: "app/pages/clubears.main.clubes.html"
                         //      controller: mainClubesCtrl
                         //              function($scope) {
                         //        $scope.items = ["A", "List", "Of", "Items"];
                         //      }
             })
-            .state('main.search', {
+            .state('clubears.main.search', {
                 url: "/search",
-                templateUrl: "app/pages/main.search.html"
+                templateUrl: "app/pages/clubears.main.search.html"
                         //      controller: mainClubesCtrl
                         //              function($scope) {
                         //        $scope.items = ["A", "List", "Of", "Items"];
                         //      }
             })
-            .state('main.favorites', {
+            .state('clubears.main.favorites', {
                 url: "/favorites",
-                templateUrl: "app/pages/main.favorites.html"
+                templateUrl: "app/pages/clubears.main.favorites.html"
                         //      controller: mainClubesCtrl
                         //              function($scope) {
                         //        $scope.items = ["A", "List", "Of", "Items"];
@@ -107,27 +123,30 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         //
                         //      }
             })
-            .state('profile', {
+            .state('clubears.profile', {
                 url: "/profile",
                 templateUrl: "app/pages/profile.html",
                 controller: "profileCtrl",
-                params: {
-                    userObj: null
-                },
+                                 
+                    
                 resolve: {
                     "currentAuth": ["Auth", function (Auth) {
                             return Auth.$requireSignIn();
-                        }]
+                            
+                        } ],
+                        "userObj": function (USERS, currentAuth) {
+                        return USERS.getUser(currentAuth.uid);
+                        }
                 }
             })
-            .state('events', {
+            .state('clubears.events', {
                 url: "/events",
                 templateUrl: "app/pages/events.html"
 
                         //
                         //      }
             })
-            .state('pictures', {
+            .state('clubears.pictures', {
                 url: "/pictures",
                 templateUrl: "app/pages/pictures.html"
 
@@ -141,14 +160,14 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         //
                         //      }
             })
-            .state('club', {
+            .state('clubears.club', {
                 url: "/club",
                 templateUrl: "app/pages/club.html",
-                params: {
-                    obj: null
-                }
+                          onEnter: function($state){
+        $state.go('clubears.club.party');  
+      }
             })
-            .state('club.party', {
+            .state('clubears.club.party', {
                 url: "/club.party",
                 templateUrl: "app/pages/club.party.html"
                         //      controller: clubPartyCtrl
@@ -156,7 +175,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         //        $scope.items = ["A", "List", "Of", "Items"];
                         //      }
             })
-            .state('club.about', {
+            .state('clubears.club.about', {
                 url: "/club.about",
                 templateUrl: "app/pages/club.about.html"
                         //      controller: clubAboutCtrl

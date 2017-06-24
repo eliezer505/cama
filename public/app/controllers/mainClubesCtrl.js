@@ -9,7 +9,7 @@ function ($scope,$state) {
         
         $scope.enterClub = function (clubPressed){
 
-        	 $state.go('club', {obj:clubPressed});
+        	 $state.go('clubears.club', {obj:clubPressed});
         };
 
 });

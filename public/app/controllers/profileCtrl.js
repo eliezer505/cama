@@ -1,14 +1,14 @@
 angular.module('app').controller('profileCtrl',
-        function ($scope, $stateParams, Auth, currentAuth) {
+        function ($scope, currentAuth, userObj) {
 
-            $scope.auth = Auth;
+            $scope.currentAuth = currentAuth;
 
-            $scope.refUser = $stateParams.userObj;
+          console.log(userObj);
 
-            $scope.name = $scope.refUser.first_name + ' ' + $scope.refUser.last_name;
+            $scope.name = currentAuth.displayName;
 
-            $scope.picture = $scope.refUser.picture;
-            $scope.gender = $scope.refUser.gender=='male' ? 'בן':'בת';
+            $scope.picture = currentAuth.photoURL;
+            $scope.gender = userObj.gender=='male' ? 'בן':'בת';
             $scope.status = "רווק";
           
             $scope.age = "24";
