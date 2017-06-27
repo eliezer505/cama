@@ -20,9 +20,11 @@
     </head>
     <body ng-controller="AppCtrl">
 
+        <div layout="row" layout-sm="column" layout-align="space-around" ng-disabled="!spinnerActive">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
 
-
-            <div ui-view></div>
+        <div ui-view></div>
 
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -58,7 +60,7 @@
         <script src="app/controllers/AppCtrl.js"></script>       
         <script src="app/controllers/loginCtrl.js"></script>
         <script src="app/controllers/phoneCtrl.js"></script>
-                <script src="app/controllers/clubearsCtrl.js" type="text/javascript"></script> 
+        <script src="app/controllers/clubearsCtrl.js" type="text/javascript"></script> 
         <script src="app/controllers/mainCtrl.js"></script>
         <script src="app/controllers/mainClubesCtrl.js" type="text/javascript"></script>
         <script src="app/controllers/mainFavoritesCtrl.js" type="text/javascript"></script>
@@ -77,7 +79,7 @@
         <script src="app/controllers/eventsCtrl.js" type="text/javascript"></script>
         <script src="app/controllers/picturesCtrl.js" type="text/javascript"></script>
 
-        
+
     </body>
 
 </html>

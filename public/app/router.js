@@ -34,9 +34,9 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     }
                 }
             })
-               .state('clubears', {
+            .state('clubears', {
                 url: "/clubears",
-                abstract:true,
+                abstract: true,
                 templateUrl: "app/pages/clubears.html",
                 controller: "clubearsCtrl",
                 resolve: {
@@ -46,13 +46,13 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                 }
             })
             .state('clubears.main', {
-            	 
+
                 url: "",
                 templateUrl: "app/pages/clubears.main.html",
                 controller: "mainCtrl",
-                 onEnter: function($state){
-        $state.go('clubears.main.clubes');  
-      },
+                onEnter: function ($state) {
+                    $state.go('clubears.main.clubes');
+                },
                 resolve: {
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
@@ -127,16 +127,15 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                 url: "/profile",
                 templateUrl: "app/pages/profile.html",
                 controller: "profileCtrl",
-                                 
-                    
+
                 resolve: {
                     "currentAuth": ["Auth", function (Auth) {
                             return Auth.$requireSignIn();
-                            
-                        } ],
-                        "userObj": function (USERS, currentAuth) {
+
+                        }],
+                    "userObj": function (USERS, currentAuth) {
                         return USERS.getUser(currentAuth.uid);
-                        }
+                    }
                 }
             })
             .state('clubears.events', {
@@ -163,9 +162,9 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             .state('clubears.club', {
                 url: "/club",
                 templateUrl: "app/pages/club.html",
-                          onEnter: function($state){
-        $state.go('clubears.club.party');  
-      }
+                onEnter: function ($state) {
+                    $state.go('clubears.club.party');
+                }
             })
             .state('clubears.club.party', {
                 url: "/club.party",

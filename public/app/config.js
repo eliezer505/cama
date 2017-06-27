@@ -61,30 +61,48 @@
     // UI.ROUTER STUFF
     club.run(["$rootScope", "$state", function ($rootScope, $state) {
 
-            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-                console.log(fromState);
-                console.log(toState);
-                // check if root scope
-                if (fromState.name == '') {
+//            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
+//                console.log(fromState);
+//                console.log(toState);
+//                // check if root scope
+//                if (fromState.name == '') {
+//
+//                    // add resolve dependency to root's child
+//                    if (!toState.resolve)
+//                        toState.resolve = {};
+//                    toState.resolve.currentAuth = ["Auth", function (Auth) {
+//                            console.log(Auth);
+//                            return Auth.$waitForSignIn();
+//                        }];
+//
+//
+//                }
+//            });
 
-                    // add resolve dependency to root's child
-                    if (!toState.resolve)
-                        toState.resolve = {};
-                    toState.resolve.currentAuth = ["Auth", function (Auth) {
-                            console.log(Auth);
-                            return Auth.$waitForSignIn();
-                        }];
+//state.defaultErrorHandler()
 
-
-                }
-            });
-
+            $rootScope.spinnerActive = true;
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
                 console.log('enter rootscope');
+
+                console.log(error);
                 if (error === "AUTH_REQUIRED") {
                     $state.go("login");
                 }
             });
+
+            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+                if (toState.resolve) {
+                     $rootScope.spinnerActive = true;
+                }
+            });
+            $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+                if (toState.resolve) {
+                     $rootScope.spinnerActive = false;
+                }
+            });
+
+
         }]);
 
 
