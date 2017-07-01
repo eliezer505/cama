@@ -58,50 +58,54 @@
 //    });
 
 
+
+
     // UI.ROUTER STUFF
     club.run(["$rootScope", "$state", function ($rootScope, $state) {
 
-//            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-//                console.log(fromState);
-//                console.log(toState);
-//                // check if root scope
-//                if (fromState.name == '') {
+//            $transitions.onStart({}, function (trans) {
+//                console.log(trans);
+//                var SpinnerService = trans.injector().get('SpinnerService');
+//                console.log(SpinnerService);
+//                SpinnerService.transitionStart();
+//                trans.promise.finally(SpinnerService.transitionEnd);
+//            });
+
+//            $rootScope.spinnerActive = true;
+//            $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
+//                console.log('enter rootscope');
 //
-//                    // add resolve dependency to root's child
-//                    if (!toState.resolve)
-//                        toState.resolve = {};
-//                    toState.resolve.currentAuth = ["Auth", function (Auth) {
-//                            console.log(Auth);
-//                            return Auth.$waitForSignIn();
-//                        }];
-//
-//
+//                console.log(error);
+//                if (error === "AUTH_REQUIRED") {
+//                    $state.go("login");
 //                }
 //            });
 
-//state.defaultErrorHandler()
-
-            $rootScope.spinnerActive = true;
-            $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
-                console.log('enter rootscope');
-
-                console.log(error);
-                if (error === "AUTH_REQUIRED") {
+//            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+//                if (toState.resolve) {
+//                    
+//                }
+//            });
+//            $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+//                if (toState.resolve) {
+//                    $rootScope.spinnerActive = false;
+//                }
+//            });
+            $rootScope.$on('$stateChangeStart', function (evt, toState, toParams, fromState, fromParams) {
+                console.log("$stateChangeStart " + fromState.name + JSON.stringify(fromParams) + " -> " + toState.name + JSON.stringify(toParams));
+                $rootScope.spinnerActive = true;
+            });
+            $rootScope.$on('$stateChangeSuccess', function (evt, toState, toParams, fromState, fromParams) {
+                console.log("$stateChangeSuccess " + fromState.name + JSON.stringify(fromParams) + " -> " + toState.name + JSON.stringify(toParams));
+                $rootScope.spinnerActive = false;
+            });
+            $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams) {
+                console.log("$stateChangeError " + fromState.name + JSON.stringify(fromParams) + " -> " + toState.name + JSON.stringify(toParams));
+                $rootScope.spinnerActive = false;
+                  if (error === "AUTH_REQUIRED") {
                     $state.go("login");
                 }
             });
-
-            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-                if (toState.resolve) {
-                     $rootScope.spinnerActive = true;
-                }
-            });
-            $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-                if (toState.resolve) {
-                     $rootScope.spinnerActive = false;
-                }
-            });
-
 
         }]);
 
