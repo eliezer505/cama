@@ -3,11 +3,8 @@
     angular.module('app').controller("loginCtrl",
             function ($scope, Auth, $state, currentAuth, USERS, userObj) {
 
-                console.log('Current Auth');
-                console.log(currentAuth);
                 $scope.currentAuth = currentAuth;
-                console.log('userObj');
-                console.log(userObj);
+
                 /**
                  * Function called when clicking the Login/Logout button.
                  */
@@ -22,9 +19,6 @@
                 // [END buttoncallback]
 
                 firebase.auth().getRedirectResult().then(function (result) {
-                    console.log('in redirect');
-                    console.log(result);
-                    console.log(userObj);
                     if (result.credential && result.user && !userObj.email)
                     {
 
@@ -38,8 +32,7 @@
 
                         userObj.$save();
 //                    USERS.AddUser(user, result.user.uid);          // save user basic profile on DB
-                        console.log('after save ');
-                        console.log(userObj);
+
                     }
 
                 }).catch(function (error) {
@@ -60,7 +53,7 @@
                         if (userObj && userObj.email)
                         {
                             if (userObj.phone)
-                                $state.go('clubears.main');                   // send user to profile because everything is good and stored
+                                $state.go('clubears.main.clubes');                   // send user to profile because everything is good and stored
                             else
                             {
                                 $state.go('phone');                     // send user to auth phone incase phone not stored on DB

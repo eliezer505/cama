@@ -20,11 +20,11 @@
     </head>
     <body ng-controller="AppCtrl">
 
-        <div layout="row" layout-sm="column" layout-align="space-around" ng-disabled="!spinnerActive">
+        <div layout="row" layout-sm="column" layout-align="space-around" ng-show="spinnerActive">
             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
         </div>
 
-        <div ui-view></div>
+        <div ui-view ng-show="!spinnerActive"></div>
 
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

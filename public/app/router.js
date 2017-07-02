@@ -2,6 +2,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
     //
     // For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise("/login");
+//    $urlRouterProvider.when('clubears/main', '/clubears/main/clubes');
     $stateProvider
 
             .state('login', {
@@ -47,12 +48,10 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             })
             .state('clubears.main', {
 
-                url: "",
+                url: "/main",
+                abstract: true,
                 templateUrl: "app/pages/clubears.main.html",
                 controller: "mainCtrl",
-                onEnter: function ($state) {
-                    $state.go('clubears.main.clubes');
-                },
                 resolve: {
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
@@ -61,12 +60,14 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             })
 
             .state('clubears.main.clubes', {
-                url: "/main",
-                templateUrl: "app/pages/clubears.main.clubes.html"
-                        //      controller: mainClubesCtrl
-                        //              function($scope) {
-                        //        $scope.items = ["A", "List", "Of", "Items"];
-                        //      }
+                url: "/clubes",
+                templateUrl: "app/pages/clubears.main.clubes.html",
+                controller: 'mainClubesCtrl',
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    }
+                }
             })
             .state('clubears.main.search', {
                 url: "/search",
@@ -162,17 +163,23 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             .state('clubears.club', {
                 url: "/club",
                 templateUrl: "app/pages/club.html",
-                onEnter: function ($state) {
-                    $state.go('clubears.club.party');
+                  controller: 'clubesCtrl',
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    }
                 }
             })
             .state('clubears.club.party', {
                 url: "/club.party",
-                templateUrl: "app/pages/club.party.html"
-                        //      controller: clubPartyCtrl
-                        //              function($scope) {
-                        //        $scope.items = ["A", "List", "Of", "Items"];
-                        //      }
+                templateUrl: "app/pages/club.party.html",
+                controller: 'clubPartyCtrl',
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    }
+                }
+
             })
             .state('clubears.club.about', {
                 url: "/club.about",
