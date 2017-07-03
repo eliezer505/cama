@@ -139,6 +139,34 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     }
                 }
             })
+            .state('clubears.managment', {
+                url: "/managment",
+                templateUrl: "app/pages/managment.html"
+
+                        //
+                        //      }
+            })
+                        .state('clubears.managment.parties', {
+                url: "/parties",
+                templateUrl: "app/pages/managment.parties.html"
+
+                        //
+                        //      }
+            })
+                                    .state('clubears.managment.profile', {
+                url: "/profile",
+                templateUrl: "app/pages/managment.profile.html"
+
+                        //
+                        //      }
+            })
+                                    .state('clubears.managment.stats', {
+                url: "/stats",
+                templateUrl: "app/pages/managment.stats.html"
+
+                        //
+                        //      }
+            })
             .state('clubears.events', {
                 url: "/events",
                 templateUrl: "app/pages/events.html"
@@ -197,5 +225,6 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         //
                         //      }
             });
+            
 
 }); 
