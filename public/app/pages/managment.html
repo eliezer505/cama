@@ -1,45 +1,37 @@
-            <div layout="column">
-                
+<div layout="column">
+
+	<div class="ext-content">
+		<div layout="column">
+		<div ui-view></div>
+		</div>
+
+	</div>
+
+	<md-content class="md-padding footnav" layout="row" layout-align="center center" >
+
+		<md-nav-bar
+		md-selected-nav-item="currentNavItem"
+		nav-bar-aria-label="navigation links">
+			<md-nav-item md-nav-sref="clubears.managment.profile" name="profile">
+				פרופיל<!-- profile -->
+			</md-nav-item>
+			<md-nav-item md-nav-sref="clubears.managment.stats" name="stats">
+				סטטיסטיקות <!-- stats -->
+			</md-nav-item>
+			<md-nav-item md-nav-sref="clubears.managment.parties" name="parties">
+				מסיבות והרשמות <!-- managment.parties -->
+			</md-nav-item>
+			<!-- these require actual routing with ui-router or ng-route, so they
+			won't work in the demo
+			<md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
+			<md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
+			You can also add options for the <code>ui-sref-opts</code> attribute.
+			<md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
+			Page Six
+			</md-nav-item>
+			-->
+		</md-nav-bar>
+
+	</md-content>
 	
-	
-	          <!--        <div layout="colmun" layout-align="center center" style="min-height:100%;" class="md-primary" md-theme="altTheme">
-      <md-button class="md-primary md-fab" >
-        <i class="material-icons">&#xE145;</i>
-      </md-button></div>
-               
-                 <div class="ext-content">-->
-                        <div ui-view></div>
-                      <!--  External content for `<span>{{currentNavItem}}</span>`. -->
-                      
-                    </div>
-                <md-content class="md-padding footnav" layout="row" layout-align="center center" >
-                                   
-                    <md-nav-bar 
-                        md-selected-nav-item="currentNavItem"
-                        nav-bar-aria-label="navigation links">
-                        <md-nav-item md-nav-sref="clubears.managment.profile" name="profile">
-                  פרופיל<!-- profile -->
-                        </md-nav-item>
-                        <md-nav-item md-nav-sref="clubears.managment.stats" name="stats">
-                          סטטיסטיקות <!-- stats -->
-                        </md-nav-item>
-                        <md-nav-item md-nav-sref="clubears.managment.parties" name="parties">
-                        מסיבות והרשמות <!-- managment.parties -->
-                        </md-nav-item>
-                        <!-- these require actual routing with ui-router or ng-route, so they
-                        won't work in the demo
-                        <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
-                        <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
-                        You can also add options for the <code>ui-sref-opts</code> attribute.
-                        <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
-                          Page Six
-                        </md-nav-item>
-                        -->
-                    </md-nav-bar>
-
-              
-
-                </md-content>
-
-
-            </div>
+	</div>
