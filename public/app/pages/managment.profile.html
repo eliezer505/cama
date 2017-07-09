@@ -1,86 +1,77 @@
 <div ng-controller="managmentCtrl" layout="column">
 
 
-	<md-content layout-padding class="rtl">
+    <md-content layout-padding class="rtl">
 
-		<form name="userForm">
-			<md-input-container>
-				<label>שם המועדון</label>
-				<input ng-model="club.name">
-			</md-input-container>
+        <form name="userForm">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>שם המועדון</label>
+                <input ng-model="club.name">
+            </md-input-container>
 
-			<md-input-container>
-				<label>מס אורחים מקסימלי</label>
-				<input ng-model="club.capacity" type="number">
-			</md-input-container>
-			<div layout-gt-sm="row">
+            <md-input-container>
+                <label>מס אורחים מקסימלי</label>
+                <input ng-model="club.capacity" type="number">
+            </md-input-container>
 
-				<aps-upload-file></aps-upload-file>
-			</div>
-			<div layout-gt-xs="row">
-				<md-input-container class="md-block" flex-gt-xs>
-					<label>Company (Disabled)</label>
-					<input ng-model="user.company" disabled>
-				</md-input-container>
 
-				<md-input-container>
-					<label>תאריך הרשמה</label>
-					<md-datepicker ng-model="club.sign_up_date" disabled></md-datepicker>
-				</md-input-container>
-			</div>
+            <md-input-container flex-gt-sm>
+                <label>מדינה</label>
+                <md-select ng-model="club.state">
+                    <md-option ng-repeat="state in states" value="{{state.israel}}">
+                        {{state.israel}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
 
-			<md-input-container class="md-block" flex-gt-sm>
-				<label>מדינה</label>
-				<md-select ng-model="club.state">
-					<md-option ng-repeat="state in states" value="{{state.israel}}">
-						{{state.israel}}
-					</md-option>
-				</md-select>
-			</md-input-container>
+            <md-input-container flex-gt-sm>
+                <label>עיר</label>
+                <md-select ng-model="club.city">
+                    <md-option ng-repeat="city in cities" value="{{city.name}}">
+                        {{city.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
 
-			<md-input-container class="md-block" flex-gt-sm>
-				<label>עיר</label>
-				<md-select ng-model="club.city">
-					<md-option ng-repeat="city in cities" value="{{city.name}}">
-						{{city.name}}
-					</md-option>
-				</md-select>
-			</md-input-container>
+            <md-input-container flex-gt-sm>
+                <label>רחוב</label>
+                <md-select ng-model="club.street">
+                    <md-option ng-repeat="street in streets" value="{{street.name}}">
+                        {{street.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
 
-			<md-input-container class="md-block" flex-gt-sm>
-				<label>רחוב</label>
-				<md-select ng-model="club.street">
-					<md-option ng-repeat="street in streets" value="{{street.name}}">
-						{{street.name}}
-					</md-option>
-				</md-select>
-			</md-input-container>
+            <md-input-container  flex-gt-sm class="street-num">
+                <label>מס רחוב</label>
+                <input name="postalCode" ng-model="club.streetNum" placeholder="123"
+                       required  md-maxlength="3">
 
-			<md-input-container class="md-block" flex-gt-sm>
-				<label>מס רחוב</label>
-				<input name="postalCode" ng-model="club.streetNum" placeholder="123"
-				required  md-maxlength="3">
+                <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+                    <div ng-message="required" class="my-message">
+                        חייב לרשום מספר רחוב.
+                    </div>
+                    <div ng-message="pattern" class="my-message">
+                        זה לא נראה כמו מספר רחוב תקין
+                    </div>
+                    <div ng-message="md-maxlength" class="my-message">
+                        השתמש בעד שלוש ספרות במספר רחוב
+                    </div>
+                </div>
+            </md-input-container>
 
-				<div ng-messages="userForm.postalCode.$error" role="alert" multiple>
-					<div ng-message="required" class="my-message">
-						חייב לרשום מספר רחוב.
-					</div>
-					<div ng-message="pattern" class="my-message">
-						זה לא נראה כמו מספר רחוב תקין
-					</div>
-					<div ng-message="md-maxlength" class="my-message">
-						השתמש בעד שלוש ספרות במספר רחוב
-					</div>
-				</div>
-			</md-input-container>
+            <md-input-container class="md-block">
+                <label>תיאור המועדון</label>
+                <textarea ng-model="club.description" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+            </md-input-container>
 
-			<md-input-container class="md-block">
-				<label>תיאור המועדון</label>
-				<textarea ng-model="club.description" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-			</md-input-container>
+            <div layout-gt-sm="row">
 
-		</form>
+                <aps-upload-file></aps-upload-file>
+            </div>
 
-	</md-content>
+        </form>
+
+    </md-content>
 
 </div>
