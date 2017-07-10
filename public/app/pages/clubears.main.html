@@ -1,7 +1,21 @@
 
-<div layout="column" md-theme="altTheme" class="md-primary">
-    <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch  class="rtl">
-        <md-card-title>
+<div layout="column" md-theme="altTheme" class="md-primary gradient" style="color:white; height:20%;">
+	
+	<div layout="row" class="rtl">
+  <div flex style="padding-right: 11px;"> 
+  	 <span class="md-headline"> ברוך הבא</span><br>
+  	<span class="md-subhead" ng-bind="name">{{name}}</span>
+               
+                
+                </div>
+  <div flex>   <div  class="md-media-sm card-media "><img id="mainavatar" ng-src="{{picture}}"></div></div>
+    <div flex>
+               ThirdOne
+</div>
+</div>
+	
+<!--      <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch  >
+      <md-card-title>
             <md-card-title-text>
                 <span class="md-headline" ng-bind="name">{{name}}</span>
                 <span class="md-subhead"> ברוך הבא</span>
@@ -9,23 +23,23 @@
             <md-card-title-media>
                 <div class="md-media-sm card-media"><img ng-src="{{picture}}"></div>
             </md-card-title-media>
-        </md-card-title>
+        </md-card-title> 
 
-    </md-card> 
+    </md-card> -->
 </div>
 
 <md-content class="md-padding">
     <md-nav-bar layout="row" layout-align="center end"
                 md-selected-nav-item="currentNavItem"
                 nav-bar-aria-label="navigation links">
-        <md-nav-item md-nav-sref="clubears.main.search" name="history">
-            <i class="material-icons">&#xE8B6;</i>  <!-- history -->
+        <md-nav-item md-nav-sref="clubears.main.search"  name="search" value="search">
+            <i class="material-icons clubearsmainbar">&#xE8B6;</i>  <!-- history -->
         </md-nav-item>
-        <md-nav-item md-nav-sref="clubears.main.favorites" name="favorites">
-            <i class="material-icons">&#xE87E;</i> <!-- favorites -->
+        <md-nav-item md-nav-sref="clubears.main.favorites" name="favorites" value="favorites">
+            <i class="material-icons clubearsmainbar">&#xE87E;</i> <!-- favorites -->
         </md-nav-item>
-        <md-nav-item md-nav-sref="clubears.main.clubes" name="nearest">
-            <i class="material-icons">&#xE0C8;</i> <!-- clubes around -->
+        <md-nav-item md-nav-sref="clubears.main.clubes" name="clubes" value="clubes">
+            <i class="material-icons clubearsmainbar">&#xE0C8;</i> <!-- clubes around -->
         </md-nav-item>
         <!-- these require actual routing with ui-router or ng-route, so they
         won't work in the demo
@@ -46,4 +60,18 @@
 
 </md-content>
 
+<style>
+	
+	.md-nav-bar md-nav-ink-bar{
+		    color: #8b9092!important;
+    background: #8b9092!important;
+	}
+.clubearsmainbar {
+   color: #8b9092!important;
+}
 
+a:not(.md-active) .clubearsmainbar {
+   color: #de86de!important;
+}
+
+</style>

@@ -555,3 +555,37 @@ md-input-container.md-input-has-value label:not(.md-no-float),
 md-input-container.md-input-focused label:not(.md-no-float) {
     transform: translate3d(0,6px,0) scale(0.9) !important;
 }
+/*First page profile avatar */
+#mainavatar {
+    /* This image is 687 wide by 1024 tall, similar to your aspect ratio */
+    
+    /* make a square container */
+    width: 100px;
+    height: 100px;
+
+    /* fill the container, preserving aspect ratio, and cropping to fit */
+    background-size: cover;
+
+    /* center the image vertically and horizontally */
+    background-position: center;
+
+    /* round the edges to a circle with border radius 1/2 container size */
+    border-radius: 50%;
+    border: 3px solid white;
+}
+.gradient{
+	font-family: 'Rubik', sans-serif;
+background: -moz-linear-gradient(0deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* ff3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(68,120,203,1)), color-stop(27%, rgba(68,120,203,1)), color-stop(63%, rgba(131,42,210,1)), color-stop(100%, rgba(131,42,210,1))); /* safari4+,chrome */
+background: -webkit-linear-gradient(0deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* safari5.1+,chrome10+ */
+background: -o-linear-gradient(0deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* opera 11.10+ */
+background: -ms-linear-gradient(0deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* ie10+ */
+background: linear-gradient(90deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* w3c */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4478cb', endColorstr='#832ad2',GradientType=1 ); /* ie6-9 */}
+
+.md-nav-bar{
+	
+	     border-style: none; 
+    border-width: 0 0 0px; 
+}
+
