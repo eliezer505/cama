@@ -589,3 +589,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4478cb', end
     border-width: 0 0 0px; 
 }
 
+.select-space {
+    padding-left: 30px;
+}
+
+.rtl md-input-container .md-errors-spacer{
+    float:left !important;
+}

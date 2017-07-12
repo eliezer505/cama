@@ -4,61 +4,58 @@
     <md-content layout-padding class="rtl">
 
         <form name="userForm">
-            <md-input-container class="md-block" flex-gt-sm>
+            <md-input-container class="md-block" flex-gt-sm >
                 <label>שם המועדון</label>
-                <input ng-model="club.name">
+                <input ng-model="club.name" required>
             </md-input-container>
 
             <md-input-container>
                 <label>מס אורחים מקסימלי</label>
-                <input ng-model="club.capacity" type="number">
+                <input ng-model="club.capacity" type="number" required>
             </md-input-container>
 
+            <div layout="row" flex>
 
-            <md-input-container flex-gt-sm>
-                <label>מדינה</label>
-                <md-select ng-model="club.state">
-                    <md-option ng-repeat="state in states" value="{{state.israel}}">
-                        {{state.israel}}
+                <md-select ng-model="club.state" placeholder="מדינה" flex class="select-space" required>
+                    <md-option ng-value="state" ng-repeat="state in states"  >
+                        {{ state.name}}
                     </md-option>
-                </md-select>
-            </md-input-container>
+                </md-select>           
 
-            <md-input-container flex-gt-sm>
-                <label>עיר</label>
-                <md-select ng-model="club.city">
-                    <md-option ng-repeat="city in cities" value="{{city.name}}">
+                <md-select ng-model="club.city" placeholder="עיר" flex required>
+                    <md-option ng-value="city" ng-repeat="city in cities">
                         {{city.name}}
                     </md-option>
-                </md-select>
-            </md-input-container>
+                </md-select>            
+            </div>
 
-            <md-input-container flex-gt-sm>
-                <label>רחוב</label>
-                <md-select ng-model="club.street">
-                    <md-option ng-repeat="street in streets" value="{{street.name}}">
-                        {{street.name}}
-                    </md-option>
-                </md-select>
-            </md-input-container>
+            <div layout="row">
+                <md-input-container flex="80" md-no-float>
+                    <md-select ng-model="club.street" placeholder="רחוב"  class="select-space" required>
+                        <md-option ng-value="street" ng-repeat="street in streets" >
+                            {{street.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
 
-            <md-input-container  flex-gt-sm class="street-num">
-                <label>מס רחוב</label>
-                <input name="postalCode" ng-model="club.streetNum" placeholder="123"
-                       required  md-maxlength="3">
+                <md-input-container flex="20" >
+                    <label>מס רחוב</label>
+                    <input name="postalCode" ng-model="club.streetNum"
+                           required md-maxlength="3">
 
-                <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
-                    <div ng-message="required" class="my-message">
-                        חייב לרשום מספר רחוב.
+                    <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+                        <div ng-message="required" class="my-message">
+                            חייב לרשום מספר רחוב.
+                        </div>
+                        <div ng-message="pattern" class="my-message">
+                            זה לא נראה כמו מספר רחוב תקין
+                        </div>
+                        <div ng-message="md-maxlength" class="my-message">
+                            השתמש בעד שלוש ספרות במספר רחוב
+                        </div>
                     </div>
-                    <div ng-message="pattern" class="my-message">
-                        זה לא נראה כמו מספר רחוב תקין
-                    </div>
-                    <div ng-message="md-maxlength" class="my-message">
-                        השתמש בעד שלוש ספרות במספר רחוב
-                    </div>
-                </div>
-            </md-input-container>
+                </md-input-container>
+            </div>
 
             <md-input-container class="md-block">
                 <label>תיאור המועדון</label>
