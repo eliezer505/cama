@@ -139,28 +139,28 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     }
                 }
             })
-            .state('clubears.managment', {
+            .state('managment', {
                 url: "/managment",
                 templateUrl: "app/pages/managment.html"
 
                         //
                         //      }
             })
-                        .state('clubears.managment.parties', {
+            .state('managment.parties', {
                 url: "/parties",
                 templateUrl: "app/pages/managment.parties.html"
 
                         //
                         //      }
             })
-                                    .state('clubears.managment.profile', {
+            .state('managment.profile', {
                 url: "/profile",
                 templateUrl: "app/pages/managment.profile.html"
 
                         //
                         //      }
             })
-                                    .state('clubears.managment.stats', {
+            .state('managment.stats', {
                 url: "/stats",
                 templateUrl: "app/pages/managment.stats.html"
 
@@ -191,7 +191,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             .state('clubears.club', {
                 url: "/club",
                 templateUrl: "app/pages/club.html",
-                  controller: 'clubesCtrl',
+                controller: 'clubesCtrl',
                 resolve: {
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
@@ -225,6 +225,6 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         //
                         //      }
             });
-            
+
 
 }); 

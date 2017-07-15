@@ -425,10 +425,7 @@ code {
     width: auto !important;
 }
 
-::-webkit-scrollbar { 
-    display: none;
-    width: 0px; 
-}
+
 /*start style that i found for chat
 
 .mytext{
@@ -558,7 +555,7 @@ md-input-container.md-input-focused label:not(.md-no-float) {
 /*First page profile avatar */
 #mainavatar {
     /* This image is 687 wide by 1024 tall, similar to your aspect ratio */
-    
+
     /* make a square container */
     width: 100px;
     height: 100px;
@@ -574,18 +571,18 @@ md-input-container.md-input-focused label:not(.md-no-float) {
     border: 3px solid white;
 }
 .gradient{
-	font-family: 'Rubik', sans-serif;
-background: -moz-linear-gradient(0deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* ff3.6+ */
-background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(68,120,203,1)), color-stop(27%, rgba(68,120,203,1)), color-stop(63%, rgba(131,42,210,1)), color-stop(100%, rgba(131,42,210,1))); /* safari4+,chrome */
-background: -webkit-linear-gradient(0deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* safari5.1+,chrome10+ */
-background: -o-linear-gradient(0deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* opera 11.10+ */
-background: -ms-linear-gradient(0deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* ie10+ */
-background: linear-gradient(90deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* w3c */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4478cb', endColorstr='#832ad2',GradientType=1 ); /* ie6-9 */}
+    font-family: 'Rubik', sans-serif;
+    background: -moz-linear-gradient(0deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(68,120,203,1)), color-stop(27%, rgba(68,120,203,1)), color-stop(63%, rgba(131,42,210,1)), color-stop(100%, rgba(131,42,210,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(0deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(0deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(0deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* ie10+ */
+    background: linear-gradient(90deg, rgba(68,120,203,1) 0%, rgba(68,120,203,1) 27%, rgba(131,42,210,1) 63%, rgba(131,42,210,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4478cb', endColorstr='#832ad2',GradientType=1 ); /* ie6-9 */}
 
 .md-nav-bar{
-	
-	     border-style: none; 
+
+    border-style: none; 
     border-width: 0 0 0px; 
 }
 
@@ -595,4 +592,66 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4478cb', end
 
 .rtl md-input-container .md-errors-spacer{
     float:left !important;
+}
+
+
+
+/*scrolled profile picture*/
+
+  
+
+[md-header-picture] {
+    position: relative;
+    width:100%;
+    height:0; /* Simple trick to keep a 16:9 ratio on your background image (height=0;padding-bottom=56.25%) */
+    padding-bottom: 56.25%;
+    overflow:hidden;
+    background-size:160%; /* You can override this value if your picture has a weird ratio */
+    background-position:50% 50%;
+}
+
+[scroll] {
+    position:fixed;
+    top:0;
+}
+
+/* I made a simple scale animation on float action button during scroll */
+
+.main-fab {
+    position:absolute;
+    left: calc(100% - 90px);
+    z-index: 20;
+    transform:scale(1,1);
+    transition: transform .1s ease-out;
+}
+
+.main-fab.hide {
+    transform:scale(0,0);
+    transition: transform .1s ease-out;
+}
+
+/* Lines of code below are just here to get a better aspect but optionnal */
+
+
+i {
+    font-size:24px;
+}
+
+
+.muted {
+    color: #bbb;
+    font-size: inherit;
+    font-weight: 700;
+    text-align: right;
+}
+
+.md-tile-left {
+    margin-right:0!important;
+    padding-left:24px;
+    color: rgb(63,81,181);
+}
+
+#profilePage, md-toolbar {
+
+  margin: 0 auto;
 }

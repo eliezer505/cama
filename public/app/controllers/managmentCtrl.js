@@ -1,37 +1,45 @@
 angular
-  .module('app')
-  .controller('managmentCtrl', function($scope) {
-    $scope.user = {
-      title: 'Developer',
-      email: 'ipsum@lorem.com',
-      firstName: '',
-      lastName: '',
-      company: 'Google',
-      address: '1600 Amphitheatre Pkwy',
-      city: 'Mountain View',
-      state: 'CA',
-      biography: 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!',
-      postalCode: '94043'
-    };
+        .module('app')
+        .controller('managmentCtrl', function ($scope, $mdSidenav) {
+            $scope.openSideNavPanel = function () {
+                $mdSidenav('left').open();
+            };
+            $scope.closeSideNavPanel = function () {
+                $mdSidenav('left').close();
+            };
 
-    $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-    'WY').split(' ').map(function(state) {
-        return {abbrev: state};
-      });
-  })
-  .config(function($mdThemingProvider) {
 
-    // Configure a dark theme with primary foreground yellow
+            $scope.user = {
+                title: 'Developer',
+                email: 'ipsum@lorem.com',
+                firstName: '',
+                lastName: '',
+                company: 'Google',
+                address: '1600 Amphitheatre Pkwy',
+                city: 'Mountain View',
+                state: 'CA',
+                biography: 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!',
+                postalCode: '94043'
+            };
 
-    $mdThemingProvider.theme('docs-dark', 'default')
-      .primaryPalette('yellow')
-      .dark();
+            $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
+                    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+                    'WY').split(' ').map(function (state) {
+                return {abbrev: state};
+            });
+        })
+        .config(function ($mdThemingProvider) {
 
-  });/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+            // Configure a dark theme with primary foreground yellow
+
+            $mdThemingProvider.theme('docs-dark', 'default')
+                    .primaryPalette('yellow')
+                    .dark();
+
+        });/* 
+         * To change this license header, choose License Headers in Project Properties.
+         * To change this template file, choose Tools | Templates
+         * and open the template in the editor.
+         */
 
 
