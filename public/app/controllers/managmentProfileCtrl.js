@@ -1,6 +1,6 @@
 angular
         .module('app')
-        .controller('managmentProfileCtrl', function ($scope, $mdSidenav, fileUpload) {
+        .controller('managmentProfileCtrl', function ($scope, $mdSidenav) {
             $scope.openSideNavPanel = function () {
                 $mdSidenav('left').open();
             };
@@ -8,13 +8,7 @@ angular
                 $mdSidenav('left').close();
             };
 
-            $scope.uploadFile = function () {
-                var file = $scope.myFile;
-                console.log('file is ');
-                console.dir(file);
-                var uploadUrl = "/fileUpload";
-                fileUpload.uploadFileToUrl(file, uploadUrl);
-            };
+
 
             $scope.clubPicture = "img/empty-club.jpg";
 

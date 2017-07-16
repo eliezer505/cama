@@ -18,20 +18,22 @@
                 <span flex="" class="flex"></span>
 
                 <md-button class="md-icon-button" aria-label="Done">
-                
+
                     <md-icon class="material-icons"><i class="material-icons">&#xE876;</i></md-icon>
                 </md-button>
 
             </div>
         </md-toolbar>
 
-        <div class="main-fab">
-             <input type = "file" file-model = "myFile"/>
-            <md-button ng-click = "uploadFile()" aria-label="Float Action Button" class="md-fab">
-                <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon>
-                    
-            </md-button>
-        </div>
+        <choose-file layout="row" flex="20" class="main-fab">
+            <input id="fileInput" type="file" class="ng-hide">
+            <div>
+                <md-button id="uploadButton" class="md-fab">
+                    <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon>
+                </md-button>
+            </div>
+        </choose-file>     
+
 
     </header>
 
@@ -171,7 +173,7 @@
                 <input ng-model="club.name" required md-no-asterisk>
             </md-input-container>
 
-                        <div layout="row" flex>
+            <div layout="row" flex>
 
                 <md-select ng-model="club.state" placeholder="מדינה" flex class="select-space" required>
                     <md-option ng-value="state" ng-repeat="state in states"  >
@@ -185,8 +187,8 @@
                     </md-option>
                 </md-select>            
             </div>
-            
-                       <div layout="row">
+
+            <div layout="row">
                 <md-input-container flex="80" md-no-float>
                     <md-select ng-model="club.street" placeholder="רחוב"  class="select-space" required>
                         <md-option ng-value="street" ng-repeat="street in streets" >
@@ -213,7 +215,7 @@
                     </div>
                 </md-input-container>
             </div>
-            
+
             <md-input-container>
                 <label>מס אורחים מקסימלי</label>
                 <input ng-model="club.capacity" type="number" required md-no-asterisk>
@@ -221,7 +223,7 @@
 
 
 
- 
+
 
             <md-input-container class="md-block">
                 <label>תיאור המועדון</label>
@@ -230,7 +232,7 @@
 
             <div layout-gt-sm="row">
 
-                
+
             </div>
 
         </form>
