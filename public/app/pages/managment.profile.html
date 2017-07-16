@@ -1,238 +1,236 @@
-<div ng-controller="managmentCtrl" layout="column">
+<div ng-controller="managmentCtrl">
 
-    <div id="profilePage" >
+    <header md-page-header>
 
-        <header md-page-header>
+        <div md-header-picture ng-style="{'background-image':'url('+clubPicture+')'}"></div>
 
-            <div md-header-picture class="blur"></div>
+        <md-toolbar scroll>
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+                    <md-tooltip>
+                        Side Panel
+                    </md-tooltip>
+                    <md-icon class="md-default-theme" class="material-icons">
+                        &#xE5D2;
+                    </md-icon>
+                </md-button>
 
-            <md-toolbar scroll>
-                <div class="md-toolbar-tools">
-                    <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
-                        <md-tooltip>
-                            Side Panel
-                        </md-tooltip>
-                        <md-icon class="md-default-theme" class="material-icons">
-                            &#xE5D2;
-                        </md-icon>
-                    </md-button>
-                    
-                    <span flex="" class="flex"></span>
-                    
-                    <md-button class="md-icon-button" aria-label="Done">
-                        <md-icon class="material-icons"><i class="material-icons">&#xE876;</i></md-icon>
-                    </md-button>
+                <span flex="" class="flex"></span>
 
-                </div>
-            </md-toolbar>
+                <md-button class="md-icon-button" aria-label="Done">
+                    <md-icon class="material-icons"><i class="material-icons">&#xE876;</i></md-icon>
+                </md-button>
 
-            <div class="main-fab">
-                <md-button aria-label="Float Action Button" class="md-fab md-accent">
-                    <md-icon aria-label="airline_seat_recline_extra" class="material-icons">&#xE636;</md-icon>
+            </div>
+        </md-toolbar>
+
+        <div class="main-fab">
+            <md-button aria-label="Float Action Button" class="md-fab md-accent">
+                <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon>
+            </md-button>
+        </div>
+
+    </header>
+
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" >
+        <md-toolbar layout="row" md-theme="altTheme" class="md-primary">
+            <div class="md-toolbar-tools">
+                <span class="margin-left-1" ><h1>C</h1></span>
+                <span><h3>lu</h3></span>
+                <span><h1>B</h1></span>
+                <span><h3>ears</h3></span>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="Close Side Panel" ng-click="closeSideNavPanel()">
+                    <md-tooltip>
+                        סגירת פאנל צד
+                    </md-tooltip>
+                    <md-icon class="md-default-theme" class="material-icons">
+                        &#xE5CD;
+                    </md-icon>
                 </md-button>
             </div>
+        </md-toolbar>
+        <md-content layout-padding="">
+            <md-list class="rtl">
 
-        </header>
+                <!-- pay attantion from class margin-left-32. used to help in hebrew language -->
+                <md-subheader class="md-no-sticky">
+                    ניהול מועדון
+                </md-subheader>
+                <md-list-item >
+                    <md-icon class="md-default-theme margin-left-32" class="material-icons" ui-sref="clubears.managment" ng-click="closeSideNavPanel()">
+                        &#xE7FD;
+                    </md-icon>
+                    <p ui-sref="managment" ng-click="closeSideNavPanel()">
+                        פאנל ראשי
+                    </p>
+                    <div class="md-secondary">
+                        2
+                    </div>
+                </md-list-item>
+                <md-subheader class="md-no-sticky">
+                    מועדפים
+                </md-subheader>
 
-        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" >
-            <md-toolbar layout="row" md-theme="altTheme" class="md-primary">
-                <div class="md-toolbar-tools">
-                    <span class="margin-left-1" ><h1>C</h1></span>
-                    <span><h3>lu</h3></span>
-                    <span><h1>B</h1></span>
-                    <span><h3>ears</h3></span>
-                    <span flex></span>
-                    <md-button class="md-icon-button" aria-label="Close Side Panel" ng-click="closeSideNavPanel()">
-                        <md-tooltip>
-                            סגירת פאנל צד
-                        </md-tooltip>
-                        <md-icon class="md-default-theme" class="material-icons">
-                            &#xE5CD;
-                        </md-icon>
-                    </md-button>
-                </div>
-            </md-toolbar>
-            <md-content layout-padding="">
-                <md-list class="rtl">
-
-                    <!-- pay attantion from class margin-left-32. used to help in hebrew language -->
-                    <md-subheader class="md-no-sticky">
-                        ניהול מועדון
-                    </md-subheader>
-                    <md-list-item >
-                        <md-icon class="md-default-theme margin-left-32" class="material-icons" ui-sref="clubears.managment" ng-click="closeSideNavPanel()">
-                            &#xE7FD;
-                        </md-icon>
-                        <p ui-sref="managment" ng-click="closeSideNavPanel()">
-                            פאנל ראשי
-                        </p>
-                        <div class="md-secondary">
-                            2
-                        </div>
-                    </md-list-item>
-                    <md-subheader class="md-no-sticky">
-                        מועדפים
-                    </md-subheader>
-
-                    <md-list-item >
-                        <md-icon class="md-default-theme margin-left-32" class="material-icons" ui-sref="profile" ng-click="closeSideNavPanel()">
-                            &#xE7FD;
-                        </md-icon>
-                        <p ui-sref="clubears.profile" ng-click="closeSideNavPanel()">
-                            פרופיל
-                        </p>
-                        <div class="md-secondary">
-                            2
-                        </div>
-                    </md-list-item>
-                    <md-list-item>
-                        <md-icon class="md-default-theme margin-left-32" class="material-icons">
-                            &#xE0C9;
-                        </md-icon>
-                        <p>
-                            הודעות
-                        </p>
-                        <div class="md-secondary">
-                            2
-                        </div>
-                    </md-list-item>
-                    <md-list-item>
-                        <md-icon class="md-default-theme margin-left-32" class="material-icons">
-                            &#xE878;
-                        </md-icon>
-                        <p ui-sref="clubears.events" ng-click="closeSideNavPanel()">
-                            ארועים
-                        </p>
-                        <md-icon class="md-secondary">
-                            2
-                        </md-icon>
-                    </md-list-item>
-                    <md-list-item>
-                        <md-icon class="md-default-theme margin-left-32" class="material-icons">
-                            &#xE251;
-                        </md-icon>
-                        <p ui-sref="clubears.pictures" ng-click="closeSideNavPanel()">
-                            תמונות
-                        </p>
-                        <md-icon class="md-secondary">
-                            2
-                        </md-icon>
-                    </md-list-item>
-                    <md-divider></md-divider>
-                    <md-subheader class="md-no-sticky">
-                        תחזוקה
-                    </md-subheader>
-                    <md-list-item>
-                        <md-icon class="md-default-theme margin-left-32" class="material-icons">
-                            &#xE8B8;
-                        </md-icon>
-                        <p>
-                            הגדרות
-                        </p>
-                        <div class="md-secondary">
-                            2
-                        </div>
-                    </md-list-item>
-                    <md-divider></md-divider>
-                    <md-subheader class="md-no-sticky">
-                        מידע
-                    </md-subheader>
-                    <md-list-item>
-                        <md-icon class="md-default-theme margin-left-32" class="material-icons">
-                            &#xE88F;
-                        </md-icon>
-                        <p>
-                            אודות
-                        </p>
-                        <div class="md-secondary">
-                            20+
-                        </div>
-                    </md-list-item>
-                    <md-list-item>
-                        <md-icon class="md-default-theme margin-left-32" class="material-icons">
-                            &#xE0AF;
-                        </md-icon>
-                        <p>
-                            בעל עסק
-                        </p>
-                        <div class="md-secondary">
-                            20+
-                        </div>
-                    </md-list-item>
-                </md-list>
-            </md-content>
-        </md-sidenav>
-
-        <md-content layout-padding class="rtl" md-theme="altTheme">
-            <form name="userForm">
-                <md-input-container class="md-block" flex-gt-sm >
-                    <label>שם המועדון</label>
-                    <input ng-model="club.name" required md-no-asterisk>
-                </md-input-container>
-
-                <md-input-container>
-                    <label>מס אורחים מקסימלי</label>
-                    <input ng-model="club.capacity" type="number" required md-no-asterisk>
-                </md-input-container>
-
-                <div layout="row" flex>
-
-                    <md-select ng-model="club.state" placeholder="מדינה" flex class="select-space" required>
-                        <md-option ng-value="state" ng-repeat="state in states"  >
-                            {{ state.name}}
-                        </md-option>
-                    </md-select>           
-
-                    <md-select ng-model="club.city" placeholder="עיר" flex required>
-                        <md-option ng-value="city" ng-repeat="city in cities">
-                            {{city.name}}
-                        </md-option>
-                    </md-select>            
-                </div>
-
-                <div layout="row">
-                    <md-input-container flex="80" md-no-float>
-                        <md-select ng-model="club.street" placeholder="רחוב"  class="select-space" required>
-                            <md-option ng-value="street" ng-repeat="street in streets" >
-                                {{street.name}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-
-                    <md-input-container flex="20" >
-                        <label>מס רחוב</label>
-                        <input name="postalCode" ng-model="club.streetNum"
-                               required md-maxlength="3">
-
-                        <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
-                            <div ng-message="required" class="my-message">
-                                חייב לרשום מספר רחוב.
-                            </div>
-                            <div ng-message="pattern" class="my-message">
-                                זה לא נראה כמו מספר רחוב תקין
-                            </div>
-                            <div ng-message="md-maxlength" class="my-message">
-                                השתמש בעד שלוש ספרות במספר רחוב
-                            </div>
-                        </div>
-                    </md-input-container>
-                </div>
-
-                <md-input-container class="md-block">
-                    <label>תיאור המועדון</label>
-                    <textarea ng-model="club.description" md-maxlength="200" rows="1" md-select-on-focus></textarea>
-                </md-input-container>
-
-                <div layout-gt-sm="row">
-
-                    <aps-upload-file></aps-upload-file>
-                </div>
-
-            </form>
-
+                <md-list-item >
+                    <md-icon class="md-default-theme margin-left-32" class="material-icons" ui-sref="profile" ng-click="closeSideNavPanel()">
+                        &#xE7FD;
+                    </md-icon>
+                    <p ui-sref="clubears.profile" ng-click="closeSideNavPanel()">
+                        פרופיל
+                    </p>
+                    <div class="md-secondary">
+                        2
+                    </div>
+                </md-list-item>
+                <md-list-item>
+                    <md-icon class="md-default-theme margin-left-32" class="material-icons">
+                        &#xE0C9;
+                    </md-icon>
+                    <p>
+                        הודעות
+                    </p>
+                    <div class="md-secondary">
+                        2
+                    </div>
+                </md-list-item>
+                <md-list-item>
+                    <md-icon class="md-default-theme margin-left-32" class="material-icons">
+                        &#xE878;
+                    </md-icon>
+                    <p ui-sref="clubears.events" ng-click="closeSideNavPanel()">
+                        ארועים
+                    </p>
+                    <md-icon class="md-secondary">
+                        2
+                    </md-icon>
+                </md-list-item>
+                <md-list-item>
+                    <md-icon class="md-default-theme margin-left-32" class="material-icons">
+                        &#xE251;
+                    </md-icon>
+                    <p ui-sref="clubears.pictures" ng-click="closeSideNavPanel()">
+                        תמונות
+                    </p>
+                    <md-icon class="md-secondary">
+                        2
+                    </md-icon>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-subheader class="md-no-sticky">
+                    תחזוקה
+                </md-subheader>
+                <md-list-item>
+                    <md-icon class="md-default-theme margin-left-32" class="material-icons">
+                        &#xE8B8;
+                    </md-icon>
+                    <p>
+                        הגדרות
+                    </p>
+                    <div class="md-secondary">
+                        2
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-subheader class="md-no-sticky">
+                    מידע
+                </md-subheader>
+                <md-list-item>
+                    <md-icon class="md-default-theme margin-left-32" class="material-icons">
+                        &#xE88F;
+                    </md-icon>
+                    <p>
+                        אודות
+                    </p>
+                    <div class="md-secondary">
+                        20+
+                    </div>
+                </md-list-item>
+                <md-list-item>
+                    <md-icon class="md-default-theme margin-left-32" class="material-icons">
+                        &#xE0AF;
+                    </md-icon>
+                    <p>
+                        בעל עסק
+                    </p>
+                    <div class="md-secondary">
+                        20+
+                    </div>
+                </md-list-item>
+            </md-list>
         </md-content>
+    </md-sidenav>
 
-    </div>
+    <md-content layout-padding class="rtl" md-theme="altTheme">
+        <form name="userForm">
+            <md-input-container class="md-block" flex-gt-sm >
+                <label>שם המועדון</label>
+                <input ng-model="club.name" required md-no-asterisk>
+            </md-input-container>
+
+            <md-input-container>
+                <label>מס אורחים מקסימלי</label>
+                <input ng-model="club.capacity" type="number" required md-no-asterisk>
+            </md-input-container>
+
+            <div layout="row" flex>
+
+                <md-select ng-model="club.state" placeholder="מדינה" flex class="select-space" required>
+                    <md-option ng-value="state" ng-repeat="state in states"  >
+                        {{ state.name}}
+                    </md-option>
+                </md-select>           
+
+                <md-select ng-model="club.city" placeholder="עיר" flex required>
+                    <md-option ng-value="city" ng-repeat="city in cities">
+                        {{city.name}}
+                    </md-option>
+                </md-select>            
+            </div>
+
+            <div layout="row">
+                <md-input-container flex="80" md-no-float>
+                    <md-select ng-model="club.street" placeholder="רחוב"  class="select-space" required>
+                        <md-option ng-value="street" ng-repeat="street in streets" >
+                            {{street.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container flex="20" >
+                    <label>מס רחוב</label>
+                    <input name="postalCode" ng-model="club.streetNum"
+                           required md-maxlength="3">
+
+                    <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+                        <div ng-message="required" class="my-message">
+                            חייב לרשום מספר רחוב.
+                        </div>
+                        <div ng-message="pattern" class="my-message">
+                            זה לא נראה כמו מספר רחוב תקין
+                        </div>
+                        <div ng-message="md-maxlength" class="my-message">
+                            השתמש בעד שלוש ספרות במספר רחוב
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <md-input-container class="md-block">
+                <label>תיאור המועדון</label>
+                <textarea ng-model="club.description" md-maxlength="200" rows="1" md-select-on-focus></textarea>
+            </md-input-container>
+
+            <div layout-gt-sm="row">
+
+                <aps-upload-file></aps-upload-file>
+            </div>
+
+        </form>
+
+    </md-content>
+
+
 
 
 

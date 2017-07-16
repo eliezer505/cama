@@ -7,7 +7,8 @@ angular
             $scope.closeSideNavPanel = function () {
                 $mdSidenav('left').close();
             };
-
+            
+            $scope.clubPicture = "img/empty-club.jpg";
 
             $scope.user = {
                 title: 'Developer',

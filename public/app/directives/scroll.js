@@ -5,50 +5,56 @@ angular.module('app')
 
                 /* header DOM element with md-page-header attribute */
                 var header = document.querySelector('[md-page-header]');
+
+                console.log(element);
+
                 /* Store header dimensions to initialize header styling */
                 var baseDimensions = header.getBoundingClientRect();
+
                 console.log('baseDimensions:');
-                 console.log(baseDimensions);
+                console.log(baseDimensions);
+
+                var first = true;
                 /* DOM element with md-header-picture attribute (picture in header) */
                 var picture = angular.element(document.querySelector('[md-header-picture]'));
-                var imgUrl = "img/empty-club.jpg";
+              
                 /* DOM element with main-fab class (a DOM element which contains the main float action button element) */
                 var fab = angular.element(document.querySelector('.main-fab'));
                 /* The height of a toolbar by default in Angular Material */
-                var legacyToolbarH = angular.element(document.querySelector('md-toolbar'));
-                ;
+                var legacyToolbarH = angular.element(document.querySelector('md-toolbar').clientHeight)[0];
+                console.log('tool bar h:');
+                console.log(legacyToolbarH);
                 /* The mid-height of a float action button by default in Angular Material */
                 var legacyFabMid = 56 / 2;
-                /* The zoom scale of the toolbar title when it's placed at the bottom of the header picture */
-                var titleZoom = 1.5;
-                /* The primary color palette used by Angular Material */
-                var primaryColor = [63, 81, 181];
 
 
                 function handleStyle(dim) {
+                    console.log('enter to style:');
+                    console.log(dim);
                     fab.css('top', (dim.height - legacyFabMid) + 'px');
                     if ((dim.bottom - baseDimensions.top) > legacyToolbarH) {
-
                         element.css('height', (dim.bottom - baseDimensions.top) + 'px');
-
-
                     } else {
                         element.css('height', legacyToolbarH + 'px');
                     }
+
                     if ((dim.bottom - baseDimensions.top) < legacyToolbarH * 2 && !fab.hasClass('hide')) {
                         fab.addClass('hide');
                     }
+
                     if ((dim.bottom - baseDimensions.top) > legacyToolbarH * 2 && fab.hasClass('hide')) {
                         fab.removeClass('hide');
                     }
-                    picture.css('background-image', 'url(' + imgUrl + ')');
+
+                   
                     //picture.css('-webkit-filter','blur(5px)');
                     picture.css('background-position', '50% ' + (ratio(dim) * 50) + '%');
-                    var op = 1.0 -  ratio(dim);
-                    console.log(dim);
-                    console.log(ratio(dim))
+                    var op = 1.0 - ratio(dim);
+                    console.log('ratio:');
+                    console.log(ratio(dim));
+                    console.log('op:');
                     console.log(op);
-                     element.css('background','linear-gradient(90deg, rgba(68,120,203,'+op+') 0%, rgba(68,120,203,'+op+') 27%, rgba(131,42,210,'+op+') 63%, rgba(131,42,210,'+op+') 100%)');
+                    element.css('background', 'linear-gradient(90deg, rgba(68,120,203,' + op + ') 0%, rgba(68,120,203,' + op + ') 27%, rgba(131,42,210,' + op + ') 63%, rgba(131,42,210,' + op + ') 100%)');
 
                     /* Uncomment the line below if you want shadow inside picture (low performance) */
                     //element.css('box-shadow', '0 -'+(dim.height*3/4)+'px '+(dim.height/2)+'px -'+(dim.height/2)+'px rgba(0,0,0,'+ratio(dim)+') inset');
@@ -56,8 +62,6 @@ angular.module('app')
 
                 function ratio(dim) {
                     var r = (dim.bottom - baseDimensions.top) / dim.height;
-                    console.log('ratio');
-                    console.log(r);
                     if (r < 0)
                         return 0;
                     if (r > 1)
@@ -65,11 +69,16 @@ angular.module('app')
                     return Number(r.toString().match(/^\d+(?:\.\d{0,2})?/));
                 }
 
-          
+
                 handleStyle(baseDimensions);
 
                 /* Scroll event listener */
                 angular.element($window).bind("scroll", function () {
+                    console.log('enter scroll');
+                    if (first) {
+                        baseDimensions = header.getBoundingClientRect();
+                        first = false;
+                    }
                     var dimensions = header.getBoundingClientRect();
                     handleStyle(dimensions);
                     scope.$apply();
@@ -77,6 +86,7 @@ angular.module('app')
 
                 /* Resize event listener */
                 angular.element($window).bind('resize', function () {
+                    console.log('enter resize');
                     baseDimensions = header.getBoundingClientRect();
                     var dimensions = header.getBoundingClientRect();
                     handleStyle(dimensions);
