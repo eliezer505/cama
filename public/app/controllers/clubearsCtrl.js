@@ -20,5 +20,5 @@
 //                    $mdSidenav(componentId).toggle();
 //                };
 //            }
-           })
+           });
 })();

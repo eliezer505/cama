@@ -2,7 +2,7 @@ angular
         .module('app')
 
      
-        .controller('clubesCtrl', function ($state, $scope, $stateParams) {
+        .controller('clubesCtrl', function ($state) {
           
           
           $state.go('clubears.club.party');
