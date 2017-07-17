@@ -10,8 +10,10 @@ angular.module('app')
                     input.bind('change', function (e) {
                         scope.$apply(function () {
                             var files = e.target.files;
+                            console.log(files);
                             if (files[0]) {
                                 scope.fileName = files[0].name;
+                                console.log(scope.fileName);
                             } else {
                                 scope.fileName = null;
                             }

@@ -17,7 +17,7 @@
 
                 <span flex="" class="flex"></span>
 
-                <md-button class="md-icon-button" aria-label="Done">
+                <md-button class="md-icon-button" aria-label="Done" ng-click="upload_image(image)">
 
                     <md-icon class="material-icons"><i class="material-icons">&#xE876;</i></md-icon>
                 </md-button>
@@ -25,14 +25,21 @@
             </div>
         </md-toolbar>
 
-        <choose-file layout="row" flex="20" class="main-fab">
-            <input id="fileInput" type="file" class="ng-hide">
+
+
+        <div class="main-fab">
+
+            <input  fb-image-upload class="fb-input" type="file" name="image" />
+            <input class="ng-hide" type="text" ng-model="image" ng-show="image.valid" />
             <div>
                 <md-button id="uploadButton" class="md-fab">
                     <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon>
                 </md-button>
             </div>
-        </choose-file>     
+        </div>     
+
+<!--https://gist.github.com/abehaskins/7330325-->
+<!--https://codepen.io/shepard_one/pen/MypdLy-->
 
 
     </header>
@@ -167,21 +174,26 @@
     </md-sidenav>
 
     <md-content layout-padding class="rtl" md-theme="altTheme">
-        <form name="userForm">
-            <md-input-container class="md-block" flex-gt-sm >
+
+
+
+
+        <form name="userForm" style="padding: 20px;">
+
+            <md-input-container class="md-block">
                 <label>שם המועדון</label>
                 <input ng-model="club.name" required md-no-asterisk>
             </md-input-container>
 
-            <div layout="row" flex>
+            <div layout="row">
 
-                <md-select ng-model="club.state" placeholder="מדינה" flex class="select-space" required>
+                <md-select ng-model="club.state" placeholder="מדינה" flex class="select-space" required md-no-asterisk>
                     <md-option ng-value="state" ng-repeat="state in states"  >
                         {{ state.name}}
                     </md-option>
                 </md-select>           
 
-                <md-select ng-model="club.city" placeholder="עיר" flex required>
+                <md-select ng-model="club.city" placeholder="עיר" flex required md-no-asterisk>
                     <md-option ng-value="city" ng-repeat="city in cities">
                         {{city.name}}
                     </md-option>
@@ -190,7 +202,7 @@
 
             <div layout="row">
                 <md-input-container flex="80" md-no-float>
-                    <md-select ng-model="club.street" placeholder="רחוב"  class="select-space" required>
+                    <md-select ng-model="club.street" placeholder="רחוב"  class="select-space" required md-no-asterisk>
                         <md-option ng-value="street" ng-repeat="street in streets" >
                             {{street.name}}
                         </md-option>
@@ -200,7 +212,7 @@
                 <md-input-container flex="20" >
                     <label>מס רחוב</label>
                     <input name="postalCode" ng-model="club.streetNum"
-                           required md-maxlength="3">
+                           required md-maxlength="3" md-no-asterisk>
 
                     <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
                         <div ng-message="required" class="my-message">
@@ -216,13 +228,10 @@
                 </md-input-container>
             </div>
 
-            <md-input-container>
+            <md-input-container flex="40">
                 <label>מס אורחים מקסימלי</label>
                 <input ng-model="club.capacity" type="number" required md-no-asterisk>
             </md-input-container>
-
-
-
 
 
             <md-input-container class="md-block">
@@ -230,10 +239,7 @@
                 <textarea ng-model="club.description" md-maxlength="200" rows="1" md-select-on-focus></textarea>
             </md-input-container>
 
-            <div layout-gt-sm="row">
 
-
-            </div>
 
         </form>
 
