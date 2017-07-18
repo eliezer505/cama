@@ -1,33 +1,24 @@
-<div layout="column" md-theme="altTheme" class="md-primary gradient" style="color:white;">
+<div layout="column" md-theme="altTheme" class="md-primary" style="color:white;">
+	<hr class="club-hr">
+	<div  ng-repeat="club in clubes">
+		<div layout="row" class="club-list">
 
-    <div layout="row" class="rtl">
-        <div flex style="padding-right: 11px;"> 
-            <div  class="md-media-sm card-media "><img id="mainavatar" ng-src="{{picture}}"></div>
-
-
-        </div>
-        <div flex>  
-            <span class="md-subhead" ng-bind="name">{{name}}</span>
-        </div>
-        <div flex>
-            <span class="md-subhead"> קילומטר {{club.distance}}</span>
-        </div>
-        <div flex>
-            <span class="md-subhead"> הרשמה</span>
-        </div>
-    </div></div>
-
-<md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch ng-repeat="club in clubes" class="rtl" ng-click="enterClub(club)">
-    <md-card-title>
-        <md-card-title-text>
-            <span class="md-headline">{{club.name}}</span>
-            <span class="md-subhead"> קילומטר {{club.distance}}</span>
-        </md-card-title-text>
-        <md-card-title-media>
-            <div class="md-media-sm card-media"><img ng-src="{{club.photo}}"></div>
-        </md-card-title-media>
-    </md-card-title>
-
-</md-card> 
+			<div flex="30">
+				<div  class="md-media-sm card-media "><img 	ng-src="{{club.logo}}">
+				</div>
+			</div>
+			<div flex="30">
+				<span class="md-subhead club-name" >{{club.name}}</span>
+			</div>
+			<div flex="30">
+				<span class="md-subhead club-distance">{{club.distance}} ק"מ </span>
+			</div>
+			<div flex="30">
+				<span class="md-subhead club-reg-btn1"><i class="material-icons">&#xE88F;</i></span>
+			</div>
+		</div>
+		<hr class="club-hr">
+	</div>
+</div>
 
 

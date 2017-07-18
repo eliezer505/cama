@@ -1,19 +1,22 @@
+<div layout="column" md-theme="altTheme" class="md-primary" style="color:white;">
+	<hr class="club-hr">
+	<div  ng-repeat="fav in favs">
+		<div layout="row" class="club-list">
 
-<div ng-controller="mainFavoritesCtrl">
-    <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch ng-repeat="favorite in favorites" class="rtl">
-        <md-card-title>
-            <md-card-title-text>
-                <span class="md-headline">{{favorite.name}}</span>
-                <span class="md-subhead"> קילומטר {{favorite.distance}}</span>
-            </md-card-title-text>
-            <md-card-title-media>
-                <div class="md-media-sm card-media"><img ng-src="{{favorite.photo}}"></div>
-            </md-card-title-media>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="right">
-            <md-button><md-icon md-font-set="material-icons">&#xE56A;</md-icon></md-button>  <!-- enter to club -->
-            <md-button><md-icon md-font-set="material-icons">&#xE866;</md-icon></md-button>  <!-- add to favorites -->
-        </md-card-actions>
-    </md-card> 
+			<div flex="30">
+				<div  class="md-media-sm card-media "><img 	ng-src="{{club.logo}}">
+				</div>
+			</div>
+			<div flex="30">
+				<span class="md-subhead club-name" >{{fav.name}}</span>
+			</div>
+			<div flex="30">
+				<span class="md-subhead club-distance">{{fav.distance}} ק"מ </span>
+			</div>
+			<div flex="30">
+				<span class="md-subhead club-reg-btn1"> <i class="material-icons">&#xE88F;</i></span>
+			</div>
+		</div>
+		<hr class="club-hr">
+	</div>
 </div>
-

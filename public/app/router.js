@@ -79,6 +79,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             })
             .state('clubears.main.favorites', {
                 url: "/favorites",
+                controller: 'mainFavoritesCtrl',
                 templateUrl: "app/pages/clubears.main.favorites.html"
                         //      controller: mainClubesCtrl
                         //              function($scope) {

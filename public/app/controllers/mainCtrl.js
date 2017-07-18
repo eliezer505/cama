@@ -7,6 +7,6 @@ $scope.currentNavItem = "clubes";
        
                 $scope.name = currentAuth.displayName;
 
-                $scope.picture = currentAuth.photoURL
+                $scope.picture = currentAuth.photoURL;
             });
 })();

@@ -657,4 +657,11 @@ i {
     padding-left:24px;
     color: rgb(63,81,181);
 }
-
+.club-list{    text-align: center!important;direction:rtl!important;}
+.club-name{color:#91949a; }
+.club-distance{color:#4f7db9;}
+.club-reg-btn1{color:#792aba; }
+.club-hr{border-top: 1px solid #c9a8e4;}
+.content-middle{    justify-content: center;}
+.text-middle{align-items: center;}
+.event-approved{color:green;}
