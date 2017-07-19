@@ -1,48 +1,47 @@
-<div ng-controller="managmentPartiesCtrl" layout="column">
+<md-content flex layout="column">
+	<md-toolbar  class="md-primary ">
+		<div class="md-toolbar-tools gradient">
+			<md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+				<md-tooltip>
+					Side Panel
+				</md-tooltip>
+				<md-icon class="md-default-theme" class="material-icons">
+					&#xE5D2;
+				</md-icon>
+			</md-button>
 
-	<header md-page-header>
+			<span flex="" class="flex"></span>
 
-		<md-toolbar>
-			<div class="md-toolbar-tools">
-				<md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
-					<md-tooltip>
-						Side Panel
-					</md-tooltip>
-					<md-icon class="md-default-theme" class="material-icons">
-						&#xE5D2;
-					</md-icon>
-				</md-button>
+			<md-button class="md-icon-button" aria-label="Add">
+				<md-icon class="material-icons">
+					<i class="material-icons">&#xE145;</i>
+				</md-icon>
+			</md-button>
 
-				<span flex="" class="flex"></span>
+		</div>
 
-				<md-button class="md-icon-button" aria-label="Done">
-					<md-icon class="material-icons">
-						<i class="material-icons">&#xE876;</i>
-					</md-icon>
-				</md-button>
+	</md-toolbar>
 
-			</div>
-		</md-toolbar>
-			<div layout="row" class="club-list">
+	<div layout="row" class="club-list">
 
-				<div flex="15">
-					<span class="md-subhead club-name" >תאריך</span>
-				</div>
-				<div flex="40">
-					<span class="md-subhead club-name" >שם המסיבה</span>
-				</div>
-				<div flex="15">
-					<span class="md-subhead club-name" >נרשמו</span>
-				</div>
-				<div flex="15">
-					<span class="md-subhead event-approved">אושרו </span>
-				</div>
-				<div flex="15">
-					<span class="md-subhead club-reg-btn1">עריכה</span>
-				</div>
-			</div>
-	</header>
-
+		<div flex="15">
+			<span class="md-subhead club-name" >תאריך</span>
+		</div>
+		<div flex="40">
+			<span class="md-subhead club-name" >שם המסיבה</span>
+		</div>
+		<div flex="15">
+			<span class="md-subhead club-name" >נרשמו</span>
+		</div>
+		<div flex="15">
+			<span class="md-subhead event-approved">אושרו </span>
+		</div>
+		<div flex="15">
+			<span class="md-subhead club-reg-btn1">עריכה</span>
+		</div>
+	</div>
+	<hr class="club-hr">
+	</md-content>
 	<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" >
 		<md-toolbar layout="row" md-theme="altTheme" class="md-primary">
 			<div class="md-toolbar-tools">
@@ -172,36 +171,34 @@
 		</md-content>
 	</md-sidenav>
 
-	<md-content>
-		<div layout="column" md-theme="altTheme" class="md-primary" style="color:white;">
+	<md-content layout="column" flex>
+		<div flex layout="column">
 
-			<hr class="club-hr">
+	
 
-			<div  ng-repeat="event in events">
-				<div layout="row" class="club-list">
+				<div  ng-repeat="event in events">
+					<div layout="row" class="club-list">
 
-					<div flex="15">
-						<span class="md-subhead club-name" >{{event.date}}</span>
+						<div flex="15">
+							<span class="md-subhead club-name" >{{event.date}}</span>
+						</div>
+						<div flex="40">
+							<span class="md-subhead club-name" >{{event.name}}</span>
+						</div>
+						<div flex="15">
+							<span class="md-subhead club-name" >{{event.registered}}</span>
+						</div>
+						<div flex="15">
+							<span class="md-subhead event-approved">{{event.approved}} </span>
+						</div>
+						<div flex="15">
+							<span class="md-subhead club-reg-btn1"><i class="material-icons">&#xE3C9;</i></span>
+						</div>
 					</div>
-					<div flex="40">
-						<span class="md-subhead club-name" >{{event.name}}</span>
-					</div>
-					<div flex="15">
-						<span class="md-subhead club-name" >{{event.registered}}</span>
-					</div>
-					<div flex="15">
-						<span class="md-subhead event-approved">{{event.approved}} </span>
-					</div>
-					<div flex="15">
-						<span class="md-subhead club-reg-btn1"><i class="material-icons">&#xE3C9;</i></span>
-					</div>
+					<hr class="club-hr">
 				</div>
-				<hr class="club-hr">
-			</div>
+		
 		</div>
 	</md-content>
-	<md-button class="md-fab" ng-disabled="false" aria-label="Comment">
-		<i class="material-icons">&#xE145;</i>
-	</md-button>
 
-</div>
+

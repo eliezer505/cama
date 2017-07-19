@@ -665,3 +665,7 @@ i {
 .content-middle{    justify-content: center;}
 .text-middle{align-items: center;}
 .event-approved{color:green;}
+.fixedtop{position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;}

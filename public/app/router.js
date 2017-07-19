@@ -149,7 +149,8 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             })
             .state('managment.parties', {
                 url: "/parties",
-                templateUrl: "app/pages/managment.parties.html"
+                templateUrl: "app/pages/managment.parties.html",
+                    controller: "managmentPartiesCtrl",
 
                         //
                         //      }
