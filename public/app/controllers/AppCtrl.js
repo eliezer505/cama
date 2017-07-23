@@ -1,12 +1,14 @@
 angular
         .module('app')
 
-        .config(function ($mdThemingProvider) {
+        .config(function ($mdThemingProvider,$mdDateLocaleProvider) {
             $mdThemingProvider.theme('altTheme')
                     .primaryPalette('deep-purple')
                     .accentPalette('purple'); // specify primary color, all
             // other color intentions will be inherited
             // from default
+            
+             $mdDateLocaleProvider.months = ['ינואר', 'פברואר', 'מרץ','אפריל', 'מאי', 'יוני','יולי', 'אוגוסט', 'ספטמבר','אוקטובר', 'נובמבר', 'דצמבר'];
         })
 
         .controller('AppCtrl', ["$scope", "$interval",

@@ -155,6 +155,14 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         //
                         //      }
             })
+                        .state('managment.newevent', {
+                url: "/newevent",
+                templateUrl: "app/pages/managment.newevent.html",
+                    controller: "NewEventCtrl",
+
+                        //
+                        //      }
+            })
             .state('managment.profile', {
                 url: "/profile",
                 templateUrl: "app/pages/managment.profile.html"

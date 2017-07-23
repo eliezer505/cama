@@ -10,7 +10,7 @@
     };
     firebase.initializeApp(config);
 
-    var club = angular.module("app", ['ngMaterial', 'ui.router', 'wu.masonry', 'ngMessages', "firebase"]);
+    var club = angular.module("app", ['ngMaterial', 'ui.router', 'wu.masonry', 'ngMessages', "firebase","mdPickers"]);
 
     club.factory("Auth", ["$firebaseAuth",
         function ($firebaseAuth) {

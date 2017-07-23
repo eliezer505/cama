@@ -1,10 +1,8 @@
 angular
         .module('app')
-        .controller('managmentProfileCtrl', function ($scope) {
-
-
-
-
+        .controller('NewEventCtrl', function ($scope) {
+         
+	
             $scope.clubPicture = "img/empty-club.jpg";
 
             $scope.user = {

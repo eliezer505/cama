@@ -1,0 +1,97 @@
+<md-toolbar  class="md-primary bottom-shadow">
+	<div class="md-toolbar-tools gradient">
+		<md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+			<md-tooltip>
+				Side Panel
+			</md-tooltip>
+			<md-icon class="md-default-theme" class="material-icons">
+				&#xE5D2;
+			</md-icon>
+		</md-button>
+
+		<span flex="" class="flex"></span>
+
+		<md-button class="md-icon-button" aria-label="Done" >
+			<md-icon class="material-icons" ui-sref="managment.newevent">
+				<i class="material-icons">&#xE876;</i>
+			</md-icon>
+		</md-button>
+
+	</div>
+
+</md-toolbar>
+
+<!--https://gist.github.com/abehaskins/7330325-->
+<!--https://codepen.io/shepard_one/pen/MypdLy-->
+
+<md-content layout-padding class="rtl" md-theme="altTheme">
+
+	<div class="flex">
+
+		<form name="eventForm" style="padding: 20px;">
+
+			<md-input-container class="md-block">
+				<label>שם המסיבה</label>
+				<input ng-model="event.name" required md-no-asterisk>
+			</md-input-container>
+
+			<md-datepicker style='padding-right: 0px !important' ng-model="event.date" md-placeholder="תאריך"></md-datepicker>
+
+		  <mdp-time-picker ng-model="currentDate"></mdp-time-picker>
+			<div layout="row">
+
+				<md-select ng-model="club.state" placeholder="מדינה" flex class="select-space" required md-no-asterisk>
+					<md-option ng-value="state" ng-repeat="state in states"  >
+						{{ state.name}}
+					</md-option>
+				</md-select>
+
+				<md-select ng-model="club.city" placeholder="עיר" flex required md-no-asterisk>
+					<md-option ng-value="city" ng-repeat="city in cities">
+						{{city.name}}
+					</md-option>
+				</md-select>
+			</div>
+
+			<div layout="row">
+				<md-input-container flex="80" md-no-float>
+					<md-select ng-model="club.street" placeholder="רחוב"  class="select-space" required md-no-asterisk>
+						<md-option ng-value="street" ng-repeat="street in streets" >
+							{{street.name}}
+						</md-option>
+					</md-select>
+				</md-input-container>
+
+				<md-input-container flex="20" >
+					<label>מס רחוב</label>
+					<input name="postalCode" ng-model="club.streetNum"
+					required md-maxlength="3" md-no-asterisk>
+
+					<div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+						<div ng-message="required" class="my-message">
+							חייב לרשום מספר רחוב.
+						</div>
+						<div ng-message="pattern" class="my-message">
+							זה לא נראה כמו מספר רחוב תקין
+						</div>
+						<div ng-message="md-maxlength" class="my-message">
+							השתמש בעד שלוש ספרות במספר רחוב
+						</div>
+					</div>
+				</md-input-container>
+			</div>
+
+			<md-input-container flex="40">
+				<label>מס אורחים מקסימלי</label>
+				<input ng-model="club.capacity" type="number" required md-no-asterisk>
+			</md-input-container>
+
+			<md-input-container class="md-block">
+				<label>תיאור המועדון</label>
+				<textarea ng-model="club.description" md-maxlength="200" rows="1" md-select-on-focus></textarea>
+			</md-input-container>
+
+		</form>
+	</div>
+</md-content>
+
