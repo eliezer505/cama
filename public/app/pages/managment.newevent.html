@@ -34,64 +34,52 @@
 				<label>שם המסיבה</label>
 				<input ng-model="event.name" required md-no-asterisk>
 			</md-input-container>
-
-			<md-datepicker style='padding-right: 0px !important' ng-model="event.date" md-placeholder="תאריך"></md-datepicker>
-
-		  <mdp-time-picker ng-model="currentDate"></mdp-time-picker>
+<!--http://mominsamir.github.io/date-time-picker/#/date-time-picker-api
+	http://ninodezign.com/20-awesome-material-design-date-time-picker/-->
 			<div layout="row">
-
-				<md-select ng-model="club.state" placeholder="מדינה" flex class="select-space" required md-no-asterisk>
-					<md-option ng-value="state" ng-repeat="state in states"  >
-						{{ state.name}}
-					</md-option>
-				</md-select>
-
-				<md-select ng-model="club.city" placeholder="עיר" flex required md-no-asterisk>
-					<md-option ng-value="city" ng-repeat="city in cities">
-						{{city.name}}
-					</md-option>
-				</md-select>
+			<sm-date-time-picker 
+				fname="Date of Joining" 
+				lable="joiningDate" 
+				form="eventForm" 
+				value="eventDate" 
+				start-date="eventDate 
+				flex="100" 
+				min-date="eventDate" 				
+				is-required="true" 
+				format="DD-MM-YYYY" 
+				week-start-day="Sunday"> 
+			</sm-date-time-picker>
+			
 			</div>
+	</div>
 
-			<div layout="row">
-				<md-input-container flex="80" md-no-float>
-					<md-select ng-model="club.street" placeholder="רחוב"  class="select-space" required md-no-asterisk>
-						<md-option ng-value="street" ng-repeat="street in streets" >
-							{{street.name}}
-						</md-option>
-					</md-select>
-				</md-input-container>
+	<div layout="row" class="md-block">
 
-				<md-input-container flex="20" >
-					<label>מס רחוב</label>
-					<input name="postalCode" ng-model="club.streetNum"
-					required md-maxlength="3" md-no-asterisk>
+	      <div  layout layout-align="center center">
+     
+      </div>
+      <md-slider flex md-discrete ng-model="minAge" step="1" min="18" max="70" aria-label="minAge" style="direction:ltr;">
+      </md-slider>
 
-					<div ng-messages="userForm.postalCode.$error" role="alert" multiple>
-						<div ng-message="required" class="my-message">
-							חייב לרשום מספר רחוב.
-						</div>
-						<div ng-message="pattern" class="my-message">
-							זה לא נראה כמו מספר רחוב תקין
-						</div>
-						<div ng-message="md-maxlength" class="my-message">
-							השתמש בעד שלוש ספרות במספר רחוב
-						</div>
-					</div>
-				</md-input-container>
-			</div>
 
-			<md-input-container flex="40">
-				<label>מס אורחים מקסימלי</label>
-				<input ng-model="club.capacity" type="number" required md-no-asterisk>
-			</md-input-container>
+	</div>
+	<div layout="row" class="md-block">
 
-			<md-input-container class="md-block">
-				<label>תיאור המועדון</label>
-				<textarea ng-model="club.description" md-maxlength="200" rows="1" md-select-on-focus></textarea>
-			</md-input-container>
+    
+      <div  layout layout-align="center center">
+        <span class="md-body-1">מחיר כניסה</span>
+      </div>
+      <md-slider flex md-discrete ng-model="Price" step="5" min="0" max="250" aria-label="Price" style="direction:ltr;">
+      </md-slider>
 
-		</form>
+
+	</div>
+	<md-input-container class="md-block">
+		<label>תיאור המסיבה</label>
+		<textarea ng-model="event.description" md-maxlength="200" rows="1" md-select-on-focus></textarea>
+	</md-input-container>
+
+	</form>
 	</div>
 </md-content>
 

@@ -691,3 +691,12 @@ box-shadow: 0px 1px 9px 1px #c9a8e4}
 .bottom-shadow{
     box-shadow: 0 4px 2px -2px gray;
 }
+.md-datepicker-triangle-button.md-button.md-icon-button{display:none;}
+.md-datepicker-input{max-width:60px;}
+.md-track-ticks canvas { display: none; }
+md-slider[md-discrete] .md-sign,
+md-slider[md-discrete] .md-sign:after {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0) scale(1);
+  transform: translate3d(0, 0, 0) scale(1);
+}
