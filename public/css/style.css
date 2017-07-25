@@ -669,7 +669,12 @@ i {
 .club-name{color:#91949a; }
 .club-distance{color:#4f7db9;}
 .club-reg-btn1{color:#792aba; }
-.club-hr{border-top: 1px solid #c9a8e4;}
+#managment-parties .club-hr{border-top: 1px solid #c9a8e4;}
+
+.club-hr-no-top {
+   border-top: 1px solid #c9a8e4;
+   margin-top: 0px !important;
+}
 .content-middle{    justify-content: center;}
 .text-middle{align-items: center;}
 .event-approved{color:green;}
@@ -682,3 +687,7 @@ i {
 box-shadow: 0px 1px 9px 1px #c9a8e4}
 
 .md-datepicker-triangle-button {left:0px !important; right: auto !important ;}
+
+.bottom-shadow{
+    box-shadow: 0 4px 2px -2px gray;
+}
