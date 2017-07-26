@@ -700,3 +700,14 @@ md-slider[md-discrete] .md-sign:after {
   -webkit-transform: translate3d(0, 0, 0) scale(1);
   transform: translate3d(0, 0, 0) scale(1);
 }
+
+
+md-slider .md-thumb:after{
+    content: none !important;
+}
+
+.profile-slider{
+    font-size: 1em;
+    font-family: "Bebas Neue", Arial;
+    border-color: rgb(103,58,183);
+};

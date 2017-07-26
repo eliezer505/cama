@@ -1,10 +1,11 @@
 angular
         .module('app')
         .controller('NewEventCtrl', function ($scope) {
-         
-	 $scope.minAge = 18;
-	 $scope.Price = 0;
-	 $scope.eventDate = new Date();
+
+            $scope.minAge = 18;
+            $scope.Price = 0;
+            $scope.eventDate = new Date();
+
             $scope.clubPicture = "img/empty-club.jpg";
 
             $scope.user = {

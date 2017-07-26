@@ -6,14 +6,9 @@ angular.module('app')
                 /* header DOM element with md-page-header attribute */
                 var header = document.querySelector('[md-page-header]');
 
-                console.log(element);
-
                 /* Store header dimensions to initialize header styling */
                 var baseDimensions = header.getBoundingClientRect();
-
-                console.log('baseDimensions:');
-                console.log(baseDimensions);
-
+                
                 var first = true;
                 /* DOM element with md-header-picture attribute (picture in header) */
                 var picture = angular.element(document.querySelector('[md-header-picture]'));
@@ -22,15 +17,11 @@ angular.module('app')
                 var fab = angular.element(document.querySelector('.main-fab'));
                 /* The height of a toolbar by default in Angular Material */
                 var legacyToolbarH = angular.element(document.querySelector('md-toolbar').clientHeight)[0];
-                console.log('tool bar h:');
-                console.log(legacyToolbarH);
                 /* The mid-height of a float action button by default in Angular Material */
                 var legacyFabMid = 56 / 2;
 
 
                 function handleStyle(dim) {
-                    console.log('enter to style:');
-                    console.log(dim);
                     fab.css('top', (dim.height - legacyFabMid) + 'px');
                     if ((dim.bottom - baseDimensions.top) > legacyToolbarH) {
                         element.css('height', (dim.bottom - baseDimensions.top) + 'px');
@@ -50,10 +41,6 @@ angular.module('app')
                     //picture.css('-webkit-filter','blur(5px)');
                     picture.css('background-position', '50% ' + (ratio(dim) * 50) + '%');
                     var op = 1.0 - ratio(dim);
-                    console.log('ratio:');
-                    console.log(ratio(dim));
-                    console.log('op:');
-                    console.log(op);
                     element.css('background', 'linear-gradient(90deg, rgba(68,120,203,' + op + ') 0%, rgba(68,120,203,' + op + ') 27%, rgba(131,42,210,' + op + ') 63%, rgba(131,42,210,' + op + ') 100%)');
 
                     /* Uncomment the line below if you want shadow inside picture (low performance) */
@@ -74,7 +61,6 @@ angular.module('app')
 
                 /* Scroll event listener */
                 angular.element($window).bind("scroll", function () {
-                    console.log('enter scroll');
                     if (first) {
                         baseDimensions = header.getBoundingClientRect();
                         first = false;
@@ -86,7 +72,6 @@ angular.module('app')
 
                 /* Resize event listener */
                 angular.element($window).bind('resize', function () {
-                    console.log('enter resize');
                     baseDimensions = header.getBoundingClientRect();
                     var dimensions = header.getBoundingClientRect();
                     handleStyle(dimensions);
