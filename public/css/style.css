@@ -537,7 +537,7 @@ md-input-container .md-input {
     float: right !important;
 }
 
-md-input-container {
+#managment-profile md-input-container {
 
     margin: 5px 0 !important;
 
@@ -711,3 +711,4 @@ md-slider .md-thumb:after{
     font-family: "Bebas Neue", Arial;
     border-color: rgb(103,58,183);
 };
+#disablepadding .md-button.md-icon-button  {padding:0px!important;}

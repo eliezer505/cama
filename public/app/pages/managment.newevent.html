@@ -11,8 +11,8 @@
 
         <span flex="" class="flex"></span>
 
-        <md-button class="md-icon-button" aria-label="Done" >
-            <md-icon class="material-icons" ui-sref="managment.newevent">
+        <md-button class="md-icon-button" aria-label="Done" ng-click="addEvent()">
+            <md-icon class="material-icons" >
                 <i class="material-icons">&#xE876;</i>
             </md-icon>
         </md-button>
@@ -26,7 +26,7 @@
 <!--https://gist.github.com/abehaskins/7330325-->
 <!--https://codepen.io/shepard_one/pen/MypdLy-->
 
-<md-content layout-padding class="rtl" md-theme="altTheme">
+<md-content layout-padding class="rtl" md-theme="altTheme" id="disablepadding">
 
 
 
@@ -39,34 +39,36 @@
         <!--http://mominsamir.github.io/date-time-picker/#/date-time-picker-api
                 http://ninodezign.com/20-awesome-material-design-date-time-picker/-->
 
-          <div layout="row" ng-form="demoForm" style="direction:rtl; ">                            
-            <div>        
-              <mdp-date-picker 
+                                   
+            <div layout="row">        
+              <mdp-date-picker style="direction:rtl;"
+              
                                mdp-open-on-click 
-                               required 
+                                required 
                                name="dateFormat" 
                                mdp-placeholder="תאריך האירוע" 
-                               mdp-format="DD/MM/YYYY" ng-model="currentDate">
-                  <div ng-messages="demoForm.dateFormat.$error">
+                               mdp-format="DD/MM/YYYY" ng-model="event.eDate">
+                  <div ng-messages="eventForm.dateFormat.$error">
                     <div ng-message="required">חובה לבחור תאריך</div>
                     <div ng-message="format">הפורמט לא תקין </div>
                 </div>
               </mdp-date-picker>
             </div>               
     
-            <div >           
-              <mdp-time-picker 
+            <div layout="row">           
+              <mdp-time-picker style="direction:rtl;" 
+               mdp-placeholder="פתיחת שערים"
                                mdp-open-on-click
                                mdp-auto-switch="true"
-                               name="timeFormat" ng-model="currentTimeText" 
+                               name="timeFormat" ng-model="event.eTime" 
                                mdp-format="HH:mm A">
-                <div ng-messages="demoForm.timeFormat.$error">
+                <div ng-messages="eventForm.timeFormat.$error">
                   <div ng-message="required">This is required</div>
                   <div ng-message="format">Invalid format</div>
                 </div>
               </mdp-time-picker>
             </div>            
-          </div>
+        
 
 
         <div layout="row" class="md-block"  md-theme="altTheme">

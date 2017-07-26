@@ -1,8 +1,8 @@
 
 angular.module('app').controller('managmentPartiesCtrl',
-        function ($scope) {
+        function ($scope,currentEvents) {
 
-
+			console.log(currentEvents);
             $scope.events = [{id: 1, name: "חמישי שחורה", date: 14.5, registered: 100, approved: 27},
                 {id: 2, name: "שישי סטודנטים", date: 7.4, registered: 100, approved: 27},
 
