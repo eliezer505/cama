@@ -18,6 +18,7 @@
     "angular-messages": "^1.6.2",
     "angular-ui-router": "^0.4.2",
     "angularfire": "^2.3.0",
-    "firebase": "^4.0.0"
+    "firebase": "^4.0.0",
+    "firebase-paginator": "^1.1.1"
   }
 }

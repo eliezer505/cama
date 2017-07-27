@@ -136,8 +136,8 @@ var club = angular.module("app").config(function($stateProvider, $urlRouterProvi
 		templateUrl : "app/pages/managment.parties.html",
 		controller : "managmentPartiesCtrl",
 		resolve : {
-			currentEvents : function(EVENTS) {
-				return EVENTS.GetAllEvents();
+			"currentEvents" : function(EVENTS) {
+				return EVENTS.GetFirstEvents();
 			}
 		}
 
