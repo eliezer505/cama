@@ -45,7 +45,7 @@
 //                    };
 //                    
                     this.GetFirstEvents = function () {
-                        array = $infiniteScroll(EventsRef, 12);
+                        array = $infiniteScroll(EventsRef, 17);
                         return array;
                     };                    
 //                    this.GetNextEvents = function () {
