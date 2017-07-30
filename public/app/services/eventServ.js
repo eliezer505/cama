@@ -1,16 +1,13 @@
 (function () {
 
     angular.module('app').
-            service("EVENTS", function ($firebaseObject, $firebaseArray, Auth, $q, pagination) {
+            service("EVENTS", function ($firebaseObject, $firebaseArray, Auth, $q, $paginated) {
                 if (Auth) {
                     //                    console.log(currentUser);
                     //                    var user = Auth.$getAuth();
                     //                    var userData = null;
                     var EventsRef = firebase.database().ref('events');
-
-
-                    pagination.init(EventsRef, 10);
-
+//                    		https://codepen.io/elliotmendiola/pen/JNYoNj	               
                     this.getEvent = function (Key) {
                         var one = $q.defer();
                         var event = $firebaseObject(EventsRef.child(Key));

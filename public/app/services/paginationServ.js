@@ -1,43 +1,19 @@
 (function () {
 
-    angular.module('app').
-            service("pagination", function () {
+angular.module('app')
 
-                var options = {};
-                var ref = null;
-                var paginator = null;
-
-                this.init = function (refVar, pageSize) {
-                    options = {
-                        pageSize: pageSize,
-                        finite: true,
-                        retainLastPage: false
-                    };
-                    ref = refVar;
-                    paginator = new FirebasePaginator(ref, options);
-                };
-
-                this.getPaginator = function()
-                {
-                    return paginator;
-                };
-                
-                this.next = function()
-                {
-                    paginator.next();
-                    return this.getPaginator();
-                };
-                
-                this.prev = function()
-                {
-                    paginator.previous();
-                    return this.getPaginator();
-                    
-                };
+.controller("AppCtrl", ["$scope", "$infiniteScroll", "$paginated",
+	function ($scope, $firebaseArray, $paginated) {
+		$scope.text = "Fire Event to load more data";		
+		
+		var ref = firebase.database().ref().child("pagination")
+		$scope.array = $firebaseArray(ref, 5);
+		$scope.page = $paginated(ref, 12);
+	}
+])
 
 
 
-                console.log(paginator);
 
-            });
+
 })(); 
