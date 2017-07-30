@@ -5,9 +5,10 @@ angular.module('app')
 		return function (ref, pageMax) {
 			var main;
 			var current = pageMax;
-			console.log(ref.path.toString());
-			console.log(ref.database.ref().child(ref.path.toString()));
-			var result = $firebaseArray(ref.database.ref().child(ref.path.toString()).limitToFirst(pageMax));
+			console.log(ref);
+			console.log(ref.limitToFirst(pageMax));
+             
+			var result = $firebaseArray(ref.limitToFirst(pageMax)).$loaded();
 			result.$scroll = function () {
 				if (result.length < current) return false;
 				if (main) {

@@ -636,7 +636,7 @@ md-input-container.md-input-focused label:not(.md-no-float) {
     color: rgb(255,255,255);
 }
 
- .md-button.md-fab:not([disabled]):hover {
+.md-button.md-fab:not([disabled]):hover {
     background-color: rgb(197,17,98);
 }
 
@@ -665,40 +665,88 @@ i {
     padding-left:24px;
     color: rgb(63,81,181);
 }
-.club-list{    text-align: center!important;direction:rtl!important;}
-.club-name{color:#91949a; }
-.club-distance{color:#4f7db9;}
-.club-reg-btn1{color:#792aba; }
-#managment-parties .club-hr{border-top: 1px solid #c9a8e4;}
+#managment-parties .club-list{
+    text-align: right!important;
+    direction:rtl!important;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.club-list{
+    text-align: center!important;
+    direction:rtl!important;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.club-sub-head{    
+    text-align: right!important;
+    direction: rtl!important;
+    padding: 0.5em !important;
+    font-size: initial;
+}
+
+.club-name{
+    color:#91949a; 
+}
+.club-distance{
+    color:#4f7db9;}
+
+.club-reg-btn1{
+    color:#792aba; 
+}
+
+#managment-parties .club-hr{
+    border-top: 1px solid #c9a8e4;
+}
 
 .club-hr-no-top {
-   border-top: 1px solid #c9a8e4;
-   margin-top: 0px !important;
+    border-top: 1px solid #c9a8e4;
+    margin-top: 0px !important;
 }
-.content-middle{    justify-content: center;}
-.text-middle{align-items: center;}
-.event-approved{color:green;}
-.fixedtop{position: fixed;
+.content-middle{
+    justify-content: center;
+}
+.text-middle{
+    align-items: center;
+}
+.event-approved{
+    color:green;
+}
+.fixedtop{
+    position: fixed;
     top: 0;
     width: 100%;
-    z-index: 999;}
-    .bottom-shadow{-webkit-box-shadow: 0px 1px 9px 1px #c9a8e4;
--moz-box-shadow: 0px 1px 9px 1px #c9a8e4;
-box-shadow: 0px 1px 9px 1px #c9a8e4}
+    z-index: 999;
+}
+.bottom-shadow{
+    -webkit-box-shadow: 0px 1px 9px 1px #c9a8e4;
+    -moz-box-shadow: 0px 1px 9px 1px #c9a8e4;
+    box-shadow: 0px 1px 9px 1px #c9a8e4
+}
 
-.md-datepicker-triangle-button {left:0px !important; right: auto !important ;}
+.md-datepicker-triangle-button {
+    left:0px !important;
+    right: auto !important ;
+}
 
 .bottom-shadow{
     box-shadow: 0 4px 2px -2px gray;
 }
-.md-datepicker-triangle-button.md-button.md-icon-button{display:none;}
-.md-datepicker-input{max-width:60px;}
-.md-track-ticks canvas { display: none; }
+.md-datepicker-triangle-button.md-button.md-icon-button{
+    display:none;
+}
+.md-datepicker-input{
+    max-width:60px;
+}
+.md-track-ticks canvas { 
+    display: none;
+}
 md-slider[md-discrete] .md-sign,
 md-slider[md-discrete] .md-sign:after {
-  opacity: 1;
-  -webkit-transform: translate3d(0, 0, 0) scale(1);
-  transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
 }
 
 
@@ -710,5 +758,8 @@ md-slider .md-thumb:after{
     font-size: 1em;
     font-family: "Bebas Neue", Arial;
     border-color: rgb(103,58,183);
-};
-#disablepadding .md-button.md-icon-button  {padding:0px!important;}
+}
+
+#disablepadding .md-button.md-icon-button  {
+    padding:0px!important;
+}

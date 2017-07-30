@@ -19,48 +19,48 @@
 
     </div>
 
-    <md-content style="padding-bottom: 0.5em; padding-top: 0.5em;">
-        <div layout="row" class="club-list">
-            <div flex="15">
-                <span class="md-subhead club-name" >תאריך</span>
+    <md-content>
+        <div layout="row" class="club-sub-head">
+            <div flex="25">
+                <span class="club-name" >תאריך</span>
             </div>
-            <div flex="40">
-                <span class="md-subhead club-name" >שם המסיבה</span>
-            </div>
-            <div flex="15">
-                <span class="md-subhead club-name" >נרשמו</span>
+            <div flex="35">
+                <span class="club-name" >שם המסיבה</span>
             </div>
             <div flex="15">
-                <span class="md-subhead event-approved">אושרו </span>
+                <span class="club-name" >נרשמו</span>
             </div>
             <div flex="15">
-                <span class="md-subhead club-reg-btn1">עריכה</span>
+                <span class="event-approved">אושרו </span>
+            </div>
+            <div flex="10">
+                <span class="club-reg-btn1">עריכה</span>
             </div>
         </div>
     </md-content>
 </md-toolbar>
 
-<md-content scroll-with-headline layout="column" flex style="min-height: 100%;" >
+<md-content scroll-with-headline layout="column" flex style="min-height: 100%;">
     <div flex layout="column" id="managment-content">
         <div  ng-repeat="event in events" >	
             <hr ng-if="$first" class="club-hr-no-top" >
             <hr ng-if="!$first" class="club-hr">
             <div layout="row" class="club-list">
 
-                <div flex="15">
-                    <span class="md-subhead club-name" >{{event.date}}</span>
+                <div flex="25">
+                    <span class="club-name" >{{event.eDate| date:'dd/MM/yyyy'}}</span>
                 </div>
-                <div flex="40">
-                    <span class="md-subhead club-name" >{{event.name}}</span>
-                </div>
-                <div flex="15">
-                    <span class="md-subhead club-name" >{{event.registered}}</span>
+                <div flex="35">
+                    <span class="club-name" >{{event.name}}</span>
                 </div>
                 <div flex="15">
-                    <span class="md-subhead event-approved">{{event.approved}} </span>
+                    <span class="club-name" >{{event.price}}</span>
                 </div>
                 <div flex="15">
-                    <span class="md-subhead club-reg-btn1"><i class="material-icons">&#xE3C9;</i></span>
+                    <span class="event-approved">{{event.minAge}} </span>
+                </div>
+                <div flex="10">
+                    <span class="club-reg-btn1"><i class="material-icons">&#xE3C9;</i></span>
                 </div>
             </div>
 
@@ -68,5 +68,3 @@
 
     </div>
 </md-content>
-
-

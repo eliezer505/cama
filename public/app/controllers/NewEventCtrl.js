@@ -3,6 +3,11 @@ angular.module('app')
 
 
             $scope.addEvent = function () {
+                var hour =  $scope.event.eTime.getHours();
+                var minute = $scope.event.eTime.getMinutes();
+                $scope.event.eDate.setHours(hour);
+                $scope.event.eDate.setMinutes(minute);            
+                $scope.event.eDate =  $scope.event.eDate.getTime();                      
                 EVENTS.AddEvent($scope.event);
                 $state.go('managment.parties');
             };
