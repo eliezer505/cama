@@ -549,7 +549,7 @@ md-input-container .md-input {
 
 md-input-container label:not(.md-container-ignore){
     left: auto !important;
-    right: 0 !important;
+    /*right: 0 !important;*/
 }
 
 md-input-container label:not(.md-no-float):not(.md-container-ignore){
@@ -769,3 +769,30 @@ md-slider .md-thumb:after{
 #disablepadding .md-button.md-icon-button  {
     padding:0px!important;
 }
+
+.no-margin-top-bottom{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.no-padding-top-bottom{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+mdp-date-picker md-input-container,mdp-time-picker md-input-container{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+mdp-date-picker button,mdp-time-picker button{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+mdp-date-picker button md-icon,mdp-time-picker button md-icon{
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    display: inline-block !important;
+}
+

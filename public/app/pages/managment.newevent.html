@@ -11,7 +11,13 @@
 
         <span flex="" class="flex"></span>
 
-        <md-button type="submit" class="md-icon-button" aria-label="Done">
+        <md-button class="md-icon-button" aria-label="Cancel">
+            <a ui-sref="managment.parties">
+                <md-icon class="material-icons">
+                    <i class="material-icons">&#xE5C9;</i>
+               </md-icon></a>
+        </md-button>
+        <md-button form="disablepadding" type="submit" class="md-icon-button" aria-label="Done" ng-click="addEvent()">
             <md-icon class="material-icons">
                 <i class="material-icons">&#xE876;</i>
             </md-icon>
@@ -28,73 +34,81 @@
 
 
 
-    <form name="eventForm" style="padding: 20px;" ng-submit="addEvent()" novalidate layout-padding class="rtl" md-theme="altTheme" id="disablepadding">
-        <md-input-container class="md-block">
-            <label>שם הליין</label>
-            <input name="lineName" ng-model="event.name" required md-no-asterisk>
-            <div ng-messages="eventForm.lineName.$error" ng-show="eventForm.$submitted || eventForm.lineName.$error">
-                <div ng-message="required">נא להכניס את שם הליין!</div>
-            </div>
-        </md-input-container>
-        <!--http://mominsamir.github.io/date-time-picker/#/date-time-picker-api
-                http://ninodezign.com/20-awesome-material-design-date-time-picker/-->
-
-        <div layout="row">        
-            <mdp-date-picker style="direction:rtl;"
-                             mdp-open-on-click 
-                             required 
-                             name="dateFormat" 
-                             mdp-placeholder="תאריך האירוע" 
-                             mdp-format="DD/MM/YYYY" 
-                             ng-model="event.eDate">
-                <div ng-messages="eventForm.dateFormat.$error" ng-show="eventForm.$submitted || eventForm.dateFormat.$error">
-                    <div ng-message="required">חובה לבחור תאריך</div>
-                    <div ng-message="format">הפורמט לא תקין </div>
-                </div>
-            </mdp-date-picker>
-        </div>               
-
-        <div layout="row">           
-            <mdp-time-picker style="direction:rtl;" 
-                             mdp-placeholder="פתיחת שערים"
-                             mdp-open-on-click
-                             mdp-auto-switch="true"
-                             required 
-                             name="timeFormat" 
-                             ng-model="event.eTime" 
-                             mdp-format="HH:mm A">
-                <div ng-messages="eventForm.timeFormat.$error" ng-show="eventForm.timeFormat.$error">
-                    <div ng-message="required">חובה לבחור שעת כניסה</div>
-                    <div ng-message="format">הפורמט לא תקין </div>
-                </div>
-            </mdp-time-picker>
-        </div>            
-
-
-
-        <div layout="row" class="md-block"  md-theme="altTheme">
-            <div layout layout-align="center center">
-                <span class="md-body-1">גיל כניסה</span>
-            </div>
-            <md-slider flex md-discrete ng-model="event.minAge" step="1" min="18" max="70" aria-label="minAge" style="direction:ltr;">
-            </md-slider>
+<form id="disablepadding" name="eventForm"   
+    style="padding: 20px; overflow: auto;" 
+    novalidate 
+    layout-padding 
+    class="rtl" 
+    md-theme="altTheme" 
+    flex 
+    ng-clock>
+    <md-input-container class="md-block no-margin-top-bottom">
+        <label>שם הליין</label>
+        <input name="lineName" ng-model="event.name" required md-no-asterisk>
+        <div ng-messages="eventForm.lineName.$error" ng-if="eventForm.lineName.$invalid && (eventForm.$submitted || eventForm.lineName.$touched || eventForm.lineName.$dirty)" >
+            <div ng-message="required">נא להכניס את שם הליין!</div>
         </div>
+    </md-input-container>
 
 
-        <div layout="row" class="md-block profile-slider"  >
-            <div  layout layout-align="center center">
-                <span class="md-body-1">מחיר כניסה</span>
-            </div>
-            <md-slider flex md-discrete ng-model="event.Price" step="5" min="0" max="250" aria-label="Price" style="direction:ltr;">
-            </md-slider>
+    <mdp-date-picker style="direction:rtl;"
+                     mdp-open-on-click 
+                     required 
+                     name="dateFormat" 
+                     mdp-placeholder="תאריך האירוע" 
+                     mdp-format="DD/MM/YYYY" 
+                     ng-model="event.eDate">
+        <div ng-messages="eventForm.dateFormat.$error" ng-if="eventForm.dateFormat.$invalid && (eventForm.$submitted || eventForm.dateFormat.$touched || eventForm.dateFormat.$dirty)">
+            <div ng-message="required">חובה לבחור תאריך</div>
+            <div ng-message="format">הפורמט לא תקין </div>
         </div>
+    </mdp-date-picker>
 
-        <md-input-container class="md-block">
-            <label>תיאור המסיבה</label>
-            <textarea ng-model="event.description" md-maxlength="200" rows="1" md-select-on-focus></textarea>
-        </md-input-container>
 
-    </form>
+          
+        <mdp-time-picker style="direction:rtl;" 
+                         mdp-placeholder="פתיחת שערים"
+                         mdp-open-on-click
+                         mdp-auto-switch="true"
+                         required 
+                         name="timeFormat" 
+                         ng-model="event.eTime" 
+                         mdp-format="HH:mm A">
+            <div ng-messages="eventForm.timeFormat.$error" ng-if="eventForm.timeFormat.$invalid && (eventForm.$submitted || eventForm.timeFormat.$touched || eventForm.timeFormat.$dirty)">
+                <div ng-message="required">חובה לבחור שעת כניסה</div>
+                <div ng-message="format">הפורמט לא תקין </div>
+            </div>
+        </mdp-time-picker>
+              
+
+
+
+    <div layout="row" class="md-block"  md-theme="altTheme">
+        <div layout layout-align="center center">
+            <span class="md-body-1">גיל כניסה</span>
+        </div>
+        <md-slider name="minAge" flex md-discrete ng-model="event.minAge" step="1" min="18" max="70" aria-label="minAge" style="direction:ltr;">
+        </md-slider>
+    </div>
+
+
+    <div layout="row" class="md-block profile-slider"  >
+        <div  layout layout-align="center center">
+            <span class="md-body-1">מחיר כניסה</span>
+        </div>
+        <md-slider name="Price" flex md-discrete ng-model="event.Price" step="5" min="0" max="250" aria-label="Price" style="direction:ltr;">
+        </md-slider>
+    </div>
+
+    <md-input-container class="md-block no-margin-top-bottom">
+        <label>תיאור המסיבה</label>
+        <textarea ng-model="event.description" name="description" ng-maxlength="150" md-maxlength="150" rows="1" md-select-on-focus></textarea>
+        <div ng-messages="eventForm.description.$error" ng-if="eventForm.description.$invalid && (eventForm.$submitted || eventForm.description.$touched || eventForm.description.$dirty)" >
+            <div ng-message="maxlength">נא להקליד עד 150 תוים !</div>
+        </div>
+    </md-input-container>
+
+</form>
 
 
 
