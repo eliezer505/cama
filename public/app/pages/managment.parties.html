@@ -1,30 +1,85 @@
+<md-toolbar id="managment-toolbar" ng-class="{'bottom-shadow': boolChangeClass}">
+    <div class="md-toolbar-tools gradient">
+        <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+            <md-tooltip>
+                Side Panel
+            </md-tooltip>
+            <md-icon class="md-default-theme" class="material-icons">
+                &#xE5D2;
+            </md-icon>
+        </md-button>
 
+        <span flex="" class="flex"></span>
 
-<div scroll-with-headline flex id="managment-content">
-    
-        <div  ng-repeat="event in events" >	
-            <hr ng-if="$first" class="club-hr-no-top" >
-            <hr ng-if="!$first" class="club-hr">
-            <div layout="row" class="club-list">
+        <md-button class="md-icon-button" aria-label="add">
+            <md-icon class="material-icons" ui-sref="managment.newevent">
+                <i class="material-icons">&#xE145;</i>
+            </md-icon>
+        </md-button>
 
-                <div flex="25">
-                    <span class="club-name" >{{event.eDate| date:'dd/MM/yyyy'}}</span>
-                </div>
-                <div flex="35">
-                    <span class="club-name" >{{event.name}}</span>
-                </div>
-                <div flex="15">
-                    <span class="club-name" >{{event.price}}</span>
-                </div>
-                <div flex="15">
-                    <span class="event-approved">{{event.minAge}} </span>
-                </div>
-                <div flex="10">
-                    <span class="club-reg-btn1"><i class="material-icons">&#xE3C9;</i></span>
-                </div>
+    </div>
+
+    <md-content>
+        <div layout="row" class="club-sub-head">
+            <div flex="25">
+                <span class="club-name" >תאריך</span>
             </div>
-
+            <div flex="35">
+                <span class="club-name" >שם הליין</span>
+            </div>
+            <div flex="15">
+                <span class="club-name" >נרשמו</span>
+            </div>
+            <div flex="15">
+                <span class="event-approved">אושרו</span>
+            </div>
+            <div flex="10">
+                <span class="club-reg-btn1">עריכה</span>
+            </div>
         </div>
+    </md-content>
+</md-toolbar>
 
- 
+<div scroll-with-headline id="managment-content" flex style="overflow: auto;" ng-clock>
+    <div ng-repeat="event in events" >	
+        <hr ng-if="$first" class="club-hr-no-top" >
+        <hr ng-if="!$first" class="club-hr">
+        <div layout="row" class="club-list">
+
+            <div flex="25">
+                <span class="club-name" >{{event.eDate| date:'dd/MM/yyyy'}}</span>
+            </div>
+            <div flex="35">
+                <span class="club-name" >{{event.name}}</span>
+            </div>
+            <div flex="15">
+                <span class="club-name" >{{event.price}}</span>
+            </div>
+            <div flex="15">
+                <span class="event-approved">{{event.minAge}} </span>
+            </div>
+            <div flex="10">
+                <span class="club-reg-btn1"><i class="material-icons">&#xE3C9;</i></span>
+            </div>
+        </div>
+        <hr ng-if="$last" class="club-hr-no-bottom">
+    </div>
 </div>
+
+<footer>
+    <md-toolbar style="background-color:whitesmoke;">
+        <div layout="row" layout-align="center center" flex>
+            <md-button class="md-primary" ui-sref="managment.profile">
+                פרופיל
+            </md-button>
+
+            <md-button class="md-primary" ui-sref="managment.stats">
+                סטטיסטיקות
+            </md-button>
+
+            <md-button class="md-primary" ui-sref="managment.parties">
+                מסיבות והרשמות
+            </md-button>
+        </div>
+    </md-toolbar>
+</footer>

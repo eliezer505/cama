@@ -127,7 +127,8 @@ var club = angular.module("app").config(function($stateProvider, $urlRouterProvi
 		}
 	}).state('managment', {
 		url : "/managment",
-		templateUrl : "app/pages/managment.html"
+		templateUrl : "app/pages/managment.html",
+                controller : "managmentCtrl"
 
 		//
 		//      }
@@ -146,7 +147,7 @@ var club = angular.module("app").config(function($stateProvider, $urlRouterProvi
 	}).state('managment.newevent', {
 		url : "/newevent",
 		templateUrl : "app/pages/managment.newevent.html",
-		controller : "NewEventCtrl",
+		controller : "NewEventCtrl"
 
 		//
 		//      }

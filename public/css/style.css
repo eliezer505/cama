@@ -672,8 +672,8 @@ i {
     padding-right: 0.5em;
 }
 
-.club-list{
-    text-align: center!important;
+#managment-content .club-list{
+    text-align: right!important;
     direction:rtl!important;
     padding-left: 0.5em;
     padding-right: 0.5em;
@@ -704,6 +704,12 @@ i {
     border-top: 1px solid #c9a8e4;
     margin-top: 0px !important;
 }
+
+.club-hr-no-bottom {
+    border-top: 1px solid #c9a8e4;
+    margin-bottom: 0px !important;
+}
+
 .content-middle{
     justify-content: center;
 }
