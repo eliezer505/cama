@@ -161,22 +161,16 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
         resolve: {
             "currentEvent": function ($stateParams, EVENTS) {
                 console.log($stateParams.id);
-           
+
                 return EVENTS.GetOneEvent($stateParams.id);
             }
         }
+    }).state('managment.profile', {
+        url: "/profile",
+        templateUrl: "app/pages/managment.profile.html",
+         controller: "managmentProfileCtrl"
 
-        //
-        //      }
-    })
-
-            .state('managment.profile', {
-                url: "/profile",
-                templateUrl: "app/pages/managment.profile.html"
-
-                        //
-                        //      }
-            }).state('managment.stats', {
+    }).state('managment.stats', {
         url: "/stats",
         templateUrl: "app/pages/managment.stats.html"
 

@@ -9,6 +9,8 @@ angular.module('app')
                 /* Store header dimensions to initialize header styling */
                 var baseDimensions = header.getBoundingClientRect();
                 
+                var content = document.querySelector('#profile-content');
+                
                 var first = true;
                 /* DOM element with md-header-picture attribute (picture in header) */
                 var picture = angular.element(document.querySelector('[md-header-picture]'));
@@ -27,7 +29,10 @@ angular.module('app')
                         element.css('height', (dim.bottom - baseDimensions.top) + 'px');
                     } else {
                         element.css('height', legacyToolbarH + 'px');
+                        content.css('top', (dim.bottom) + 'px');
                     }
+                    
+                    
 
                     if ((dim.bottom - baseDimensions.top) < legacyToolbarH * 2 && !fab.hasClass('hide')) {
                         fab.addClass('hide');

@@ -1,126 +1,134 @@
-<div ng-controller="managmentProfileCtrl">
+<md-toolbar id="managment-toolbar" ng-class="{'bottom-shadow': boolChangeClass}">
+    <div class="md-toolbar-tools gradient">
+        <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+            <md-tooltip>
+                Side Panel
+            </md-tooltip>
+            <md-icon class="md-default-theme" class="material-icons">
+                &#xE5D2;
+            </md-icon>
+        </md-button>
 
-    <header md-page-header>
+        <span flex="" class="flex"></span>
 
-        <div md-header-picture ng-style="{'background-image':'url('+clubPicture+')'}"></div>
+        <md-button class="md-icon-button" aria-label="Done" ng-click="upload_image(image)">
 
-        <md-toolbar scroll>
-            <div class="md-toolbar-tools">
-                <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
-                    <md-tooltip>
-                        Side Panel
-                    </md-tooltip>
-                    <md-icon class="md-default-theme" class="material-icons">
-                        &#xE5D2;
-                    </md-icon>
-                </md-button>
+            <md-icon class="material-icons"><i class="material-icons">&#xE876;</i></md-icon>
+        </md-button>
 
-                <span flex="" class="flex"></span>
+    </div>
+</md-toolbar>
 
-                <md-button class="md-icon-button" aria-label="Done" ng-click="upload_image(image)">
+<header md-page-header >
 
-                    <md-icon class="material-icons"><i class="material-icons">&#xE876;</i></md-icon>
-                </md-button>
-
-            </div>
-        </md-toolbar>
+    <div md-header-picture ng-style="{'background-image':'url('+clubPicture+')'}"></div>
 
 
 
-        <div class="main-fab">
-
-            <input  fb-image-upload class="fb-input" type="file" name="image" />
-            <input class="ng-hide" type="text" ng-model="image" ng-show="image.valid" />
-            <div>
-                <md-button id="uploadButton" class="md-fab">
-                    <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon>
-                </md-button>
-            </div>
-        </div>     
-
-<!--https://gist.github.com/abehaskins/7330325-->
-<!--https://codepen.io/shepard_one/pen/MypdLy-->
 
 
-    </header>
+    <div class="main-fab">
 
-  
+        <div class="fb-inputs" ng-hide="image.isUploading">
+            <input class="fb-image-upload" fb-image-upload class="fb-input" type="file" name="image"/>
+            <input class="fb-submit" type="submit" value="Upload Image" ng-show="image.valid"/>
+        </div>
 
-    <md-content layout-padding class="rtl" md-theme="altTheme">
 
-<div class="flex" id="managment-profile">
+<!--        <input  fb-image-upload class="fb-input" type="file" name="image" />
+        <input class="ng-hide" type="text" ng-model="image" ng-show="image.valid" />
+        <div>
+            <md-button id="uploadButton" class="md-fab">
+                <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon>
+            </md-button>
+        </div>-->
+    </div>     
+
+    <!--https://gist.github.com/abehaskins/7330325-->
+    <!--https://codepen.io/shepard_one/pen/MypdLy-->
 
 
-        <form name="userForm" style="padding: 20px;">
+</header>
 
-            <md-input-container class="md-block">
-                <label>שם המועדון</label>
-                <input ng-model="club.name" required md-no-asterisk>
+
+
+<md-content layout-padding class="rtl" md-theme="altTheme" id="managment-profile">
+    <form name="userForm" >
+        <md-input-container class="md-block">
+            <label>שם המועדון</label>
+            <input ng-model="club.name" required md-no-asterisk>
+        </md-input-container>
+
+        <div layout="row">
+
+            <md-select ng-model="club.state" placeholder="מדינה" flex class="select-space" required md-no-asterisk>
+                <md-option ng-value="state" ng-repeat="state in states"  >
+                    {{ state.name}}
+                </md-option>
+            </md-select>           
+
+            <md-select ng-model="club.city" placeholder="עיר" flex required md-no-asterisk>
+                <md-option ng-value="city" ng-repeat="city in cities">
+                    {{city.name}}
+                </md-option>
+            </md-select>            
+        </div>
+
+        <div layout="row">
+            <md-input-container flex="80" md-no-float>
+                <md-select ng-model="club.street" placeholder="רחוב"  class="select-space" required md-no-asterisk>
+                    <md-option ng-value="street" ng-repeat="street in streets" >
+                        {{street.name}}
+                    </md-option>
+                </md-select>
             </md-input-container>
 
-            <div layout="row">
+            <md-input-container flex="20" >
+                <label>מס רחוב</label>
+                <input name="postalCode" ng-model="club.streetNum"
+                       required md-maxlength="3" md-no-asterisk>
 
-                <md-select ng-model="club.state" placeholder="מדינה" flex class="select-space" required md-no-asterisk>
-                    <md-option ng-value="state" ng-repeat="state in states"  >
-                        {{ state.name}}
-                    </md-option>
-                </md-select>           
-
-                <md-select ng-model="club.city" placeholder="עיר" flex required md-no-asterisk>
-                    <md-option ng-value="city" ng-repeat="city in cities">
-                        {{city.name}}
-                    </md-option>
-                </md-select>            
-            </div>
-
-            <div layout="row">
-                <md-input-container flex="80" md-no-float>
-                    <md-select ng-model="club.street" placeholder="רחוב"  class="select-space" required md-no-asterisk>
-                        <md-option ng-value="street" ng-repeat="street in streets" >
-                            {{street.name}}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
-
-                <md-input-container flex="20" >
-                    <label>מס רחוב</label>
-                    <input name="postalCode" ng-model="club.streetNum"
-                           required md-maxlength="3" md-no-asterisk>
-
-                    <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
-                        <div ng-message="required" class="my-message">
-                            חייב לרשום מספר רחוב.
-                        </div>
-                        <div ng-message="pattern" class="my-message">
-                            זה לא נראה כמו מספר רחוב תקין
-                        </div>
-                        <div ng-message="md-maxlength" class="my-message">
-                            השתמש בעד שלוש ספרות במספר רחוב
-                        </div>
+                <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+                    <div ng-message="required" class="my-message">
+                        חייב לרשום מספר רחוב.
                     </div>
-                </md-input-container>
-            </div>
-
-            <md-input-container flex="40">
-                <label>מס אורחים מקסימלי</label>
-                <input ng-model="club.capacity" type="number" required md-no-asterisk>
+                    <div ng-message="pattern" class="my-message">
+                        זה לא נראה כמו מספר רחוב תקין
+                    </div>
+                    <div ng-message="md-maxlength" class="my-message">
+                        השתמש בעד שלוש ספרות במספר רחוב
+                    </div>
+                </div>
             </md-input-container>
+        </div>
+
+        <md-input-container flex="40">
+            <label>מס אורחים מקסימלי</label>
+            <input ng-model="club.capacity" type="number" required md-no-asterisk>
+        </md-input-container>
 
 
-            <md-input-container class="md-block">
-                <label>תיאור המועדון</label>
-                <textarea ng-model="club.description" md-maxlength="200" rows="1" md-select-on-focus></textarea>
-            </md-input-container>
+        <md-input-container class="md-block">
+            <label>תיאור המועדון</label>
+            <textarea ng-model="club.description" md-maxlength="200" rows="1" md-select-on-focus></textarea>
+        </md-input-container>
+    </form>
+</md-content>
 
+<footer>
+    <md-toolbar style="background-color:whitesmoke;">
+        <div layout="row" layout-align="center center" flex>
+            <md-button class="md-primary" ui-sref="managment.profile">
+                פרופיל
+            </md-button>
 
+            <md-button class="md-primary" ui-sref="managment.stats">
+                סטטיסטיקות
+            </md-button>
 
-        </form>
-</div>
-    </md-content>
-
-
-
-
-
-
-</div>
+            <md-button class="md-primary" ui-sref="managment.parties">
+                מסיבות והרשמות
+            </md-button>
+        </div>
+    </md-toolbar>
+</footer>
