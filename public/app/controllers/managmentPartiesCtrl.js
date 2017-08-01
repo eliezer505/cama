@@ -1,6 +1,6 @@
 
 angular.module('app').controller('managmentPartiesCtrl',
-        function ($scope,currentEvents) {
+        function ($scope,currentEvents,$state) {
 
 
                     
@@ -8,7 +8,10 @@ angular.module('app').controller('managmentPartiesCtrl',
       
             $scope.events = currentEvents;
 
-
+            $scope.edit = function (id){
+                console.log(id);
+                $state.go('managment.event', {id: id});
+            };
 
         });
   

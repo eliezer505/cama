@@ -34,11 +34,9 @@
                     };                    
 
 
-//                    this.GetOneEvent = function (EventKey) {
-//                        var OneItemRef = $firebaseObject(EventsRef.child(EventKey));
-//                        console.log(OneItemRef);
-//                        return $firebaseObject(OneItemRef);
-//                    };
+                    this.GetOneEvent = function (EventKey) {
+                        return $firebaseObject(EventsRef.child(EventKey));
+                    };
                 }
                 ;
 

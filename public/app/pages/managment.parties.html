@@ -59,7 +59,11 @@
                 <span class="event-approved">{{event.minAge}} </span>
             </div>
             <div flex="10">
-                <span class="club-reg-btn1"><i class="material-icons">&#xE3C9;</i></span>
+                   
+                    <md-icon class="material-icons" ng-click="edit(event.$id)">
+                        <span class="club-reg-btn1"><i class="material-icons">&#xE3C9;</i></span>
+                    </md-icon>
+                 
             </div>
         </div>
         <hr ng-if="$last" class="club-hr-no-bottom">
