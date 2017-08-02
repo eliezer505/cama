@@ -19,15 +19,16 @@
     </div>
 </md-toolbar>
 
-<header md-page-header >
+<div flex class="picture-container">
 
-    <div md-header-picture ng-style="{'background-image':'url('+clubPicture+')'}"></div>
+    <div class="image-frame">
+
+         <img class="image-profile" ng-src="{{clubPicture}}" alt="Club picture">
+        <md-button class="md-fab md-primary md-mini" aria-label="New"> <ng-md-icon icon="add"></ng-md-icon> </md-button>
+    </div>
 
 
-
-
-
-    <div class="main-fab">
+<!--    <div class="main-fab">
 
         <div class="fb-inputs" ng-hide="image.isUploading">
             <input class="fb-image-upload" fb-image-upload class="fb-input" type="file" name="image"/>
@@ -35,20 +36,20 @@
         </div>
 
 
-<!--        <input  fb-image-upload class="fb-input" type="file" name="image" />
-        <input class="ng-hide" type="text" ng-model="image" ng-show="image.valid" />
-        <div>
-            <md-button id="uploadButton" class="md-fab">
-                <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon>
-            </md-button>
-        </div>-->
-    </div>     
+                <input  fb-image-upload class="fb-input" type="file" name="image" />
+                <input class="ng-hide" type="text" ng-model="image" ng-show="image.valid" />
+                <div>
+                    <md-button id="uploadButton" class="md-fab">
+                        <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon>
+                    </md-button>
+                </div>
+    </div>     -->
 
     <!--https://gist.github.com/abehaskins/7330325-->
     <!--https://codepen.io/shepard_one/pen/MypdLy-->
 
 
-</header>
+</div>
 
 
 

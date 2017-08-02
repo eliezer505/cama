@@ -755,7 +755,6 @@ md-slider[md-discrete] .md-sign:after {
     transform: translate3d(0, 0, 0) scale(1);
 }
 
-
 md-slider .md-thumb:after{
     content: none !important;
 }
@@ -796,3 +795,26 @@ mdp-date-picker button md-icon,mdp-time-picker button md-icon{
     display: inline-block !important;
 }
 
+.image-frame {
+    border: solid 1px #CCC;
+    -moz-box-shadow: 1px 1px 5px black;
+    -webkit-box-shadow: 1px 1px 5px black;
+    box-shadow: 1px 1px 5px black;    
+    width: 60%;
+    height: 97%;
+        margin: 0 auto;
+}
+
+.image-profile {
+
+    width: 100%;
+    height: 100%;
+}
+
+
+.picture-container{
+    
+    width: 100vw;
+    height: 20vh;
+    margin-top: 5px;
+}
