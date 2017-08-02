@@ -19,31 +19,33 @@
     </div>
 </md-toolbar>
 
-<div flex class="picture-container">
+<div class="picture-container">
 
     <div class="image-frame">
 
-         <img class="image-profile" ng-src="{{clubPicture}}" alt="Club picture">
-        <md-button class="md-fab md-primary md-mini" aria-label="New"> <ng-md-icon icon="add"></ng-md-icon> </md-button>
+        <img class="image-profile" ng-src="{{clubPicture}}" alt="Club picture">
+        <md-button style="position: absolute; bottom: -20px;" class="md-fab md-primary md-mini" aria-label="New">  
+            <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon> 
+        </md-button>
+    </div>
+    <div class="fb-inputs" ng-hide="image.isUploading">
+        <input class="fb-image-upload" fb-image-upload class="fb-input" type="file" name="image"/>
+        <input class="fb-submit" type="submit" value="Upload Image" ng-show="image.valid"/>
     </div>
 
-
-<!--    <div class="main-fab">
-
-        <div class="fb-inputs" ng-hide="image.isUploading">
-            <input class="fb-image-upload" fb-image-upload class="fb-input" type="file" name="image"/>
-            <input class="fb-submit" type="submit" value="Upload Image" ng-show="image.valid"/>
-        </div>
-
-
-                <input  fb-image-upload class="fb-input" type="file" name="image" />
-                <input class="ng-hide" type="text" ng-model="image" ng-show="image.valid" />
-                <div>
-                    <md-button id="uploadButton" class="md-fab">
-                        <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon>
-                    </md-button>
-                </div>
-    </div>     -->
+    <!--    <div class="main-fab">
+    
+           
+    
+    
+                    <input  fb-image-upload class="fb-input" type="file" name="image" />
+                    <input class="ng-hide" type="text" ng-model="image" ng-show="image.valid" />
+                    <div>
+                        <md-button id="uploadButton" class="md-fab">
+                            <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon>
+                        </md-button>
+                    </div>
+        </div>     -->
 
     <!--https://gist.github.com/abehaskins/7330325-->
     <!--https://codepen.io/shepard_one/pen/MypdLy-->
@@ -53,31 +55,33 @@
 
 
 
-<md-content layout-padding class="rtl" md-theme="altTheme" id="managment-profile">
+<md-content flex layout-padding class="rtl" md-theme="altTheme" id="managment-profile">
     <form name="userForm" >
-        <md-input-container class="md-block">
+        <md-input-container  class="md-block">
             <label>שם המועדון</label>
             <input ng-model="club.name" required md-no-asterisk>
         </md-input-container>
 
-        <div layout="row">
-
-            <md-select ng-model="club.state" placeholder="מדינה" flex class="select-space" required md-no-asterisk>
-                <md-option ng-value="state" ng-repeat="state in states"  >
-                    {{ state.name}}
-                </md-option>
-            </md-select>           
-
-            <md-select ng-model="club.city" placeholder="עיר" flex required md-no-asterisk>
-                <md-option ng-value="city" ng-repeat="city in cities">
-                    {{city.name}}
-                </md-option>
-            </md-select>            
+        <div layout="row" style="margin-bottom: 24px;">
+            <md-input-container flex="50" md-no-float>
+                <md-select ng-model="club.state" placeholder="מדינה" class="select-space" required md-no-asterisk>
+                    <md-option ng-value="state" ng-repeat="state in states"  >
+                        {{ state.name}}
+                    </md-option>
+                </md-select>           
+            </md-input-container>
+            <md-input-container flex="50" md-no-float>
+                <md-select ng-model="club.city" placeholder="עיר" required md-no-asterisk>
+                    <md-option ng-value="city" ng-repeat="city in cities">
+                        {{city.name}}
+                    </md-option>
+                </md-select>    
+            </md-input-container>
         </div>
 
         <div layout="row">
             <md-input-container flex="80" md-no-float>
-                <md-select ng-model="club.street" placeholder="רחוב"  class="select-space" required md-no-asterisk>
+                <md-select ng-model="club.street" placeholder="רחוב" class="select-space" required md-no-asterisk>
                     <md-option ng-value="street" ng-repeat="street in streets" >
                         {{street.name}}
                     </md-option>

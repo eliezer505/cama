@@ -539,7 +539,7 @@ md-input-container .md-input {
 
 #managment-profile md-input-container {
 
-    margin: 5px 0 !important;
+    margin: 2px 0 !important;
 
 }
 
@@ -797,12 +797,13 @@ mdp-date-picker button md-icon,mdp-time-picker button md-icon{
 
 .image-frame {
     border: solid 1px #CCC;
-    -moz-box-shadow: 1px 1px 5px black;
-    -webkit-box-shadow: 1px 1px 5px black;
-    box-shadow: 1px 1px 5px black;    
+    -moz-box-shadow: 5px 5px 5px grey;
+    -webkit-box-shadow: 5px 5px 5px grey;
+    box-shadow: 5px 5px 5px grey;   
     width: 60%;
     height: 97%;
-        margin: 0 auto;
+    margin: 0 auto;
+    position: relative;
 }
 
 .image-profile {
@@ -813,8 +814,8 @@ mdp-date-picker button md-icon,mdp-time-picker button md-icon{
 
 
 .picture-container{
-    
+
     width: 100vw;
-    height: 20vh;
+    height: 15vh;
     margin-top: 5px;
 }
