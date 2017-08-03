@@ -12,7 +12,6 @@
         <span flex="" class="flex"></span>
 
         <md-button class="md-icon-button" aria-label="Done" ng-click="upload_image(image)">
-
             <md-icon class="material-icons"><i class="material-icons">&#xE876;</i></md-icon>
         </md-button>
 
@@ -21,17 +20,13 @@
 
 <div class="picture-container">
 
-    <div class="image-frame">
 
-        <img class="image-profile" ng-src="{{clubPicture}}" alt="Club picture">
-        <md-button style="position: absolute; bottom: -20px;" class="md-fab md-primary md-mini" aria-label="New">  
-            <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon> 
-        </md-button>
-    </div>
-    <div class="fb-inputs" ng-hide="image.isUploading">
-        <input class="fb-image-upload" fb-image-upload class="fb-input" type="file" name="image"/>
-        <input class="fb-submit" type="submit" value="Upload Image" ng-show="image.valid"/>
-    </div>
+    <img class="image-profile" ng-src="{{clubPicture}}" alt="Club picture">
+    <md-button style="position: absolute; bottom: -20px; background: #de86de!important;" class="md-fab md-primary md-mini" aria-label="New">  
+        <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon> 
+    </md-button>
+
+
 
     <!--    <div class="main-fab">
     
@@ -53,69 +48,57 @@
 
 </div>
 
-
+    <div class="fb-inputs" ng-hide="image.isUploading">
+        <input class="fb-image-upload" fb-image-upload class="fb-input" type="file" name="image"/>
+        <input class="fb-submit" type="submit" value="Upload Image" ng-show="image.valid"/>
+    </div>
 
 <md-content flex layout-padding class="rtl" md-theme="altTheme" id="managment-profile">
-    <form name="userForm" >
+    <form name="clubForm" >
         <md-input-container  class="md-block">
             <label>שם המועדון</label>
             <input ng-model="club.name" required md-no-asterisk>
         </md-input-container>
 
-        <div layout="row" style="margin-bottom: 24px;">
-            <md-input-container flex="50" md-no-float>
-                <md-select ng-model="club.state" placeholder="מדינה" class="select-space" required md-no-asterisk>
-                    <md-option ng-value="state" ng-repeat="state in states"  >
-                        {{ state.name}}
-                    </md-option>
-                </md-select>           
-            </md-input-container>
-            <md-input-container flex="50" md-no-float>
-                <md-select ng-model="club.city" placeholder="עיר" required md-no-asterisk>
-                    <md-option ng-value="city" ng-repeat="city in cities">
-                        {{city.name}}
-                    </md-option>
-                </md-select>    
-            </md-input-container>
-        </div>
-
-        <div layout="row">
-            <md-input-container flex="80" md-no-float>
-                <md-select ng-model="club.street" placeholder="רחוב" class="select-space" required md-no-asterisk>
-                    <md-option ng-value="street" ng-repeat="street in streets" >
-                        {{street.name}}
-                    </md-option>
-                </md-select>
-            </md-input-container>
-
-            <md-input-container flex="20" >
-                <label>מס רחוב</label>
-                <input name="postalCode" ng-model="club.streetNum"
-                       required md-maxlength="3" md-no-asterisk>
-
-                <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
-                    <div ng-message="required" class="my-message">
-                        חייב לרשום מספר רחוב.
-                    </div>
-                    <div ng-message="pattern" class="my-message">
-                        זה לא נראה כמו מספר רחוב תקין
-                    </div>
-                    <div ng-message="md-maxlength" class="my-message">
-                        השתמש בעד שלוש ספרות במספר רחוב
-                    </div>
-                </div>
-            </md-input-container>
-        </div>
+        <md-input-container  class="md-block">
+            <label>כתובת המועדון</label>
+            <input vs-google-autocomplete 
+                   ng-model="address.name" 
+                   vs-place="address.place" 
+                   vs-place-id="address.components.placeId" 
+                   vs-street-number="address.components.streetNumber" 
+                   vs-street="address.components.street" 
+                   vs-city="address.components.city" 
+                   vs-state="address.components.state"
+                   vs-country-short="address.components.countryCode" 
+                   vs-country="address.components.country" 
+                   vs-post-code="address.components.postCode" 
+                   vs-latitude="address.components.location.lat" 
+                   vs-longitude="address.components.location.long" 
+                   type="text" 
+                   name="address"
+                   id="address1" 
+                   class="form-control" 
+                   placeholder="נא להכניס כתובת מדוייקת">
+        </md-input-container>
 
         <md-input-container flex="40">
             <label>מס אורחים מקסימלי</label>
-            <input ng-model="club.capacity" type="number" required md-no-asterisk>
+            <input ng-model="club.capacity" type="number" required md-no-asterisk name="capacity" ng-max="3000">
+            <div ng-messages="clubForm.capacity.$error">
+                <div ng-message="required">נא להקליד כמות מקסימלית של בליינים במועדון!</div>
+                <div ng-message="number">ספרות בלבד!</div>
+                <div ng-message="max">לא הגזמנו?!</div>
+            </div>
         </md-input-container>
 
 
         <md-input-container class="md-block">
             <label>תיאור המועדון</label>
-            <textarea ng-model="club.description" md-maxlength="200" rows="1" md-select-on-focus></textarea>
+            <textarea ng-model="club.description" ng-maxlength="200" md-maxlength="200" rows="1" md-select-on-focus name="description"></textarea>
+            <div ng-messages="clubForm.description.$error">
+                <div ng-message="md-maxlength">נא להקליד עד 200 תוים בלבד!</div>
+            </div>
         </md-input-container>
     </form>
 </md-content>

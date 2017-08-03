@@ -3,17 +3,19 @@ angular
         .controller('managmentProfileCtrl', function ($scope) {
 
 
-
-
             $scope.clubPicture = "img/empty-club.jpg";
 
+            $scope.address = {};
+              $scope.address.name = "";
+            $scope.address.components = {placeId:"", streetNumber:"", street:"", city:"", state:"", countryCode:"", country:"", postCode:""};
+            
+             $scope.address.components.location = {lat:"",long:""};                   
 
-            $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-                    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-                    'WY').split(' ').map(function (state) {
-                return {abbrev: state};
-            });
-
+             $scope.check = function (){
+               console.log($scope.address);
+               
+               
+             };
 
             // used for upload the file to firebase           
             $scope.upload_image = function (image) {
