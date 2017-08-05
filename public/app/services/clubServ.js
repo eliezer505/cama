@@ -4,7 +4,7 @@
             service("CLUBES", function ($firebaseObject, $firebaseArray, Auth,) {
                 if (Auth) {
 
-                    var ClubesRef = firebase.database().ref('clubes');
+                    var ClubesRef = firebase.storage().ref('clubes');
                     var array = null;
 //                    		https://codepen.io/elliotmendiola/pen/JNYoNj	               
 

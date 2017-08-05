@@ -48,13 +48,10 @@
 
 </div>
 
-    <div class="fb-inputs" ng-hide="image.isUploading">
-        <input class="fb-image-upload" fb-image-upload class="fb-input" type="file" name="image"/>
-        <input class="fb-submit" type="submit" value="Upload Image" ng-show="image.valid"/>
-    </div>
+
 
 <md-content flex layout-padding class="rtl" md-theme="altTheme" id="managment-profile">
-    <form name="clubForm" >
+    <form name="clubForm" ng-submit="upload_image(image2)">
         <md-input-container  class="md-block">
             <label>שם המועדון</label>
             <input ng-model="club.name" required md-no-asterisk>
@@ -100,6 +97,19 @@
                 <div ng-message="md-maxlength">נא להקליד עד 200 תוים בלבד!</div>
             </div>
         </md-input-container>
+
+
+        <div class="fb-inputs">
+            <input class="fb-image-upload fb-input" fb-image-upload type="file" name="image" accept="image/*" style="color: black"/>
+            <input class="fb-submit" type="submit" value="Upload Image" style="color: black"/>
+        </div>
+
+        <input type="file" accept="image/*" image="image2"
+               resize-max-height="300"
+               resize-max-width="400"
+               resize-quality="0.3" />
+        Original <img ng-show="image2" ng-src="{{image2.url}}" type="{{image2.file.type}}" />
+        Resized <img ng-show="image2" ng-src="{{image2.resized.dataURL}}" />
     </form>
 </md-content>
 
