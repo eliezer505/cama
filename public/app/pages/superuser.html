@@ -1,0 +1,42 @@
+<md-toolbar id="managment-toolbar" ng-class="{'bottom-shadow': boolChangeClass}">
+    <div class="md-toolbar-tools gradient">
+        <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+            <md-tooltip>
+                Side Panel
+            </md-tooltip>
+            <md-icon class="md-default-theme" class="material-icons">
+                &#xE5D2;
+            </md-icon>
+        </md-button>
+
+        <span flex="" class="flex"></span>
+
+        <md-button class="md-icon-button" aria-label="Done" ng-click="">
+            <md-icon class="material-icons"><i class="material-icons">&#xE876;</i></md-icon>
+        </md-button>
+
+    </div>
+</md-toolbar>
+
+
+
+
+<md-content flex layout-padding class="rtl" md-theme="altTheme">
+    <form name="clubForm" ng-submit="upload_image(image2)">
+        <md-input-container  class="md-block">
+            <label>שם המועדון</label>
+            <input ng-model="club.name" required md-no-asterisk>
+        </md-input-container>
+
+        <md-autocomplete md-selected-item="user" md-search-text="searchText" md-items="user in users" md-search-text-change="updateUsers(searchText)" md-item-text="user.first_name" placeholder="Search" md-min-length="1" md-clear-button="true">  
+            <md-item-template>
+                <span>{{user.first_name}}</span>
+                <span>{{user.last_name}}</span>
+            </md-item-template>
+        </md-autocomplete>
+
+    
+
+
+    </form>
+</md-content>

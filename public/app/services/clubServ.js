@@ -13,6 +13,7 @@
                         var clubRef = root.child('clubes');
                         var newClub = clubRef.push();
                         newClub.set(club);
+                        
                     };
                     
 //                    this.UpdateEvent = function (Event) {
@@ -37,6 +38,39 @@
                     this.GetOneClub = function (clubKey) {
                         return $firebaseObject(ClubesRef.child(clubKey));
                     };
+                    
+                    
+                    
+                    
+                                // used for upload the file to firebase           
+             function upload_image (image2) {
+
+                var imagesRef = firebase.storage().ref('clubes/profile.jpg');
+
+                imagesRef.putString(image2.resized.dataURL, 'data_url').then(function (snapshot) {
+                    $scope.$apply(function () {
+                        $scope.status = 'Your image "' + image2.file.name + '" has been successfully uploaded!';
+                        console.log($scope.status);
+                        console.log(snapshot);
+                        console.log(snapshot.metadata.downloadURLs[0]);     // this is the link for picture
+                        $scope.clubPicture = image2.dataURL;
+                        image2.file = undefined;
+                        image2.url = undefined;
+                        image2.dataURL = undefined;
+                        image2.resized.dataURL = undefined;
+                        image2.resized.type = undefined;
+
+                    });
+
+
+                }), function (error) {
+                    $scope.error = 'There was an error while uploading your image: ' + error;
+                    console.log($scope.error);
+                };
+
+            };
+                    
+                    
                 }
                 ;
 

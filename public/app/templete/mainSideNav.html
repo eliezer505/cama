@@ -21,15 +21,29 @@
 			<md-list class="rtl">
 
 				<!-- pay attantion from class margin-left-32. used to help in hebrew language -->
+                                <md-subheader class="md-no-sticky">
+					ניהול קלאברס
+				</md-subheader>
+				<md-list-item >
+					<md-icon class="md-default-theme margin-left-32" class="material-icons" ng-click="closeSideNavPanel()">
+						&#xE7FD;
+					</md-icon>
+					<p ui-sref="superuser" ng-click="closeSideNavPanel()">
+						הוספת הרשאות ופתיחת מועדון
+					</p>
+					<div class="md-secondary">
+						2
+					</div>
+				</md-list-item>
 				<md-subheader class="md-no-sticky">
 					ניהול מועדון
 				</md-subheader>
 				<md-list-item >
-					<md-icon class="md-default-theme margin-left-32" class="material-icons" ui-sref="clubears.managment" ng-click="closeSideNavPanel()">
+					<md-icon class="md-default-theme margin-left-32" class="material-icons"ng-click="closeSideNavPanel()">
 						&#xE7FD;
 					</md-icon>
 					<p ui-sref="managment" ng-click="closeSideNavPanel()">
-						פאנל ראשי
+						פאנל לבעלי מועדון
 					</p>
 					<div class="md-secondary">
 						2
