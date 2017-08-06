@@ -28,14 +28,22 @@
             <input ng-model="club.name" required md-no-asterisk>
         </md-input-container>
 
-        <md-autocomplete md-selected-item="user" md-search-text="searchText" md-items="user in users" md-search-text-change="updateUsers(searchText)" md-item-text="user.first_name" placeholder="Search" md-min-length="1" md-clear-button="true">  
+        <md-autocomplete style="color:black !important" 
+                         md-selected-item="selectedItem" 
+                         md-search-text="searchText" 
+                         md-items="user in users" 
+                         md-search-text-change="updateUsers(searchText)" 
+                         md-item-text="user.first_name" 
+                         placeholder="Search" 
+                         md-min-length="1" 
+                         md-clear-button="true"
+                         ng-model-options="{debounce: 150}">  
             <md-item-template>
-                <span>{{user.first_name}}</span>
-                <span>{{user.last_name}}</span>
+                <span md-highlight-text="searchText">{{user[0].first_name}}</span>
             </md-item-template>
         </md-autocomplete>
 
-    
+
 
 
     </form>

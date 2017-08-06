@@ -807,5 +807,39 @@ mdp-date-picker button md-icon,mdp-time-picker button md-icon{
     position: relative;
     width:100%;
     height:25%; /* Simple trick to keep a 16:9 ratio on your background image (height=0;padding-bottom=56.25%) */
+  
        
+}
+.login-wrapper{
+    height: 100%;
+	background: #9fcdf1; /* Old browsers */
+background: -moz-linear-gradient(top, #9fcdf1 0%, #bdb5f1 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #9fcdf1 0%,#bdb5f1 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #9fcdf1 0%,#bdb5f1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9fcdf1', endColorstr='#bdb5f1',GradientType=0 ); /* IE6-9 */
+	font-family: 'Rubik', sans-serif;
+
+}
+.login-clubears{
+	text-align:center;
+	font-size:60px!important;
+	color:#879199;
+	font-family: 'Gloria Hallelujah', cursive;
+
+}
+.login-facebook{
+	font-size: 26px;
+    margin: 0 auto;
+    text-align:center;
+    	font-family: 'Rubik', sans-serif;
+}
+.facebook-flex{
+	    text-align: center;
+    margin: 0 auto;
+    height: 33%;
+	direction: rtl;
+}
+.login-bottom{
+	backckground:url("img/login-bottom.png");
+	
 }
