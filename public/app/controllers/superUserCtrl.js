@@ -1,6 +1,6 @@
 angular
         .module('app')
-        .controller('superUserCtrl', function ($scope, $q) {
+        .controller('superUserCtrl', function ($scope, $q, $clubToast) {
 
             $scope.selectedItem = null;
             $scope.searchText = null;
@@ -15,19 +15,23 @@ angular
 
 
             };
+            
+         
 
-            /**
-             * Return the proper object when the append is called.
-             */
-            function transformChip(chip) {
-                // If it is an object, it's already a known chip
-                if (angular.isObject(chip)) {
-                    return chip;
-                }
+//            /**
+//             * Return the proper object when the append is called.
+//             */
+//            function transformChip(chip) {
+//                // If it is an object, it's already a known chip
+//                if (angular.isObject(chip)) {
+//                    return chip;
+//                }
+//
+//                // Otherwise, create a new one
+//                return {name: chip, type: 'new'}
+//            }
 
-                // Otherwise, create a new one
-                return {name: chip, type: 'new'}
-            }
+          
 
 
             function getUsers(searchText) {
@@ -61,10 +65,11 @@ angular
             $scope.openClub = function () {
                 var root = firebase.database().ref();
                 var clubesRef = root.child('clubes');
-                 var newClub = clubesRef.push({"name":"חדש" , "active":true});
-                 console.log (newClub.key);
-                 console.log (newClub.val);
-                
+                var newClub = clubesRef.push({"name": "חדש", "active": true});
+                $clubToast.show('המועדון נפתח','#super');
+                console.log(newClub.key);
+                console.log(newClub.val);
+
             };
 
         });

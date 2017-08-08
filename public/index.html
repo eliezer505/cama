@@ -18,11 +18,12 @@
         <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.css" />
         <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.rawgit.com/alenaksu/mdPickers/0.7.4/dist/mdPickers.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
         <link rel="stylesheet" href="css/style.css">
 
     </head>
-    <body ng-controller="AppCtrl">
+    <body ng-controller="AppCtrl" layout="column">
 
         <div layout="column" layout-align="center center" layout-sm="column" style="min-height:100%;" ng-show="spinnerActive">
             <md-progress-circular md-mode="indeterminate" ></md-progress-circular>
@@ -58,6 +59,8 @@
         <!--        https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%22%22&components=country:il&types=(cities)&language=heb&key=AIzaSyAsr5aYA8uE63AE-W0LW-JCpjxVV3SRhCI-->
         <script src="js/angular-masonry.js"></script>   
         <script src="js/ng-file-upload.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
         <!-- Angular Config File -->
         <script src="app/config.js"></script>
@@ -69,7 +72,7 @@
         <script src="app/services/userServ.js"></script>
         <script src="app/services/eventServ.js"></script>          
         <script src="app/services/clubServ.js"></script> 
-        
+        <script src="app/services/toastServ.js"></script>
         <!-- Angular router file -->
         <script src="app/router.js"></script>
 

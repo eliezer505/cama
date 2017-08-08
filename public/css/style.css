@@ -843,3 +843,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9fcdf1', end
 	backckground:url("img/login-bottom.png");
 	
 }
+
+md-toast.md-center {
+left: 50%;
+transform: translate3d(-50%, 0, 0);
+}
+
+@media (max-width:959px) {
+  md-toast {
+    bottom: unset !important;
+    top: 0 !important;
+    left:auto !important;
+    right: 0 !important;
+    max-height: 50%;
+    
+  }
+}

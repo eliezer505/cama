@@ -1,3 +1,8 @@
+<!--<md-toast>
+    <span flex>Custom toast!</span>
+
+</md-toast>-->
+
 <md-toolbar id="managment-toolbar" ng-class="{'bottom-shadow': boolChangeClass}">
     <div class="md-toolbar-tools gradient">
         <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
@@ -17,38 +22,38 @@
 
     </div>
 </md-toolbar>
+<div flex layout="column" id="super">
+<md-content class="rtl" md-theme="altTheme" >
 
-<md-content flex layout-padding class="rtl" md-theme="altTheme">
+    <md-chips ng-model="selectedUsers" md-autocomplete-snap
+              md-transform-chip="transformChip($chip)">
+        <md-autocomplete 
+            md-selected-item="selectedItem" 
+            md-search-text="searchText" 
+            md-items="user in updateUsers(searchText)"                                   
+            md-item-text="user.name" 
+            placeholder="חפש טלפון" 
+            md-min-length="1"           
+            md-no-cache="true"
+            md-delay="150">  
 
-        <md-chips ng-model="selectedUsers" md-autocomplete-snap
-                  md-transform-chip="transformChip($chip)">
-            <md-autocomplete 
-                md-selected-item="selectedItem" 
-                md-search-text="searchText" 
-                md-items="user in updateUsers(searchText)"                                   
-                md-item-text="user.name" 
-                placeholder="חפש טלפון" 
-                md-min-length="1"           
-                md-no-cache="true"
-                md-delay="150">  
+            <md-item-template>
+                <span md-highlight-text="searchText" md-highlight-flags="^i" ng-bind="user.name">{{user.name}}</span>
 
-                <md-item-template>
-                    <span md-highlight-text="searchText" md-highlight-flags="^i" ng-bind="user.name">{{user.name}}</span>
-
-                </md-item-template>
-                <md-not-found>
-                    הטלפון אינו רשום!      
-                </md-not-found>
-            </md-autocomplete>
-            <md-chip-template>
-                <span>
-                    <strong>{{$chip.name}}</strong>
-                </span>
-            </md-chip-template>
-        </md-chips>    
+            </md-item-template>
+            <md-not-found>
+                הטלפון אינו רשום!      
+            </md-not-found>
+        </md-autocomplete>
+        <md-chip-template>
+            <span>
+                <strong>{{$chip.name}}</strong>
+            </span>
+        </md-chip-template>
+    </md-chips>    
 </md-content>
 <md-content style="text-align: center;">
-    
-        <md-button class="md-raised md-primary" ng-click="openClub()">פתח מועדון</md-button>
-</md-content>
 
+    <md-button class="md-raised md-primary" ng-click="openClub()">פתח מועדון</md-button>
+</md-content>
+</div>
