@@ -11,40 +11,44 @@
 
         <span flex="" class="flex"></span>
 
-        <md-button class="md-icon-button" aria-label="Done" ng-click="">
+        <md-button class="md-icon-button" aria-label="Done" ng-click="check()">
             <md-icon class="material-icons"><i class="material-icons">&#xE876;</i></md-icon>
         </md-button>
 
     </div>
 </md-toolbar>
 
-
-
-
 <md-content flex layout-padding class="rtl" md-theme="altTheme">
-    <form name="clubForm" ng-submit="upload_image(image2)">
-        <md-input-container  class="md-block">
-            <label>שם המועדון</label>
-            <input ng-model="club.name" required md-no-asterisk>
-        </md-input-container>
 
-        <md-autocomplete style="color:black !important" 
-                         md-selected-item="selectedItem" 
-                         md-search-text="searchText" 
-                         md-items="user in users" 
-                         md-search-text-change="updateUsers(searchText)" 
-                         md-item-text="user.first_name" 
-                         placeholder="Search" 
-                         md-min-length="1" 
-                         md-clear-button="true"
-                         ng-model-options="{debounce: 150}">  
-            <md-item-template>
-                <span md-highlight-text="searchText">{{user[0].first_name}}</span>
-            </md-item-template>
-        </md-autocomplete>
+        <md-chips ng-model="selectedUsers" md-autocomplete-snap
+                  md-transform-chip="transformChip($chip)">
+            <md-autocomplete 
+                md-selected-item="selectedItem" 
+                md-search-text="searchText" 
+                md-items="user in updateUsers(searchText)"                                   
+                md-item-text="user.name" 
+                placeholder="חפש טלפון" 
+                md-min-length="1"           
+                md-no-cache="true"
+                md-delay="150">  
 
+                <md-item-template>
+                    <span md-highlight-text="searchText" md-highlight-flags="^i" ng-bind="user.name">{{user.name}}</span>
 
-
-
-    </form>
+                </md-item-template>
+                <md-not-found>
+                    הטלפון אינו רשום!      
+                </md-not-found>
+            </md-autocomplete>
+            <md-chip-template>
+                <span>
+                    <strong>{{$chip.name}}</strong>
+                </span>
+            </md-chip-template>
+        </md-chips>    
 </md-content>
+<md-content style="text-align: center;">
+    
+        <md-button class="md-raised md-primary" ng-click="openClub()">פתח מועדון</md-button>
+</md-content>
+

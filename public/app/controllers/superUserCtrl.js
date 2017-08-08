@@ -1,47 +1,70 @@
 angular
         .module('app')
-        .controller('superUserCtrl', function ($scope, $firebaseArray) {
+        .controller('superUserCtrl', function ($scope, $q) {
 
-
-            $scope.users = [];
             $scope.selectedItem = null;
             $scope.searchText = null;
-          
+            $scope.selectedUsers = [];
+
             var UsersRef = firebase.database().ref('users');
 
-            $scope.updateUsers = function (searchText) {
+            $scope.check = function () {
+
                 console.clear();
-                console.log(searchText);
-                console.log('snapshot');
-                var query = $firebaseArray(UsersRef
+                console.log($scope.selectedUsers);
+
+
+            };
+
+            /**
+             * Return the proper object when the append is called.
+             */
+            function transformChip(chip) {
+                // If it is an object, it's already a known chip
+                if (angular.isObject(chip)) {
+                    return chip;
+                }
+
+                // Otherwise, create a new one
+                return {name: chip, type: 'new'}
+            }
+
+
+            function getUsers(searchText) {
+                var one = $q.defer();
+                var users = [];
+
+                UsersRef
                         .orderByChild('phone')
                         .startAt(searchText)
-                        .endAt(searchText + "\uf8ff"));
+                        .endAt(searchText + "\uf8ff")
+                        .once('value', function (snapshot) {
+                            snapshot.forEach(function (childSnapshot) {
+                                users.push({"key": childSnapshot.key, "name": childSnapshot.val().first_name + " " + childSnapshot.val().last_name});
+                            });
+                            one.resolve(users);
+                        });
+
+                return one.promise;
+            }
+
+            $scope.updateUsers = function (searchText) {
+
+                console.clear();
+
+                var results = searchText ? getUsers(searchText) : [];
+                return results;
+
+            };
+
+
+            $scope.openClub = function () {
+                var root = firebase.database().ref();
+                var clubesRef = root.child('clubes');
+                 var newClub = clubesRef.push({"name":"חדש" , "active":true});
+                 console.log (newClub.key);
+                 console.log (newClub.val);
                 
-//                        .on('child_added', function (data) {
-//                            $scope.users = data.val();
-//                            console.log($scope.users);
-//                        });
-
-                //  console.log(query);
-
-
-//                  var result = $firebaseArray(query).$loaded().then(function (res) {
-//                      console.log(result);
-//                      
-//                  });
-//                  
-//                    result.$loaded().then(function () {
-
-
-
-
-
-//                console.log('snapshot');
-//                console.log(searchText);
-//                var sync = $firebase();
-//
-//                console.log(sync);
             };
 
         });
