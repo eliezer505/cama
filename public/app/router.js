@@ -145,7 +145,15 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             .state('managment', {
                 url: "/managment",
                 templateUrl: "app/pages/managment.html",
-                controller: "managmentCtrl"
+                controller: "managmentCtrl",
+                 resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                    clubesAssign: function (ROLES, currentAuth) {
+                        return ROLES.getClubesUserAssign(currentAuth.uid);
+                    }
+                }
 
                         //
                         //      }
