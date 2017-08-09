@@ -9,6 +9,8 @@ angular.module('app')
                     $scope.closeSideNavPanel = function () {
                         $mdSidenav('left').close();
                     };
+
+
                 }
             };
         });

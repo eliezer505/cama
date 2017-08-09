@@ -21,10 +21,10 @@
 			<md-list class="rtl">
 
 				<!-- pay attantion from class margin-left-32. used to help in hebrew language -->
-                                <md-subheader class="md-no-sticky">
+                                <md-subheader class="md-no-sticky" ng-show="currentUser.role == '1'">
 					ניהול קלאברס
 				</md-subheader>
-				<md-list-item >
+				<md-list-item ng-show="currentUser.role =='1'">
 					<md-icon class="md-default-theme margin-left-32" class="material-icons" ng-click="closeSideNavPanel()">
 						&#xE7FD;
 					</md-icon>
@@ -35,10 +35,10 @@
 						2
 					</div>
 				</md-list-item>
-				<md-subheader class="md-no-sticky">
+				<md-subheader class="md-no-sticky" ng-show="currentUser.role">
 					ניהול מועדון
-				</md-subheader>
-				<md-list-item >
+				</md-subheader >
+				<md-list-item ng-show="currentUser.role">
 					<md-icon class="md-default-theme margin-left-32" class="material-icons"ng-click="closeSideNavPanel()">
 						&#xE7FD;
 					</md-icon>
@@ -54,7 +54,7 @@
 				</md-subheader>
 
 				<md-list-item >
-					<md-icon class="md-default-theme margin-left-32" class="material-icons" ui-sref="profile" ng-click="closeSideNavPanel()">
+					<md-icon class="md-default-theme margin-left-32" class="material-icons" ui-sref="clubears.profile" ng-click="closeSideNavPanel()">
 						&#xE7FD;
 					</md-icon>
 					<p ui-sref="clubears.profile" ng-click="closeSideNavPanel()">

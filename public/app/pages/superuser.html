@@ -16,17 +16,16 @@
 
         <span flex="" class="flex"></span>
 
-        <md-button class="md-icon-button" aria-label="Done" ng-click="check()">
+<!--        <md-button class="md-icon-button" aria-label="Done" ng-click="check()">
             <md-icon class="material-icons"><i class="material-icons">&#xE876;</i></md-icon>
-        </md-button>
+        </md-button>-->
 
     </div>
 </md-toolbar>
-<div flex layout="column" id="super">
-<md-content class="rtl" md-theme="altTheme" >
 
-    <md-chips ng-model="selectedUsers" md-autocomplete-snap
-              md-transform-chip="transformChip($chip)">
+<div layout-padding flex id="toaster-ancor">
+
+    <md-chips ng-model="selectedUsers" md-autocomplete-snap>
         <md-autocomplete 
             md-selected-item="selectedItem" 
             md-search-text="searchText" 
@@ -51,9 +50,9 @@
             </span>
         </md-chip-template>
     </md-chips>    
-</md-content>
+</div>
 <md-content style="text-align: center;">
 
-    <md-button class="md-raised md-primary" ng-click="openClub()">פתח מועדון</md-button>
+    <md-button ng-disabled="isEmpty()" class="md-raised md-primary"  ng-click="openClub()">פתח מועדון</md-button>
 </md-content>
-</div>
+

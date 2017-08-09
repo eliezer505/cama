@@ -8,31 +8,12 @@ angular
 
             var UsersRef = firebase.database().ref('users');
 
-            $scope.check = function () {
-
-                console.clear();
-                console.log($scope.selectedUsers);
-
-
+            $scope.isEmpty = function () {
+                if ($scope.selectedUsers.length > 0)
+                    return false;
+                else
+                    return true;
             };
-            
-         
-
-//            /**
-//             * Return the proper object when the append is called.
-//             */
-//            function transformChip(chip) {
-//                // If it is an object, it's already a known chip
-//                if (angular.isObject(chip)) {
-//                    return chip;
-//                }
-//
-//                // Otherwise, create a new one
-//                return {name: chip, type: 'new'}
-//            }
-
-          
-
 
             function getUsers(searchText) {
                 var one = $q.defer();
@@ -53,23 +34,30 @@ angular
             }
 
             $scope.updateUsers = function (searchText) {
-
-                console.clear();
-
                 var results = searchText ? getUsers(searchText) : [];
                 return results;
-
             };
-
 
             $scope.openClub = function () {
                 var root = firebase.database().ref();
                 var clubesRef = root.child('clubes');
                 var newClub = clubesRef.push({"name": "חדש", "active": true});
-                $clubToast.show('המועדון נפתח','#super');
-                console.log(newClub.key);
-                console.log(newClub.val);
+                $clubToast.show('המועדון נפתח', 'toaster-ancor', 'success');
+                
+                var rolesRef = root.child('roles');           
+                $scope.selectedUsers.forEach(function (item) {
+                    var userRef = rolesRef.child(item.key);
+                    var newClubRole = userRef.child(newClub.key);
+                    newClubRole.update({"role": 2});
+                    
+                    var usersRef = root.child('users').child(item.key).update({"role": 2});
+                    
+                });
+                $clubToast.show('המשתשים קיבלו הרשאת מנהל למועדון', 'toaster-ancor', 'success');
 
+                $scope.selectedItem = null;
+                $scope.searchText = null;
+                $scope.selectedUsers = [];
             };
 
         });

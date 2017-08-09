@@ -10,7 +10,16 @@
     };
     firebase.initializeApp(config);
 
-    var club = angular.module("app", ['ngMaterial', 'ui.router', 'wu.masonry', 'ngMessages', "firebase","mdPickers","vsGoogleAutocomplete","imageupload"]);
+    var club = angular.module("app", [
+        'ngMaterial',
+        'ui.router',
+        'wu.masonry',
+        'ngMessages',
+        "firebase",
+        "mdPickers",
+        "vsGoogleAutocomplete",
+        "imageupload"
+    ]);
 
     club.factory("Auth", ["$firebaseAuth",
         function ($firebaseAuth) {
@@ -102,7 +111,7 @@
             $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams) {
                 console.log("$stateChangeError " + fromState.name + JSON.stringify(fromParams) + " -> " + toState.name + JSON.stringify(toParams));
                 $rootScope.spinnerActive = false;
-                  if (error === "AUTH_REQUIRED") {
+                if (error === "AUTH_REQUIRED") {
                     $state.go("login");
                 }
             });

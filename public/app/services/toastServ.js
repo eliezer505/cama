@@ -1,9 +1,9 @@
 (function () {
 
     angular.module('app')
-            .service('$clubToast', function ($mdToast) {
+            .service('$clubToast', function () {
                 return {
-                    show: function (content, parent) {
+                    show: function (content, parent,type) {
                         toastr.options = {
                             "closeButton": false,
                             "debug": false,
@@ -19,17 +19,16 @@
                             "showEasing": "swing",
                             "hideEasing": "linear",
                             "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
+                            "hideMethod": "fadeOut",
+                            "rtl": true
                         };
-                        return toastr.success('Have fun storming the castle!', 'Miracle Max Says')
 
+                        var newEle = angular.element("<div id='toast-container'></div>");
+                        var target = document.getElementById(parent);
+                        angular.element(target).append(newEle);
 
-//                        return $mdToast.show({
-//                            template: '<md-toast ng-class="{_md md-bottom:false}"><span>' + content + '</span></md-toast>',
-//                            parent: parent,
-//                            hideDelay: 400000,
-//                            position: 'top'
-//                        });
+                        toastr[type](content);      // options for type are : warning, success, error
+
                     }
                 };
             });
