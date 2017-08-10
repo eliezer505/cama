@@ -43,9 +43,10 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
                     },
-                    userObj: function (USERS, currentAuth) {
+                    userObj: function (USERS, currentAuth) {               
                         return USERS.getUser(currentAuth.uid);
                     }
+                 
                 }
             })
             .state('clubears.main', {
@@ -150,9 +151,14 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
                     },
-                    clubesAssign: function (ROLES, currentAuth) {
+                    userClubesAssign: function (ROLES, currentAuth) {
                         return ROLES.getClubesUserAssign(currentAuth.uid);
+                    },
+                    clubesAssign: function (CLUBES, userClubesAssign) {
+                        return CLUBES.getClubesUserAssign(userClubesAssign);
                     }
+                    
+                    
                 }
 
                         //
