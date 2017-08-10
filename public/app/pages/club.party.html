@@ -1,22 +1,50 @@
+ 
+ <md-content >
+        <div layout="row" class="club-sub-head">
+            <div flex="25">
+                <span class="club-name" >תאריך</span>
+            </div>
+            <div flex="35">
+                <span class="club-name" >שם הליין</span>
+            </div>
+            <div flex="15">
+                <span class="club-name" >גילאים</span>
+            </div>
+            <div flex="15">
+                <span class="event-approved">נושא</span>
+            </div>
+            <div flex="10">
+                <span class="club-reg-btn1">הרשם</span>
+            </div>
+        </div>
+    </md-content>
+  
+<div scroll-with-headline id="managment-content" flex style="overflow: auto;" ng-clock>
+    <div ng-repeat="club in clubes" class="rtl" >	
+        <hr ng-if="$first" class="club-hr-no-top" >
+        <hr ng-if="!$first" class="club-hr">
+        <div layout="row" class="club-list">
 
-    <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch ng-repeat="club in clubes" class="rtl" ng-click="enterClub(club)">
-        <md-card-title>
-            <md-card-title-text>
-                <span class="md-headline">{{party.name}}רביעי שחורה</span>
-                
-                <span class="md-subhead"> 14.2 {{party.date}}</span>
-                <span class="md-subhead"> 22:00 {{party.time}}</span>
-                 <span class="md-subhead"> גילאים {{party.date}}</span> 
-
-           </md-card-title-text>
-         
-
-
-            <md-card-title-media md-raised ng-click="showConfirm($event)">   
-                <div class="md-media-md card-media"><img ng-src="{{club.photo}}"></div>
-                
-            </md-card-title-media>
-        </md-card-title>
-
-    </md-card> 
-	
+            <div flex="25">
+                <span class="club-name" >{{club.date}}</span>
+            </div>
+            <div flex="35">
+                <span class="club-name" >{{club.name}}</span>
+            </div>
+            <div flex="15">
+                <span class="club-name" >{{club.distance}}</span>
+            </div>
+            <div flex="15">
+                <span class="event-approved">{{club.theme}} </span>
+            </div>
+            <div flex="10">
+                   
+                    <md-icon class="material-icons" ng-click="showConfirm()">
+                        <span class="club-reg-btn1"><i class="material-icons">&#xE89C;</i></span>
+                    </md-icon>
+                 
+            </div>
+        </div>
+        <hr ng-if="$last" class="club-hr-no-bottom">
+    </div>
+</div>

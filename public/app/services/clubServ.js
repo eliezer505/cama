@@ -1,7 +1,7 @@
 (function () {
 
     angular.module('app').
-            service("CLUBES", function ($firebaseObject, $firebaseArray, Auth, $scope) {
+            service("CLUBES", function ($firebaseObject, $firebaseArray, Auth) {
                 if (Auth) {
 
                     var ClubesRef = firebase.storage().ref('clubes');
@@ -64,33 +64,23 @@
                         var imagesRef = firebase.storage().ref('clubes/profile.jpg');
 
                         imagesRef.putString(image2.resized.dataURL, 'data_url').then(function (snapshot) {
-                            $scope.$apply(function () {
-                                $scope.status = 'Your image "' + image2.file.name + '" has been successfully uploaded!';
-                                console.log($scope.status);
-                                console.log(snapshot);
-                                console.log(snapshot.metadata.downloadURLs[0]);     // this is the link for picture
-                                $scope.clubPicture = image2.dataURL;
+                        
+                                status = 'Your image "' + image2.file.name + '" has been successfully uploaded!';
+
+                                clubPicture = image2.dataURL;
                                 image2.file = undefined;
                                 image2.url = undefined;
                                 image2.dataURL = undefined;
                                 image2.resized.dataURL = undefined;
                                 image2.resized.type = undefined;
 
-                            });
-
+                          
 
                         }), function (error) {
-                            $scope.error = 'There was an error while uploading your image: ' + error;
-                            console.log($scope.error);
+                            error = 'There was an error while uploading your image: ' + error;
+                            console.log(error);
                         };
-
-                    }
-                    ;
-
-
-                }
-                ;
-
-
+                    };
+                };
             });
 })(); 

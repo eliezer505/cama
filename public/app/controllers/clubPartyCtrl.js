@@ -1,10 +1,10 @@
 
 angular.module('app').controller('clubPartyCtrl', 
-function ($scope,$state,$mdDialog) {
-    $scope.clubes = [{id: 1, name: "אולטראסאונד", distance: 14.5, photo: "img/reg.png"},
-        {id: 2, name: "חורבה", distance: 7.4, photo: "img/reg.png"},
-        {id: 3, name: "לונה", distance: 2.5, photo: "img/reg.png"},
-        {id: 4, name: "הספרייה", distance: 9.3, photo: "img/reg.png"}];
+function ($scope,$state,$mdDialog,$clubToast) {
+    $scope.clubes = [{id: 1, date:"12.9",name: "חמישי שחורה", distance: "21+", photo: "img/reg.png", theme: "שחורה"},
+        {id: 2, date:"12.9", name: "חמישי שחורה", distance: "21+", photo: "img/reg.png", theme: "שחורה"},
+        {id: 3, date:"12.9",name: "חמישי שחורה", distance: "21+", photo: "img/reg.png", theme: "שחורה"},
+        {id: 4, date:"12.9",name: "חמישי שחורה", distance: "21+", photo: "img/reg.png", theme: "שחורה"}];
         
         
         $scope.enterClub = function (clubPressed){
@@ -23,9 +23,11 @@ function ($scope,$state,$mdDialog) {
           .cancel('אחשוב על זה');
 
     $mdDialog.show(confirm).then(function() {
-      $scope.status = 'You decided to get rid of your debt.';
+      $scope.status = 'ok.';
+         $clubToast.show('הבקשה לרישום נשלחה', 'toaster-ancor', 'success');
     }, function() {
-      $scope.status = 'You decided to keep your debt.';
+      $scope.status = 'no.';
+         $clubToast.show('בקשה לרישום בוטלה', 'toaster-ancor', 'error');
     });
   };
 

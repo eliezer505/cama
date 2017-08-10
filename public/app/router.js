@@ -129,7 +129,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             })
             .state('clubears.profile', {
                 url: "/profile",
-                templateUrl: "app/pages/profile.html",
+                templateUrl: "app/pages/clubears.profile.html",
                 controller: "profileCtrl",
 
                 resolve: {
@@ -149,14 +149,14 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                 controller: "managmentCtrl",
                  resolve: {
                     currentAuth: function (Auth) {
-                        return Auth.$requireSignIn();
-                    },
-                    userClubesAssign: function (ROLES, currentAuth) {
-                        return ROLES.getClubesUserAssign(currentAuth.uid);
-                    },
-                    clubesAssign: function (CLUBES, userClubesAssign) {
-                        return CLUBES.getClubesUserAssign(userClubesAssign);
-                    }
+                        return Auth.$requireSignIn();}
+                    // },
+                    // userClubesAssign: function (ROLES, currentAuth) {
+                        // return ROLES.getClubesUserAssign(currentAuth.uid);
+                    // },
+                    // clubesAssign: function (CLUBES, userClubesAssign) {
+                        // return CLUBES.getClubesUserAssign(userClubesAssign);
+                    // }
                     
                     
                 }
@@ -269,9 +269,9 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         //      }
 
             })
-            .state('profileUpdate', {
+            .state('clubears.profileUpdate', {
                 url: "/profileUpdate",
-                templateUrl: "app/pages/profileUpdate.html"
+                templateUrl: "app/pages/clubears.profileUpdate.html"
 
                         //
                         //      }
