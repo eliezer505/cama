@@ -149,20 +149,16 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                 controller: "managmentCtrl",
                  resolve: {
                     currentAuth: function (Auth) {
-                        return Auth.$requireSignIn();}
-                    // },
-                    // userClubesAssign: function (ROLES, currentAuth) {
-                        // return ROLES.getClubesUserAssign(currentAuth.uid);
-                    // },
-                    // clubesAssign: function (CLUBES, userClubesAssign) {
-                        // return CLUBES.getClubesUserAssign(userClubesAssign);
-                    // }
-                    
-                    
+                        return Auth.$requireSignIn();
+                     },
+                     userClubesAssign: function (ROLES, currentAuth) {
+                         return ROLES.getClubesUserAssign(currentAuth.uid);
+                     },
+                     clubesAssign: function (CLUBES, userClubesAssign) {
+                   
+                         return CLUBES.getClubesUserAssign(userClubesAssign);
+                     }                   
                 }
-
-                        //
-                        //      }
             })
             .state('managment.parties', {
                 url: "/parties",

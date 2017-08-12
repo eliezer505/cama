@@ -1,7 +1,7 @@
 (function () {
 
     angular.module('app').
-            service("CLUBES", function ($firebaseObject, $firebaseArray, Auth) {
+            service("CLUBES", function ($firebaseObject, $firebaseArray, Auth, $q) {
                 if (Auth) {
 
                     var ClubesRef = firebase.storage().ref('clubes');
@@ -17,16 +17,20 @@
                     };
 
                     this.getClubesUserAssign = function (clubes) {
-                        var root = firebase.database().ref('clubes');
+//                        var root = firebase.database().ref('clubes');
+                        console.log('in club');
+                        console.log(clubes);
+//                        var defer = $q.defer();
                         var Clubes = [];
 
-                        angular.forEach(clubes, function (club) {
-                            var ref = root.child(club.key);
-                             Clubes.push($firebaseObject(ref));
-                            console.log(club);
+                        angular.forEach(clubes, function (value, key) {
+                            console.log(value);
+                            console.log(key);
+                            var ref = $firebaseObject(ClubesRef.child(key)).$loaded();
+
+                            Clubes.push(ref);
                         });
-                   
-                        console.log(Clubes);
+                        return $q.all(Clubes);
 
                     };
 
@@ -64,23 +68,25 @@
                         var imagesRef = firebase.storage().ref('clubes/profile.jpg');
 
                         imagesRef.putString(image2.resized.dataURL, 'data_url').then(function (snapshot) {
-                        
-                                status = 'Your image "' + image2.file.name + '" has been successfully uploaded!';
 
-                                clubPicture = image2.dataURL;
-                                image2.file = undefined;
-                                image2.url = undefined;
-                                image2.dataURL = undefined;
-                                image2.resized.dataURL = undefined;
-                                image2.resized.type = undefined;
+                            status = 'Your image "' + image2.file.name + '" has been successfully uploaded!';
 
-                          
+                            clubPicture = image2.dataURL;
+                            image2.file = undefined;
+                            image2.url = undefined;
+                            image2.dataURL = undefined;
+                            image2.resized.dataURL = undefined;
+                            image2.resized.type = undefined;
+
+
 
                         }), function (error) {
                             error = 'There was an error while uploading your image: ' + error;
                             console.log(error);
                         };
-                    };
-                };
+                    }
+                    ;
+                }
+                ;
             });
 })(); 
