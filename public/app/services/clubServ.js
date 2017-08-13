@@ -4,7 +4,7 @@
             service("CLUBES", function ($firebaseObject, $firebaseArray, Auth, $q) {
                 if (Auth) {
 
-                    var ClubesRef = firebase.storage().ref('clubes');
+                    var ClubesRef = firebase.database().ref('clubes');
                     var array = null;
 //                    		https://codepen.io/elliotmendiola/pen/JNYoNj	               
 
@@ -17,22 +17,16 @@
                     };
 
                     this.getClubesUserAssign = function (clubes) {
-//                        var root = firebase.database().ref('clubes');
-                        console.log('in club');
-                        console.log(clubes);
-//                        var defer = $q.defer();
+
                         var Clubes = [];
-
                         angular.forEach(clubes, function (value, key) {
-                            console.log(value);
-                            console.log(key);
                             var ref = $firebaseObject(ClubesRef.child(key)).$loaded();
-
                             Clubes.push(ref);
                         });
-                        return $q.all(Clubes);
 
+                        return $q.all(Clubes);
                     };
+
 
 
 //                    this.UpdateEvent = function (Event) {

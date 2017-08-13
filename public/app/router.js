@@ -151,12 +151,11 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
                      },
-                     userClubesAssign: function (ROLES, currentAuth) {
+                     userClubesRoll: function (ROLES, currentAuth) {
                          return ROLES.getClubesUserAssign(currentAuth.uid);
                      },
-                     clubesAssign: function (CLUBES, userClubesAssign) {
-                   
-                         return CLUBES.getClubesUserAssign(userClubesAssign);
+                     clubesAssign: function (CLUBES, userClubesRoll) {                   
+                         return CLUBES.getClubesUserAssign(userClubesRoll);
                      }                   
                 }
             })

@@ -1,20 +1,36 @@
-<!-- <div layout="row" class="club-sub-head">
-    <div ng-repeat="event in events" >	
-        <md-card md-theme="dark-grey'" md-theme-watch>
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">Card with image</span>
-            <span class="md-subhead">Small</span>
-          </md-card-title-text>
-  
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button>Action 1</md-button>
-          <md-button>Action 2</md-button>
-        </md-card-actions>
-      </md-card>
+<md-toolbar>
+    <div class="md-toolbar-tools gradient">
+        <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+            <md-tooltip>
+                Side Panel
+            </md-tooltip>
+            <md-icon class="md-default-theme" class="material-icons">
+                &#xE5D2;
+            </md-icon>
+        </md-button>
+
+        <span flex="" class="flex"></span>
+
+        <md-button class="md-icon-button" aria-label="back" ng-click="back()">
+            <md-icon class="material-icons">
+                <i class="material-icons">&#xE408;</i>
+            </md-icon>
+        </md-button>
+
     </div>
-</div> -->
+
+</md-toolbar>
+<md-content flex layout-padding class="rtl">
+    <md-card ng-repeat="club in clubes" ng-show="club.active" style="border-radius: 60px !important" md-theme="altTheme">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{club.name}}</span>
+            </md-card-title-text>
+        </md-card-title>
+    </md-card>
+
+</md-content>
+
 <div layout="column" layout-fill ui-view></div>
 
 
