@@ -877,21 +877,28 @@ transform: translate3d(-50%, 0, 0);
 
 #toaster-ancor{
     position: relative !important;
-    
+
 }
 
 #toaster-ancor .toast{
     width: 100% !important;
-    
+
 }
 .login-bottom{
-	background:url("../img/login-bottom.png");
-	    background-size:100%; /* You can override this value if your picture has a weird ratio */
+    background:url("../img/login-bottom.png");
+    background-size:100%; /* You can override this value if your picture has a weird ratio */
     background-position:50% 50%;
 }
 .font-rubik{
-	font-family: 'Rubik', sans-serif;
-	
+    font-family: 'Rubik', sans-serif;
+
 }
 .md-dialog-content{direction: rtl; font-family: 'Rubik', sans-serif;}
 #profile-chips #_md-chips-wrapper-3{box-shadow: none!important;}
+
+@media (max-width: 480px) and (min-width: 241px)
+{
+    #toast-container>div {
+        width: 10em !important;
+    }
+}

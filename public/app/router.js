@@ -1,6 +1,6 @@
 var club = angular.module("app").config(function ($stateProvider, $urlRouterProvider) {
-    //
-    // For any unmatched url, redirect to /state1
+//
+// For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise("/login");
     //    $urlRouterProvider.when('clubears/main', '/clubears/main/clubes');
     $stateProvider
@@ -43,10 +43,10 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
                     },
-                    userObj: function (USERS, currentAuth) {               
+                    userObj: function (USERS, currentAuth) {
                         return USERS.getUser(currentAuth.uid);
                     }
-                 
+
                 }
             })
             .state('clubears.main', {
@@ -131,14 +131,11 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                 url: "/profile",
                 templateUrl: "app/pages/clubears.profile.html",
                 controller: "profileCtrl",
-
                 resolve: {
-                    "currentAuth": ["Auth",
-                        function (Auth) {
-                            return Auth.$requireSignIn();
-
-                        }],
-                    "userObj": function (USERS, currentAuth) {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                    userObj: function (USERS, currentAuth) {
                         return USERS.getUser(currentAuth.uid);
                     }
                 }
@@ -146,52 +143,70 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             .state('managment', {
                 url: "/managment",
                 templateUrl: "app/pages/managment.html",
-                controller: "managmentCtrl",
-                 resolve: {
+                resolve: {
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
-                     },
-                     userClubesRoll: function (ROLES, currentAuth) {
-                         return ROLES.getClubesUserAssign(currentAuth.uid);
-                     },
-                     clubesAssign: function (CLUBES, userClubesRoll) {                   
-                         return CLUBES.getClubesUserAssign(userClubesRoll);
-                     }                   
-                }
+                    },
+                    userObj: function (USERS, currentAuth) {
+                        return USERS.getUser(currentAuth.uid);
+                    },
+                    userClubesRoll: function (ROLES, currentAuth) {
+                        return ROLES.getClubesUserAssign(currentAuth.uid);
+                    },
+                    clubesAssign: function (CLUBES, userClubesRoll) {
+                        return CLUBES.getClubesUserAssign(userClubesRoll);
+                    }
+                },
+                controller: "managmentCtrl"
             })
             .state('managment.parties', {
                 url: "/parties",
                 templateUrl: "app/pages/managment.parties.html",
-                controller: "managmentPartiesCtrl",
                 resolve: {
-                    "currentEvents": function (EVENTS) {
-                        return EVENTS.GetFirstEvents();
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                    isEmpty: function ($stateParams, $q) {
+                        if (!$stateParams.clubId || !$stateParams.role) {
+                            console.log('in empty');
+                            var errorObject = {code: 'MANAGMENT'};
+                            return $q.reject(errorObject);
+
+                        }
+                    },
+                    currentEvents: function (EVENTS, $stateParams) {
+                        return EVENTS.GetFirstEvents($stateParams.clubId);
                     }
-                }
-
-                //
-                //      }
-            })
-            .state('managment.newevent', {
-                url: "/newevent",
-                templateUrl: "app/pages/managment.newevent.html",
-                controller: "NewEventCtrl"
-
-                        //
-                        //      }
-            })
-            .state('managment.event', {
-                url: "/eventedit",
-                templateUrl: "app/pages/managment.event.html",
-                controller: "managmentEventCtrl",
+                },
                 params: {
-                    id: null
+                    clubId: null,
+                    role: null
+
+                },
+                controller: "managmentPartiesCtrl",
+            })
+            .state('managment.parties.newevent', {
+                url: "/newevent",
+                templateUrl: "app/pages/managment.parties.newevent.html",
+                params: {
+                    clubId: null,
+                    role: null
+                },
+                controller: "managmentNewEventCtrl"
+
+            })
+            .state('managment.parties.editevent', {
+                url: "/editevent",
+                templateUrl: "app/pages/managment.parties.editevent.html",
+                controller: "managmentEditEventCtrl",
+                params: {
+                    eventId: null,
+                    clubId: null,
+                    role: null
                 },
                 resolve: {
-                    "currentEvent": function ($stateParams, EVENTS) {
-                        console.log($stateParams.id);
-
-                        return EVENTS.GetOneEvent($stateParams.id);
+                    currentEvent: function ($stateParams, EVENTS) {
+                        return EVENTS.GetOneEvent($stateParams.clubId, $stateParams.eventId);
                     }
                 }
             })
@@ -203,8 +218,11 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             .state('managment.profile', {
                 url: "/profile",
                 templateUrl: "app/pages/managment.profile.html",
+                params: {
+                    clubId: null,
+                    role: null
+                },
                 controller: "managmentProfileCtrl"
-
             })
             .state('managment.stats', {
                 url: "/stats",
@@ -271,5 +289,4 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         //
                         //      }
             });
-
 });

@@ -108,12 +108,40 @@
                 console.log("$stateChangeSuccess " + fromState.name + JSON.stringify(fromParams) + " -> " + toState.name + JSON.stringify(toParams));
                 $rootScope.spinnerActive = false;
             });
-            $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams) {
+            $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
                 console.log("$stateChangeError " + fromState.name + JSON.stringify(fromParams) + " -> " + toState.name + JSON.stringify(toParams));
                 $rootScope.spinnerActive = false;
-                if (error === "AUTH_REQUIRED") {
-                    $state.go("login");
+                 console.log(error);
+                if (angular.isObject(error) && angular.isString(error.code)) {
+                    console.log(error.code);
+                    switch (error.code) {
+                        case 'AUTH_REQUIRED':
+                            // go to the login page
+                            console.log('auth');
+                            $state.go('login');
+                            break;
+                         case 'MANAGMENT':
+                            // go to the login page
+                            console.log('managment');
+                            $state.go('managment');
+                            break;    
+                        default:
+                            // set the error object on the error state and go there
+                            $state.get('error').error = error;
+                            $state.go('error');
+                    }
+                } else {
+                    // unexpected error
+                    console.log('in else');
+                    $state.go('login');
                 }
+
+
+//                console.log(error);
+//
+//                if (error === "AUTH_REQUIRED") {
+//                    $state.go("login");
+//                }
             });
 
         }]);

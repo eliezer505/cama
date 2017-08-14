@@ -11,11 +11,10 @@
 
         <span flex="" class="flex"></span>
 
-        <md-button class="md-icon-button" aria-label="Cancel">
-            <a ui-sref="managment.parties">
-                <md-icon class="material-icons">
-                    <i class="material-icons">&#xE5C9;</i>
-               </md-icon></a>
+        <md-button class="md-icon-button" aria-label="Cancel" ng-click="cancel()">
+            <md-icon class="material-icons">
+                <i class="material-icons">&#xE5C9;</i>
+            </md-icon>
         </md-button>
         <md-button form="disablepadding" type="submit" class="md-icon-button" aria-label="Done" ng-click="addEvent()">
             <md-icon class="material-icons">
@@ -35,13 +34,13 @@
 
 
 <form id="disablepadding" name="eventForm"   
-    style="padding: 20px; overflow: auto;" 
-    novalidate 
-    layout-padding 
-    class="rtl" 
-    md-theme="altTheme" 
-    flex 
-    ng-clock>
+      style="padding: 20px; overflow: auto;" 
+      novalidate 
+      layout-padding 
+      class="rtl" 
+      md-theme="altTheme" 
+      flex 
+      ng-clock>
     <md-input-container class="md-block no-margin-top-bottom">
         <label>שם הליין</label>
         <input name="lineName" ng-model="event.name" required md-no-asterisk>
@@ -65,21 +64,21 @@
     </mdp-date-picker>
 
 
-          
-        <mdp-time-picker style="direction:rtl;" 
-                         mdp-placeholder="פתיחת שערים"
-                         mdp-open-on-click
-                         mdp-auto-switch="true"
-                         required 
-                         name="timeFormat" 
-                         ng-model="event.eTime" 
-                         mdp-format="HH:mm A">
-            <div ng-messages="eventForm.timeFormat.$error" ng-if="eventForm.timeFormat.$invalid && (eventForm.$submitted || eventForm.timeFormat.$touched || eventForm.timeFormat.$dirty)">
-                <div ng-message="required">חובה לבחור שעת כניסה</div>
-                <div ng-message="format">הפורמט לא תקין </div>
-            </div>
-        </mdp-time-picker>
-              
+
+    <mdp-time-picker style="direction:rtl;" 
+                     mdp-placeholder="פתיחת שערים"
+                     mdp-open-on-click
+                     mdp-auto-switch="true"
+                     required 
+                     name="timeFormat" 
+                     ng-model="event.eTime" 
+                     mdp-format="HH:mm A">
+        <div ng-messages="eventForm.timeFormat.$error" ng-if="eventForm.timeFormat.$invalid && (eventForm.$submitted || eventForm.timeFormat.$touched || eventForm.timeFormat.$dirty)">
+            <div ng-message="required">חובה לבחור שעת כניסה</div>
+            <div ng-message="format">הפורמט לא תקין </div>
+        </div>
+    </mdp-time-picker>
+
 
 
 

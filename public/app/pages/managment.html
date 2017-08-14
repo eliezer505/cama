@@ -1,4 +1,4 @@
-<md-toolbar>
+<md-toolbar ng-show="show">
     <div class="md-toolbar-tools gradient">
         <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
             <md-tooltip>
@@ -20,8 +20,8 @@
     </div>
 
 </md-toolbar>
-<md-content flex layout-padding class="rtl">
-    <md-card ng-repeat="club in clubes" ng-show="club.active" style="border-radius: 60px !important" md-theme="altTheme">
+<md-content flex layout-padding class="rtl" ng-repeat="club in clubes"   md-theme="altTheme" ng-show="show">
+    <md-card ng-hide="checkRole(club)" style="border-radius: 60px !important" ng-click="editClub(club)">
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">{{club.name}}</span>
@@ -31,7 +31,7 @@
 
 </md-content>
 
-<div layout="column" layout-fill ui-view></div>
+<div layout="column" layout-fill ui-view ng-show="!show"></div>
 
 
 

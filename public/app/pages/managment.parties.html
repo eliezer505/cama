@@ -1,4 +1,4 @@
-<md-toolbar id="managment-toolbar" ng-class="{'bottom-shadow': boolChangeClass}">
+<md-toolbar id="managment-toolbar" ng-class="{'bottom-shadow': boolChangeClass}"  ng-show="partiesShow">
     <div class="md-toolbar-tools gradient">
         <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
             <md-tooltip>
@@ -11,8 +11,8 @@
 
         <span flex="" class="flex"></span>
 
-        <md-button class="md-icon-button" aria-label="add">
-            <md-icon class="material-icons" ui-sref="managment.newevent">
+        <md-button class="md-icon-button" aria-label="add" ng-click="newEvent()">
+            <md-icon class="material-icons">
                 <i class="material-icons">&#xE145;</i>
             </md-icon>
         </md-button>
@@ -40,7 +40,7 @@
     </md-content>
 </md-toolbar>
 
-<div scroll-with-headline id="managment-content" flex style="overflow: auto;" ng-clock>
+<div scroll-with-headline id="managment-content" flex style="overflow: auto; position: relative !important;" ng-clock  ng-show="partiesShow">
     <div ng-repeat="event in events" >	
         <hr ng-if="$first" class="club-hr-no-top" >
         <hr ng-if="!$first" class="club-hr">
@@ -70,10 +70,10 @@
     </div>
 </div>
 
-<footer>
+<footer  ng-show="partiesShow">
     <md-toolbar style="background-color:whitesmoke;">
         <div layout="row" layout-align="center center" flex>
-            <md-button class="md-primary" ui-sref="managment.profile">
+            <md-button class="md-primary" ng-click="goProfile()">
                 פרופיל
             </md-button>
 
@@ -81,9 +81,11 @@
                 סטטיסטיקות
             </md-button>
 
-            <md-button class="md-primary" ui-sref="managment.parties">
+            <md-button class="md-primary" ng-click="goParties()">
                 מסיבות והרשמות
             </md-button>
         </div>
     </md-toolbar>
 </footer>
+
+<div layout="column" layout-fill ui-view ng-show="!partiesShow"></div>
