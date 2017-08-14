@@ -166,16 +166,11 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
                     },
-                    isEmpty: function ($stateParams, $q) {
+                    currentEvents: function (EVENTS, $stateParams, $q) {
                         if (!$stateParams.clubId || !$stateParams.role) {
-                            console.log('in empty');
-                            var errorObject = {code: 'MANAGMENT'};
-                            return $q.reject(errorObject);
-
-                        }
-                    },
-                    currentEvents: function (EVENTS, $stateParams) {
-                        return EVENTS.GetFirstEvents($stateParams.clubId);
+                            return $q.reject({code: 'MANAGMENT'});
+                        } else
+                            return EVENTS.GetFirstEvents($stateParams.clubId);
                     }
                 },
                 params: {
@@ -192,6 +187,17 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     clubId: null,
                     role: null
                 },
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                    isError: function ($stateParams, $q) {
+                        if (!$stateParams.clubId || !$stateParams.role) {
+                            return $q.reject({code: 'MANAGMENT'});
+                        } else
+                            return $q.resolve();
+                    }
+                },
                 controller: "managmentNewEventCtrl"
 
             })
@@ -205,15 +211,16 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     role: null
                 },
                 resolve: {
-                    currentEvent: function ($stateParams, EVENTS) {
-                        return EVENTS.GetOneEvent($stateParams.clubId, $stateParams.eventId);
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                    currentEvent: function ($stateParams, EVENTS, $q) {
+                        if (!$stateParams.clubId || !$stateParams.role) {
+                            return $q.reject({code: 'MANAGMENT'});
+                        } else
+                            return EVENTS.GetOneEvent($stateParams.clubId, $stateParams.eventId);
                     }
                 }
-            })
-            .state('superuser', {
-                url: "/superuser",
-                templateUrl: "app/pages/superuser.html",
-                controller: "superUserCtrl"
             })
             .state('managment.profile', {
                 url: "/profile",
@@ -222,8 +229,26 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     clubId: null,
                     role: null
                 },
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                    currentClub: function ($stateParams, CLUBES, $q) {
+                        if (!$stateParams.clubId || !$stateParams.role) {
+                            return $q.reject({code: 'MANAGMENT'});
+                        } else
+                            return CLUBES.GetOneClub($stateParams.clubId);
+                    }
+                },                             
                 controller: "managmentProfileCtrl"
             })
+
+            .state('superuser', {
+                url: "/superuser",
+                templateUrl: "app/pages/superuser.html",
+                controller: "superUserCtrl"
+            })
+
             .state('managment.stats', {
                 url: "/stats",
                 templateUrl: "app/pages/managment.stats.html"

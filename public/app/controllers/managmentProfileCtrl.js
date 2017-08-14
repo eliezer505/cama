@@ -1,6 +1,6 @@
 angular
         .module('app')
-        .controller('managmentProfileCtrl', function ($scope, $timeout, CLUBES, $state, $stateParams) {
+        .controller('managmentProfileCtrl', function ($scope, $timeout, CLUBES, $state, $stateParams,currentClub) {
 
             $scope.club = {};
 

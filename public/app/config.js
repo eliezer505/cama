@@ -111,7 +111,7 @@
             $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
                 console.log("$stateChangeError " + fromState.name + JSON.stringify(fromParams) + " -> " + toState.name + JSON.stringify(toParams));
                 $rootScope.spinnerActive = false;
-                 console.log(error);
+                
                 if (angular.isObject(error) && angular.isString(error.code)) {
                     console.log(error.code);
                     switch (error.code) {
@@ -121,8 +121,6 @@
                             $state.go('login');
                             break;
                          case 'MANAGMENT':
-                            // go to the login page
-                            console.log('managment');
                             $state.go('managment');
                             break;    
                         default:
