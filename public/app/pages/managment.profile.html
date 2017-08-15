@@ -11,7 +11,7 @@
 
         <span flex="" class="flex"></span>
 
-        <md-button class="md-icon-button" aria-label="Done" ng-click="upload_image(image)">
+        <md-button class="md-icon-button" aria-label="Done" ng-click="updateClub()">
             <md-icon class="material-icons"><i class="material-icons">&#xE876;</i></md-icon>
         </md-button>
 
@@ -21,30 +21,20 @@
 <div class="picture-container">
 
 
-    <img class="image-profile" ng-src="{{clubPicture}}" alt="Club picture">
-    <md-button style="position: absolute; bottom: -20px; background: #de86de!important;" class="md-fab md-primary md-mini" aria-label="New">  
-        <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon> 
+    <img class="image-profile" ng-src="{{club.clubPicture}}" alt="Club picture">
+
+    <md-button style="position: absolute; bottom: -20px; background: #de86de!important;" class="md-fab md-primary md-mini" aria-label="New">
+        <label for="pictureUpload">
+            <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon> 
+        </label>
     </md-button>
-
-
-
-    <!--    <div class="main-fab">
-    
-           
-    
-    
-                    <input  fb-image-upload class="fb-input" type="file" name="image" />
-                    <input class="ng-hide" type="text" ng-model="image" ng-show="image.valid" />
-                    <div>
-                        <md-button id="uploadButton" class="md-fab">
-                            <md-icon aria-label="edit" class="material-icons">&#xE3C9;</md-icon>
-                        </md-button>
-                    </div>
-        </div>     -->
-
-    <!--https://gist.github.com/abehaskins/7330325-->
-    <!--https://codepen.io/shepard_one/pen/MypdLy-->
-
+    <input id="pictureUpload"  
+           type="file" accept="image/*" 
+           image="image2"
+           resize-max-height="270"
+           resize-max-width="480"
+           resize-quality="0.3"  
+           style="display:none;">
 
 </div>
 
@@ -61,17 +51,17 @@
             <label>כתובת המועדון</label>
             <input vs-google-autocomplete 
                    ng-model="club.address.name" 
-                   vs-place="address.place" 
-                   vs-place-id="address.components.placeId" 
-                   vs-street-number="address.components.streetNumber" 
-                   vs-street="address.components.street" 
-                   vs-city="address.components.city" 
-                   vs-state="address.components.state"
-                   vs-country-short="address.components.countryCode" 
-                   vs-country="address.components.country" 
-                   vs-post-code="address.components.postCode" 
-                   vs-latitude="address.components.location.lat" 
-                   vs-longitude="address.components.location.long" 
+                   vs-place="club.address.place" 
+                   vs-place-id="club.address.placeId" 
+                   vs-street-number="club.address.streetNumber" 
+                   vs-street="club.address.street" 
+                   vs-city="club.address.city" 
+                   vs-state="club.address.state"
+                   vs-country-short="club.address.countryCode" 
+                   vs-country="club.address.country" 
+                   vs-post-code="club.address.postCode" 
+                   vs-latitude="club.location.lat" 
+                   vs-longitude="club.location.long" 
                    type="text" 
                    name="address"
                    id="address1" 
@@ -97,26 +87,13 @@
                 <div ng-message="md-maxlength">נא להקליד עד 200 תוים בלבד!</div>
             </div>
         </md-input-container>
-
-
-        <div class="fb-inputs">
-            <input class="fb-image-upload fb-input" fb-image-upload type="file" name="image" accept="image/*" style="color: black"/>
-            <input class="fb-submit" type="submit" value="Upload Image" style="color: black"/>
-        </div>
-
-        <input type="file" accept="image/*" image="image2"
-               resize-max-height="300"
-               resize-max-width="400"
-               resize-quality="0.3" />
-        Original <img ng-show="image2" ng-src="{{image2.url}}" type="{{image2.file.type}}" />
-        Resized <img ng-show="image2" ng-src="{{image2.resized.dataURL}}" />
     </form>
 </md-content>
 
 <footer>
     <md-toolbar style="background-color:whitesmoke;">
         <div layout="row" layout-align="center center" flex>
-            <md-button class="md-primary" ui-sref="managment.profile">
+            <md-button class="md-primary font-bold md-disabled" >
                 פרופיל
             </md-button>
 

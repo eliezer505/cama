@@ -3,8 +3,13 @@ angular.module('app').controller('managmentPartiesCtrl',
         function ($scope, currentEvents, $state, $stateParams) {
 
             $scope.partiesShow = true;
-
+            $scope.role = $stateParams.role;
             $scope.events = currentEvents;
+
+            $scope.back = function () {
+                $scope.$parent.show = true;
+                $state.go('managment');
+            };
 
             $scope.edit = function (id) {
 

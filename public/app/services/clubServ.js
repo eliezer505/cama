@@ -8,11 +8,49 @@
                     var array = null;
 //                    		https://codepen.io/elliotmendiola/pen/JNYoNj	               
 
-                    this.AddClub = function (club) {
+                    this.openClub = function () {
                         var root = firebase.database().ref();
                         var clubRef = root.child('clubes');
-                        var newClub = clubRef.push();
-                        newClub.set(club);
+                        var clubObj = {
+                            active: false,
+                            open: "",
+                            name: "חדש",
+                            capacity: "",
+                            address : {},
+                            clubPicture: "img/empty-club.jpg",
+                            description: null
+                        };
+                        clubObj.address.name = "";
+                        clubObj.address = {placeId: "", streetNumber: "", street: "", city: "", state: "", countryCode: "", country: "", postCode: ""};
+                        clubObj.location = {lat: "", long: ""};
+
+                        var newClub = clubRef.push(clubObj);
+                        return newClub;
+
+                    };
+
+                    this.updateClub = function (club, image2) {
+                        var imagesRef = firebase.storage().ref('clubes/' + club.$id + '/profile/profile.jpg');
+                         console.log(club);
+                         console.log(image2);
+                        console.log('imagesRef');
+                        console.log(imagesRef);
+                        imagesRef.putString(image2.resized.dataURL, 'data_url').then(function (snapshot) {
+
+                            status = 'Your image "' + image2.file.name + '" has been successfully uploaded!';
+                            console.log(snapshot);
+                            image2.file = undefined;
+                            image2.url = undefined;
+                            image2.dataURL = undefined;
+                            image2.resized.dataURL = undefined;
+                            image2.resized.type = undefined;
+
+                            club.$save();
+
+                        }), function (error) {
+                            error = 'There was an error while uploading your image: ' + error;
+                            console.log(error);
+                        };
 
                     };
 
@@ -29,17 +67,6 @@
 
 
 
-//                    this.UpdateEvent = function (Event) {
-//                        console.log('update event');
-//                        Event.save();
-//                        console.log(Event);
-//                    };
-//                    this.DeleteEvent = function (EventKey) {
-//                        var OneEventRef = EventsRef.child(EventKey);
-//                        OneEventRef.remove();
-//                    };
-//                    
-
                     this.GetFirstEvents = function () {
                         var currentDate = new Date();
                         currentDate.setHours(0, 0, 0, 0);
@@ -53,31 +80,10 @@
                         return $firebaseObject(ClubesRef.child(clubKey));
                     };
 
-
-
-
                     // used for upload the file to firebase           
                     function upload_image(image2) {
 
-                        var imagesRef = firebase.storage().ref('clubes/profile.jpg');
 
-                        imagesRef.putString(image2.resized.dataURL, 'data_url').then(function (snapshot) {
-
-                            status = 'Your image "' + image2.file.name + '" has been successfully uploaded!';
-
-                            clubPicture = image2.dataURL;
-                            image2.file = undefined;
-                            image2.url = undefined;
-                            image2.dataURL = undefined;
-                            image2.resized.dataURL = undefined;
-                            image2.resized.type = undefined;
-
-
-
-                        }), function (error) {
-                            error = 'There was an error while uploading your image: ' + error;
-                            console.log(error);
-                        };
                     }
                     ;
                 }

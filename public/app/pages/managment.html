@@ -13,15 +13,15 @@
 
         <md-button class="md-icon-button" aria-label="back" ng-click="back()">
             <md-icon class="material-icons">
-                <i class="material-icons">&#xE408;</i>
+               <i class="material-icons">&#xE5C4;</i>
             </md-icon>
         </md-button>
 
     </div>
 
 </md-toolbar>
-<md-content flex layout-padding class="rtl" ng-repeat="club in clubes"   md-theme="altTheme" ng-show="show">
-    <md-card ng-hide="checkRole(club)" style="border-radius: 60px !important" ng-click="editClub(club)">
+<md-content flex layout-padding class="rtl" md-theme="altTheme" ng-show="show">
+    <md-card ng-repeat="club in clubes" ng-hide="checkRole(club)" style="border-radius: 60px !important" ng-click="editClub(club)">
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">{{club.name}}</span>

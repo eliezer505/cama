@@ -902,3 +902,15 @@ transform: translate3d(-50%, 0, 0);
         width: 10em !important;
     }
 }
+
+
+.font-bold{
+
+    font-weight: bold;
+}
+
+.fixed-fab-right{
+    right: 8px !important;
+    bottom: 60px !important;
+    position: fixed !important;
+}

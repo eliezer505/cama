@@ -11,16 +11,16 @@
 
         <span flex="" class="flex"></span>
 
-        <md-button class="md-icon-button" aria-label="add" ng-click="newEvent()">
+        <md-button class="md-icon-button" aria-label="back" ng-click="back()">
             <md-icon class="material-icons">
-                <i class="material-icons">&#xE145;</i>
+                <i class="material-icons">&#xE5C4;</i>
             </md-icon>
         </md-button>
 
     </div>
 
     <md-content>
-        <div layout="row" class="club-sub-head">
+        <div layout="row" class="club-sub-head" ng-show="role < 3">
             <div flex="25">
                 <span class="club-name" >תאריך</span>
             </div>
@@ -33,9 +33,23 @@
             <div flex="15">
                 <span class="event-approved">אושרו</span>
             </div>
-            <div flex="10">
+            <div flex="10" ng-show="role < 3">
                 <span class="club-reg-btn1">עריכה</span>
             </div>
+        </div>
+        <div layout="row" class="club-sub-head" ng-show="role === 3">
+            <div flex="25">
+                <span class="club-name" >תאריך</span>
+            </div>
+            <div flex="35">
+                <span class="club-name" >שם הליין</span>
+            </div>
+            <div flex="20">
+                <span class="club-name" >נרשמו</span>
+            </div>
+            <div flex="20">
+                <span class="event-approved">אושרו</span>
+            </div>           
         </div>
     </md-content>
 </md-toolbar>
@@ -44,7 +58,7 @@
     <div ng-repeat="event in events" >	
         <hr ng-if="$first" class="club-hr-no-top" >
         <hr ng-if="!$first" class="club-hr">
-        <div layout="row" class="club-list">
+        <div layout="row" class="club-list"  ng-show="role < 3">
 
             <div flex="25">
                 <span class="club-name" >{{event.eDate| date:'dd/MM/yyyy'}}</span>
@@ -59,18 +73,40 @@
                 <span class="event-approved">{{event.minAge}} </span>
             </div>
             <div flex="10">
-                   
-                    <md-icon class="material-icons" ng-click="edit(event.$id)">
-                        <span class="club-reg-btn1"><i class="material-icons">&#xE3C9;</i></span>
-                    </md-icon>
-                 
+
+                <md-icon class="material-icons" ng-click="edit(event.$id)">
+                    <span class="club-reg-btn1"><i class="material-icons">&#xE3C9;</i></span>
+                </md-icon>
+
+            </div>          
+        </div>
+        <div layout="row" class="club-list"  ng-show="role === 3">
+
+            <div flex="25">
+                <span class="club-name" >{{event.eDate| date:'dd/MM/yyyy'}}</span>
             </div>
+            <div flex="35">
+                <span class="club-name" >{{event.name}}</span>
+            </div>
+            <div flex="20">
+                <span class="club-name" >{{event.price}}</span>
+            </div>
+            <div flex="20">
+                <span class="event-approved">{{event.minAge}} </span>
+            </div>                    
         </div>
         <hr ng-if="$last" class="club-hr-no-bottom">
     </div>
+
 </div>
 
-<footer  ng-show="partiesShow">
+<md-button class="md-fab  md-mini md-fab-bottom-right fixed-fab-right" ng-click="newEvent()" ng-show="role < 3 && partiesShow">
+    <md-icon class="material-icons">
+        <i class="material-icons">&#xE145;</i>
+    </md-icon>
+</md-button>
+
+<footer  ng-show="partiesShow && role < 3">
     <md-toolbar style="background-color:whitesmoke;">
         <div layout="row" layout-align="center center" flex>
             <md-button class="md-primary" ng-click="goProfile()">
@@ -81,7 +117,7 @@
                 סטטיסטיקות
             </md-button>
 
-            <md-button class="md-primary" ng-click="goParties()">
+            <md-button class="md-primary font-bold" ng-click="goParties()">
                 מסיבות והרשמות
             </md-button>
         </div>

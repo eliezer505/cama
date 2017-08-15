@@ -1,6 +1,6 @@
 angular
         .module('app')
-        .controller('superUserCtrl', function ($scope, $q, $clubToast) {
+        .controller('superUserCtrl', function ($scope, $q, $clubToast,CLUBES) {
 
             $scope.selectedItem = null;
             $scope.searchText = null;
@@ -40,8 +40,8 @@ angular
 
             $scope.openClub = function () {
                 var root = firebase.database().ref();
-                var clubesRef = root.child('clubes');
-                var newClub = clubesRef.push({"name": "חדש", "active": true});
+
+                var newClub = CLUBES.openClub();
                 $clubToast.show('המועדון נפתח', 'toaster-ancor', 'success');
                 
                 var rolesRef = root.child('roles');           
