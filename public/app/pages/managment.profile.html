@@ -11,7 +11,7 @@
 
         <span flex="" class="flex"></span>
 
-        <md-button class="md-icon-button" aria-label="Done" ng-click="updateClub()">
+        <md-button form="clubProfile" type="submit" class="md-icon-button" aria-label="Done" ng-click="updateClub()">
             <md-icon class="material-icons"><i class="material-icons">&#xE876;</i></md-icon>
         </md-button>
 
@@ -41,13 +41,20 @@
 
 
 <md-content flex layout-padding class="rtl" md-theme="altTheme" id="managment-profile">
-    <form name="clubForm" ng-submit="upload_image(image2)">
+    <form id="clubProfile" name="clubForm" novalidate >
+        
         <md-input-container  class="md-block">
             <label>שם המועדון</label>
-            <input ng-model="club.name" required md-no-asterisk>
+            <input ng-model="club.name" required md-no-asterisk name="clubName">
+            <div ng-messages="eventForm.clubName.$error" ng-if="clubForm.clubName.$invalid && (clubForm.$submitted || clubForm.clubName.$touched || eventForm.clubName.$dirty)" >
+                <div ng-message="required">נא לבחור שם למועדון!</div>
+             
+
+            </div>
+
         </md-input-container>
 
-        <md-input-container  class="md-block">
+        <md-input-container class="md-block">
             <label>כתובת המועדון</label>
             <input vs-google-autocomplete 
                    ng-model="club.address.name" 
@@ -66,7 +73,12 @@
                    name="address"
                    id="address1" 
                    class="form-control" 
-                   placeholder="נא להכניס כתובת מדוייקת">
+                   placeholder="נא להכניס כתובת מדוייקת"
+                   md-no-asterisk
+                   required>
+            <div ng-messages="eventForm.address.$error" ng-if="clubForm.address.$invalid && (clubForm.$submitted || clubForm.address.$touched || eventForm.address.$dirty)" >
+                <div ng-message="required">נא להזין את כתובת המועדון!</div>
+            </div>
         </md-input-container>
 
         <md-input-container flex="40">

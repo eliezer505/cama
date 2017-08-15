@@ -16,7 +16,7 @@
                             open: "",
                             name: "חדש",
                             capacity: "",
-                            address : {},
+                            address: {},
                             clubPicture: "img/empty-club.jpg",
                             description: null
                         };
@@ -30,28 +30,35 @@
                     };
 
                     this.updateClub = function (club, image2) {
-                        var imagesRef = firebase.storage().ref('clubes/' + club.$id + '/profile/profile.jpg');
-                         console.log(club);
-                         console.log(image2);
+
+                        console.log(club);
+                        console.log(image2);
                         console.log('imagesRef');
                         console.log(imagesRef);
-                        imagesRef.putString(image2.resized.dataURL, 'data_url').then(function (snapshot) {
-
-                            status = 'Your image "' + image2.file.name + '" has been successfully uploaded!';
-                            console.log(snapshot);
-                            image2.file = undefined;
-                            image2.url = undefined;
-                            image2.dataURL = undefined;
-                            image2.resized.dataURL = undefined;
-                            image2.resized.type = undefined;
-
+                        if (angular.equals(image2, {})) {
+                            
                             club.$save();
+                            console.log(club);
+                        } else {
 
-                        }), function (error) {
-                            error = 'There was an error while uploading your image: ' + error;
-                            console.log(error);
-                        };
+                            var imagesRef = firebase.storage().ref('clubes/' + club.$id + '/profile/profile.jpg');
+                            imagesRef.putString(image2.resized.dataURL, 'data_url').then(function (snapshot) {
 
+                                status = 'Your image "' + image2.file.name + '" has been successfully uploaded!';
+                                console.log(snapshot);
+//                            image2.file = undefined;
+//                            image2.url = undefined;
+//                            image2.dataURL = undefined;
+//                            image2.resized.dataURL = undefined;
+//                            image2.resized.type = undefined;
+                                club.clubPicture = snapshot.metadata.downloadURLs[0]
+                                club.$save();
+
+                            }), function (error) {
+                                error = 'There was an error while uploading your image: ' + error;
+                                console.log(error);
+                            };
+                        }
                     };
 
                     this.getClubesUserAssign = function (clubes) {
@@ -80,12 +87,7 @@
                         return $firebaseObject(ClubesRef.child(clubKey));
                     };
 
-                    // used for upload the file to firebase           
-                    function upload_image(image2) {
-
-
-                    }
-                    ;
+             
                 }
                 ;
             });
