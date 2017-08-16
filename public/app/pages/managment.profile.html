@@ -42,19 +42,18 @@
 
 <md-content flex layout-padding class="rtl" md-theme="altTheme" id="managment-profile">
     <form id="clubProfile" name="clubForm" novalidate >
-        
-        <md-input-container  class="md-block">
+
+        <md-input-container  class="md-block" style="padding-bottom: 25px;">
             <label>שם המועדון</label>
             <input ng-model="club.name" required md-no-asterisk name="clubName">
-            <div ng-messages="eventForm.clubName.$error" ng-if="clubForm.clubName.$invalid && (clubForm.$submitted || clubForm.clubName.$touched || eventForm.clubName.$dirty)" >
+            <div ng-messages="clubForm.clubName.$error" ng-if="clubForm.clubName.$invalid && (clubForm.$submitted || clubForm.clubName.$touched || eventForm.clubName.$dirty)" >
                 <div ng-message="required">נא לבחור שם למועדון!</div>
-             
-
             </div>
 
         </md-input-container>
 
-        <md-input-container class="md-block">
+
+        <md-input-container class="md-block" style="padding-bottom: 25px;">
             <label>כתובת המועדון</label>
             <input vs-google-autocomplete 
                    ng-model="club.address.name" 
@@ -76,12 +75,12 @@
                    placeholder="נא להכניס כתובת מדוייקת"
                    md-no-asterisk
                    required>
-            <div ng-messages="eventForm.address.$error" ng-if="clubForm.address.$invalid && (clubForm.$submitted || clubForm.address.$touched || eventForm.address.$dirty)" >
+            <div ng-messages="clubForm.address.$error" ng-if="clubForm.address.$invalid && (clubForm.$submitted || clubForm.address.$touched || eventForm.address.$dirty)" >
                 <div ng-message="required">נא להזין את כתובת המועדון!</div>
             </div>
         </md-input-container>
 
-        <md-input-container flex="40">
+        <md-input-container flex="40" style="padding-bottom: 25px;">
             <label>מס אורחים מקסימלי</label>
             <input ng-model="club.capacity" type="number" required md-no-asterisk name="capacity" ng-max="3000">
             <div ng-messages="clubForm.capacity.$error">

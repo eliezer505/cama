@@ -914,3 +914,7 @@ transform: translate3d(-50%, 0, 0);
     bottom: 60px !important;
     position: fixed !important;
 }
+
+#clubProfile md-input-container .md-errors-spacer {
+    min-height: 0 !important;
+}
