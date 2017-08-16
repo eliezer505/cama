@@ -56,8 +56,7 @@
         <md-input-container class="md-block" style="padding-bottom: 25px;">
             <label>כתובת המועדון</label>
             <input vs-google-autocomplete 
-                   ng-model="club.address.name" 
-                   vs-place="club.address.place" 
+                   ng-model="club.address.name"                
                    vs-place-id="club.address.placeId" 
                    vs-street-number="club.address.streetNumber" 
                    vs-street="club.address.street" 
@@ -65,7 +64,6 @@
                    vs-state="club.address.state"
                    vs-country-short="club.address.countryCode" 
                    vs-country="club.address.country" 
-                   vs-post-code="club.address.postCode" 
                    vs-latitude="club.location.lat" 
                    vs-longitude="club.location.long" 
                    type="text" 
@@ -77,6 +75,10 @@
                    required>
             <div ng-messages="clubForm.address.$error" ng-if="clubForm.address.$invalid && (clubForm.$submitted || clubForm.address.$touched || eventForm.address.$dirty)" >
                 <div ng-message="required">נא להזין את כתובת המועדון!</div>
+                <div ng-message="city">עיר לא תקינה!</div>
+                <div ng-message="street">רחוב לא תקין!</div>
+                <div ng-message="streetNumber">חסר מספר רחוב!</div>
+                <div ng-message="country">חסר מדינה!</div>
             </div>
         </md-input-container>
 
@@ -108,11 +110,11 @@
                 פרופיל
             </md-button>
 
-            <md-button class="md-primary" ui-sref="managment.stats">
+            <md-button class="md-primary" ui-sref="managment.stats" ng-disabled="!club.active">
                 סטטיסטיקות
             </md-button>
 
-            <md-button class="md-primary" ng-click="goParties()">
+            <md-button class="md-primary" ng-click="goParties()"  ng-disabled="!club.active">
                 מסיבות והרשמות
             </md-button>
         </div>
