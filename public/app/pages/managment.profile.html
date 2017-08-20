@@ -45,9 +45,10 @@
 
         <md-input-container  class="md-block" style="padding-bottom: 25px;">
             <label>שם המועדון</label>
-            <input ng-model="club.name" required md-no-asterisk name="clubName">
+            <input ng-model="club.name" required md-no-asterisk name="clubName" blacklist="חדש,new">
             <div ng-messages="clubForm.clubName.$error" ng-if="clubForm.clubName.$invalid && (clubForm.$submitted || clubForm.clubName.$touched || eventForm.clubName.$dirty)" >
                 <div ng-message="required">נא לבחור שם למועדון!</div>
+                <div ng-message="blacklist">החלף את שם ברירת המחדל!</div>
             </div>
 
         </md-input-container>

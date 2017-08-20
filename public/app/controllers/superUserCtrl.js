@@ -1,7 +1,7 @@
 angular
         .module('app')
-        .controller('superUserCtrl', function ($scope, $q, $clubToast,CLUBES) {
-
+        .controller('superUserCtrl', function ($scope, $q, $clubToast, CLUBES,userObj) {
+            $scope.currentUser = userObj;
             $scope.selectedItem = null;
             $scope.searchText = null;
             $scope.selectedUsers = [];
@@ -43,15 +43,15 @@ angular
 
                 var newClub = CLUBES.openClub();
                 $clubToast.show('המועדון נפתח', 'toaster-ancor', 'success');
-                
-                var rolesRef = root.child('roles');           
+
+                var rolesRef = root.child('roles');
                 $scope.selectedUsers.forEach(function (item) {
                     var userRef = rolesRef.child(item.key);
                     var newClubRole = userRef.child(newClub.key);
                     newClubRole.update({"role": 2});
-                    
+
                     var usersRef = root.child('users').child(item.key).update({"role": 2});
-                    
+
                 });
                 $clubToast.show('המשתשים קיבלו הרשאת מנהל למועדון', 'toaster-ancor', 'success');
 

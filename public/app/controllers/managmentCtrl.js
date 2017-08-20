@@ -5,7 +5,7 @@ angular
             $scope.clubes = clubesAssign;
             $scope.roles = userClubesRoll;
             $scope.show = true;
-
+            $scope.currentUser = userObj;
             $scope.checkRole = function (club) {
 
                 if (userClubesRoll[club.$id].role > 2 && !club.active)
@@ -14,7 +14,7 @@ angular
             };
 
             $scope.editClub = function (club) {
-                $scope.show  = false;
+                $scope.show = false;
                 if (!club.active)
                     $state.go('managment.profile', {clubId: club.$id, role: userClubesRoll[club.$id].role});
                 else

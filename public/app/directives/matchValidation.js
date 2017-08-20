@@ -1,5 +1,5 @@
 angular.module('app')
-        .directive('blacllist', function () {
+        .directive('blacklist', function () {
             return {
                 require: 'ngModel',
                 link: function (scope, elem, attr, ngModel) {

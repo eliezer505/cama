@@ -246,6 +246,14 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             .state('superuser', {
                 url: "/superuser",
                 templateUrl: "app/pages/superuser.html",
+                                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                     userObj: function (USERS, currentAuth) {
+                        return USERS.getUser(currentAuth.uid);
+                    }
+                },
                 controller: "superUserCtrl"
             })
 
