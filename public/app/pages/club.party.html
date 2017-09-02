@@ -26,13 +26,13 @@
         <div layout="row" class="club-list">
 
             <div flex="25">
-                <span class="club-name" >{{club.date}}</span>
+                <span class="club-name" >{{club.eDate| date:'dd/MM/yy'}}</span>
             </div>
             <div flex="35">
                 <span class="club-name" >{{club.name}}</span>
             </div>
             <div flex="15">
-                <span class="club-name" >{{club.distance}}</span>
+                <span class="club-name" >+{{club.minAge}}</span>
             </div>
             <div flex="15">
                 <span class="event-approved">{{club.theme}} </span>

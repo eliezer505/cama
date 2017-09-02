@@ -719,6 +719,10 @@ i {
 .event-approved{
     color:green;
 }
+
+.event-panding{
+    color:orange;
+}
 .fixedtop{
     position: fixed;
     top: 0;
@@ -917,4 +921,21 @@ transform: translate3d(-50%, 0, 0);
 
 #clubProfile md-input-container .md-errors-spacer {
     min-height: 0 !important;
+}
+
+.circle-approved {
+    border-radius: 100% 100% 100% 100%;
+    -moz-border-radius: 100% 100% 100% 100%;
+    -webkit-border-radius: 100% 100% 100% 100%;
+    border: 3px solid green;
+    padding: 5px;
+}
+
+
+.circle-padding {
+    border-radius: 100% 100% 100% 100%;
+    -moz-border-radius: 100% 100% 100% 100%;
+    -webkit-border-radius: 100% 100% 100% 100%;
+    border: 3px solid #91949a;
+    padding: 5px;
 }

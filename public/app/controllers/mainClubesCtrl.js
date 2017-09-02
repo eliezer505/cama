@@ -1,15 +1,13 @@
 
 angular.module('app').controller('mainClubesCtrl', 
-function ($scope,$state,currentAuth) {
-    $scope.clubes = [{id: 1, name: "אולטראסאונד", distance: 14.5, photo: "img/avatar.png"},
-        {id: 2, name: "חורבה", distance: 7.4, photo: "img/avatar.png"},
-        {id: 3, name: "לונה", distance: 2.5, photo: "img/avatar.png"},
-        {id: 4, name: "הספרייה", distance: 9.3, photo: "img/avatar.png"}];
+function ($scope,$state,clubesNearBy) {
+    $scope.clubes = clubesNearBy;
         
+        console.log( $scope.clubes);
         
         $scope.enterClub = function (clubPressed){
 
-        	 $state.go('clubears.club', {obj:clubPressed});
+        	 $state.go('clubears.club', {clubId: clubPressed.$id});
         };
 
 });

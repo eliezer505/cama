@@ -68,6 +68,9 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                 resolve: {
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
+                    },
+                    clubesNearBy: function ( CLUBES) {           
+                            return CLUBES.GetClubesNearBy();
                     }
                 }
             })
@@ -178,7 +181,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     role: null
 
                 },
-                controller: "managmentPartiesCtrl",
+                controller: "managmentPartiesCtrl"
             })
             .state('managment.parties.newevent', {
                 url: "/newevent",
@@ -222,6 +225,27 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     }
                 }
             })
+            .state('managment.parties.panding', {
+                url: "/editpanding",
+                templateUrl: "app/pages/managment.parties.panding.html",
+                controller: "managmentEditPandingCtrl",
+                params: {
+                    eventId: null,
+                    clubId: null,
+                    role: null
+                },
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                    currentEvent: function ($stateParams, EVENTS, $q) {
+                        if (!$stateParams.clubId || !$stateParams.role) {
+                            return $q.reject({code: 'MANAGMENT'});
+                        } else
+                            return EVENTS.GetOneEvent($stateParams.clubId, $stateParams.eventId);
+                    }
+                }
+            })
             .state('managment.profile', {
                 url: "/profile",
                 templateUrl: "app/pages/managment.profile.html",
@@ -239,18 +263,18 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         } else
                             return CLUBES.GetOneClub($stateParams.clubId);
                     }
-                },                             
+                },
                 controller: "managmentProfileCtrl"
             })
 
             .state('superuser', {
                 url: "/superuser",
                 templateUrl: "app/pages/superuser.html",
-                                resolve: {
+                resolve: {
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
                     },
-                     userObj: function (USERS, currentAuth) {
+                    userObj: function (USERS, currentAuth) {
                         return USERS.getUser(currentAuth.uid);
                     }
                 },
@@ -289,9 +313,15 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                 url: "/club",
                 templateUrl: "app/pages/club.html",
                 controller: 'clubesCtrl',
+                params: {
+                    clubId: null
+                },
                 resolve: {
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
+                    },
+                    clubesEvents: function (EVENTS,$stateParams) {
+                        return EVENTS.getClubEvents($stateParams.clubId);
                     }
                 }
             })
