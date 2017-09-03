@@ -320,6 +320,9 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
                     },
+                     currentClub: function (CLUBES,$stateParams) {
+                        return CLUBES.GetOneClub($stateParams.clubId);
+                    },
                     clubesEvents: function (EVENTS,$stateParams) {
                         return EVENTS.GetFirstEvents($stateParams.clubId);
                     }
