@@ -1,25 +1,25 @@
  
- <md-content >
-        <div layout="row" class="club-sub-head">
-            <div flex="25">
-                <span class="club-name" >תאריך</span>
-            </div>
-            <div flex="35">
-                <span class="club-name" >שם הליין</span>
-            </div>
-            <div flex="15">
-                <span class="club-name" >גילאים</span>
-            </div>
-            <div flex="15">
-                <span class="event-approved">נושא</span>
-            </div>
-            <div flex="10">
-                <span class="club-reg-btn1">הרשם</span>
-            </div>
+<md-content id="managment-toolbar">
+    <div layout="row" class="club-sub-head">
+        <div flex="25">
+            <span class="club-name" >תאריך</span>
         </div>
-    </md-content>
-  
-<div scroll-with-headline id="managment-content" flex style="overflow: auto;" ng-clock>
+        <div flex="35">
+            <span class="club-name" >שם הליין</span>
+        </div>
+        <div flex="15">
+            <span class="club-name" >גילאים</span>
+        </div>
+        <div flex="15">
+            <span class="event-approved">נושא</span>
+        </div>
+        <div flex="10">
+            <span class="club-reg-btn1">הרשם</span>
+        </div>
+    </div>
+</md-content>
+
+<div scroll-with-headline id="managment-content" flex style="overflow: auto; position: relative !important;" ng-clock>
     <div ng-repeat="club in clubes" class="rtl" >	
         <hr ng-if="$first" class="club-hr-no-top" >
         <hr ng-if="!$first" class="club-hr">
@@ -38,11 +38,11 @@
                 <span class="event-approved">{{club.theme}} </span>
             </div>
             <div flex="10">
-                   
-                    <md-icon class="material-icons" ng-click="showConfirm()">
-                        <span class="club-reg-btn1"><i class="material-icons">&#xE89C;</i></span>
-                    </md-icon>
-                 
+
+                <md-icon class="material-icons" ng-click="showConfirm()">
+                    <span class="club-reg-btn1"><i class="material-icons">&#xE89C;</i></span>
+                </md-icon>
+
             </div>
         </div>
         <hr ng-if="$last" class="club-hr-no-bottom">

@@ -321,7 +321,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         return Auth.$requireSignIn();
                     },
                     clubesEvents: function (EVENTS,$stateParams) {
-                        return EVENTS.getClubEvents($stateParams.clubId);
+                        return EVENTS.GetFirstEvents($stateParams.clubId);
                     }
                 }
             })
