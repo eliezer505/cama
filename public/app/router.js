@@ -311,7 +311,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             })
             .state('clubears.club', {
                 url: "/club",
-                templateUrl: "app/pages/club.html",
+                templateUrl: "app/pages/clubears.club.html",
                 controller: 'clubesCtrl',
                 params: {
                     clubId: null
@@ -330,7 +330,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             })
             .state('clubears.club.party', {
                 url: "/club.party",
-                templateUrl: "app/pages/club.party.html",
+                templateUrl: "app/pages/clubears.club.party.html",
                 controller: 'clubPartyCtrl',
                 resolve: {
                     currentAuth: function (Auth) {
@@ -341,7 +341,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             })
             .state('clubears.club.about', {
                 url: "/club.about",
-                templateUrl: "app/pages/club.about.html"
+                templateUrl: "app/pages/clubears.club.about.html"
                         //      controller: clubAboutCtrl
                         //              function($scope) {
                         //        $scope.items = ["A", "List", "Of", "Items"];
