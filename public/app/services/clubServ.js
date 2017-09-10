@@ -62,6 +62,17 @@
                         return one.promise;
                     };
 
+                    this.GetClubesNearBy = function () {
+                        var one = $q.defer();
+                        var clubes = $firebaseArray(ClubesRef);
+
+                        clubes.$loaded().then(function () {
+                            one.resolve(clubes);
+                        });
+                        // Avner remmber that you didn't handle errores in load userr object. For later add catch
+                        return one.promise;
+                    };
+
                 }
                 ;
 

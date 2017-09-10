@@ -1,31 +1,12 @@
-<!-- 
-	<md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch class="rtl " id="toaster-ancor">
-
-    <md-card-header class="clubnose">
-
-
-
-        <md-card-header-text>
-            <span class="md-title">הספריה קריות</span>
-            <span class="md-subhead">2.3 קמ</span>
-        </md-card-header-text>
-                <md-card-avatar>
-            <img class="md-user-avatar" src="img/avatar.png">
-        </md-card-avatar>
-    </md-card-header>
-    
-</md-card>
-	-->
-
 <div layout="column" md-theme="altTheme" class="md-primary gradient content-middle" style="color:white; height:20%;">
 
     <div layout="row" class="rtl text-middle">
     	 
         <div flex style="padding-right: 11px;"> 
-            <span class="md-headline"> הספריה קריות</span><br>
-            <span class="md-subhead" ng-bind="name">2.3 ק'מ</span>
+            <span class="md-headline">{{currentClub.name}}</span><br>
+            <span class="md-subhead" ng-bind="currentClub.address.city">{{currentClub.address.city}}</span>
         </div>
-        <div flex>   <div  class="md-media-sm card-media "><img id="mainavatar" ng-src="img/avatar.png"></div></div>
+        <div flex>   <div  class="md-media-sm card-media "><img id="mainavatar" ng-src="{{currentClub.clubPicture}}"></div></div>
   <div flex></div>
     </div>
 </div>
@@ -35,10 +16,10 @@
                 md-selected-nav-item="currentNavItem"
                 nav-bar-aria-label="navigation links">
 
-        <md-nav-item md-nav-sref="clubears.club.about" name="favorites">
+        <md-nav-item md-nav-sref="clubears.club.about" name="about">
             <i class="material-icons">&#xE88F;</i><!-- favorites -->
         </md-nav-item>
-        <md-nav-item md-nav-sref="clubears.club.party" name="history">
+        <md-nav-item md-nav-sref="clubears.club.party" name="parties">
          <i class="material-icons">&#xE85E;</i> <!-- history -->
         </md-nav-item>
         <!-- these require actual routing with ui-router or ng-route, so they

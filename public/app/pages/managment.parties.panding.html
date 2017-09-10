@@ -1,0 +1,68 @@
+<md-toolbar  class="md-primary bottom-shadow">
+    <div class="md-toolbar-tools gradient">
+        <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+            <md-tooltip>
+                Side Panel
+            </md-tooltip>
+            <md-icon class="md-default-theme" class="material-icons">
+                &#xE5D2;
+            </md-icon>
+        </md-button>
+
+        <span flex="" class="flex"></span>
+
+        <md-button class="md-icon-button" aria-label="Cancel" ng-click="cancel()">
+                <md-icon class="material-icons">
+                    <i class="material-icons">&#xE5C9;</i>
+               </md-icon>
+        </md-button>
+        <md-button form="disablepadding" type="submit" class="md-icon-button" aria-label="Done" ng-click="updateEvent()">
+            <md-icon class="material-icons">
+                <i class="material-icons">&#xE876;</i>
+            </md-icon>
+        </md-button>
+
+    </div>
+
+</md-toolbar>
+
+<div scroll-with-headline id="managment-content" flex style="overflow: auto; position: relative !important;" ng-clock  ng-show="partiesShow">
+    <div ng-repeat="user in users" >	
+        <hr ng-if="$first" class="club-hr-no-top" >
+        <hr ng-if="!$first" class="club-hr">
+        <div layout="row" class="club-list"  ng-show="role < 3">
+
+            <div flex="30" layout="row" style="margin-top: 8px; margin-bottom: 8px;">
+                <span class="club-name" >{{user.eDate| date:'dd/MM/yy'}}</span>
+            </div>
+            <div flex="40" layout="row" style="margin-top: 8px; margin-bottom: 8px;">
+                <span class="club-name" >{{user.name}}</span>
+            </div>
+            <div flex="15">
+                <md-button class="md-fab md-mini"  style="margin: 0px !important; background-color: orange !important;" aria-label="Eat cake">
+                    {{user.minAge}}
+                </md-button> 
+                <!--<span class="club-name circle-padding" >{{event.price}}</span>-->
+            </div>
+            <div flex="15">
+                <md-button class="md-fab md-mini" style="margin: 0px !important; background-color: green !important;" aria-label="Eat cake">
+                    {{user.minAge}}
+                </md-button>
+                <!--<span class="event-approved circle-approved ">{{event.minAge}} </span>-->
+            </div>
+            <div flex="10" layout="row">
+
+                <md-icon class="material-icons" ng-click="edit(event.$id)">
+                    <span class="club-reg-btn1"><i class="material-icons">&#xE3C9;</i></span>
+                </md-icon>
+
+            </div>          
+        </div>
+
+        <hr ng-if="$last" class="club-hr-no-bottom">
+    </div>
+
+</div>
+
+
+
