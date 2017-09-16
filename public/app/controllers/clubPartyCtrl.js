@@ -1,6 +1,6 @@
 
 angular.module('app').controller('clubPartyCtrl',
-        function ($scope, $state, $mdDialog, $clubToast, clubesEvents) {
+        function ($scope, $state, $mdDialog, $clubToast, currentClub,clubesEvents,userObj) {
             $scope.clubes = clubesEvents;
             console.log($scope.clubes);
 
