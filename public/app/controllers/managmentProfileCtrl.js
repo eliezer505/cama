@@ -5,6 +5,8 @@ angular
             $scope.club = currentClub;
 
             $scope.image2 = {};
+            $scope.imageLogo = {};
+
             $scope.check = function () {
                 console.log($scope.club.address);
             };
@@ -13,7 +15,7 @@ angular
                 console.log($scope.clubForm.$valid);
                 if ($scope.clubForm.$valid) {
                     $scope.upload = true;
-                    if (angular.equals($scope.image2, {})) {
+                    if (angular.equals($scope.image2, {}) && angular.equals($scope.imageLogo, {})) {
                         $scope.club.active = true;
                         var cTime = new Date();
                         $scope.club.open = cTime.getTime();
@@ -23,7 +25,7 @@ angular
                             $clubToast.show('חלה שגיאה בעדכון!', 'clubProfile', 'error');
                             console.log(error);
                         });
-                    } else {
+                    } else if () {
 
                         var imagesRef = firebase.storage().ref('clubes/' + $scope.club.$id + '/profile/profile.jpg');
                         imagesRef.putString($scope.image2.resized.dataURL, 'data_url').then(function (snapshot) {
@@ -49,18 +51,35 @@ angular
                             console.log(error);
                         };
                     }
+                    else{
+                        
+                    }
                     $scope.upload = false;
                 }
             };
 
             $scope.$watch('image2', function () {
+                console.log($scope.image2);
                 if ($scope.image2.resized && $scope.image2.resized.dataURL) {
                     $timeout(function () {
                         $scope.club.clubPicture = $scope.image2.resized.dataURL;
                         // anything you want can go here and will safely be run on the next digest.
                     });
-                } else
+                } else{
+ console.log('in elsse');
                     $scope.clubPicture = "img/empty-club.jpg";
+                }
+            });
+
+            $scope.$watch('imageLogo', function () {
+                if ($scope.imageLogo.resized && $scope.imageLogo.resized.dataURL) {
+                    console.log($scope.imageLogo);
+                    $timeout(function () {
+                        $scope.club.clubLogo = $scope.imageLogo.resized.dataURL;
+                        // anything you want can go here and will safely be run on the next digest.
+                    });
+                } else
+                    $scope.clubLogo = "img/empty-logo.png";
             });
 
             $scope.$watch('club.address.city', function () {

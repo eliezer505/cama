@@ -120,7 +120,7 @@
                 currentAuth.linkWithCredential(credential).then(function (user) {
                    userObj.phone = $scope.phoneNumber;
                    userObj.$save();
-                    $state.go('clubears.main');
+                    $state.go('clubears.main.clubes');
                 }, function (error) {
                     console.log("Account linking error", error);
                 });

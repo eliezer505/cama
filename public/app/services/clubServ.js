@@ -18,6 +18,7 @@
                             capacity: "",
                             address: {},
                             clubPicture: "img/empty-club.jpg",
+                            clubLogo: "img/empty-logo.png",
                             description: null
                         };
                         clubObj.address.name = "";

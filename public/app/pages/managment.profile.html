@@ -82,6 +82,23 @@
                 <div ng-message="country">חסר מדינה!</div>
             </div>
         </md-input-container>
+        
+        <div class="logo-container">
+            
+            <md-button style="background: #de86de!important;" class="md-raised md-primary" aria-label="New">
+                <label for="logoUpload">
+                  שנה לוגו 
+                </label>
+            </md-button>
+            <input id="logoUpload"  
+                   type="file" accept="image/*" 
+                   image="imageLogo"
+                   resize-max-height="150"
+                   resize-max-width="300"
+                   resize-quality="0.3"  
+                   style="display:none;">
+              <img class="logo-style" ng-src="{{club.clubLogo}}" alt="Club logo">
+        </div>
 
         <md-input-container flex="40" style="padding-bottom: 25px;">
             <label>מס אורחים מקסימלי</label>
