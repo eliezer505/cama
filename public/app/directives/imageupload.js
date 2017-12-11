@@ -27,28 +27,14 @@ angular.module('imageupload', [])
 
             var canvas = getResizeArea();
 
-            var height = origImage.height;
-            var width = origImage.width;
+          
 
-            // calculate the width and height, constraining the proportions
-            if (width > height) {
-                if (width > maxWidth) {
-                    height = Math.round(height *= maxWidth / width);
-                    width = maxWidth;
-                }
-            } else {
-                if (height > maxHeight) {
-                    width = Math.round(width *= maxHeight / height);
-                    height = maxHeight;
-                }
-            }
-
-            canvas.width = width;
-            canvas.height = height;
+            canvas.width = maxWidth;
+            canvas.height = maxHeight;
 
             //draw image on canvas
             var ctx = canvas.getContext("2d");
-            ctx.drawImage(origImage, 0, 0, width, height);
+            ctx.drawImage(origImage, 0, 0, maxWidth, maxHeight);
 
             // get the data from canvas as 70% jpg (or specified type).
             return canvas.toDataURL(type, quality);

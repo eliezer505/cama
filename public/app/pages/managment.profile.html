@@ -83,8 +83,8 @@
             </div>
         </md-input-container>
         
-        <div class="logo-container">
-            
+        <div class="logo-container" layout="row" layout-align="space-around  center">
+            <div class="">
             <md-button style="background: #de86de!important;" class="md-raised md-primary" aria-label="New">
                 <label for="logoUpload">
                   שנה לוגו 
@@ -97,7 +97,11 @@
                    resize-max-width="300"
                    resize-quality="0.3"  
                    style="display:none;">
-              <img class="logo-style" ng-src="{{club.clubLogo}}" alt="Club logo">
+            </div>
+            <div class="logo-style" style="background: url('{{club.clubLogo}}')">
+           
+                
+            </div>
         </div>
 
         <md-input-container flex="40" style="padding-bottom: 25px;">

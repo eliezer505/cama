@@ -25,7 +25,7 @@ angular
                             $clubToast.show('חלה שגיאה בעדכון!', 'clubProfile', 'error');
                             console.log(error);
                         });
-                    } else if () {
+                    } else if (!angular.equals($scope.image2, {}) && angular.equals($scope.imageLogo, {})) {
 
                         var imagesRef = firebase.storage().ref('clubes/' + $scope.club.$id + '/profile/profile.jpg');
                         imagesRef.putString($scope.image2.resized.dataURL, 'data_url').then(function (snapshot) {
@@ -50,9 +50,33 @@ angular
                             $clubToast.show('חלה שגיאה בהעלאת התמונה!', 'clubProfile', 'error');
                             console.log(error);
                         };
-                    }
-                    else{
-                        
+                    } else if (angular.equals($scope.image2, {}) && !angular.equals($scope.imageLogo, {})) {
+
+                        var logoRef = firebase.storage().ref('clubes/' + $scope.club.$id + '/profile/logo.jpg');
+                        logoRef.putString($scope.imageLogo.resized.dataURL, 'data_url').then(function (snapshot) {
+
+                            $scope.club.imageLogo = snapshot.metadata.downloadURLs[0];
+                            $scope.club.active = true;
+                            var cTime = new Date();
+                            $scope.club.open = cTime.getTime();
+                            $scope.club.$save().then(function () {
+                                $clubToast.show('פרופיל המועדון עודכן', 'clubProfile', 'success');
+                            }, function (error) {
+                                $clubToast.show('חלה שגיאה בעדכון!', 'clubProfile', 'error');
+                                console.log(error);
+                            });
+                            $scope.imageLogo.file = undefined;
+                            $scope.imageLogo.url = undefined;
+                            $scope.imageLogo.dataURL = undefined;
+                            $scope.imageLogo.resized.dataURL = undefined;
+                            $scope.imageLogo.resized.type = undefined;
+
+                        }), function (error) {
+                            $clubToast.show('חלה שגיאה בהעלאת התמונה!', 'clubProfile', 'error');
+                            console.log(error);
+                        };
+                    } else {
+
                     }
                     $scope.upload = false;
                 }
@@ -65,8 +89,8 @@ angular
                         $scope.club.clubPicture = $scope.image2.resized.dataURL;
                         // anything you want can go here and will safely be run on the next digest.
                     });
-                } else{
- console.log('in elsse');
+                } else {
+                    console.log('in elsse');
                     $scope.clubPicture = "img/empty-club.jpg";
                 }
             });
