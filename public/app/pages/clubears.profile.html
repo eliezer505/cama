@@ -1,13 +1,12 @@
 <div layout="column" class="gradient content-middle" style="color:white; height:20%;">
 
-	<div layout="row" class="rtl text-middle" layout-fill>
-
-		<div flex style="padding-right: 11px;">
-			<span class="md-headline"> {{name}}</span>
-
-		</div>
-		<div flex>
-			<div  class="md-media-sm card-media " style="position: relative;"><img id="mainavatar" ng-src="{{picture}}">
+    <div layout="row" class="rtl text-middle">
+    	 
+        <div flex style="padding-right: 11px;"> 
+            <span class="md-headline"> הפרופיל האישי</span><br>
+            <span class="md-subhead" ng-bind="name">{{name}}</span>
+        </div>
+        <div flex>  <div  class="md-media-sm card-media " style="position: relative;"><img id="mainavatar" ng-src="{{picture}}">
 				<md-button style="position: absolute;
 				bottom: -10px;
 				right: -20px; background: #de86de!important;" class="md-fab md-primary md-mini" aria-label="New">
@@ -15,30 +14,11 @@
 						&#xE3C9;
 					</md-icon>
 				</md-button></img>
-			</div>
-		</div>
-		<div flex layout="column" layout-fill>
+			</div></div>
+  <div flex></div>
+    </div>
+			
 
-			<md-chips class="layout-column" layout-fill style="width: 60%; " id="profile-chips">
-				<md-chip ng-show="status === 'רווק'" class="status-green profile-status">
-					{{status}}
-				</md-chip>
-				<md-chip ng-show="status === 'תפוס'" class="status-red profile-status">
-					{{status}}
-				</md-chip>
-				<md-chip  ng-show="gender === 'בן'" class="status-blue profile-status" ng-bind="gender">
-					{{status}}
-				</md-chip>
-				<md-chip ng-show="gender === 'בת'" class="status-pink profile-status" ng-bind="gender">
-					{{status}}
-				</md-chip>
-				<md-chip class="status-purple profile-status">
-					{{age}}
-				</md-chip>
-
-			</md-chips>
-
-		</div>
 	</div>
 </div>
 
@@ -61,6 +41,29 @@
 <a class="md-raised md-button" ui-sref="profileUpdate">ערוך פרופיל</a>
 
 </div>-->
+	
+
+			<md-chips class="layout-row"  layout-align="center center"
+
+ id="profile-chips">
+								<md-chip class="status-purple profile-status">
+					{{age}}
+				</md-chip>
+				<md-chip  ng-show="gender === 'בן'" class="status-blue profile-status" ng-bind="gender">
+					{{status}}
+				</md-chip>
+				<md-chip ng-show="gender === 'בת'" class="status-pink profile-status" ng-bind="gender">
+					{{status}}
+				</md-chip>
+				<md-chip ng-show="status === 'רווק'" class="status-green profile-status">
+					{{status}}
+				</md-chip>
+				<md-chip ng-show="status === 'תפוס'" class="status-red profile-status">
+					{{status}}
+				</md-chip>
+
+
+			</md-chips>
 
 <div class="ext-content">
 	<div ng-controller="profileImagesCtrl">
