@@ -821,8 +821,11 @@ mdp-date-picker button md-icon,mdp-time-picker button md-icon{
 }
 
 .logo-style{
-    padding-right: 5%;
-    height: 20%;
+  height: 36px;
+    width: 100%;
+    background-position: center!important;
+    background-size: contain!important;
+    background-repeat: no-repeat!important;
 }
 
 .login-wrapper{
