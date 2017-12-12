@@ -1,8 +1,20 @@
 angular
         .module('app')
-        .controller('managmentProfileCtrl', function ($scope, $timeout, $clubToast, $state, $stateParams, currentClub) {
-            console.log(currentClub);
+        .controller('managmentProfileCtrl', function ($scope, $timeout, $clubToast, $state, $stateParams, currentClub, $q) {
+
+            var root = firebase.database().ref();
+            var rolesRef = firebase.database().ref('roles');
             $scope.club = currentClub;
+            $scope.selectedItem = null;
+            $scope.searchText = null;
+
+            if ($scope.club.po.length > 0)
+                $scope.selectedUsers = $scope.club.po;
+            else
+                $scope.selectedUsers = [];
+
+            var po_removed = [];
+            var UsersRef = firebase.database().ref('users');
 
             $scope.image2 = {};
             $scope.imageLogo = {};
@@ -10,6 +22,29 @@ angular
             $scope.check = function () {
                 console.log($scope.club.address);
             };
+
+            function update_po_role()
+            {
+                var rolesRef = root.child('roles');
+                $scope.selectedUsers.forEach(function (item) {
+                    var userRef = rolesRef.child(item.key);
+                    var newClubRole = userRef.child($scope.club.$id);
+                    //check what permision user have in club, if not assign PO permision
+                    newClubRole.once("value", function (snapshot) {
+                        if (snapshot.val() === null)
+                            newClubRole.update({"role": 3});
+                    });
+                    //check what permision user have, if not assign PO permision
+                    var usersRef = root.child('users').child(item.key).child('role');
+                    usersRef.once("value", function (snapshot) {
+
+                        if (snapshot.val() === null)
+                            usersRef.update({"role": 3});
+                    });
+                });
+            }
+
+
 
             $scope.updateClub = function () {
                 console.log($scope.clubForm.$valid);
@@ -82,6 +117,22 @@ angular
                 }
             };
 
+            $scope.$watchCollection('selectedUsers', function (newVal, oldVal) {
+                // A chip has been removed if oldVal is greater in size than newVal
+                if (angular.isArray(oldVal) && oldVal.length > newVal.length) {
+                    // Find the item(s) in oldVal that does
+                    // not exist anymore in newVal.
+                    var diff = oldVal.filter(function (a) {
+                        return newVal.filter(function (b) {
+                            return a === b;
+                        }).length === 0;
+                    });
+                    if (diff.length === 1) {
+                        po_removed.push(diff[0]);
+                    }
+                }
+            });
+
             $scope.$watch('image2', function () {
                 console.log($scope.image2);
                 if ($scope.image2.resized && $scope.image2.resized.dataURL) {
@@ -141,4 +192,40 @@ angular
             $scope.goProfile = function () {
                 $state.go('managment.profile', {clubId: $stateParams.clubId, role: $stateParams.role});
             };
+
+
+            /* Functions that handels PO permissions to a club */
+
+            $scope.isEmpty = function () {
+                if ($scope.selectedUsers.length > 0)
+                    return false;
+                else
+                    return true;
+            };
+
+            function getUsers(searchText) {
+                var one = $q.defer();
+                var users = [];
+                UsersRef
+                        .orderByChild('phone')
+                        .startAt(searchText)
+                        .endAt(searchText + "\uf8ff")
+                        .once('value', function (snapshot) {
+                            snapshot.forEach(function (childSnapshot) {
+                                rolesRef.child(childSnapshot.key).child(currentClub.$id).child('role').once("value", function (snapshot) {
+
+                                    if (snapshot.val() === null)
+                                        users.push({"key": childSnapshot.key, "name": childSnapshot.val().first_name + " " + childSnapshot.val().last_name});
+                                    one.resolve(users);
+                                });
+                            });
+                        });
+                return one.promise;
+            }
+
+            $scope.updateUsers = function (searchText) {
+                var results = searchText ? getUsers(searchText) : [];
+                return results;
+            };
+
         });
