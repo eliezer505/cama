@@ -1,7 +1,7 @@
 (function () {
 
     angular.module('app').
-            service("ROLES", function ($firebaseObject, $firebaseArray, Auth, $q) {
+            service("ROLES", function ( Auth, $q) {
                 if (Auth) {
                     var rolesRef = firebase.database().ref('roles');
 

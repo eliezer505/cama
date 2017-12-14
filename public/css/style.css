@@ -821,7 +821,7 @@ mdp-date-picker button md-icon,mdp-time-picker button md-icon{
 }
 
 .logo-style{
-  height: 36px;
+  height: 30px;
     width: 100%;
     background-position: center!important;
     background-size: contain!important;
@@ -952,4 +952,41 @@ transform: translate3d(-50%, 0, 0);
     -webkit-border-radius: 100% 100% 100% 100%;
     border: 3px solid #91949a;
     padding: 5px;
+}
+
+.md-chips {
+    padding: 0 !important;
+    font-size: 12px !important;
+}
+
+.md-chips md-chip{
+    float: right !important;
+}
+
+#po-permision{
+    display: flex !important;
+    box-shadow: none !important;
+    color: rgba(0,0,0,0.87) !important;
+    border-color: rgba(0,0,0,0.12) !important;
+    border-width: 0 0 1px !important;
+    border-radius: 0 !important;
+    border-style: solid !important;
+}
+
+.md-chips.md-altTheme-theme .md-chips.md-focused {
+
+    border-color: rgb(103,58,183) !important;
+}
+
+#po-permision .md-chips .md-chip-input-container{
+    margin : 0 !important;
+}
+
+md-chips.md-altTheme-theme .md-chips{
+    box-shadow: none !important;
+}
+
+.md-chips md-chip {
+
+    margin: 8px 0 0 8px !important;
 }

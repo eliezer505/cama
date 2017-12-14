@@ -8,12 +8,14 @@ angular
             $scope.selectedItem = null;
             $scope.searchText = null;
 
-            if ($scope.club.po.length > 0)
+            if ($scope.club.po && $scope.club.po.length > 0)
                 $scope.selectedUsers = $scope.club.po;
             else
                 $scope.selectedUsers = [];
 
-            var po_removed = [];
+            var po_removed = [];                // use to disable po the dis granted permmision to a club
+            var po_updated = false;             // used to check if po permision updated
+
             var UsersRef = firebase.database().ref('users');
 
             $scope.image2 = {};
@@ -25,23 +27,62 @@ angular
 
             function update_po_role()
             {
-                var rolesRef = root.child('roles');
-                $scope.selectedUsers.forEach(function (item) {
-                    var userRef = rolesRef.child(item.key);
-                    var newClubRole = userRef.child($scope.club.$id);
-                    //check what permision user have in club, if not assign PO permision
-                    newClubRole.once("value", function (snapshot) {
-                        if (snapshot.val() === null)
-                            newClubRole.update({"role": 3});
-                    });
-                    //check what permision user have, if not assign PO permision
-                    var usersRef = root.child('users').child(item.key).child('role');
-                    usersRef.once("value", function (snapshot) {
+                if (po_updated) {
+                    var clubRef = root.child('clubes');
+                    var rolesRef = root.child('roles');
+                    $scope.club.po = $scope.selectedUsers;
+                    $scope.selectedUsers.forEach(function (item) {
+                        var userRef = rolesRef.child(item.key);
+                        var newClubRole = userRef.child($scope.club.$id);
+                        //check what permision user have in club, if not assign PO permision
+                        newClubRole.once("value", function (snapshot) {
+                            if (snapshot.val() === null || (snapshot.val().active === false && snapshot.val().role === 3))
+                              
+                            clubRef.child($scope.club.$id).child('po').child(item.key).once("value", function (snapshot) {
+                            console.log(snapshot.val())
 
-                        if (snapshot.val() === null)
-                            usersRef.update({"role": 3});
+                            });
+
+                            newClubRole.update({
+                                role: 3,
+                                active: true
+                            });
+                        });
+                        //check what permision user have, if not assign PO permision
+                        var usersRef = root.child('users').child(item.key).child('role');
+                        usersRef.once("value", function (snapshot) {
+
+                            if (snapshot.val() === null)
+                                usersRef.update({"role": 3});
+                        });
                     });
-                });
+                    console.log(po_removed);
+                    po_removed.forEach(function (item) {
+                        console.log(item);
+                        var userRef = rolesRef.child(item.key);
+                        var newClubRole = userRef.child($scope.club.$id);
+                        //check what permision user have in club, if not assign PO permision
+                        newClubRole.once("value", function (snapshot) {
+
+                            if (snapshot.val().active === true && snapshot.val().role === 3)
+                                newClubRole.update({
+                                    role: 3,
+                                    active: false
+                                });
+                        });
+
+                        // still need to take care in user role in the users node ( Avner remember to deal with it).
+
+                        //check what permision user have, if not assign PO permision
+//                    var usersRef = root.child('users').child(item.key).child('role');
+//                    usersRef.once("value", function (snapshot) {
+//
+//                        if (snapshot.val() === null)
+//                            usersRef.update({"role": 3});
+//                    });
+                    });
+
+                }
             }
 
 
@@ -55,6 +96,7 @@ angular
                         var cTime = new Date();
                         $scope.club.open = cTime.getTime();
                         $scope.club.$save().then(function () {
+                            update_po_role();
                             $clubToast.show('פרופיל המועדון עודכן', 'clubProfile', 'success');
                         }, function (error) {
                             $clubToast.show('חלה שגיאה בעדכון!', 'clubProfile', 'error');
@@ -70,6 +112,7 @@ angular
                             var cTime = new Date();
                             $scope.club.open = cTime.getTime();
                             $scope.club.$save().then(function () {
+                                update_po_role();
                                 $clubToast.show('פרופיל המועדון עודכן', 'clubProfile', 'success');
                             }, function (error) {
                                 $clubToast.show('חלה שגיאה בעדכון!', 'clubProfile', 'error');
@@ -95,6 +138,7 @@ angular
                             var cTime = new Date();
                             $scope.club.open = cTime.getTime();
                             $scope.club.$save().then(function () {
+                                update_po_role();
                                 $clubToast.show('פרופיל המועדון עודכן', 'clubProfile', 'success');
                             }, function (error) {
                                 $clubToast.show('חלה שגיאה בעדכון!', 'clubProfile', 'error');
@@ -127,10 +171,15 @@ angular
                             return a === b;
                         }).length === 0;
                     });
+
                     if (diff.length === 1) {
                         po_removed.push(diff[0]);
+                        po_updated = true;
                     }
+                } else if (angular.isArray(oldVal) && oldVal.length < newVal.length) {
+                    po_updated = true;
                 }
+
             });
 
             $scope.$watch('image2', function () {
@@ -212,9 +261,9 @@ angular
                         .endAt(searchText + "\uf8ff")
                         .once('value', function (snapshot) {
                             snapshot.forEach(function (childSnapshot) {
-                                rolesRef.child(childSnapshot.key).child(currentClub.$id).child('role').once("value", function (snapshot) {
+                                rolesRef.child(childSnapshot.key).child(currentClub.$id).once("value", function (snapshot) {
 
-                                    if (snapshot.val() === null)
+                                    if (snapshot.val() === null || (snapshot.val().active === false && snapshot.val().role === 3))
                                         users.push({"key": childSnapshot.key, "name": childSnapshot.val().first_name + " " + childSnapshot.val().last_name});
                                     one.resolve(users);
                                 });
