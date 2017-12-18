@@ -5,7 +5,7 @@
                 if (Auth) {
 
                     var ClubesRef = firebase.database().ref('clubes');
-                     var ClubPOList = firebase.database().ref('clubPO');
+                    var ClubPOList = firebase.database().ref('clubPO');
                     var array = null;
 //                    		https://codepen.io/elliotmendiola/pen/JNYoNj	               
 
@@ -66,19 +66,30 @@
 
 
                     this.GetClubPOActive = function (clubKey) {
-                        var one = $q.defer();
-                        var club = $firebaseArray(ClubPOList.child(clubKey));
 
-                        club.$loaded().then(function () {
-                              club.forEach(function (poInClub) {  
-                                  console.log(poInClub);
-                              })  ;       
+                        ClubPOList.child(clubKey).once('value', function (snapshot) {
+                            snapshot.forEach(function (childSnapshot) {
+                                console.log( childSnapshot.key);
+                               console.log( childSnapshot.val());
+                                // ...
+                            });
+                            return [];
+                        });
+
 //
-//                        if (poInClub.val().active === true)
-//                            $scope.selectedUsers.push({"key": poInClub.key, "name": poInClub.val().first_name + " " + poInClub.val().last_name});
-//                      
-                    });
-                            
+//                        var one = $q.defer();
+//                        var club = $firebaseArray(ClubPOList.child(clubKey));
+//
+//                        club.$loaded().then(function () {
+//                            club.forEach(function (poInClub) {
+//                                console.log(poInClub);
+//                            });
+////
+////                        if (poInClub.val().active === true)
+////                            $scope.selectedUsers.push({"key": poInClub.key, "name": poInClub.val().first_name + " " + poInClub.val().last_name});
+////                      
+//                        });
+
 //                            one.resolve(club);
 //                        });
 //                        // Avner remmber that you didn't handle errores in load userr object. For later add catch

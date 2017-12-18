@@ -262,6 +262,12 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                             return $q.reject({code: 'MANAGMENT'});
                         } else
                             return CLUBES.GetOneClub($stateParams.clubId);
+                    },
+                    clubPO: function ($stateParams, CLUBES, $q) {
+                        if (!$stateParams.clubId || !$stateParams.role) {
+                            return $q.reject({code: 'MANAGMENT'});
+                        } else
+                            return CLUBES.GetClubPOActive($stateParams.clubId);
                     }
                 },
                 controller: "managmentProfileCtrl"

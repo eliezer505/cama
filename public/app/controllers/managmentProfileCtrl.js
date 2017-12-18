@@ -1,12 +1,13 @@
 angular
         .module('app')
-        .controller('managmentProfileCtrl', function ($scope, $timeout, $clubToast, $state, $stateParams, currentClub, $q,CLUBES) {
-
+        .controller('managmentProfileCtrl', function ($scope, $timeout, $clubToast, $state, $stateParams, currentClub, $q,clubPO) {
+            console.log(clubPO);
+    
             var root = firebase.database().ref();
             var clubRef = root.child('clubes');
             var rolesRef = root.child('roles');
             var UsersRef = root.child('users');
-            var clubPO = root.child('clubPO');      // new node for saving the relation between club and po in club
+            var clubPORef = root.child('clubPO');      // new node for saving the relation between club and po in club
 //            var rolesRef = firebase.database().ref('roles');
             $scope.club = currentClub;
             $scope.selectedItem = null;
@@ -14,7 +15,7 @@ angular
 
             if ($scope.club.po && $scope.club.po.length > 0) {
                 
-                CLUBES.GetClubPOActive();
+//                CLUBES.GetClubPOActive();
 //               $scope.club.po.forEach(function (poInClub) {           
 //
 //                        if (poInClub.val().active === true)
@@ -52,7 +53,7 @@ angular
                         newClubRole.once("value", function (snapshot) {
 
                             if (snapshot.val() === null || (snapshot.val().active === false && snapshot.val().role === 3))
-                                clubPO.child($scope.club.$id).child(item.key).update({                            
+                                clubPORef.child($scope.club.$id).child(item.key).update({                            
                                     active: true,
                                     name: item.name
                                 });
