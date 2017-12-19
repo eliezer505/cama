@@ -25,12 +25,9 @@
                         clubObj.address.name = "";
                         clubObj.address = {placeId: "", streetNumber: "", street: "", city: "", state: "", countryCode: "", country: ""};
                         clubObj.location = {lat: "", long: ""};
-
                         var newClub = clubRef.push(clubObj);
                         return newClub;
-
                     };
-
                     this.getClubesUserAssign = function (clubes) {
 
                         var Clubes = [];
@@ -38,12 +35,8 @@
                             var ref = $firebaseObject(ClubesRef.child(key)).$loaded();
                             Clubes.push(ref);
                         });
-
                         return $q.all(Clubes);
                     };
-
-
-
                     this.GetFirstEvents = function () {
                         var currentDate = new Date();
                         currentDate.setHours(0, 0, 0, 0);
@@ -51,31 +44,29 @@
                         array = $infiniteScroll(eventQuery, 10);
                         return array;
                     };
-
-
                     this.GetOneClub = function (clubKey) {
                         var one = $q.defer();
                         var club = $firebaseObject(ClubesRef.child(clubKey));
-
                         club.$loaded().then(function () {
                             one.resolve(club);
                         });
                         // Avner remmber that you didn't handle errores in load userr object. For later add catch
                         return one.promise;
                     };
-
-
                     this.GetClubPOActive = function (clubKey) {
-
-                        ClubPOList.child(clubKey).once('value', function (snapshot) {
+                        var one = $q.defer();
+                        ClubPOList.child(clubKey).once('value').then(function (snapshot) {
+                            var users = [];
                             snapshot.forEach(function (childSnapshot) {
-                                console.log( childSnapshot.key);
-                               console.log( childSnapshot.val());
+                                if (childSnapshot.val().active)
+                                    users.push({"key": childSnapshot.key, "name": childSnapshot.val().name});
                                 // ...
                             });
-                            return [];
+                            $q.all(users).then(function (values) {
+                                one.resolve(values);
+                            });
                         });
-
+                        return one.promise;
 //
 //                        var one = $q.defer();
 //                        var club = $firebaseArray(ClubPOList.child(clubKey));
@@ -95,20 +86,17 @@
 //                        // Avner remmber that you didn't handle errores in load userr object. For later add catch
 //                        return one.promise;
                     };
-
+                    
                     this.GetClubesNearBy = function () {
                         var one = $q.defer();
                         var clubes = $firebaseArray(ClubesRef);
-
                         clubes.$loaded().then(function () {
                             one.resolve(clubes);
                         });
                         // Avner remmber that you didn't handle errores in load userr object. For later add catch
                         return one.promise;
                     };
-
                 }
                 ;
-
             });
 })(); 

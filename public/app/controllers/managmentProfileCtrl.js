@@ -1,8 +1,8 @@
 angular
         .module('app')
-        .controller('managmentProfileCtrl', function ($scope, $timeout, $clubToast, $state, $stateParams, currentClub, $q,clubPO) {
-            console.log(clubPO);
-    
+        .controller('managmentProfileCtrl', function ($scope, $timeout, $clubToast, $state, $stateParams, currentClub, $q, clubPO) {
+
+
             var root = firebase.database().ref();
             var clubRef = root.child('clubes');
             var rolesRef = root.child('roles');
@@ -13,22 +13,11 @@ angular
             $scope.selectedItem = null;
             $scope.searchText = null;
 
-            if ($scope.club.po && $scope.club.po.length > 0) {
-                
-//                CLUBES.GetClubPOActive();
-//               $scope.club.po.forEach(function (poInClub) {           
-//
-//                        if (poInClub.val().active === true)
-//                            $scope.selectedUsers.push({"key": poInClub.key, "name": poInClub.val().first_name + " " + poInClub.val().last_name});
-//                      
-//                    });
-//           
-//
-//            $scope.selectedUsers = $scope.club.po;
-            } else
-                $scope.selectedUsers = [];
+
+            $scope.selectedUsers = clubPO;
 
             var po_removed = [];                // use to disable po the dis granted permmision to a club
+            var po_added = [];                // use to add new po to granted permmision to a club
             var po_updated = false;             // used to check if po permision updated
 
 
@@ -45,23 +34,25 @@ angular
             {
                 if (po_updated) {
 
-                    $scope.club.po = $scope.selectedUsers;
-                    $scope.selectedUsers.forEach(function (item) {
+
+                    po_added.forEach(function (item) {
                         var userRef = rolesRef.child(item.key);
                         var newClubRole = userRef.child($scope.club.$id);
                         //check what permision user have in club, if not assign PO permision
                         newClubRole.once("value", function (snapshot) {
 
                             if (snapshot.val() === null || (snapshot.val().active === false && snapshot.val().role === 3))
-                                clubPORef.child($scope.club.$id).child(item.key).update({                            
+                            {
+                                clubPORef.child($scope.club.$id).child(item.key).update({
                                     active: true,
                                     name: item.name
                                 });
 
-                            newClubRole.update({
-                                role: 3,
-                                active: true
-                            });
+                                newClubRole.update({
+                                    role: 3,
+                                    active: true
+                                });
+                            }
                         });
                         //check what permision user have, if not assign PO permision
                         var usersRef = UsersRef.child(item.key).child('role');
@@ -71,7 +62,8 @@ angular
                                 usersRef.update({"role": 3});
                         });
                     });
-                    console.log(po_removed);
+
+                  
                     po_removed.forEach(function (item) {
                         console.log(item);
                         var userRef = rolesRef.child(item.key);
@@ -82,6 +74,17 @@ angular
                             if (snapshot.val().active === true && snapshot.val().role === 3)
                                 newClubRole.update({
                                     role: 3,
+                                    active: false
+                                });
+                        });
+
+
+
+
+                        clubPORef.child($scope.club.$id).child(item.key).once("value", function (snapshot) {
+
+                            if (snapshot.val().active)
+                                clubPORef.child($scope.club.$id).child(item.key).update({
                                     active: false
                                 });
                         });
@@ -226,7 +229,21 @@ angular
                         po_updated = true;
                     }
                 } else if (angular.isArray(oldVal) && oldVal.length < newVal.length) {
-                    po_updated = true;
+                    // Find the item(s) in oldVal that does
+                    // not exist anymore in newVal.
+                    var diff = newVal.filter(function (a) {
+                        return oldVal.filter(function (b) {
+                            return a === b;
+                        }).length === 0;
+                    });
+
+                    if (diff.length === 1) {
+                        po_added.push(diff[0]);
+                        po_updated = true;
+                    }
+
+
+
                 }
 
             });
