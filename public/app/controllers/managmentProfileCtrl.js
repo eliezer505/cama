@@ -4,7 +4,7 @@ angular
 
 
             var root = firebase.database().ref();
-            var clubRef = root.child('clubes');
+//            var clubRef = root.child('clubes');
             var rolesRef = root.child('roles');
             var UsersRef = root.child('users');
             var clubPORef = root.child('clubPO');      // new node for saving the relation between club and po in club
@@ -63,7 +63,7 @@ angular
                         });
                     });
 
-                  
+
                     po_removed.forEach(function (item) {
                         console.log(item);
                         var userRef = rolesRef.child(item.key);
@@ -78,9 +78,6 @@ angular
                                 });
                         });
 
-
-
-
                         clubPORef.child($scope.club.$id).child(item.key).once("value", function (snapshot) {
 
                             if (snapshot.val().active)
@@ -90,14 +87,6 @@ angular
                         });
 
                         // still need to take care in user role in the users node ( Avner remember to deal with it).
-
-                        //check what permision user have, if not assign PO permision
-//                    var usersRef = root.child('users').child(item.key).child('role');
-//                    usersRef.once("value", function (snapshot) {
-//
-//                        if (snapshot.val() === null)
-//                            usersRef.update({"role": 3});
-//                    });
                     });
 
                 }
@@ -109,70 +98,42 @@ angular
                 console.log($scope.clubForm.$valid);
                 if ($scope.clubForm.$valid) {
                     $scope.upload = true;
-                    if (angular.equals($scope.image2, {}) && angular.equals($scope.imageLogo, {})) {
-                        $scope.club.active = true;
-                        var cTime = new Date();
-                        $scope.club.open = cTime.getTime();
-                        $scope.club.$save().then(function () {
-                            update_po_role();
-                            $clubToast.show('פרופיל המועדון עודכן', 'clubProfile', 'success');
-                        }, function (error) {
-                            $clubToast.show('חלה שגיאה בעדכון!', 'clubProfile', 'error');
-                            console.log(error);
-                        });
-                    } else if (!angular.equals($scope.image2, {}) && angular.equals($scope.imageLogo, {})) {
+                    if (angular.equals($scope.image2, {}) && angular.equals($scope.imageLogo, {}))
+                    {
+                        saveClub();
+                        
+                    } else if (!angular.equals($scope.image2, {}) && angular.equals($scope.imageLogo, {}))
+                    {
 
                         var imagesRef = firebase.storage().ref('clubes/' + $scope.club.$id + '/profile/profile.jpg');
                         imagesRef.putString($scope.image2.resized.dataURL, 'data_url').then(function (snapshot) {
 
                             $scope.club.clubPicture = snapshot.metadata.downloadURLs[0];
-                            $scope.club.active = true;
-                            var cTime = new Date();
-                            $scope.club.open = cTime.getTime();
-                            $scope.club.$save().then(function () {
-                                update_po_role();
-                                $clubToast.show('פרופיל המועדון עודכן', 'clubProfile', 'success');
-                            }, function (error) {
-                                $clubToast.show('חלה שגיאה בעדכון!', 'clubProfile', 'error');
-                                console.log(error);
-                            });
-                            $scope.image2.file = undefined;
-                            $scope.image2.url = undefined;
-                            $scope.image2.dataURL = undefined;
-                            $scope.image2.resized.dataURL = undefined;
-                            $scope.image2.resized.type = undefined;
+                            
+                            saveClub();
+                            clearImage();
 
                         }), function (error) {
                             $clubToast.show('חלה שגיאה בהעלאת התמונה!', 'clubProfile', 'error');
                             console.log(error);
                         };
-                    } else if (angular.equals($scope.image2, {}) && !angular.equals($scope.imageLogo, {})) {
+                    } else if (angular.equals($scope.image2, {}) && !angular.equals($scope.imageLogo, {}))
+                    {
 
                         var logoRef = firebase.storage().ref('clubes/' + $scope.club.$id + '/profile/logo.jpg');
                         logoRef.putString($scope.imageLogo.resized.dataURL, 'data_url').then(function (snapshot) {
 
                             $scope.club.imageLogo = snapshot.metadata.downloadURLs[0];
-                            $scope.club.active = true;
-                            var cTime = new Date();
-                            $scope.club.open = cTime.getTime();
-                            $scope.club.$save().then(function () {
-                                update_po_role();
-                                $clubToast.show('פרופיל המועדון עודכן', 'clubProfile', 'success');
-                            }, function (error) {
-                                $clubToast.show('חלה שגיאה בעדכון!', 'clubProfile', 'error');
-                                console.log(error);
-                            });
-                            $scope.imageLogo.file = undefined;
-                            $scope.imageLogo.url = undefined;
-                            $scope.imageLogo.dataURL = undefined;
-                            $scope.imageLogo.resized.dataURL = undefined;
-                            $scope.imageLogo.resized.type = undefined;
+                            
+                            saveClub();
+                            clearLogo();
 
                         }), function (error) {
                             $clubToast.show('חלה שגיאה בהעלאת הלוגו!', 'clubProfile', 'error');
                             console.log(error);
                         };
-                    } else if (!angular.equals($scope.image2, {}) && !angular.equals($scope.imageLogo, {})) {
+                    } else if (!angular.equals($scope.image2, {}) && !angular.equals($scope.imageLogo, {}))
+                    {
 
                         var logoRef = firebase.storage().ref('clubes/' + $scope.club.$id + '/profile/logo.jpg');
                         logoRef.putString($scope.imageLogo.resized.dataURL, 'data_url').then(function (snapshot) {
@@ -182,22 +143,11 @@ angular
                             imagesRef.putString($scope.image2.resized.dataURL, 'data_url').then(function (snapshot) {
 
                                 $scope.club.clubPicture = snapshot.metadata.downloadURLs[0];
-
-                                $scope.club.active = true;
-                                var cTime = new Date();
-                                $scope.club.open = cTime.getTime();
-                                $scope.club.$save().then(function () {
-                                    update_po_role();
-                                    $clubToast.show('פרופיל המועדון עודכן', 'clubProfile', 'success');
-                                }, function (error) {
-                                    $clubToast.show('חלה שגיאה בעדכון!', 'clubProfile', 'error');
-                                    console.log(error);
-                                });
-                                $scope.imageLogo.file = undefined;
-                                $scope.imageLogo.url = undefined;
-                                $scope.imageLogo.dataURL = undefined;
-                                $scope.imageLogo.resized.dataURL = undefined;
-                                $scope.imageLogo.resized.type = undefined;
+                                
+                                saveClub();
+                                clearImage();
+                                clearLogo();
+                                
                             }), function (error) {
                                 $clubToast.show('חלה שגיאה בהעלאת התמונה!', 'clubProfile', 'error');
                                 console.log(error);
@@ -206,12 +156,43 @@ angular
                             $clubToast.show('חלה שגיאה בהעלאת הלוגו!', 'clubProfile', 'error');
                             console.log(error);
                         };
-                    } else {
+                    } else
+                    {
 
                     }
                     $scope.upload = false;
                 }
             };
+
+            function clearImage() {
+                $scope.image2.file = undefined;
+                $scope.image2.url = undefined;
+                $scope.image2.dataURL = undefined;
+                $scope.image2.resized.dataURL = undefined;
+                $scope.image2.resized.type = undefined;
+            }
+
+            function clearLogo() {
+                $scope.imageLogo.file = undefined;
+                $scope.imageLogo.url = undefined;
+                $scope.imageLogo.dataURL = undefined;
+                $scope.imageLogo.resized.dataURL = undefined;
+                $scope.imageLogo.resized.type = undefined;
+            }
+
+            function saveClub()
+            {
+                $scope.club.active = true;
+                var cTime = new Date();
+                $scope.club.open = cTime.getTime();
+                $scope.club.$save().then(function () {
+                    update_po_role();
+                    $clubToast.show('פרופיל המועדון עודכן', 'clubProfile', 'success');
+                }, function (error) {
+                    $clubToast.show('חלה שגיאה בעדכון!', 'clubProfile', 'error');
+                    console.log(error);
+                });
+            }
 
             $scope.$watchCollection('selectedUsers', function (newVal, oldVal) {
                 // A chip has been removed if oldVal is greater in size than newVal
@@ -241,9 +222,6 @@ angular
                         po_added.push(diff[0]);
                         po_updated = true;
                     }
-
-
-
                 }
 
             });

@@ -67,24 +67,9 @@
                             });
                         });
                         return one.promise;
-//
-//                        var one = $q.defer();
-//                        var club = $firebaseArray(ClubPOList.child(clubKey));
-//
-//                        club.$loaded().then(function () {
-//                            club.forEach(function (poInClub) {
-//                                console.log(poInClub);
-//                            });
-////
-////                        if (poInClub.val().active === true)
-////                            $scope.selectedUsers.push({"key": poInClub.key, "name": poInClub.val().first_name + " " + poInClub.val().last_name});
-////                      
-//                        });
 
-//                            one.resolve(club);
-//                        });
 //                        // Avner remmber that you didn't handle errores in load userr object. For later add catch
-//                        return one.promise;
+
                     };
                     
                     this.GetClubesNearBy = function () {
