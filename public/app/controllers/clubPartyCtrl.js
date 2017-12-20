@@ -19,7 +19,7 @@ angular.module('app').controller('clubPartyCtrl',
                 $mdDialog.show(confirm).then(function () {
                     console.log(eventId);
                     $scope.status = 'ok.';
-                    EVENTS.addUserToEvent();
+                    EVENTS.addUserToEvent(eventId,userObj);
                     $clubToast.show('הבקשה לרישום נשלחה', 'toaster-ancor', 'success');
                 }, function () {
                     $scope.status = 'no.';
