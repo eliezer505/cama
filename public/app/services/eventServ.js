@@ -1,10 +1,11 @@
 (function () {
 
     angular.module('app').
-            service("EVENTS", function ($firebaseObject, Auth, $infiniteScroll,$q,$firebaseArray) {
+            service("EVENTS", function ($firebaseObject, Auth, $infiniteScroll, $q, $firebaseArray) {
                 if (Auth) {
 
                     var EventsRef = firebase.database().ref('events');
+                    var EventsUsersRef = firebase.database().ref('UsersInEvent');
                     var array = null;
 //                    		https://codepen.io/elliotmendiola/pen/JNYoNj	               
 
@@ -33,8 +34,8 @@
                     };
 
                     this.getClubEvents = function (clubId) {
-                       console.log('in event');
-                       console.log(clubId);
+                        console.log('in event');
+                        console.log(clubId);
                         var one = $q.defer();
                         var events = $firebaseArray(EventsRef.child(clubId));
 
@@ -43,6 +44,13 @@
                         });
                         // Avner remmber that you didn't handle errores in load userr object. For later add catch
                         return one.promise;
+                    };
+
+                    this.addUserToEvent = function (eventId, userObj) {
+
+
+                        EventsUsersRef.child(eventId).set(userObj);
+
                     };
 
                 }

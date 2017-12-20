@@ -48,35 +48,35 @@
                 }
                 ;
 
-                this.registerUser = function (clubKey, eventKey, User) {
-
-                    var root = firebase.database().ref();
-                    var regRef = root.child('registeration');
-
-                    var clubRef = regRef.child(clubKey);
-                    var eventRef = clubRef.child(eventKey);
-                    var userRef = eventRef.child(User.$id);
-                    
-                     var regDetails = {
-                            active: false,
-                            open: "",
-                            name: "חדש",
-                            reg: true,
-                            approved:"",
-                                                         
-                           
-                            photo: "img/empty-club.jpg"
-                           
-                        };
-                    
-                    var newEvent = clubRef.push();
-                    newEvent.set(Event);
-
-
-                    var OneItemRef = $firebaseObject(UserRef.child(UserKey));
-                    console.log(OneItemRef);
-                    return $firebaseObject(OneItemRef);
-                };
+//                this.registerUser = function (clubKey, eventKey, User) {
+//
+//                    var root = firebase.database().ref();
+//                    var regRef = root.child('registeration');
+//
+//                    var clubRef = regRef.child(clubKey);
+//                    var eventRef = clubRef.child(eventKey);
+//                    var userRef = eventRef.child(User.$id);
+//                    
+//                     var regDetails = {
+//                            active: false,
+//                            open: "",
+//                            name: "חדש",
+//                            reg: true,
+//                            approved:"",
+//                                                         
+//                           
+//                            photo: "img/empty-club.jpg"
+//                           
+//                        };
+//                    
+//                    var newEvent = clubRef.push();
+//                    newEvent.set(Event);
+//
+//
+//                    var OneItemRef = $firebaseObject(UserRef.child(UserKey));
+//                    console.log(OneItemRef);
+//                    return $firebaseObject(OneItemRef);
+//                };
 
 
             });

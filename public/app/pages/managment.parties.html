@@ -20,7 +20,7 @@
     </div>
 
     <md-content>
-        <div layout="row" class="club-sub-head" ng-show="role < 3">
+        <div layout="row" class="club-sub-head" >
             <div flex="20">
                 <span class="club-name" >תאריך</span>
             </div>
@@ -33,23 +33,9 @@
             <div flex="15">
                 <span class="event-approved">אושרו</span>
             </div>
-            <div flex="10" ng-show="role < 3">
+            <div flex="10">
                 <span class="club-reg-btn1">עריכה</span>
             </div>
-        </div>
-        <div layout="row" class="club-sub-head" ng-show="role === 3">
-            <div flex="20">
-                <span class="club-name" >תאריך</span>
-            </div>
-            <div flex="40">
-                <span class="club-name" >שם הליין</span>
-            </div>
-            <div flex="20">
-                <span class="event-panding" >נרשמו</span>
-            </div>
-            <div flex="20">
-                <span class="event-approved">אושרו</span>
-            </div>           
         </div>
     </md-content>
 </md-toolbar>
@@ -58,7 +44,7 @@
     <div ng-repeat="event in events" >	
         <hr ng-if="$first" class="club-hr-no-top" >
         <hr ng-if="!$first" class="club-hr">
-        <div layout="row" class="club-list"  ng-show="role < 3">
+        <div layout="row" class="club-list">
 
             <div flex="20" layout="row" style="margin-top: 8px; margin-bottom: 8px;">
                 <span class="club-name" >{{event.eDate| date:'dd/MM/yy'}}</span>
@@ -86,27 +72,12 @@
 
             </div>          
         </div>
-        <div layout="row" class="club-list"  ng-show="role === 3">
-
-            <div flex="25">
-                <span class="club-name" >{{event.eDate| date:'dd/MM/yy'}}</span>
-            </div>
-            <div flex="35">
-                <span class="club-name" >{{event.name}}</span>
-            </div>
-            <div flex="20">
-                <span class="club-name circle-padding" style="margin: 0px !important; background-color: orange !important;" >{{event.panding}}</span>
-            </div>
-            <div flex="20">
-                <span class="event-approved circle-approved" style="margin: 0px !important; background-color: green !important;">{{event.approved}} </span>
-            </div>                    
-        </div>
         <hr ng-if="$last" class="club-hr-no-bottom">
     </div>
 
 </div>
 
-<md-button class="md-fab  md-mini md-fab-bottom-right fixed-fab-right" ng-click="newEvent()" ng-show="role < 3 && partiesShow">
+<md-button class="md-fab  md-mini md-fab-bottom-right fixed-fab-right" ng-click="newEvent()" ng-show="partiesShow">
     <md-icon class="material-icons">
         <i class="material-icons">&#xE145;</i>
     </md-icon>

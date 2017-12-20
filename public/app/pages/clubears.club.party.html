@@ -20,26 +20,26 @@
 </md-content>
 
 <div scroll-with-headline id="managment-content" flex style="overflow: auto; position: relative !important;" ng-clock>
-    <div ng-repeat="club in clubes" class="rtl" >	
+    <div ng-repeat="event in clubEvents" class="rtl" >	
         <hr ng-if="$first" class="club-hr-no-top" >
         <hr ng-if="!$first" class="club-hr">
         <div layout="row" class="club-list">
 
             <div flex="25">
-                <span class="club-name" >{{club.eDate| date:'dd/MM/yy'}}</span>
+                <span class="club-name" >{{event.eDate| date:'dd/MM/yy'}}</span>
             </div>
             <div flex="35">
-                <span class="club-name" >{{club.name}}</span>
+                <span class="club-name" >{{event.name}}</span>
             </div>
             <div flex="15">
-                <span class="club-name" >+{{club.minAge}}</span>
+                <span class="club-name" >+{{event.minAge}}</span>
             </div>
             <div flex="15">
-                <span class="event-approved">{{club.theme}} </span>
+                <span class="event-approved">{{event.theme}} </span>
             </div>
             <div flex="10">
 
-                <md-icon class="material-icons" ng-click="showConfirm()">
+                <md-icon class="material-icons" ng-click="showConfirm(eventId)">
                     <span class="club-reg-btn1"><i class="material-icons">&#xE89C;</i></span>
                 </md-icon>
 
