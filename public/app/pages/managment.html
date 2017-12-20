@@ -35,17 +35,13 @@
 					<p class="rtl" >
 						{{club.name}}
 					</p>
-
+					<div class="md-secondary">
+						<img style='width: 60%' ng-src="{{club.imageLogo}}">
+					</div>
 				</md-list-item>
 								<md-divider></md-divider>
   		</md-list>
-    <md-card ng-repeat="club in clubes" ng-hide="checkRole(club)" style="border-radius: 60px !important" ng-click="editClub(club)">
-        <md-card-title>
-            <md-card-title-text>
-                <span class="md-headline">{{club.name}}</span>
-            </md-card-title-text>
-        </md-card-title>
-    </md-card>
+
 
 </md-content>
 
