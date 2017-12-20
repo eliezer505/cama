@@ -239,8 +239,8 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
                     },
-                    currentEvent: function ($stateParams, EVENTS, $q) {
-                        if (!$stateParams.clubId || !$stateParams.role) {
+                    usersInEvent: function ($stateParams, EVENTS, $q) {
+                        if (!$stateParams.clubId || !$stateParams.role || !$stateParams.eventId) {
                             return $q.reject({code: 'MANAGMENT'});
                         } else
                             return EVENTS.GetOneEvent($stateParams.clubId, $stateParams.eventId);

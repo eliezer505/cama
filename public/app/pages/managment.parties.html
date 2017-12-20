@@ -68,13 +68,13 @@
             </div>
             <div flex="15">
                 <md-button class="md-fab md-mini" ng-click="panding(event.$id)" style="margin: 0px !important; background-color: orange !important;" aria-label="Eat cake">
-                    {{event.minAge}}
+                    {{event.panding}}
                 </md-button> 
                 <!--<span class="club-name circle-padding" >{{event.price}}</span>-->
             </div>
             <div flex="15">
                 <md-button class="md-fab md-mini" style="margin: 0px !important; background-color: green !important;" aria-label="Eat cake">
-                    {{event.minAge}}
+                    {{event.approved}}
                 </md-button>
                 <!--<span class="event-approved circle-approved ">{{event.minAge}} </span>-->
             </div>
@@ -95,10 +95,10 @@
                 <span class="club-name" >{{event.name}}</span>
             </div>
             <div flex="20">
-                <span class="club-name circle-padding" style="margin: 0px !important; background-color: orange !important;" >{{event.minAge}}</span>
+                <span class="club-name circle-padding" style="margin: 0px !important; background-color: orange !important;" >{{event.panding}}</span>
             </div>
             <div flex="20">
-                <span class="event-approved circle-approved" style="margin: 0px !important; background-color: green !important;">{{event.minAge}} </span>
+                <span class="event-approved circle-approved" style="margin: 0px !important; background-color: green !important;">{{event.approved}} </span>
             </div>                    
         </div>
         <hr ng-if="$last" class="club-hr-no-bottom">
