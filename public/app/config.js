@@ -102,16 +102,20 @@
 //            });
             $rootScope.$on('$stateChangeStart', function (evt, toState, toParams, fromState, fromParams) {
                 console.log("$stateChangeStart " + fromState.name + JSON.stringify(fromParams) + " -> " + toState.name + JSON.stringify(toParams));
+//                if (fromState.name==="managment.parties" && toState.name==="managment" && !toParams.clubId && !toParams.role)
+//                    $state.go('managment');
                 $rootScope.spinnerActive = true;
             });
             $rootScope.$on('$stateChangeSuccess', function (evt, toState, toParams, fromState, fromParams) {
                 console.log("$stateChangeSuccess " + fromState.name + JSON.stringify(fromParams) + " -> " + toState.name + JSON.stringify(toParams));
+                if ((fromState.name === "" && toState.name === "managment") ||(fromState.name === "managment.parties" && toState.name === "managment") || (fromState.name === "managment.profile" && toState.name === "managment"))
+                    $state.reload();
                 $rootScope.spinnerActive = false;
             });
             $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
                 console.log("$stateChangeError " + fromState.name + JSON.stringify(fromParams) + " -> " + toState.name + JSON.stringify(toParams));
                 $rootScope.spinnerActive = false;
-                
+
                 if (angular.isObject(error) && angular.isString(error.code)) {
                     console.log(error.code);
                     switch (error.code) {
@@ -120,9 +124,9 @@
                             console.log('auth');
                             $state.go('login');
                             break;
-                         case 'MANAGMENT':
+                        case 'MANAGMENT':
                             $state.go('managment');
-                            break;    
+                            break;
                         default:
                             // set the error object on the error state and go there
                             $state.get('error').error = error;

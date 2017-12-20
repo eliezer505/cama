@@ -9,13 +9,13 @@
                         var one = $q.defer();
 
                         rolesRef.child(userId).once('value').then(function (snapshot) {
-                            var clubes = [];
+                            var clubes = {};                
                             snapshot.forEach(function (childSnapshot) {
                                 if (childSnapshot.val().active){
                                     clubes[childSnapshot.key]= { "role": childSnapshot.val().role};
                                     }
                             });
-                            $q.all(clubes).then(function (values) {
+                            $q.all(clubes).then(function (values) {                         
                                 one.resolve(values);
                             });
                         });
