@@ -990,3 +990,7 @@ md-chips.md-altTheme-theme .md-chips{
 
     margin: 8px 0 0 8px !important;
 }
+
+footer .md-button{
+    min-width: 0px;
+}

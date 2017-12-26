@@ -261,7 +261,6 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     currentClub: function ($stateParams, CLUBES, $q,$state) {
                         if (!$stateParams.clubId || !$stateParams.role) {
                             return $q.reject({code: 'MANAGMENT'});
-//  $state.go('managment');
                         } else
                             return CLUBES.GetOneClub($stateParams.clubId);
                     },
@@ -275,7 +274,33 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                 },
                 controller: "managmentProfileCtrl"
             })
-
+            .state('managment.permmisions', {
+                url: "/permmisions",
+                templateUrl: "app/pages/managment.permmisions.html",
+                params: {
+                    clubId: null,
+                    role: null
+                },
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                    currentClub: function ($stateParams, CLUBES, $q,$state) {
+                        if (!$stateParams.clubId || !$stateParams.role) {
+                            return $q.reject({code: 'MANAGMENT'});
+                        } else
+                            return CLUBES.GetOneClub($stateParams.clubId);
+                    },
+                    clubPO: function ($stateParams, CLUBES, $q,$state) {
+                        if (!$stateParams.clubId || !$stateParams.role) {
+//                              $state.go('managment');
+                            return $q.reject({code: 'MANAGMENT'});
+                        } else
+                            return CLUBES.GetClubPOActive($stateParams.clubId);
+                    }
+                },
+                controller: "managmentPermmisionsCtrl"
+            })
             .state('superuser', {
                 url: "/superuser",
                 templateUrl: "app/pages/superuser.html",

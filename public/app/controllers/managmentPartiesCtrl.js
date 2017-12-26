@@ -28,12 +28,14 @@ angular.module('app').controller('managmentPartiesCtrl',
                 $state.go('managment.parties.newevent', {clubId: $stateParams.clubId, role: $stateParams.role});
             };
 
-            $scope.goParties = function () {
-                $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});
-            };
-
             $scope.goProfile = function () {
                 $state.go('managment.profile', {clubId: $stateParams.clubId, role: $stateParams.role});
             };
+
+            $scope.goPermissions = function () {
+                $state.go('managment.permmisions', {clubId: $stateParams.clubId, role: $stateParams.role});
+            };
+
+            
         });
   

@@ -282,9 +282,10 @@ angular
                 $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});
             };
 
-            $scope.goProfile = function () {
-                $state.go('managment.profile', {clubId: $stateParams.clubId, role: $stateParams.role});
+            $scope.goPermissions = function () {
+                $state.go('managment.permmisions', {clubId: $stateParams.clubId, role: $stateParams.role});
             };
+
 
 
             /* Functions that handels PO permissions to a club */

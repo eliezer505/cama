@@ -1,0 +1,51 @@
+<md-toolbar style="color:white;" id="managment-toolbar" ng-class="{'bottom-shadow': boolChangeClass}"  ng-show="partiesShow">
+    <div class="md-toolbar-tools gradient">
+        <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+            <md-tooltip>
+                Side Panel
+            </md-tooltip>
+            <md-icon class="md-default-theme" class="material-icons">
+                &#xE5D2;
+            </md-icon>
+        </md-button>
+
+        <span flex="" class="flex"></span>
+
+        <md-button class="md-icon-button" aria-label="back" ng-click="back()">
+            <md-icon class="material-icons">
+                <i class="material-icons">&#xE5C4;</i>
+            </md-icon>
+        </md-button>
+
+    </div>
+
+
+</md-toolbar>
+<div layout="column" md-theme="altTheme" class="md-primary gradient content-middle" style="color:white; height:10%;">
+    <span class="md-headline">הרשאות</span>
+</div>
+
+
+<footer  ng-show="partiesShow && role < 3">
+    <md-toolbar style="background-color:whitesmoke;">
+        <div layout="row" layout-align="center center" flex>
+            <md-button class="md-primary"  ng-disabled="!club.active">
+                הרשאות
+            </md-button>
+
+            <md-button class="md-primary" ng-click="goProfile()">
+                פרופיל
+            </md-button>
+
+            <md-button class="md-primary" ui-sref="managment.stats"  ng-disabled="!club.active">
+                סטטיסטיקות
+            </md-button>
+
+            <md-button class="md-primary font-bold" ng-click="goParties()"  ng-disabled="!club.active">
+                מסיבות והרשמות
+            </md-button>
+        </div>
+    </md-toolbar>
+</footer>
+
+<div layout="column" layout-fill ui-view ng-show="!partiesShow"></div>

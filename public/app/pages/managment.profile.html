@@ -125,41 +125,46 @@
             </div>
         </md-input-container>
     </form>
-    
-     <md-input-container class="md-block" id="po-permision">
-            <label>הוספת יחצנים</label>
-            <md-chips ng-model="selectedUsers" md-autocomplete-snap>
-                <md-autocomplete 
-                    md-selected-item="selectedItem" 
-                    md-search-text="searchText" 
-                    md-items="user in updateUsers(searchText)"                                   
-                    md-item-text="user.name" 
-                    md-min-length="1"           
-                    md-no-cache="true"
-                    md-delay="150">  
 
-                    <md-item-template>
-                        <span md-highlight-text="searchText" md-highlight-flags="^i" ng-bind="user.name">{{user.name}}</span>
+    <md-input-container class="md-block" id="po-permision">
+        <label>הוספת יחצנים</label>
+        <md-chips ng-model="selectedUsers" md-autocomplete-snap>
+            <md-autocomplete 
+                md-selected-item="selectedItem" 
+                md-search-text="searchText" 
+                md-items="user in updateUsers(searchText)"                                   
+                md-item-text="user.name" 
+                md-min-length="1"           
+                md-no-cache="true"
+                md-delay="150">  
 
-                    </md-item-template>
-                    <md-not-found>
-                       המשתמש אינו במערכת!     
-                    </md-not-found>
-                </md-autocomplete>
-                <md-chip-template>
-                    <span>
-                        <strong>{{$chip.name}}</strong>
-                    </span>
-                </md-chip-template>
-            </md-chips>  
-        </md-input-container>
-    
-    
+                <md-item-template>
+                    <span md-highlight-text="searchText" md-highlight-flags="^i" ng-bind="user.name">{{user.name}}</span>
+
+                </md-item-template>
+                <md-not-found>
+                    המשתמש אינו במערכת!     
+                </md-not-found>
+            </md-autocomplete>
+            <md-chip-template>
+                <span>
+                    <strong>{{$chip.name}}</strong>
+                </span>
+            </md-chip-template>
+        </md-chips>  
+    </md-input-container>
+
+
 </md-content>
 
 <footer>
     <md-toolbar style="background-color:whitesmoke;">
         <div layout="row" layout-align="center center" flex>
+            
+            <md-button class="md-primary font-bold md-disabled" ng-disabled="!club.active" ng-click="goPermissions()">
+                הרשאות
+            </md-button>
+
             <md-button class="md-primary font-bold md-disabled" >
                 פרופיל
             </md-button>

@@ -86,6 +86,10 @@
 <footer  ng-show="partiesShow && role < 3">
     <md-toolbar style="background-color:whitesmoke;">
         <div layout="row" layout-align="center center" flex>
+            <md-button class="md-primary" ng-click="goPermissions()">
+                הרשאות
+            </md-button>
+
             <md-button class="md-primary" ng-click="goProfile()">
                 פרופיל
             </md-button>
@@ -94,7 +98,7 @@
                 סטטיסטיקות
             </md-button>
 
-            <md-button class="md-primary font-bold" ng-click="goParties()">
+            <md-button class="md-primary font-bold">
                 מסיבות והרשמות
             </md-button>
         </div>
