@@ -1,6 +1,6 @@
 angular
         .module('app')
-        .controller('managmentPermmisionsCtrl', function ($scope, $timeout, $clubToast, $state, $stateParams, currentClub, $q, clubPO) {
+        .controller('managmentPermmisionsCtrl', function ($scope, $clubToast, $state, $stateParams, currentClub, $q, clubPO) {
 
 
             var root = firebase.database().ref();
@@ -20,14 +20,6 @@ angular
             var po_added = [];                // use to add new po to granted permmision to a club
             var po_updated = false;             // used to check if po permision updated
 
-
-
-            $scope.image2 = {};
-            $scope.imageLogo = {};
-
-            $scope.check = function () {
-                console.log($scope.club.address);
-            };
 
             // this function handle the PO permission adding and removing from chip
             function update_po_role()
@@ -164,22 +156,6 @@ angular
                 }
             };
 
-            function clearImage() {
-                $scope.image2.file = undefined;
-                $scope.image2.url = undefined;
-                $scope.image2.dataURL = undefined;
-                $scope.image2.resized.dataURL = undefined;
-                $scope.image2.resized.type = undefined;
-            }
-
-            function clearLogo() {
-                $scope.imageLogo.file = undefined;
-                $scope.imageLogo.url = undefined;
-                $scope.imageLogo.dataURL = undefined;
-                $scope.imageLogo.resized.dataURL = undefined;
-                $scope.imageLogo.resized.type = undefined;
-            }
-
             function saveClub()
             {
                 $scope.club.active = true;
@@ -226,57 +202,7 @@ angular
 
             });
 
-            $scope.$watch('image2', function () {
-                console.log($scope.image2);
-                if ($scope.image2.resized && $scope.image2.resized.dataURL) {
-                    $timeout(function () {
-                        $scope.club.clubPicture = $scope.image2.resized.dataURL;
-                        // anything you want can go here and will safely be run on the next digest.
-                    });
-                } else {
-                    console.log('in elsse');
-                    $scope.clubPicture = "img/empty-club.jpg";
-                }
-            });
-
-            $scope.$watch('imageLogo', function () {
-                if ($scope.imageLogo.resized && $scope.imageLogo.resized.dataURL) {
-                    console.log($scope.imageLogo);
-                    $timeout(function () {
-                        $scope.club.clubLogo = $scope.imageLogo.resized.dataURL;
-                        // anything you want can go here and will safely be run on the next digest.
-                    });
-                } else
-                    $scope.clubLogo = "img/empty-logo.png";
-            });
-
-            $scope.$watch('club.address.city', function () {
-                $timeout(function () {
-                    $scope.clubForm.address.$setValidity("city", $scope.club.address.city !== undefined && $scope.club.address.city !== "");
-                    $scope.$apply();
-                });
-            });
-
-            $scope.$watch('club.address.street', function () {
-                $timeout(function () {
-                    $scope.clubForm.address.$setValidity("street", $scope.club.address.street !== undefined && $scope.club.address.street !== "");
-                    $scope.$apply();
-                });
-            });
-
-            $scope.$watch('club.address.country', function () {
-                $timeout(function () {
-                    $scope.clubForm.address.$setValidity("country", $scope.club.address.country !== undefined && $scope.club.address.country !== "");
-                    $scope.$apply();
-                });
-            });
-
-            $scope.$watch('club.address.streetNumber', function () {
-                $timeout(function () {
-                    $scope.clubForm.address.$setValidity("streetNumber", $scope.club.address.streetNumber !== undefined && $scope.club.address.streetNumber !== "");
-                    $scope.$apply();
-                });
-            });
+         
 
             $scope.goParties = function () {
                 $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});

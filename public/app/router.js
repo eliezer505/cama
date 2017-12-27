@@ -285,13 +285,13 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
                     },
-                    currentClub: function ($stateParams, CLUBES, $q,$state) {
+                    currentClub: function ($stateParams, CLUBES, $q) {
                         if (!$stateParams.clubId || !$stateParams.role) {
                             return $q.reject({code: 'MANAGMENT'});
                         } else
                             return CLUBES.GetOneClub($stateParams.clubId);
                     },
-                    clubPO: function ($stateParams, CLUBES, $q,$state) {
+                    clubPO: function ($stateParams, CLUBES, $q) {
                         if (!$stateParams.clubId || !$stateParams.role) {
 //                              $state.go('managment');
                             return $q.reject({code: 'MANAGMENT'});
