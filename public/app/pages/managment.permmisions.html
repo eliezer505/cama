@@ -9,35 +9,64 @@
             </md-icon>
         </md-button>
 
-        <span flex="הרשאות" class="flex"></span>
+        <span flex="" class="flex" style="text-align: center;">הרשאות</span>
 
-        <md-button class="md-icon-button" aria-label="back" ng-click="back()">
-            <md-icon class="material-icons">
-                <i class="material-icons">&#xE5C4;</i>
-            </md-icon>
+        <md-button form="clubProfile" type="submit" class="md-icon-button" aria-label="Done" ng-click="updatePermmisions()">
+            <md-icon class="material-icons"><i class="material-icons">&#xE876;</i></md-icon>
         </md-button>
 
     </div>
 
 
 </md-toolbar>
-<md-content flex layout-padding class="rtl" md-theme="altTheme" id="managment-profile">
+<md-content flex layout-padding class="rtl" md-theme="altTheme" id="managers-permmisions">
 
+    <div class="flex" style="height: 5%"></div>
 
     <md-input-container class="md-block" id="po-permision">
-        <label>הוספת יחצנים</label>
-        <md-chips ng-model="selectedUsers" md-autocomplete-snap>
+        <label style="font-size: 25px;">הוספת מנהלים</label>
+        <md-chips ng-model="selectedManagers" md-autocomplete-snap>
             <md-autocomplete 
-                md-selected-item="selectedItem" 
+                md-selected-item="selectedManager" 
                 md-search-text="searchText" 
-                md-items="user in updateUsers(searchText)"                                   
-                md-item-text="user.name" 
+                md-items="manager in updateUsers(searchText)"                                   
+                md-item-text="manager.name" 
                 md-min-length="1"           
                 md-no-cache="true"
                 md-delay="150">  
 
                 <md-item-template>
-                    <span md-highlight-text="searchText" md-highlight-flags="^i" ng-bind="user.name">{{user.name}}</span>
+                    <span md-highlight-text="searchText" md-highlight-flags="^i" ng-bind="manager.name">{{manager.name}}</span>
+
+                </md-item-template>
+                <md-not-found>
+                    המשתמש אינו במערכת!     
+                </md-not-found>
+            </md-autocomplete>
+            <md-chip-template>
+                <span >
+                    <strong>{{$chip.name}}</strong>
+                </span>
+            </md-chip-template>
+        </md-chips>  
+    </md-input-container>
+
+    <div class="flex" style="height: 8%"></div>
+
+    <md-input-container class="md-block" id="po-permision">
+        <label style="font-size: 25px;">הוספת יחצנים</label>
+        <md-chips ng-model="selectedPOS" md-autocomplete-snap>
+            <md-autocomplete 
+                md-selected-item="selectedPO" 
+                md-search-text="searchText" 
+                md-items="po in updateUsers(searchText)"                                   
+                md-item-text="po.name" 
+                md-min-length="1"           
+                md-no-cache="true"
+                md-delay="150">  
+
+                <md-item-template>
+                    <span md-highlight-text="searchText" md-highlight-flags="^i" ng-bind="po.name">{{po.name}}</span>
 
                 </md-item-template>
                 <md-not-found>

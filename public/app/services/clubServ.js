@@ -28,7 +28,7 @@
                         var newClub = clubRef.push(clubObj);
                         return newClub;
                     };
-                    
+
                     this.getClubesUserAssign = function (clubes) {
 
                         var Clubes = [];
@@ -38,7 +38,7 @@
                         });
                         return $q.all(Clubes);
                     };
-                    
+
                     this.GetFirstEvents = function () {
                         var currentDate = new Date();
                         currentDate.setHours(0, 0, 0, 0);
@@ -46,7 +46,7 @@
                         array = $infiniteScroll(eventQuery, 10);
                         return array;
                     };
-                    
+
                     this.GetOneClub = function (clubKey) {
                         var one = $q.defer();
                         var club = $firebaseObject(ClubesRef.child(clubKey));
@@ -56,10 +56,10 @@
                         // Avner remmber that you didn't handle errores in load userr object. For later add catch
                         return one.promise;
                     };
-                    
+
                     this.GetClubPOActive = function (clubKey) {
                         var one = $q.defer();
-                        ClubPOList.child(clubKey).once('value').then(function (snapshot) {
+                        ClubPOList.child(clubKey).child("POS").once('value').then(function (snapshot) {
                             var users = [];
                             snapshot.forEach(function (childSnapshot) {
                                 if (childSnapshot.val().active)
@@ -75,7 +75,26 @@
 //                        // Avner remmber that you didn't handle errores in load userr object. For later add catch
 
                     };
-                    
+
+                    this.GetClubManagersActive = function (clubKey) {
+                        var one = $q.defer();
+                        ClubPOList.child(clubKey).child("managers").once('value').then(function (snapshot) {
+                            var users = [];
+                            snapshot.forEach(function (childSnapshot) {
+                                if (childSnapshot.val().active)
+                                    users.push({"key": childSnapshot.key, "name": childSnapshot.val().name});
+                                // ...
+                            });
+                            $q.all(users).then(function (values) {
+                                one.resolve(values);
+                            });
+                        });
+                        return one.promise;
+
+//                        // Avner remmber that you didn't handle errores in load userr object. For later add catch
+
+                    };
+
                     this.GetClubesNearBy = function () {
                         var one = $q.defer();
                         var clubes = $firebaseArray(ClubesRef);

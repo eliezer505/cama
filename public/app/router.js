@@ -291,14 +291,25 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         } else
                             return CLUBES.GetOneClub($stateParams.clubId);
                     },
-                    clubPO: function ($stateParams, CLUBES, $q) {
+                    clubPOS: function ($stateParams, CLUBES, $q) {
                         if (!$stateParams.clubId || !$stateParams.role) {
 //                              $state.go('managment');
                             return $q.reject({code: 'MANAGMENT'});
                         } else
                             return CLUBES.GetClubPOActive($stateParams.clubId);
+                    },
+                     ClubManagers: function ($stateParams, CLUBES, $q) {
+                        if (!$stateParams.clubId || !$stateParams.role) {
+//                              $state.go('managment');
+                            return $q.reject({code: 'MANAGMENT'});
+                        } else
+                            return CLUBES.GetClubManagersActive($stateParams.clubId);
                     }
                 },
+                
+                
+                
+                
                 controller: "managmentPermmisionsCtrl"
             })
             .state('superuser', {

@@ -1,6 +1,6 @@
 angular
         .module('app')
-        .controller('superUserCtrl', function ($scope, $q, $clubToast, CLUBES,userObj) {
+        .controller('superUserCtrl', function ($scope, $q, $clubToast, CLUBES, userObj) {
             $scope.currentUser = userObj;
             $scope.selectedItem = null;
             $scope.searchText = null;
@@ -43,13 +43,14 @@ angular
 
                 var newClub = CLUBES.openClub();
                 $clubToast.show('המועדון נפתח', 'toaster-ancor', 'success');
-
+                var PORef = root.child('clubPO');
                 var rolesRef = root.child('roles');
                 $scope.selectedUsers.forEach(function (item) {
                     var userRef = rolesRef.child(item.key);
                     var newClubRole = userRef.child(newClub.key);
-                    newClubRole.update({"role": 2});
-
+                    newClubRole.update({"role": 2, "active": true});
+                    var newClubManagers = PORef.child(newClub.key).child("managers").child(item.key);
+                    newClubManagers.update({"name": item.name, "active": true});
                     var usersRef = root.child('users').child(item.key).update({"role": 2});
 
                 });
