@@ -23,6 +23,19 @@
 
     <div class="flex" style="height: 5%"></div>
 
+    <md-chips class="custom-chips" ng-model="ctrl.vegObjs" readonly="ctrl.readonly"
+              md-transform-chip="ctrl.newVeg($chip)" md-removable="ctrl.removable">
+        <md-chip-template>
+            <span>
+                <strong>[{{$index}}] {{$chip.name}}</strong>
+                <em>({{$chip.type}})</em>
+            </span>
+        </md-chip-template>
+        <button md-chip-remove class="md-primary vegetablechip">
+            <md-icon md-svg-icon="md-close"></md-icon>
+        </button>
+    </md-chips>
+
     <md-input-container class="md-block" id="po-permision">
         <label style="font-size: 25px;">הוספת מנהלים</label>
         <md-chips ng-model="selectedManagers" md-autocomplete-snap>
@@ -44,10 +57,13 @@
                 </md-not-found>
             </md-autocomplete>
             <md-chip-template>
-                <span >
+                <span ng-disabled="checkCurrentManager($chip)">
                     <strong>{{$chip.name}}</strong>
                 </span>
             </md-chip-template>
+            <button md-chip-remove class="md-primary managerchip">
+                <md-icon md-svg-icon="md-close"></md-icon>
+            </button>
         </md-chips>  
     </md-input-container>
 

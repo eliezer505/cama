@@ -1,8 +1,13 @@
 angular
         .module('app')
-        .controller('managmentPermmisionsCtrl', function ($scope, $clubToast, $state, $stateParams, currentClub, $q, clubPOS, ClubManagers) {
 
+        .config(['$mdIconProvider', function ($mdIconProvider) {
+                $mdIconProvider.icon('md-close', 'img/ic_close_black_24px.svg', 24);
+            }])
 
+        .controller('managmentPermmisionsCtrl', function (currentAuth, $scope, $clubToast, $state, $stateParams, currentClub, $q, clubPOS, ClubManagers) {
+
+            console.log(currentAuth);
             var root = firebase.database().ref();
 //            var clubRef = root.child('clubes');
             var rolesRef = root.child('roles');
@@ -22,6 +27,13 @@ angular
             var manager_removed = [];                // use to disable manager the dis granted permmision to a club
             var manager_added = [];                // use to add new manager to granted permmision to a club            
             var po_updated = false;             // used to check if po permision updated
+
+            $scope.checkCurrentManager = function (manager) {
+                if (manager.key === currentAuth.uid)
+                    return true;
+                else
+                    return false;
+            };
 
 
             // this function handle the PO permission adding and removing from chip
