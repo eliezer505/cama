@@ -47,7 +47,7 @@ angular
                         //check what permision user have in club, if not assign PO permision
                         newClubRole.once("value", function (snapshot) {
 
-                            if (snapshot.val() === null || (snapshot.val().active === false && snapshot.val().role === 3))
+                            if (snapshot.val() === null || snapshot.val().active === false)
                             {
                                 clubPORef.child($scope.club.$id).child("POS").child(item.key).update({
                                     active: true,
@@ -101,7 +101,7 @@ angular
                         //check what permision user have in club, if not assign PO permision
                         newClubRole.once("value", function (snapshot) {
 
-                            if (snapshot.val() === null || (snapshot.val().active === false && snapshot.val().role === 2))
+                            if (snapshot.val() === null || snapshot.val().active === false)
                             {
                                 clubPORef.child($scope.club.$id).child("managers").child(item.key).update({
                                     active: true,
@@ -199,7 +199,7 @@ angular
                     });
 
                     if (diff.length === 1) {
-                        po_removed.push(diff[0]);
+                        manager_removed.push(diff[0]);
                         po_updated = true;
                     }
                 } else if (angular.isArray(oldVal) && oldVal.length < newVal.length) {
@@ -212,7 +212,7 @@ angular
                     });
 
                     if (diff.length === 1) {
-                        po_added.push(diff[0]);
+                        manager_added.push(diff[0]);
                         po_updated = true;
                     }
                 }
@@ -220,6 +220,8 @@ angular
             });
 
             $scope.goParties = function () {
+                if (po_updated)
+                    alert('שים לב');
                 $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});
             };
 
@@ -242,7 +244,7 @@ angular
                             snapshot.forEach(function (childSnapshot) {
                                 rolesRef.child(childSnapshot.key).child(currentClub.$id).once("value", function (snapshot) {
 
-                                    if (snapshot.val() === null || (snapshot.val().active === false && snapshot.val().role === 3))
+                                    if (snapshot.val() === null || snapshot.val().active === false)
                                         users.push({"key": childSnapshot.key, "name": childSnapshot.val().first_name + " " + childSnapshot.val().last_name});
                                     one.resolve(users);
                                 });

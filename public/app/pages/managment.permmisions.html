@@ -23,22 +23,11 @@
 
     <div class="flex" style="height: 5%"></div>
 
-    <md-chips class="custom-chips" ng-model="ctrl.vegObjs" readonly="ctrl.readonly"
-              md-transform-chip="ctrl.newVeg($chip)" md-removable="ctrl.removable">
-        <md-chip-template>
-            <span>
-                <strong>[{{$index}}] {{$chip.name}}</strong>
-                <em>({{$chip.type}})</em>
-            </span>
-        </md-chip-template>
-        <button md-chip-remove class="md-primary vegetablechip">
-            <md-icon md-svg-icon="md-close"></md-icon>
-        </button>
-    </md-chips>
+
 
     <md-input-container class="md-block" id="po-permision">
         <label style="font-size: 25px;">הוספת מנהלים</label>
-        <md-chips ng-model="selectedManagers" md-autocomplete-snap>
+        <md-chips class="custom-chips" ng-model="selectedManagers" md-autocomplete-snap md-removable="true" readonly="false">
             <md-autocomplete 
                 md-selected-item="selectedManager" 
                 md-search-text="searchText" 
@@ -57,11 +46,11 @@
                 </md-not-found>
             </md-autocomplete>
             <md-chip-template>
-                <span ng-disabled="checkCurrentManager($chip)">
+                <span>
                     <strong>{{$chip.name}}</strong>
                 </span>
             </md-chip-template>
-            <button md-chip-remove class="md-primary managerchip">
+            <button md-chip-remove class="md-primary managerchip" ng-hide="checkCurrentManager($chip)">
                 <md-icon md-svg-icon="md-close"></md-icon>
             </button>
         </md-chips>  
@@ -71,7 +60,7 @@
 
     <md-input-container class="md-block" id="po-permision">
         <label style="font-size: 25px;">הוספת יחצנים</label>
-        <md-chips ng-model="selectedPOS" md-autocomplete-snap>
+        <md-chips class="custom-chips" ng-model="selectedPOS" md-autocomplete-snap md-removable="true" readonly="false">
             <md-autocomplete 
                 md-selected-item="selectedPO" 
                 md-search-text="searchText" 
@@ -94,6 +83,9 @@
                     <strong>{{$chip.name}}</strong>
                 </span>
             </md-chip-template>
+             <button md-chip-remove class="md-primary managerchip">
+                <md-icon md-svg-icon="md-close"></md-icon>
+            </button>
         </md-chips>  
     </md-input-container>
 
