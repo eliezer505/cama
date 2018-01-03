@@ -1,4 +1,4 @@
-<md-toolbar  class="md-primary bottom-shadow">
+<md-toolbar style="color:white;" id="managment-toolbar" ng-class="{'bottom-shadow': boolChangeClass}"  ng-show="!partiesShow">
     <div class="md-toolbar-tools gradient">
         <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
             <md-tooltip>
@@ -11,42 +11,56 @@
 
         <span flex="" class="flex"></span>
 
-        <md-button class="md-icon-button" aria-label="Cancel" ng-click="cancel()">
-                <md-icon class="material-icons">
-                    <i class="material-icons">&#xE5C9;</i>
-               </md-icon>
-        </md-button>
-        <md-button form="disablepadding" type="submit" class="md-icon-button" aria-label="Done" ng-click="updateEvent()">
+        <md-button class="md-icon-button" aria-label="back" ng-click="back()">
             <md-icon class="material-icons">
-                <i class="material-icons">&#xE876;</i>
+                <i class="material-icons">&#xE5C4;</i>
             </md-icon>
         </md-button>
 
     </div>
 
+    <md-content>
+        <div layout="row" class="club-sub-head" >
+            <div flex="20">
+                <span class="club-name" >תמונה</span>
+            </div>
+            <div flex="40">
+                <span class="club-name" >שם</span>
+            </div>
+            <div flex="15">
+                <span class="event-panding" >מין</span>
+            </div>
+            <div flex="15">
+                <span class="event-approved">ביקורים קודמים</span>
+            </div>
+            <div flex="10">
+                <span class="club-reg-btn1">אישור</span>
+            </div>
+        </div>
+    </md-content>
 </md-toolbar>
 
-<div scroll-with-headline id="managment-content" flex style="overflow: auto; position: relative !important;" ng-clock ">
+<div scroll-with-headline id="managment-content" flex style="overflow: auto; position: relative !important;" ng-clock  ng-show="!partiesShow">
     <div ng-repeat="user in users" >	
         <hr ng-if="$first" class="club-hr-no-top" >
         <hr ng-if="!$first" class="club-hr">
-        <div layout="row" class="club-list"  ng-show="role < 3">
+        <div layout="row" class="club-list">
 
-            <div flex="30" layout="row" style="margin-top: 8px; margin-bottom: 8px;">
-                <span class="club-name" >{{user.eDate| date:'dd/MM/yy'}}</span>
+            <div flex="20" layout="row" style="margin-top: 8px; margin-bottom: 8px;">
+                <span class="club-name" >{{event.eDate| date:'dd/MM/yy'}}</span>
             </div>
             <div flex="40" layout="row" style="margin-top: 8px; margin-bottom: 8px;">
-                <span class="club-name" >{{user.name}}</span>
+                <span class="club-name" >{{event.name}}</span>
             </div>
             <div flex="15">
-                <md-button class="md-fab md-mini"  style="margin: 0px !important; background-color: orange !important;" aria-label="Eat cake">
-                    {{user.minAge}}
+                <md-button class="md-fab md-mini" ng-click="panding(event.$id)" style="margin: 0px !important; background-color: orange !important;" aria-label="Eat cake">
+                    {{event.panding}}
                 </md-button> 
                 <!--<span class="club-name circle-padding" >{{event.price}}</span>-->
             </div>
             <div flex="15">
                 <md-button class="md-fab md-mini" style="margin: 0px !important; background-color: green !important;" aria-label="Eat cake">
-                    {{user.minAge}}
+                    {{event.approved}}
                 </md-button>
                 <!--<span class="event-approved circle-approved ">{{event.minAge}} </span>-->
             </div>
@@ -58,11 +72,37 @@
 
             </div>          
         </div>
-
         <hr ng-if="$last" class="club-hr-no-bottom">
     </div>
 
 </div>
 
+<md-button class="md-fab  md-mini md-fab-bottom-right fixed-fab-right" ng-click="newEvent()" ng-show="partiesShow">
+    <md-icon class="material-icons">
+        <i class="material-icons">&#xE145;</i>
+    </md-icon>
+</md-button>
 
+<footer  ng-show="partiesShow && role < 3">
+    <md-toolbar style="background-color:whitesmoke;">
+        <div layout="row" layout-align="center center" flex>
+            <md-button class="md-primary" ng-click="goPermissions()">
+                הרשאות
+            </md-button>
 
+            <md-button class="md-primary" ng-click="goProfile()">
+                פרופיל
+            </md-button>
+
+            <md-button class="md-primary" ui-sref="managment.stats">
+                סטטיסטיקות
+            </md-button>
+
+            <md-button class="md-primary font-bold">
+                מסיבות והרשמות
+            </md-button>
+        </div>
+    </md-toolbar>
+</footer>
+
+<div layout="column" layout-fill ui-view ng-show="!partiesShow"></div>

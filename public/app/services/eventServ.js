@@ -29,8 +29,8 @@
 
 
                     this.GetOneEvent = function (clubId, EventKey) {
-                        var clubRef = EventsRef.child(clubId);
-                        return $firebaseObject(clubRef.child(EventKey));
+                        var clubRef = EventsUsersRef.child(clubId).child(EventKey);
+                        return $firebaseObject(clubRef);
                     };
 
                     this.getClubEvents = function (clubId) {

@@ -1,89 +1,91 @@
 (function () {
 
     angular.module('app')
-    .controller('clubearsCtrl',
-            function ($scope, currentAuth, userObj, $mdPanel) {
-$scope._mdPanel = $mdPanel;
-$scope.openFrom = 'button';
-$scope.closeTo = 'button';
-$scope.animationType = 'scale';
-$scope.duration = 300;
-$scope.separateDurations = {
-    open: $scope.duration,
-    close: $scope.duration
-  };
+            .controller('clubearsCtrl',
+                    function ($scope, currentAuth, userObj, $mdPanel) {
+                        $scope._mdPanel = $mdPanel;
+                        $scope.openFrom = 'button';
+                        $scope.closeTo = 'button';
+                        $scope.animationType = 'scale';
+                        $scope.duration = 300;
+                        $scope.separateDurations = {
+                            open: $scope.duration,
+                            close: $scope.duration
+                        };
 
 
-                $scope.currentAuth = currentAuth;
-                $scope.currentUser = userObj;
-                $scope.showMobileMainHeader = true;
-                
-                $scope.showDialog = function() {
-  var position = $scope._mdPanel.newPanelPosition()
-      .absolute()
-      .right()
-      .top();
+                        $scope.currentAuth = currentAuth;
+                        $scope.currentUser = userObj;
+                        $scope.showMobileMainHeader = true;
 
-  var animation = this._mdPanel.newPanelAnimation();
+                        $scope.showDialog = function () {
+                            var position = $scope._mdPanel.newPanelPosition()
+                                    .absolute()
+                                    .right()
+                                    .top();
 
-  animation.duration(this.duration || this.separateDurations);
+                            var animation = this._mdPanel.newPanelAnimation();
 
-  switch(this.openFrom) {
- 
-    case 'corner':
-      animation.openFrom({top:56, left:0});
-      break;
-  };
-  switch(this.closeTo) {
+                            animation.duration(this.duration || this.separateDurations);
 
-    case 'corner':
-      animation.closeTo({top:56, left:0});
-      break;
-      };
+                            switch (this.openFrom) {
 
-  switch(this.animationType) {
-    case 'custom':
-      animation.withAnimation({
-        open: 'demo-dialog-custom-animation-open',
-        close: 'demo-dialog-custom-animation-close'
-      });
-      break;
-    case 'slide':
-      animation.withAnimation(this._mdPanel.animation.SLIDE);
-      break;
-  }
+                                case 'corner':
+                                    animation.openFrom({top: 56, left: 0});
+                                    break;
+                            }
+                            ;
+                            switch (this.closeTo) {
 
-  var config = {
-    animation: animation,
-    attachTo: angular.element(document.body),
-    controller: DialogCtrl,
-    controllerAs: 'ctrl',
-    templateUrl: 'app/templete/panel.tmpl.html',
-    panelClass: 'demo-dialog-example',
-    position: position,
-    trapFocus: true,
-    zIndex: 150,
-    clickOutsideToClose: true,
-    clickEscapeToClose: true,
-    hasBackdrop: true,
-  };
+                                case 'corner':
+                                    animation.closeTo({top: 56, left: 0});
+                                    break;
+                            }
+                            ;
 
-  this._mdPanel.open(config);
-};
+                            switch (this.animationType) {
+                                case 'custom':
+                                    animation.withAnimation({
+                                        open: 'demo-dialog-custom-animation-open',
+                                        close: 'demo-dialog-custom-animation-close'
+                                    });
+                                    break;
+                                case 'slide':
+                                    animation.withAnimation(this._mdPanel.animation.SLIDE);
+                                    break;
+                            }
 
-            })
-      
-    .controller('DialogCtrl', DialogCtrl);
+                            var config = {
+                                animation: animation,
+                                attachTo: angular.element(document.body),
+                                controller: DialogCtrl,
+                                controllerAs: 'ctrl',
+                                templateUrl: 'app/templete/panel.tmpl.html',
+                                panelClass: 'demo-dialog-example',
+                                position: position,
+                                trapFocus: true,
+                                zIndex: 150,
+                                clickOutsideToClose: true,
+                                clickEscapeToClose: true,
+                                hasBackdrop: true,
+                            };
+
+                            this._mdPanel.open(config);
+                        };
+
+                    })
+
+            .controller('DialogCtrl', DialogCtrl);
 
 
 // Necessary to pass locals to the dialog template.
-function DialogCtrl(mdPanelRef) {
-  this._mdPanelRef = mdPanelRef;
-}
+    function DialogCtrl(mdPanelRef) {
+        this._mdPanelRef = mdPanelRef;
+    }
 
-DialogCtrl.prototype.closeDialog = function() {
-	console.log('swipe');
-  this._mdPanelRef && this._mdPanelRef.close();
-};
+    DialogCtrl.prototype.closeDialog = function () {
+        console.log('swipe');
+        this._mdPanelRef && this._mdPanelRef.close();
+    };
 
 })();
