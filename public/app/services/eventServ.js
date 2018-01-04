@@ -27,6 +27,16 @@
                         return array;
                     };
 
+                    // stoped here - Avner continue from to do pagination to users in event by group - check firebase rules
+                    this.GetUsersInEvent = function (clubId) {
+                        var currentDate = new Date();
+                        currentDate.setHours(0, 0, 0, 0);
+                        var clubRef = EventsRef.child(clubId);
+                        var eventQuery = clubRef.orderByChild("eDate").startAt(currentDate.getTime());
+                        array = $infiniteScroll(eventQuery, 10);
+                        return array;
+                    };
+
 
                     this.GetOneEvent = function (clubId, EventKey) {
                         var clubRef = EventsUsersRef.child(clubId).child(EventKey);
