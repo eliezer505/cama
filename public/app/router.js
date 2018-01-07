@@ -49,6 +49,31 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
 
                 }
             })
+            .state('clubears.friends', {
+
+                url: "/friends",
+                abstract: true,
+                templateUrl: "app/pages/clubears.friends.html",
+                controller: "clubears.friends.ctrl",
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    }
+                }
+            })
+             .state('clubears.friends.all', {
+                url: "/all-friends",
+                templateUrl: "app/pages/clubears.friends.all.html",
+                controller: 'clubears.friends.all.ctrl',
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                    clubesNearBy: function (CLUBES) {
+                        return CLUBES.GetClubesNearBy();
+                    }
+                }
+            })
             .state('clubears.main', {
 
                 url: "/main",
@@ -169,7 +194,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
                     },
-                    currentEvents: function (EVENTS, $stateParams, $q,$state) {
+                    currentEvents: function (EVENTS, $stateParams, $q, $state) {
                         if (!$stateParams.clubId || !$stateParams.role) {
                             return $q.reject({code: 'MANAGMENT'});
 //                          $state.go('managment');
@@ -258,13 +283,13 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     currentAuth: function (Auth) {
                         return Auth.$requireSignIn();
                     },
-                    currentClub: function ($stateParams, CLUBES, $q,$state) {
+                    currentClub: function ($stateParams, CLUBES, $q, $state) {
                         if (!$stateParams.clubId || !$stateParams.role) {
                             return $q.reject({code: 'MANAGMENT'});
                         } else
                             return CLUBES.GetOneClub($stateParams.clubId);
                     },
-                    clubPO: function ($stateParams, CLUBES, $q,$state) {
+                    clubPO: function ($stateParams, CLUBES, $q, $state) {
                         if (!$stateParams.clubId || !$stateParams.role) {
 //                              $state.go('managment');
                             return $q.reject({code: 'MANAGMENT'});
@@ -298,7 +323,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         } else
                             return CLUBES.GetClubPOActive($stateParams.clubId);
                     },
-                     ClubManagers: function ($stateParams, CLUBES, $q) {
+                    ClubManagers: function ($stateParams, CLUBES, $q) {
                         if (!$stateParams.clubId || !$stateParams.role) {
 //                              $state.go('managment');
                             return $q.reject({code: 'MANAGMENT'});
@@ -306,10 +331,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                             return CLUBES.GetClubManagersActive($stateParams.clubId);
                     }
                 },
-                
-                
-                
-                
+
                 controller: "managmentPermmisionsCtrl"
             })
             .state('superuser', {
