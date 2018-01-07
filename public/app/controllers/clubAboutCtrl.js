@@ -1,7 +1,7 @@
 
-angular.module('app').controller('clubAboutCtrl', 
+angular.module('app').controller('AvatarCtrl', 
 function ($scope,$state) {
-
+console.log($scope);
 
 });
   
