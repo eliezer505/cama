@@ -911,7 +911,7 @@ transform: translate3d(-50%, 0, 0);
     font-family: 'Rubik', sans-serif;
 
 }
-.md-dialog-content{direction: rtl; font-family: 'Rubik', sans-serif;}
+.md-dialog-content{direction: rtl; font-family: 'Rubik', sans-serif; text-align:center;    background: #e2e2e2;}
 #profile-chips #_md-chips-wrapper-3{box-shadow: none!important;}
 
 @media (max-width: 480px) and (min-width: 241px)
@@ -1085,3 +1085,4 @@ footer .md-button{
     /* align-content: center; */
     flex-direction: column;
 }
+
