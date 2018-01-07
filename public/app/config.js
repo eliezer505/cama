@@ -135,6 +135,7 @@
                 } else {
                     // unexpected error
                     console.log('in else');
+                    console.log(error);
                     $state.go('login');
                 }
 

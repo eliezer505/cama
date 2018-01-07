@@ -46,29 +46,20 @@
         <hr ng-if="!$first" class="club-hr">
         <div layout="row" class="club-list">
 
-            <div flex="20" layout="row" style="margin-top: 8px; margin-bottom: 8px;">
-                <span class="club-name" >{{event.eDate| date:'dd/MM/yy'}}</span>
+            <div flex="20" layout="row" >
+                <img ng-src='{{user.picture}}' class="avatar"> 
             </div>
-            <div flex="40" layout="row" style="margin-top: 8px; margin-bottom: 8px;">
-                <span class="club-name" >{{event.name}}</span>
+            <div flex="40" layout="row">
+                <span class="club-name vertical-text" >{{user.name}}</span>
             </div>
-            <div flex="15">
-                <md-button class="md-fab md-mini" ng-click="panding(event.$id)" style="margin: 0px !important; background-color: orange !important;" aria-label="Eat cake">
-                    {{event.panding}}
-                </md-button> 
-                <!--<span class="club-name circle-padding" >{{event.price}}</span>-->
+            <div flex="15" layout="row">
+                <span class="club-name vertical-text" ><i ng-if="user.gender==='male'" class="fa fa-mars" style="font-size:24px"></i><i  ng-if="user.gender==='female'" class="fa fa-venus" style="font-size:24px"></i></span>
             </div>
             <div flex="15">
-                <md-button class="md-fab md-mini" style="margin: 0px !important; background-color: green !important;" aria-label="Eat cake">
-                    {{event.approved}}
-                </md-button>
-                <!--<span class="event-approved circle-approved ">{{event.minAge}} </span>-->
+
             </div>
             <div flex="10" layout="row">
 
-                <md-icon class="material-icons" ng-click="edit(event.$id)">
-                    <span class="club-reg-btn1"><i class="material-icons">&#xE3C9;</i></span>
-                </md-icon>
 
             </div>          
         </div>
@@ -77,32 +68,3 @@
 
 </div>
 
-<md-button class="md-fab  md-mini md-fab-bottom-right fixed-fab-right" ng-click="newEvent()" ng-show="partiesShow">
-    <md-icon class="material-icons">
-        <i class="material-icons">&#xE145;</i>
-    </md-icon>
-</md-button>
-
-<footer  ng-show="partiesShow && role < 3">
-    <md-toolbar style="background-color:whitesmoke;">
-        <div layout="row" layout-align="center center" flex>
-            <md-button class="md-primary" ng-click="goPermissions()">
-                הרשאות
-            </md-button>
-
-            <md-button class="md-primary" ng-click="goProfile()">
-                פרופיל
-            </md-button>
-
-            <md-button class="md-primary" ui-sref="managment.stats">
-                סטטיסטיקות
-            </md-button>
-
-            <md-button class="md-primary font-bold">
-                מסיבות והרשמות
-            </md-button>
-        </div>
-    </md-toolbar>
-</footer>
-
-<div layout="column" layout-fill ui-view ng-show="!partiesShow"></div>

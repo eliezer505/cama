@@ -243,7 +243,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         if (!$stateParams.clubId || !$stateParams.role || !$stateParams.eventId) {
                             return $q.reject({code: 'MANAGMENT'});
                         } else
-                            return EVENTS.GetOneEvent($stateParams.clubId, $stateParams.eventId);
+                            return EVENTS.GetUsersInEvent($stateParams.clubId, $stateParams.eventId);
                     }
                 }
             })

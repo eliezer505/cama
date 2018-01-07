@@ -1071,3 +1071,17 @@ footer .md-button{
 
 .custom-chips md-chips-wrap.md-removable md-chip md-chip-template {
     padding-right: 5px; }
+
+.club-list .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-sizing: content-box;
+}
+
+.vertical-text{
+    display: flex;
+    justify-content: center;
+    /* align-content: center; */
+    flex-direction: column;
+}
