@@ -1,9 +1,9 @@
 angular.module('app')
 
-        .directive("scrollWithHeadline", function ($window) {
+        .directive("scrollHeadlinePending", function ($window) {
             return function (scope, element, attrs) {
-                var header = document.querySelector('#managment-toolbar');
-                var content = document.querySelector('#managment-content');
+                var header = document.querySelector('#pending-toolbar');
+                var content = document.querySelector('#pending-content');
                 var last = document.querySelector('.club-hr-no-bottom');
 
                 element.bind('scroll', function () {
@@ -15,7 +15,7 @@ angular.module('app')
 
                     if (recCont.bottom >= recLast.top)
                     {
-                        scope.events.$scroll();
+                        scope.users.$scroll();
                     }
 
                     if (recTool.bottom !== recCont.top) {

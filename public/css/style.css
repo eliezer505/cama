@@ -679,6 +679,13 @@ i {
     padding-right: 0.5em;
 }
 
+#pending-content .user-list{
+    text-align: right!important;
+    direction:rtl!important;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
 .club-sub-head{    
     text-align: right!important;
     direction: rtl!important;
@@ -686,7 +693,7 @@ i {
     font-size: initial;
 }
 
-.club-name{
+.club-name,user-name{
     color:#91949a; 
 }
 .club-distance{
@@ -696,18 +703,33 @@ i {
     color:#792aba; 
 }
 
-#managment-parties .club-hr{
+#managment-parties .club-hr {
     border-top: 1px solid #c9a8e4;
 }
+
+#pending-content .user-hr{
+     border-top: 1px solid #c9a8e4;
+     margin: 0 !important;
+}
+
 
 .club-hr-no-top {
     border-top: 1px solid #c9a8e4;
     margin-top: 0px !important;
 }
 
-.club-hr-no-bottom {
+.user-hr-no-top{
+    border-top: 1px solid #c9a8e4;
+    margin: 0px !important;
+}
+.club-hr-no-bottom{
     border-top: 1px solid #c9a8e4;
     margin-bottom: 0px !important;
+}
+
+.user-hr-no-bottom {
+    border-top: 1px solid #c9a8e4;
+    margin: 0px !important;
 }
 
 .content-middle{
@@ -1072,7 +1094,7 @@ footer .md-button{
 .custom-chips md-chips-wrap.md-removable md-chip md-chip-template {
     padding-right: 5px; }
 
-.club-list .avatar {
+.user-list .avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -1086,3 +1108,10 @@ footer .md-button{
     flex-direction: column;
 }
 
+.even-line {
+    background : white;
+}
+
+.odd-line {
+    background: lightgrey;
+}

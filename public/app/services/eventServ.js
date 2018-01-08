@@ -1,7 +1,7 @@
 (function () {
 
     angular.module('app').
-            service("EVENTS", function ($firebaseObject, Auth, $infiniteScroll, $q, $firebaseArray) {
+            service("EVENTS", function ($firebaseObject, Auth, $infiniteScroll, $q, $firebaseArray,$infiniteScrollPending) {
                 if (Auth) {
 
                     var EventsRef = firebase.database().ref('events');
@@ -32,13 +32,13 @@
 
                        
                         var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("group").startAt(1);
-                        array = $infiniteScroll(eventQuery, 10);
+                        array = $infiniteScrollPending(eventQuery, 15);
                         return array;
                     };
 
 
                     this.GetOneEvent = function (clubId, EventKey) {
-                        var clubRef = EventsUsersRef.child(clubId).child(EventKey);
+                        var clubRef = EventsRef.child(clubId).child(EventKey);
                         return $firebaseObject(clubRef);
                     };
 

@@ -1,4 +1,4 @@
-<md-toolbar style="color:white;" id="managment-toolbar" ng-class="{'bottom-shadow': boolChangeClass}"  ng-show="!partiesShow">
+<md-toolbar style="color:white;" id="pending-toolbar" ng-class="{'bottom-shadow': boolChangeClass}"  ng-show="!partiesShow">
     <div class="md-toolbar-tools gradient">
         <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
             <md-tooltip>
@@ -40,32 +40,32 @@
     </md-content>
 </md-toolbar>
 
-<div scroll-with-headline id="managment-content" flex style="overflow: auto; position: relative !important;" ng-clock  ng-show="!partiesShow">
+<div scroll-headline-pending id="pending-content" flex style="overflow: auto; position: relative !important;" ng-clock  ng-show="!partiesShow">
     <div ng-repeat="user in users" >	
-        <hr ng-if="$first" class="club-hr-no-top" >
-        <hr ng-if="!$first" class="club-hr">
-        <div layout="row" class="club-list">
+        <hr ng-if="$first" class="user-hr-no-top" >
+        <hr ng-if="!$first" class="user-hr">
+        <div layout="row" class="user-list" ng-class="user.group % 2 === 0 ? 'even-line' : 'odd-line'">
 
             <div flex="20" layout="row" >
-                <img ng-src='{{user.picture}}' class="avatar" ng-click="showConfirm($event,user)"> 
+                <img ng-src='{{user.picture}}' class="avatar" ng-click="showConfirm($event, user)"> 
             </div>
             <div flex="40" layout="row">
-                <span class="club-name vertical-text" >{{user.name}}</span>
+                <span class="user-name vertical-text" >{{user.name}}</span>
             </div>
             <div flex="15" layout="row">
-                <span class="club-name vertical-text" ><i ng-if="user.gender==='male'" class="fa fa-mars" style="font-size:24px"></i><i  ng-if="user.gender==='female'" class="fa fa-venus" style="font-size:24px"></i></span>
+                <span class="user-name vertical-text" ><i ng-if="user.gender === 'male'" class="fa fa-mars" style="font-size:24px"></i><i  ng-if="user.gender === 'female'" class="fa fa-venus" style="font-size:24px"></i></span>
             </div>
             <div flex="15">
 
             </div>
             <div flex="10" layout="row">
-
+                <md-checkbox ng-model="user.status" aria-label="Checkbox 1"></md-checkbox>
 
             </div>          
         </div>
-        <hr ng-if="$last" class="club-hr-no-bottom">
-        
-        
+        <hr ng-if="$last" class="user-hr-no-bottom">
+
+
     </div>
 
 </div>
