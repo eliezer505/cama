@@ -1,9 +1,6 @@
 <md-toolbar style="color:white;" id="pending-toolbar" ng-class="{'bottom-shadow': boolChangeClass}"  ng-show="!partiesShow">
     <div class="md-toolbar-tools gradient">
         <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
-            <md-tooltip>
-                Side Panel
-            </md-tooltip>
             <md-icon class="md-default-theme" class="material-icons">
                 &#xE5D2;
             </md-icon>
@@ -67,5 +64,27 @@
 
 
     </div>
+      <md-fab-speed-dial md-open="isOpen" md-direction="up" class="md-fling fixed-fab-right-no-footer">
+        <md-fab-trigger>
+          <md-button aria-label="menu" class="md-fab md-mini">
+               <md-icon class="material-icons">
+        <i class="material-icons">&#xE5D2;</i>
+    </md-icon>
+          </md-button>
+        </md-fab-trigger>
 
+        <md-fab-actions>
+          <md-button aria-label="check all" class="md-fab md-raised md-mini" ng-click="checkAll()">
+            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+          </md-button>
+          <md-button aria-label="gender pie" class="md-fab md-raised md-mini" ng-click="chart()">
+            <i class="fa fa-pie-chart" aria-hidden="true"></i>
+          </md-button>
+          <md-button aria-label="filer by gender" class="md-fab md-raised md-mini" ng-click="filter()">
+            <i class="fa fa-filter" aria-hidden="true"></i>
+          </md-button>
+        </md-fab-actions>
+      </md-fab-speed-dial>
 </div>
+
+

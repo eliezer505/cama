@@ -2,6 +2,29 @@ angular.module('app')
 
         .controller('managmentEditPandingCtrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog) {
 
+            $scope.isOpen = false;
+
+            $scope.back = function ()
+            {
+                $scope.$parent.partiesShow = true;
+                $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});
+            };
+
+            $scope.checkAll = function ()
+            {
+                
+            };
+
+            $scope.chart = function ()
+            {
+
+            };
+
+            $scope.filter = function ()
+            {
+
+            };
+
             console.log(usersInEvent);
             $scope.users = usersInEvent;
             $scope.showConfirm = function (ev, user) {

@@ -955,6 +955,14 @@ transform: translate3d(-50%, 0, 0);
     position: fixed !important;
 }
 
+.fixed-fab-right-no-footer{
+    right: 30px !important;
+    bottom: 15px !important;
+    position: fixed !important;
+}
+
+
+
 #clubProfile md-input-container .md-errors-spacer {
     min-height: 0 !important;
 }
@@ -1114,4 +1122,10 @@ footer .md-button{
 
 .odd-line {
     background: lightgrey;
+}
+
+#my-speed-dial {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 }
