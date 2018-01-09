@@ -1129,3 +1129,11 @@ footer .md-button{
   bottom: 20px;
   right: 20px;
 }
+@font-face {
+    font-family: Arimo;
+    src: url(fonts/Arimo-Regular.ttf);
+}
+@import url('https://fonts.googleapis.com/css?family=Arimo:400,700');
+.sidenavhead{background: #222!important;color:white!important ;}
+.sidenav{background: #222!important;color:white!important ; }
+ .sidenavtext .md-list-item p{font-family: 'Arimo', sans-serif;}

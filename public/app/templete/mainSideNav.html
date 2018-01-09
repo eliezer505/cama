@@ -1,7 +1,7 @@
 
-<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" >
+<md-sidenav class="sidenavhead md-sidenav-left md-whiteframe-z2" md-component-id="left" >
 		<md-toolbar layout="row" md-theme="altTheme" class="md-primary">
-			<div class="md-toolbar-tools">
+			<div class="md-toolbar-tools sidenavhead">
 				<span class="margin-left-1" ><h1>C</h1></span>
 				<span><h3>lu</h3></span>
 				<span><h1>B</h1></span>
@@ -17,142 +17,84 @@
 				</md-button>
 			</div>
 		</md-toolbar>
-		<md-content layout-padding="">
-			<md-list class="rtl">
+		<md-content class="sidenav" layout-padding="">
+			<md-list class="rtl sidenavtext">
 
 				<!-- pay attantion from class margin-left-32. used to help in hebrew language -->
-								<md-divider></md-divider>
-				<md-subheader class="md-no-sticky">
-					
-				</md-subheader>
+							
+	
 				<md-list-item>
-					<md-icon class="md-default-theme margin-left-32" class="material-icons">
+					<md-icon class="sidenav md-default-theme margin-left-32" class="material-icons">
 						&#xE8B8;
 					</md-icon>
 					<p ui-sref="clubears.main.clubes" ng-click="closeSideNavPanel()">
 						ראשי
 					</p>
-					<div class="md-secondary">
-						2
-					</div>
+
 				</md-list-item>
-				<md-divider></md-divider>
-                                <md-subheader class="md-no-sticky" ng-show="currentUser.role == '1'">
-					ניהול קלאברס
-				</md-subheader>
+		
+ 
 				<md-list-item ng-show="currentUser.role =='1'">
-					<md-icon class="md-default-theme margin-left-32" class="material-icons" ng-click="closeSideNavPanel()">
+					<md-icon class="sidenav md-default-theme margin-left-32" class="material-icons" ng-click="closeSideNavPanel()">
 						&#xE7FD;
 					</md-icon>
 					<p ui-sref="superuser" ng-click="closeSideNavPanel()">
 						הוספת הרשאות ופתיחת מועדון
 					</p>
-					<div class="md-secondary">
-						2
-					</div>
+
 				</md-list-item>
-				<md-subheader class="md-no-sticky" ng-show="currentUser.role">
-					ניהול מועדון
-				</md-subheader >
+
 				<md-list-item ng-show="currentUser.role">
-					<md-icon class="md-default-theme margin-left-32" class="material-icons"ng-click="closeSideNavPanel()">
+					<md-icon class="sidenav md-default-theme margin-left-32" class="material-icons"ng-click="closeSideNavPanel()">
 						&#xE7FD;
 					</md-icon>
 					<p ui-sref="managment" ng-click="closeSideNavPanel()">
 						פאנל לבעלי מועדון
 					</p>
-					<div class="md-secondary">
-						2
-					</div>
+
 				</md-list-item>
-				<md-subheader class="md-no-sticky">
-					מועדפים
-				</md-subheader>
+
 
 				<md-list-item >
-					<md-icon class="md-default-theme margin-left-32" class="material-icons" ui-sref="clubears.profile" ng-click="closeSideNavPanel()">
+					<md-icon class="sidenav md-default-theme margin-left-32" class="material-icons" ui-sref="clubears.profile" ng-click="closeSideNavPanel()">
 						&#xE7FD;
 					</md-icon>
 					<p ui-sref="clubears.profile" ng-click="closeSideNavPanel()">
 						פרופיל
 					</p>
-					<div class="md-secondary">
-						2
-					</div>
+
 				</md-list-item>
+
+			
+
 				<md-list-item>
-					<md-icon class="md-default-theme margin-left-32" class="material-icons">
-						&#xE0C9;
-					</md-icon>
-					<p>
-						הודעות
-					</p>
-					<div class="md-secondary">
-						2
-					</div>
-				</md-list-item>
-				<md-list-item>
-					<md-icon class="md-default-theme margin-left-32" class="material-icons">
-						&#xE878;
-					</md-icon>
-					<p ui-sref="clubears.events" ng-click="closeSideNavPanel()">
-						ארועים
-					</p>
-					<md-icon class="md-secondary">
-						2
-					</md-icon>
-				</md-list-item>
-				<md-list-item>
-					<md-icon class="md-default-theme margin-left-32" class="material-icons">
-						&#xE251;
-					</md-icon>
-					<p ui-sref="clubears.pictures" ng-click="closeSideNavPanel()">
-						תמונות
-					</p>
-					<md-icon class="md-secondary">
-						2
-					</md-icon>
-				</md-list-item>
-				<md-divider></md-divider>
-				<md-subheader class="md-no-sticky">
-					תחזוקה
-				</md-subheader>
-				<md-list-item>
-					<md-icon class="md-default-theme margin-left-32" class="material-icons">
+					<md-icon class="sidenav md-default-theme margin-left-32" class="material-icons">
 						&#xE8B8;
 					</md-icon>
 					<p>
 						הגדרות
 					</p>
-					<div class="md-secondary">
-						2
-					</div>
+
 				</md-list-item>
-				<md-divider></md-divider>
-				<md-subheader class="md-no-sticky">
-					מידע
-				</md-subheader>
+		
+
 				<md-list-item>
-					<md-icon class="md-default-theme margin-left-32" class="material-icons">
+					<md-icon class="sidenav md-default-theme margin-left-32" class="material-icons">
 						&#xE88F;
 					</md-icon>
 					<p>
 						אודות
 					</p>
-					<div class="md-secondary">
-						20+
-					</div>
+
 				</md-list-item>
 				<md-list-item>
-					<md-icon class="md-default-theme margin-left-32" class="material-icons">
+					<md-icon class="sidenav md-default-theme margin-left-32" class="material-icons">
 						&#xE0AF;
 					</md-icon>
 					<p>
 						בעל עסק
 					</p>
-					<div class="md-secondary">
-						20+
-					</div>
+
 				</md-list-item>
 			</md-list>
 		</md-content>
