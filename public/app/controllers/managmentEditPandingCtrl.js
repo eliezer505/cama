@@ -8,10 +8,11 @@ angular.module('app')
             $scope.updatePendingUsers = function ()
             {
                 $scope.users.forEach(function (user) {
-                        if (!user.sent && user.approved)
-                            user.sent = true;
-                        
-                    });
+                    if (!user.sent && user.approved) {
+                        user.sent = true;
+                        $scope.users.$save(user);
+                    }
+                });
             };
 
 
@@ -36,13 +37,16 @@ angular.module('app')
                 {
                     $scope.users.forEach(function (user) {
                         user.approved = true;
+                        $scope.users.$save(user);
                     });
                     $scope.all = true;
                 } else
                 {
                     $scope.users.forEach(function (user) {
-                        if (!user.sent)
+                        if (!user.sent) {
                             user.approved = false;
+                            $scope.users.$save(user);
+                        }
                     });
                     $scope.all = false;
                 }
