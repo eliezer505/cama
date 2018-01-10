@@ -13,6 +13,11 @@
                 <i class="material-icons">&#xE5C4;</i>
             </md-icon>
         </md-button>
+        <md-button class="md-icon-button" aria-label="Done" ng-click="updatePendingUsers()">
+            <md-icon class="material-icons">
+                <i class="material-icons">&#xE876;</i>
+            </md-icon>
+        </md-button>
 
     </div>
 
@@ -56,7 +61,7 @@
 
             </div>
             <div flex="10" layout="row">
-                <md-checkbox ng-model="user.status" aria-label="Checkbox 1"></md-checkbox>
+                <md-checkbox ng-model="user.approved" aria-label="Checkbox 1"  ng-change="changeState(user)"></md-checkbox>
 
             </div>          
         </div>
@@ -64,27 +69,27 @@
 
 
     </div>
-      <md-fab-speed-dial md-open="isOpen" md-direction="up" class="md-fling fixed-fab-right-no-footer">
+    <md-fab-speed-dial md-open="isOpen" md-direction="up" class="md-fling fixed-fab-right-no-footer">
         <md-fab-trigger>
-          <md-button aria-label="menu" class="md-fab md-mini">
-               <md-icon class="material-icons">
-        <i class="material-icons">&#xE5D2;</i>
-    </md-icon>
-          </md-button>
+            <md-button aria-label="menu" class="md-fab md-mini">
+                <md-icon class="material-icons">
+                    <i class="material-icons">&#xE5D2;</i>
+                </md-icon>
+            </md-button>
         </md-fab-trigger>
 
         <md-fab-actions>
-          <md-button aria-label="check all" class="md-fab md-raised md-mini" ng-click="checkAll()">
-            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
-          </md-button>
-          <md-button aria-label="gender pie" class="md-fab md-raised md-mini" ng-click="chart()">
-            <i class="fa fa-pie-chart" aria-hidden="true"></i>
-          </md-button>
-          <md-button aria-label="filer by gender" class="md-fab md-raised md-mini" ng-click="filter()">
-            <i class="fa fa-filter" aria-hidden="true"></i>
-          </md-button>
+            <md-button aria-label="check all" class="md-fab md-raised md-mini" ng-click="checkAll()">
+                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+            </md-button>
+            <md-button aria-label="gender pie" class="md-fab md-raised md-mini" ng-click="chart()">
+                <i class="fa fa-pie-chart" aria-hidden="true"></i>
+            </md-button>
+            <md-button aria-label="filer by gender" class="md-fab md-raised md-mini" ng-click="filter()">
+                <i class="fa fa-filter" aria-hidden="true"></i>
+            </md-button>
         </md-fab-actions>
-      </md-fab-speed-dial>
+    </md-fab-speed-dial>
 </div>
 
 

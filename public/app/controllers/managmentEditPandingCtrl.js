@@ -3,6 +3,25 @@ angular.module('app')
         .controller('managmentEditPandingCtrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog) {
 
             $scope.isOpen = false;
+            $scope.all = false;
+
+            $scope.updatePendingUsers = function ()
+            {
+                $scope.users.forEach(function (user) {
+                        if (!user.sent && user.approved)
+                            user.sent = true;
+                        
+                    });
+            };
+
+
+            $scope.changeState = function (user)
+            {
+                console.log(user);
+                console.log($scope.users);
+
+                $scope.users.$save(user);
+            };
 
             $scope.back = function ()
             {
@@ -12,7 +31,21 @@ angular.module('app')
 
             $scope.checkAll = function ()
             {
-                
+
+                if (!$scope.all)
+                {
+                    $scope.users.forEach(function (user) {
+                        user.approved = true;
+                    });
+                    $scope.all = true;
+                } else
+                {
+                    $scope.users.forEach(function (user) {
+                        if (!user.sent)
+                            user.approved = false;
+                    });
+                    $scope.all = false;
+                }
             };
 
             $scope.chart = function ()
