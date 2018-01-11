@@ -8,10 +8,10 @@
 
         <span flex="" class="flex"></span>
 
-        <md-button class="md-icon-button" aria-label="back" ng-click="back()">
-            <md-icon class="material-icons">
-                <i class="material-icons">&#xE5C4;</i>
-            </md-icon>
+        <md-button class="md-icon-button" aria-label="Cancel" ng-click="cancel()">
+                <md-icon class="material-icons">
+                    <i class="material-icons">&#xE5C9;</i>
+               </md-icon>
         </md-button>
         <md-button class="md-icon-button" aria-label="Done" ng-click="updatePendingUsers()">
             <md-icon class="material-icons">
@@ -61,7 +61,7 @@
 
             </div>
             <div flex="10" layout="row">
-                <md-checkbox ng-model="user.approved" aria-label="Checkbox 1"  ng-change="changeState(user)"></md-checkbox>
+                <md-checkbox ng-disabled="user.approved && user.sent" ng-model="user.approved" aria-label="Checkbox 1"  ng-change="changeState(user)"></md-checkbox>
 
             </div>          
         </div>

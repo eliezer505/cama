@@ -5,6 +5,22 @@ angular.module('app')
             $scope.isOpen = false;
             $scope.all = false;
 
+
+            $scope.cancel = function () {
+                $scope.users.forEach(function (user) {
+                    console.log(user);
+                    if (!user.sent && user.approved) {
+                        user.approved = false;
+                        $scope.users.$save(user);
+                    }
+                });
+
+                $scope.$parent.partiesShow = true;
+                $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});
+
+                $clubToast.show('הרשימות לא עודכנו', 'pending-content', 'error');
+            };
+
             $scope.updatePendingUsers = function ()
             {
                 $scope.users.forEach(function (user) {
@@ -13,6 +29,10 @@ angular.module('app')
                         $scope.users.$save(user);
                     }
                 });
+                  $scope.$parent.partiesShow = true;
+                 $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});
+
+                $clubToast.show('הרשימות עודכנו', 'pending-content', 'error');
             };
 
 
@@ -24,11 +44,7 @@ angular.module('app')
                 $scope.users.$save(user);
             };
 
-            $scope.back = function ()
-            {
-                $scope.$parent.partiesShow = true;
-                $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});
-            };
+
 
             $scope.checkAll = function ()
             {
