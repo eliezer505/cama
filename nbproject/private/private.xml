@@ -3,17 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/cama/public/app/services/clubServ.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/controllers/managmentEditEventCtrl.js</file>
             <file>file:/C:/xampp/htdocs/cama/public/app/router.js</file>
-            <file>file:/C:/xampp/htdocs/cama/public/app/services/roleServ.js</file>
             <file>file:/C:/xampp/htdocs/cama/public/app/pages/managment.parties.html</file>
-            <file>file:/C:/xampp/htdocs/cama/public/app/directives/mainSideNav.js</file>
             <file>file:/C:/xampp/htdocs/cama/public/app/controllers/managmentPartiesCtrl.js</file>
-            <file>file:/C:/xampp/htdocs/cama/public/app/services/eventServ.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/directives/scrollHeadlinePending.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/factory/infiniteScroll.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/index.html</file>
             <file>file:/C:/xampp/htdocs/cama/public/app/config.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/pages/managment.parties.editevent.html</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/factory/infiniteScrollPending.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/css/style.css</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/services/clubServ.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/templete/avatar.tmpl.html</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/services/roleServ.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/directives/scrollHeadlineManagment.js</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/services/eventServ.js</file>
             <file>file:/C:/xampp/htdocs/cama/public/app/controllers/managmentEditPandingCtrl.js</file>
             <file>file:/C:/xampp/htdocs/cama/public/app/pages/managment.parties.panding.html</file>
-            <file>file:/C:/xampp/htdocs/cama/package.json</file>
+            <file>file:/C:/xampp/htdocs/cama/public/app/controllers/eventsCtrl.js</file>
         </group>
     </open-files>
 </project-private>

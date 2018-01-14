@@ -2,9 +2,16 @@ angular.module('app')
 
         .controller('managmentEditPandingCtrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog) {
 
+            console.log(usersInEvent);
+            $scope.users = usersInEvent;
             $scope.isOpen = false;
             $scope.all = false;
-
+            $scope.updated = false;
+            $scope.isFilterOpen = false;
+            $scope.countt = 0;
+            
+            $scope.checkChanged = function () {
+            };
 
             $scope.cancel = function () {
                 $scope.users.forEach(function (user) {
@@ -18,7 +25,7 @@ angular.module('app')
                 $scope.$parent.partiesShow = true;
                 $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});
 
-                $clubToast.show('הרשימות לא עודכנו', 'pending-content', 'error');
+                $clubToast.show('הרשימות לא עודכנו', 'managment-content', 'error');
             };
 
             $scope.updatePendingUsers = function ()
@@ -29,10 +36,10 @@ angular.module('app')
                         $scope.users.$save(user);
                     }
                 });
-                  $scope.$parent.partiesShow = true;
-                 $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});
+                $scope.$parent.partiesShow = true;
+                $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});
 
-                $clubToast.show('הרשימות עודכנו', 'pending-content', 'error');
+                $clubToast.show('הרשימות עודכנו', 'managment-content', 'error');
             };
 
 
@@ -40,7 +47,10 @@ angular.module('app')
             {
                 console.log(user);
                 console.log($scope.users);
-
+                if (user.approved)
+                    $scope.updated = true;
+                else
+                    $scope.updated = false;
                 $scope.users.$save(user);
             };
 
@@ -48,23 +58,32 @@ angular.module('app')
 
             $scope.checkAll = function ()
             {
-
+                var count = 0;
                 if (!$scope.all)
                 {
+
                     $scope.users.forEach(function (user) {
-                        user.approved = true;
-                        $scope.users.$save(user);
+                        if (!user.approved) {
+                            user.approved = true;
+                            $scope.users.$save(user);
+                            count++;
+                        }
                     });
                     $scope.all = true;
+                    $scope.updated = true;
+                    $clubToast.show('סומנו ' + count + ' בליינים', 'pending-content', 'success');
                 } else
                 {
                     $scope.users.forEach(function (user) {
                         if (!user.sent) {
                             user.approved = false;
                             $scope.users.$save(user);
+                            count++;
                         }
                     });
                     $scope.all = false;
+                    $scope.updated = false;
+                    $clubToast.show('הוסרו ' + count + ' בליינים', 'pending-content', 'success');
                 }
             };
 
@@ -78,8 +97,7 @@ angular.module('app')
 
             };
 
-            console.log(usersInEvent);
-            $scope.users = usersInEvent;
+
             $scope.showConfirm = function (ev, user) {
                 // Appending dialog to document.body to cover sidenav in docs app
                 var confirm = $mdDialog.confirm({

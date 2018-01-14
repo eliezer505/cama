@@ -1,7 +1,7 @@
 (function () {
 
     angular.module('app').
-            service("EVENTS", function ($firebaseObject, Auth, $infiniteScroll, $q, $firebaseArray,$infiniteScrollPending) {
+            service("EVENTS", function ($firebaseObject, Auth, $infiniteScroll, $q, $firebaseArray, $infiniteScrollPending) {
                 if (Auth) {
 
                     var EventsRef = firebase.database().ref('events');
@@ -28,9 +28,21 @@
                     };
 
                     // stoped here - Avner continue from to do pagination to users in event by group - check firebase rules
-                    this.GetUsersInEvent = function (clubId,eventId) {
+                    this.GetUsersInEvent = function (clubId, eventId) {
 
-                       
+
+                        var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("group").startAt(1);
+                        array = $infiniteScrollPending(eventQuery, 15);
+                        return array;
+                    };
+
+                    this.GetUsersInEventByMale = function (clubId, eventId) {
+                        var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("group").startAt(1);
+                        array = $infiniteScrollPending(eventQuery, 15);
+                        return array;
+                    };
+
+                    this.GetUsersInEventByFemale = function (clubId, eventId) {
                         var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("group").startAt(1);
                         array = $infiniteScrollPending(eventQuery, 15);
                         return array;
@@ -55,7 +67,7 @@
                         return one.promise;
                     };
 
-                    this.addUserToEvent = function (eventId,clubId, userObj) {
+                    this.addUserToEvent = function (eventId, clubId, userObj) {
                         // need to add check if user already signed in 
                         var user = {name: userObj.first_name + " " + userObj.last_name, picture: userObj.picture, gender: userObj.gender}
                         EventsUsersRef.child(clubId).child(eventId).child(userObj.$id).set(user);
