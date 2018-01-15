@@ -18,7 +18,8 @@
         "firebase",
         "mdPickers",
         "vsGoogleAutocomplete",
-        "imageupload"
+        "imageupload",
+        "chart.js"
     ]);
 
     club.factory("Auth", ["$firebaseAuth",

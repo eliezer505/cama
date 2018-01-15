@@ -1,6 +1,6 @@
 angular.module('app')
 
-        .controller('managmentEditPandingCtrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog, EVENTS) {
+        .controller('managmentEditPandingCtrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog, EVENTS, ModalService) {
 
             console.log(usersInEvent);
             $scope.users = usersInEvent;
@@ -9,8 +9,20 @@ angular.module('app')
             $scope.updated = false;
             $scope.isFilterOpen = false;
             $scope.countt = 0;
+            $scope.graph = {};
+
+            $scope.openModal = openModal;
+            $scope.closeModal = closeModal;
 
 
+
+            function openModal(id) {
+                ModalService.Open(id);
+            }
+
+            function closeModal(id) {
+                ModalService.Close(id);
+            }
 
 
             $scope.cancel = function () {
@@ -89,13 +101,16 @@ angular.module('app')
 
             $scope.chart = function ()
             {
+                $scope.graph.maleSigned = 10;
+                $scope.graph.femaleSigned = 6;
+                $scope.graph.maleApproved = 5;
+                $scope.graph.femaleApproved = 6;
 
+                $scope.labels = ["גברים רשומים",  "נשים רשומות"];
+                $scope.data = [$scope.graph.maleSigned,  $scope.graph.femaleSigned];
+                $scope.openModal('pending-gender-graphs');
             };
 
-            $scope.filter = function ()
-            {
-
-            };
 
             $scope.filterByFemale = function ()
             {
