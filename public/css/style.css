@@ -708,8 +708,8 @@ i {
 }
 
 #pending-content .user-hr{
-     border-top: 1px solid #c9a8e4;
-     margin: 0 !important;
+    border-top: 1px solid #c9a8e4;
+    margin: 0 !important;
 }
 
 
@@ -1124,11 +1124,29 @@ footer .md-button{
     background: lightgrey;
 }
 
-#my-speed-dial {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+.toolbar-close {
+    position: absolute;
+    right: 0px;
+    bottom: 20px;
+    display: block;
+    width: 100%;
+    height: 59px;
+    /*    transition: all .1s cubic-bezier(0,0,0.58,1);*/
+    transition: bottom 200ms, width 1ms;
+    transition-delay: 450ms;
 }
+
+.toolbar-open {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    display: block;
+    width: 100%;
+    height: 59px;
+    transition: bottom 1ms, width 1ms;
+}
+
+
 @font-face {
     font-family: Arimo;
     src: url(fonts/Arimo-Regular.ttf);
@@ -1136,4 +1154,13 @@ footer .md-button{
 @import url('https://fonts.googleapis.com/css?family=Arimo:400,700');
 .sidenavhead{background: #222!important;color:white!important ;}
 .sidenav{background: #222!important;color:white!important ; }
- .sidenavtext .md-list-item p{font-family: 'Arimo', sans-serif;}
+.sidenavtext .md-list-item p{font-family: 'Arimo', sans-serif;}
+
+/* #my-speed-dial.md-right md-fab-trigger.align-with-text{
+     left: 7px;
+ }*/
+
+md-fab-toolbar .md-fab-toolbar-wrapper {
+
+    height: 59px !important;
+}

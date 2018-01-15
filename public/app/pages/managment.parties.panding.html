@@ -41,8 +41,9 @@
         </div>
     </md-content>
 </md-toolbar>
+<div  id="toast-content" style="position: relative;">   </div>
+<div scroll-headline-pending id="pending-content" flex style="overflow: auto;" ng-clock  ng-show="!partiesShow">
 
-<div scroll-headline-pending id="pending-content" flex style="overflow: auto; position: relative !important;" ng-clock  ng-show="!partiesShow">
     <div ng-repeat="user in users" >	
         <hr ng-if="$first" class="user-hr-no-top" >
         <hr ng-if="!$first" class="user-hr">
@@ -71,14 +72,57 @@
     </div>
 
 
-    <md-fab-toolbar md-open="isOpen" md-direction="left">
-        <md-fab-trigger>
+    <md-fab-toolbar ng-class="isOpen ? 'toolbar-open' : 'toolbar-close'" md-open="isOpen" md-direction="left" count="countt" id="fab-tool">
+        <md-fab-trigger class="align-with-text" style="right: 35px;">
             <md-button aria-label="options" class="md-fab md-mini md-primary"> 
-                <i class="material-icons">&#xE5D2;</i>
+                <md-icon style="display: unset">
+                    <!-- Put what ever youwant here -->
+                    <i class="material-icons">&#xE5D2;</i>
+                </md-icon>
+
             </md-button>
         </md-fab-trigger>
 
         <md-toolbar>
+            <md-fab-actions class="md-toolbar-tools" style="justify-content: space-around;">
+                <!--                <md-button aria-label="options" class="md-icon-button"> 
+                                    <md-icon style="display: unset">
+                                         Put what ever youwant here 
+                                        <i class="material-icons">&#xE5D2;</i>
+                                    </md-icon>
+                                </md-button>   -->
+                <md-button aria-label="check all" class="md-icon-button" ng-click="checkAll()">
+                    <img ng-show="!all" class="png-icon" src="icons/select-all.png" style="width: 24px; height: 24px;">
+                    <img ng-show="all" class="png-icon" src="icons/deselect-all.png" style="width: 24px; height: 24px;">
+                </md-button>
+                <md-button aria-label="gender pie" class="md-icon-button" ng-click="chart()">
+                    <i class="fa fa-pie-chart fa-2x" aria-hidden="true"></i>
+                </md-button>
+                <md-button aria-label="fiter by all" class="md-icon-button" ng-click="filterAll()">
+                    <i class="fa fa-venus-mars fa-2x" aria-hidden="true"></i>
+                </md-button>
+                <md-button aria-label="filer by female" class="md-icon-button" ng-click="filterByFemale()">
+                    <i class="fa fa-venus fa-2x" aria-hidden="true"></i>
+                </md-button>
+                <md-button aria-label="filer by male" class="md-icon-button" ng-click="filterByMale()">
+                    <i class="fa fa-mars fa-2x" aria-hidden="true"></i>
+                </md-button>
+            </md-fab-actions>
+        </md-toolbar>
+    </md-fab-toolbar>
+
+
+
+
+    <!--    <md-fab-speed-dial md-open="isOpen" md-direction="up" class="md-scale fixed-fab-right-no-footer">
+            <md-fab-trigger>
+                <md-button aria-label="menu" class="md-fab md-mini">
+                    <md-icon class="material-icons">
+                        <i class="material-icons">&#xE5D2;</i>
+                    </md-icon>
+                </md-button>
+            </md-fab-trigger>
+    
             <md-fab-actions>
                 <md-button aria-label="check all" class="md-fab md-raised md-mini" ng-click="checkAll()">
                     <img ng-show="!all" class="png-icon" src="icons/select-all.png" style="width: 24px; height: 24px;">
@@ -90,59 +134,32 @@
                 <md-button aria-label="filer" class="md-fab md-raised md-mini" ng-click="filter()">
                     <i class="fa fa-filter" aria-hidden="true"></i>
                 </md-button>
+    
+                <md-fab-toolbar md-open="isFilterOpen" count="countt"
+                                md-direction="left">
+                    <md-fab-trigger class="align-with-text">
+                        <md-button aria-label="menu" class="md-fab md-primary">
+                            <i class="fa fa-filter" aria-hidden="true"></i>
+                        </md-button>
+                    </md-fab-trigger>
+    
+                    <md-toolbar>
+                        <md-fab-actions class="md-toolbar-tools">
+                            <md-button aria-label="comment" class="md-icon-button">
+                                <i class="fa fa-venus-mars fa-2x" aria-hidden="true"></i>
+                            </md-button>
+                            <md-button aria-label="label" class="md-icon-button">
+                                <i class="fa fa-venus fa-2x" aria-hidden="true"></i>
+                            </md-button>
+                            <md-button aria-label="photo" class="md-icon-button">
+                                <i class="fa fa-mars fa-2x" aria-hidden="true"></i>
+                            </md-button>
+                        </md-fab-actions>
+                    </md-toolbar>
+                </md-fab-toolbar>
+    
             </md-fab-actions>
-        </md-toolbar>
-    </md-fab-toolbar>
-
-
-
-
-<!--    <md-fab-speed-dial md-open="isOpen" md-direction="up" class="md-scale fixed-fab-right-no-footer">
-        <md-fab-trigger>
-            <md-button aria-label="menu" class="md-fab md-mini">
-                <md-icon class="material-icons">
-                    <i class="material-icons">&#xE5D2;</i>
-                </md-icon>
-            </md-button>
-        </md-fab-trigger>
-
-        <md-fab-actions>
-            <md-button aria-label="check all" class="md-fab md-raised md-mini" ng-click="checkAll()">
-                <img ng-show="!all" class="png-icon" src="icons/select-all.png" style="width: 24px; height: 24px;">
-                <img ng-show="all" class="png-icon" src="icons/deselect-all.png" style="width: 24px; height: 24px;">
-            </md-button>
-            <md-button aria-label="gender pie" class="md-fab md-raised md-mini" ng-click="chart()">
-                <i class="fa fa-pie-chart" aria-hidden="true"></i>
-            </md-button>
-            <md-button aria-label="filer" class="md-fab md-raised md-mini" ng-click="filter()">
-                <i class="fa fa-filter" aria-hidden="true"></i>
-            </md-button>
-
-            <md-fab-toolbar md-open="isFilterOpen" count="countt"
-                            md-direction="left">
-                <md-fab-trigger class="align-with-text">
-                    <md-button aria-label="menu" class="md-fab md-primary">
-                        <i class="fa fa-filter" aria-hidden="true"></i>
-                    </md-button>
-                </md-fab-trigger>
-
-                <md-toolbar>
-                    <md-fab-actions class="md-toolbar-tools">
-                        <md-button aria-label="comment" class="md-icon-button">
-                            <i class="fa fa-venus-mars fa-2x" aria-hidden="true"></i>
-                        </md-button>
-                        <md-button aria-label="label" class="md-icon-button">
-                            <i class="fa fa-venus fa-2x" aria-hidden="true"></i>
-                        </md-button>
-                        <md-button aria-label="photo" class="md-icon-button">
-                            <i class="fa fa-mars fa-2x" aria-hidden="true"></i>
-                        </md-button>
-                    </md-fab-actions>
-                </md-toolbar>
-            </md-fab-toolbar>
-
-        </md-fab-actions>
-    </md-fab-speed-dial>-->
+        </md-fab-speed-dial>-->
 </div>
 
 

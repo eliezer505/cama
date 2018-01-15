@@ -37,13 +37,13 @@
                     };
 
                     this.GetUsersInEventByMale = function (clubId, eventId) {
-                        var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("group").startAt(1);
+                        var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("gender").equalTo("male");
                         array = $infiniteScrollPending(eventQuery, 15);
                         return array;
                     };
 
                     this.GetUsersInEventByFemale = function (clubId, eventId) {
-                        var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("group").startAt(1);
+                        var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("gender").equalTo("female");
                         array = $infiniteScrollPending(eventQuery, 15);
                         return array;
                     };

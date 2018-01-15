@@ -1,6 +1,6 @@
 angular.module('app')
 
-        .controller('managmentEditPandingCtrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog) {
+        .controller('managmentEditPandingCtrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog, EVENTS) {
 
             console.log(usersInEvent);
             $scope.users = usersInEvent;
@@ -9,9 +9,9 @@ angular.module('app')
             $scope.updated = false;
             $scope.isFilterOpen = false;
             $scope.countt = 0;
-            
-            $scope.checkChanged = function () {
-            };
+
+
+
 
             $scope.cancel = function () {
                 $scope.users.forEach(function (user) {
@@ -71,7 +71,7 @@ angular.module('app')
                     });
                     $scope.all = true;
                     $scope.updated = true;
-                    $clubToast.show('סומנו ' + count + ' בליינים', 'pending-content', 'success');
+                    $clubToast.show('סומנו ' + count + ' בליינים', 'toast-content', 'success');
                 } else
                 {
                     $scope.users.forEach(function (user) {
@@ -83,7 +83,7 @@ angular.module('app')
                     });
                     $scope.all = false;
                     $scope.updated = false;
-                    $clubToast.show('הוסרו ' + count + ' בליינים', 'pending-content', 'success');
+                    $clubToast.show('הוסרו ' + count + ' בליינים', 'toast-content', 'success');
                 }
             };
 
@@ -97,6 +97,32 @@ angular.module('app')
 
             };
 
+            $scope.filterByFemale = function ()
+            {
+
+                EVENTS.GetUsersInEventByFemale($stateParams.clubId, $stateParams.eventId).then(function (data) {
+                    $scope.users = data;
+                });
+
+            };
+
+            $scope.filterByMale = function ()
+            {
+
+                EVENTS.GetUsersInEventByMale($stateParams.clubId, $stateParams.eventId).then(function (data) {
+                    $scope.users = data;
+                });
+
+            };
+
+            $scope.filterAll = function ()
+            {
+
+                EVENTS.GetUsersInEvent($stateParams.clubId, $stateParams.eventId).then(function (data) {
+                    $scope.users = data;
+                });
+
+            };
 
             $scope.showConfirm = function (ev, user) {
                 // Appending dialog to document.body to cover sidenav in docs app
