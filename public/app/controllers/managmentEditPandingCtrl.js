@@ -15,6 +15,60 @@ angular.module('app')
             $scope.closeModal = closeModal;
 
 
+            $scope.config = {
+                visible: true, // default: true
+                extended: true, // default: false
+
+            };
+
+            $scope.options = {
+                chart: {
+                    type: 'pieChart',
+                    height: 300,
+                    valueFormat: function (d) {
+                        return d3.format('.2%')(d / totalValues);
+                    },
+                    x: function (d) {
+                        return d.label;
+                    },
+                    y: function (d) {
+                        return d.value;
+                    },
+                    showValues: true, //Display pie labels
+                    legendPosition: 'bottom',
+                    useInteractiveGuideline: true,
+                    labelType: 'percent', //Configure what type of data to show in the label. Can be "key", "value" or "percent"
+                    showLabels: true,
+                    duration: 500,
+                    labelThreshold: 0.01,
+                    labelSunbeamLayout: false,
+                    title: true,
+                    margin: {
+                        top: 5,
+                        right: 5,
+                        bottom: 5,
+                        left: 5
+                    },
+                    noData: null,
+                    showLegend: true,
+                    defaultState: null,
+                    pieLabelsOutside: false,
+                    legend: {
+                        vers: "classic",
+                    }
+                },
+                title: {
+                    enable: true,
+                    text: "יחס הרשמה נשים גברים",
+                    className: "h4",
+                    css: {
+                        width: "nullpx",
+                        textAlign: "center"
+                    }
+                }
+
+            };
+
 
             function openModal(id) {
                 ModalService.Open(id);
@@ -101,13 +155,27 @@ angular.module('app')
 
             $scope.chart = function ()
             {
+
+                $scope.data = [
+                    {
+                        label: "נשים",
+                        value: 5,
+                        color: "#ff4d6a"
+                    },
+                    {
+                        label: "גברים",
+                        value: 2,
+                        color: "#4d94ff"
+                    }
+                ];
+
                 $scope.graph.maleSigned = 10;
                 $scope.graph.femaleSigned = 6;
                 $scope.graph.maleApproved = 5;
                 $scope.graph.femaleApproved = 6;
 
-                $scope.labels = ["גברים רשומים",  "נשים רשומות"];
-                $scope.data = [$scope.graph.maleSigned,  $scope.graph.femaleSigned];
+                $scope.labels = ["גברים רשומים", "נשים רשומות"];
+                $scope.data = [$scope.graph.maleSigned, $scope.graph.femaleSigned];
                 $scope.openModal('pending-gender-graphs');
             };
 

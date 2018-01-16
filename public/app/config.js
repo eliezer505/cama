@@ -19,6 +19,7 @@
         "mdPickers",
         "vsGoogleAutocomplete",
         "imageupload",
+        "nvd3",
         "chart.js"
     ]);
 

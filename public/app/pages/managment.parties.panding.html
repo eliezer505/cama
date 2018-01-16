@@ -111,13 +111,11 @@
         </md-toolbar>
     </md-fab-toolbar>
 
- 
-    <modal id="pending-gender-graphs">
+
+    <modal id="pending-gender-graphs" attachTo="">
         <div class="modal">
             <div class="modal-body">
-                <canvas id="pie" class="chart chart-pie"
-                        chart-data="data" chart-labels="labels" chart-options="options">
-                </canvas> 
+                <nvd3 options="options" data="data" class="with-3d-shadow with-transitions"></nvd3>
                 <button ng-click="closeModal('pending-gender-graphs');">Close</button>
             </div>
         </div>
