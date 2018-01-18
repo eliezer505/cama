@@ -17,10 +17,10 @@ angular.module('app').controller('managmentPartiesCtrl',
                 $state.go('managment.parties.editevent', {clubId: $stateParams.clubId, eventId: id, role: $stateParams.role});
             };
 
-            $scope.panding = function (id) {
+            $scope.pending = function (id) {
 
                 $scope.partiesShow = false;
-                $state.go('managment.parties.panding', {clubId: $stateParams.clubId, eventId: id, role: $stateParams.role});
+                $state.go('managment.parties.pending', {clubId: $stateParams.clubId, eventId: id, role: $stateParams.role});
             };
 
             $scope.newEvent = function () {

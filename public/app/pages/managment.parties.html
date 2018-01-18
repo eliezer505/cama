@@ -53,14 +53,14 @@
                 <span class="club-name" >{{event.name}}</span>
             </div>
             <div flex="15">
-                <md-button class="md-fab md-mini" ng-click="panding(event.$id)" style="margin: 0px !important; background-color: orange !important;" aria-label="Eat cake">
-                    {{event.panding}}
+                <md-button class="md-fab md-mini" ng-click="pending(event.$id)" style="margin: 0px !important; background-color: orange !important;" aria-label="Eat cake">
+                    {{event.pending.all}}
                 </md-button> 
                 <!--<span class="club-name circle-padding" >{{event.price}}</span>-->
             </div>
             <div flex="15">
                 <md-button class="md-fab md-mini" style="margin: 0px !important; background-color: green !important;" aria-label="Eat cake">
-                    {{event.approved}}
+                    {{event.approved.all}}
                 </md-button>
                 <!--<span class="event-approved circle-approved ">{{event.minAge}} </span>-->
             </div>

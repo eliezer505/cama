@@ -251,10 +251,10 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     }
                 }
             })
-            .state('managment.parties.panding', {
-                url: "/editpanding",
-                templateUrl: "app/pages/managment.parties.panding.html",
-                controller: "managmentEditPandingCtrl",
+            .state('managment.parties.pending', {
+                url: "/editpending",
+                templateUrl: "app/pages/managment.parties.pending.html",
+                controller: "managmentEditPendingCtrl",
                 params: {
                     eventId: null,
                     clubId: null,

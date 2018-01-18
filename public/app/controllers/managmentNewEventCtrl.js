@@ -23,9 +23,10 @@ angular.module('app')
             };
 
             $scope.event = {};
-            $scope.event.panding = 0;
-            $scope.event.approved = 0;
-            $scope.event.entered = 0;
+            $scope.event.pending = {all: 0, male: 0, female: 0};           
+            $scope.event.approved = {all: 0, male: 0, female: 0};
+            $scope.event.entered = {all: 0, male: 0, female: 0};
+           
             $scope.event.minAge = 18;
             $scope.event.Price = 0;
             $scope.eventDate = new Date();

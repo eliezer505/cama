@@ -69,7 +69,13 @@
 
                     this.addUserToEvent = function (eventId, clubId, userObj) {
                         // need to add check if user already signed in 
-                        var user = {name: userObj.first_name + " " + userObj.last_name, picture: userObj.picture, gender: userObj.gender}
+                        var user = {
+                            name: userObj.first_name + " " + userObj.last_name,
+                            picture: userObj.picture,
+                            gender: userObj.gender,
+                            approved: false,
+                            sent: false
+                        };
                         EventsUsersRef.child(clubId).child(eventId).child(userObj.$id).set(user);
 //https://github.com/firebase/functions-samples/blob/master/child-count/functions/index.js
 //add  function to make a counter

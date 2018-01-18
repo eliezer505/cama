@@ -1,6 +1,6 @@
 angular.module('app')
 
-        .controller('managmentEditPandingCtrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog, EVENTS, ModalService) {
+        .controller('managmentEditPendingCtrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog, EVENTS, ModalService) {
 
             console.log(usersInEvent);
             $scope.users = usersInEvent;
