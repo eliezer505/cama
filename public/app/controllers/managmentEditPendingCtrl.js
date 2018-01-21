@@ -17,14 +17,14 @@ angular.module('app')
 
             $scope.config = {
                 visible: true, // default: true
-                extended: true, // default: false
+                extended: true // default: false
 
             };
 
             $scope.options = {
                 chart: {
                     type: 'pieChart',
-                    height: 300,
+                    height: 250,
                     valueFormat: function (d) {
                         return d3.format('.2%')(d / totalValues);
                     },
@@ -52,7 +52,7 @@ angular.module('app')
                     noData: null,
                     showLegend: true,
                     defaultState: null,
-                    pieLabelsOutside: false,
+                    labelsOutside: false,
                     legend: {
                         vers: "classic",
                     }
@@ -156,26 +156,45 @@ angular.module('app')
             $scope.chart = function ()
             {
 
-                $scope.data = [
-                    {
-                        label: "נשים",
-                        value: 5,
-                        color: "#ff4d6a"
-                    },
-                    {
-                        label: "גברים",
-                        value: 2,
-                        color: "#4d94ff"
-                    }
-                ];
+                EVENTS.GetOneEvent($stateParams.clubId, $stateParams.eventId).then(function (data) {
+                    $scope.data = [
+                        {
+                            label: "נשים",
+                            value: data.pending.female,
+                            color: "#ff4d6a"
+                        },
+                        {
+                            label: "גברים",
+                            value: data.pending.male,
+                            color: "#4d94ff"
+                        }
+                    ];
 
-                $scope.graph.maleSigned = 10;
-                $scope.graph.femaleSigned = 6;
-                $scope.graph.maleApproved = 5;
-                $scope.graph.femaleApproved = 6;
+                    $scope.data1 = [
+                        {
+                            label: "נשים",
+                            value: data.approved.female,
+                            color: "#ff4d6a"
+                        },
+                        {
+                            label: "גברים",
+                            value: data.approved.male,
+                            color: "#4d94ff"
+                        }
+                    ];
 
-                $scope.labels = ["גברים רשומים", "נשים רשומות"];
-                $scope.data = [$scope.graph.maleSigned, $scope.graph.femaleSigned];
+
+                });
+
+
+
+//                $scope.graph.maleSigned = 10;
+//                $scope.graph.femaleSigned = 6;
+//                $scope.graph.maleApproved = 5;
+//                $scope.graph.femaleApproved = 6;
+//
+//                $scope.labels = ["גברים רשומים", "נשים רשומות"];
+//                $scope.data = [$scope.graph.maleSigned, $scope.graph.femaleSigned];
                 $scope.openModal('pending-gender-graphs');
             };
 

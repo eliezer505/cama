@@ -19,8 +19,7 @@
         "mdPickers",
         "vsGoogleAutocomplete",
         "imageupload",
-        "nvd3",
-        "chart.js"
+        "nvd3"
     ]);
 
     club.factory("Auth", ["$firebaseAuth",

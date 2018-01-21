@@ -1129,21 +1129,22 @@ footer .md-button{
     right: 0px;
     bottom: 20px;
     display: block;
-    width: 100%;
+    width: 90% !important;
     height: 59px;
     /*    transition: all .1s cubic-bezier(0,0,0.58,1);*/
-    transition: bottom 200ms, width 1ms;
+    transition: bottom 200ms, width 1ms, background 100ms;
     transition-delay: 450ms;
 }
 
 .toolbar-open {
+    background-color: rgb(63,81,181);
     position: absolute;
     right: 0px;
     bottom: 0px;
     display: block;
-    width: 100%;
+    width: 100% !important;
     height: 59px;
-    transition: bottom 1ms, width 1ms;
+    transition: bottom 1ms, width 1ms,background 300ms;
 }
 
 

@@ -24,7 +24,6 @@ exports.user_registered_to_event = functions.database.ref('/UsersInEvent/{clubId
         }
         return gender.transaction(current => {
             return (current || 0) + 1;
-        }).then(() => {
         });
     });
 });
@@ -39,15 +38,11 @@ exports.user_unregistered_to_event = functions.database.ref('/UsersInEvent/{club
         return (current || 0) - 1;
     }).then(() => {
         var original = event.data.previous.val();
-        var gender = null;
-        if (original.gender === "male") {
-            gender = root.child('events').child(event.params.clubId).child(event.params.eventId).child('pending').child('male');
-        } else if (original.gender === "female") {
-            gender = root.child('events').child(event.params.clubId).child(event.params.eventId).child('pending').child('female');
-        }
+
+        const gender = root.child('events').child(event.params.clubId).child(event.params.eventId).child('pending').child(original.gender);
+
         return gender.transaction(current => {
             return (current || 0) - 1;
-        }).then(() => {
         });
     });
 });
@@ -56,28 +51,24 @@ exports.user_unregistered_to_event = functions.database.ref('/UsersInEvent/{club
 exports.user_approved_to_event = functions.database.ref('/UsersInEvent/{clubId}/{eventId}/{userId}/sent').onUpdate(event => {
 
     const newVal = event.data.val();
-    console.log(newVal);
-
     if (!newVal)
         return null;
 
     const root = event.data.ref.root;
-    var original = root.child('UsersInEvent').child(event.params.clubId).child(event.params.eventId).child(event.params.userId).val();
-    console.log(original);
+    var original = root.child('UsersInEvent').child(event.params.clubId).child(event.params.eventId).child(event.params.userId);
     const events = root.child('events').child(event.params.clubId).child(event.params.eventId).child('approved').child('all');
 
     return events.transaction(current => {
-        console.log('update all');
         return (current || 0) + 1;
     }).then(() => {
-        console.log('enter genders');
-        console.log(original);
-        const gender = root.child('events').child(event.params.clubId).child(event.params.eventId).child('approved').child(original.gender);
+        original.once("value", function (snapshot) {
 
-        return gender.transaction(current => {
-            return (current || 0) + 1;
-        }).then(() => {
-            console.log('finish all');
+            var user = snapshot.val();
+            const gender = root.child('events').child(event.params.clubId).child(event.params.eventId).child('approved').child(user.gender);
+
+            return gender.transaction(current => {
+                return (current || 0) + 1;
+            });
         });
     });
 });

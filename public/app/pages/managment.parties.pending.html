@@ -115,8 +115,15 @@
     <modal id="pending-gender-graphs" attachTo="">
         <div class="modal">
             <div class="modal-body">
-                <nvd3 options="options" data="data" class="with-3d-shadow with-transitions"></nvd3>
-                <button ng-click="closeModal('pending-gender-graphs');">Close</button>
+                <div style="border: 1px solid">
+                    <nvd3 options="options" data="data" class="with-3d-shadow with-transitions"></nvd3>
+
+                </div>
+                 <div style="border: 1px solid">
+                    <nvd3 options="options" data="data1" class="with-3d-shadow with-transitions"></nvd3>
+
+                </div>
+                <button ng-click="closeModal('pending-gender-graphs');">סגור</button>
             </div>
         </div>
         <div class="modal-background"></div>
