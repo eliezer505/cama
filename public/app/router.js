@@ -61,7 +61,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     }
                 }
             })
-             .state('clubears.friends.all', {
+            .state('clubears.friends.all', {
                 url: "/all-friends",
                 templateUrl: "app/pages/clubears.friends.all.html",
                 controller: 'clubears.friends.all.ctrl',
@@ -255,6 +255,27 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                 url: "/editpending",
                 templateUrl: "app/pages/managment.parties.pending.html",
                 controller: "managmentEditPendingCtrl",
+                params: {
+                    eventId: null,
+                    clubId: null,
+                    role: null
+                },
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                    usersInEvent: function ($stateParams, EVENTS, $q) {
+                        if (!$stateParams.clubId || !$stateParams.role || !$stateParams.eventId) {
+                            return $q.reject({code: 'MANAGMENT'});
+                        } else
+                            return EVENTS.GetUsersInEvent($stateParams.clubId, $stateParams.eventId);
+                    }
+                }
+            })
+            .state('managment.parties.approved', {
+                url: "/editapproved",
+                templateUrl: "app/pages/managment.parties.approved.html",
+                controller: "managmentPartiesApprovedCtrl",
                 params: {
                     eventId: null,
                     clubId: null,

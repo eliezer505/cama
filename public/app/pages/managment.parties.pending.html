@@ -116,11 +116,11 @@
         <div class="modal">
             <div class="modal-body">
                 <div style="border: 1px solid">
-                    <nvd3 options="options" data="data" class="with-3d-shadow with-transitions"></nvd3>
+                    <nvd3 options="options" data="data" class="with-3d-shadow with-transitions" config="{refreshDataOnly: false, deepWatchData: true}"></nvd3>
 
                 </div>
                  <div style="border: 1px solid">
-                    <nvd3 options="options" data="data1" class="with-3d-shadow with-transitions"></nvd3>
+                    <nvd3 options="options" data="data1" class="with-3d-shadow with-transitions" config="config"></nvd3>
 
                 </div>
                 <button ng-click="closeModal('pending-gender-graphs');">סגור</button>

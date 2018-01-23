@@ -1,9 +1,6 @@
-<md-toolbar  class="md-primary bottom-shadow">
+<md-toolbar style="color:white;" id="pending-toolbar" ng-class="{'bottom-shadow': boolChangeClass}"  ng-show="!partiesShow">
     <div class="md-toolbar-tools gradient">
         <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
-            <md-tooltip>
-                Side Panel
-            </md-tooltip>
             <md-icon class="md-default-theme" class="material-icons">
                 &#xE5D2;
             </md-icon>
@@ -12,11 +9,11 @@
         <span flex="" class="flex"></span>
 
         <md-button class="md-icon-button" aria-label="Cancel" ng-click="cancel()">
-                <md-icon class="material-icons">
-                    <i class="material-icons">&#xE5C9;</i>
-               </md-icon>
+            <md-icon class="material-icons">
+                <i class="material-icons">&#xE5C9;</i>
+            </md-icon>
         </md-button>
-        <md-button form="disablepadding" type="submit" class="md-icon-button" aria-label="Done" ng-click="updateEvent()">
+        <md-button ng-disabled="updated === false" class="md-icon-button" aria-label="Done" ng-click="updatePendingUsers()">
             <md-icon class="material-icons">
                 <i class="material-icons">&#xE876;</i>
             </md-icon>
@@ -24,90 +21,106 @@
 
     </div>
 
-</md-toolbar>
-
-
-
-<!--https://gist.github.com/abehaskins/7330325-->
-<!--https://codepen.io/shepard_one/pen/MypdLy-->
-
-
-
-<form id="disablepadding" name="eventForm"   
-    style="padding: 20px; overflow: auto;" 
-    novalidate 
-    layout-padding 
-    class="rtl" 
-    md-theme="altTheme" 
-    flex 
-    ng-clock>
-    <md-input-container class="md-block no-margin-top-bottom">
-        <label>שם הליין</label>
-        <input name="lineName" ng-model="event.name" required md-no-asterisk>
-        <div ng-messages="eventForm.lineName.$error" ng-if="eventForm.lineName.$invalid && (eventForm.$submitted || eventForm.lineName.$touched || eventForm.lineName.$dirty)" >
-            <div ng-message="required">נא להכניס את שם הליין!</div>
-        </div>
-    </md-input-container>
-
-
-    <mdp-date-picker style="direction:rtl;"
-                     mdp-open-on-click 
-                     required 
-                     name="dateFormat" 
-                     mdp-placeholder="תאריך האירוע" 
-                     mdp-format="DD/MM/YYYY" 
-                     ng-model="event.eDate">
-        <div ng-messages="eventForm.dateFormat.$error" ng-if="eventForm.dateFormat.$invalid && (eventForm.$submitted || eventForm.dateFormat.$touched || eventForm.dateFormat.$dirty)">
-            <div ng-message="required">חובה לבחור תאריך</div>
-            <div ng-message="format">הפורמט לא תקין </div>
-        </div>
-    </mdp-date-picker>
-
-
-          
-        <mdp-time-picker style="direction:rtl;" 
-                         mdp-placeholder="פתיחת שערים"
-                         mdp-open-on-click
-                         mdp-auto-switch="true"
-                         required 
-                         name="timeFormat" 
-                         ng-model="event.eTime" 
-                         mdp-format="HH:mm A">
-            <div ng-messages="eventForm.timeFormat.$error" ng-if="eventForm.timeFormat.$invalid && (eventForm.$submitted || eventForm.timeFormat.$touched || eventForm.timeFormat.$dirty)">
-                <div ng-message="required">חובה לבחור שעת כניסה</div>
-                <div ng-message="format">הפורמט לא תקין </div>
+    <md-content>
+        <div layout="row" class="club-sub-head" >
+            <div flex="25">
+                <span class="club-name" >תמונה</span>
             </div>
-        </mdp-time-picker>
-              
+            <div flex="45">
+                <span class="club-name" >שם</span>
+            </div>
+            <div flex="15">
+                <span class="event-panding" >מין</span>
+            </div>
 
-
-
-    <div layout="row" class="md-block"  md-theme="altTheme">
-        <div layout layout-align="center center">
-            <span class="md-body-1">גיל כניסה</span>
+            <div flex="15">
+                <span class="club-reg-btn1">אישור</span>
+            </div>
         </div>
-        <md-slider name="minAge" flex md-discrete ng-model="event.minAge" step="1" min="18" max="70" aria-label="minAge" style="direction:ltr;">
-        </md-slider>
+    </md-content>
+</md-toolbar>
+<div  id="toast-content" style="position: relative;">   </div>
+<div scroll-headline-pending id="pending-content" flex style="overflow: auto;" ng-clock  ng-show="!partiesShow">
+
+    <div ng-repeat="user in users" >	
+        <hr ng-if="$first" class="user-hr-no-top" >
+        <hr ng-if="!$first" class="user-hr">
+        <div layout="row" class="user-list" ng-class="user.group % 2 === 0 ? 'even-line' : 'odd-line'">
+
+            <div flex="25" layout="row" >
+                <img ng-src='{{user.picture}}' class="avatar" ng-click="showConfirm($event, user)"> 
+            </div>
+            <div flex="45" layout="row">
+                <span class="user-name vertical-text" >{{user.name}}</span>
+            </div>
+            <div flex="15" layout="row">
+                <span class="user-name vertical-text" ><i ng-if="user.gender === 'male'" class="fa fa-mars" style="font-size:24px"></i><i  ng-if="user.gender === 'female'" class="fa fa-venus" style="font-size:24px"></i></span>
+            </div>
+            <div flex="15" layout="row">
+                <md-checkbox ng-disabled="user.entered" ng-model="user.entered" aria-label="Checkbox 1"  ng-change="changeState(user)"></md-checkbox>
+
+            </div>          
+        </div>
+        <hr ng-if="$last" class="user-hr-no-bottom">
+
+
     </div>
 
 
-    <div layout="row" class="md-block profile-slider"  >
-        <div  layout layout-align="center center">
-            <span class="md-body-1">מחיר כניסה</span>
+    <md-fab-toolbar ng-class="isOpen ? 'toolbar-open' : 'toolbar-close'" md-open="isOpen" md-direction="left" count="countt" id="fab-tool">
+        <md-fab-trigger class="align-with-text" style="right: 35px;">
+            <md-button aria-label="options" class="md-fab md-mini md-primary"> 
+                <md-icon style="display: unset">
+                    <!-- Put what ever youwant here -->
+                    <i class="material-icons">&#xE5D2;</i>
+                </md-icon>
+
+            </md-button>
+        </md-fab-trigger>
+
+        <md-toolbar>
+            <md-fab-actions class="md-toolbar-tools" style="justify-content: space-around;">
+                <!--                <md-button aria-label="options" class="md-icon-button"> 
+                                    <md-icon style="display: unset">
+                                         Put what ever youwant here 
+                                        <i class="material-icons">&#xE5D2;</i>
+                                    </md-icon>
+                                </md-button>   -->
+                <md-button aria-label="check all" class="md-icon-button" ng-click="checkAll()">
+                    <img ng-show="!all" class="png-icon" src="icons/select-all.png" style="width: 24px; height: 24px;">
+                    <img ng-show="all" class="png-icon" src="icons/deselect-all.png" style="width: 24px; height: 24px;">
+                </md-button>
+                <md-button aria-label="gender pie" class="md-icon-button" ng-click="chart()">
+                    <i class="fa fa-pie-chart fa-2x" aria-hidden="true"></i>
+                </md-button>
+                <md-button aria-label="fiter by all" class="md-icon-button" ng-click="filterAll()">
+                    <i class="fa fa-venus-mars fa-2x" aria-hidden="true"></i>
+                </md-button>
+                <md-button aria-label="filer by female" class="md-icon-button" ng-click="filterByFemale()">
+                    <i class="fa fa-venus fa-2x" aria-hidden="true"></i>
+                </md-button>
+                <md-button aria-label="filer by male" class="md-icon-button" ng-click="filterByMale()">
+                    <i class="fa fa-mars fa-2x" aria-hidden="true"></i>
+                </md-button>
+            </md-fab-actions>
+        </md-toolbar>
+    </md-fab-toolbar>
+
+
+    <modal id="pending-gender-graphs" attachTo="">
+        <div class="modal">
+            <div class="modal-body">
+                <div style="border: 1px solid">
+                    <nvd3 options="options" data="data" class="with-3d-shadow with-transitions" config="{refreshDataOnly: false, deepWatchData: true}"></nvd3>
+
+                </div>
+                 <div style="border: 1px solid">
+                    <nvd3 options="options" data="data1" class="with-3d-shadow with-transitions" config="config"></nvd3>
+
+                </div>
+                <button ng-click="closeModal('pending-gender-graphs');">סגור</button>
+            </div>
         </div>
-        <md-slider name="Price" flex md-discrete ng-model="event.Price" step="5" min="0" max="250" aria-label="Price" style="direction:ltr;">
-        </md-slider>
-    </div>
-
-    <md-input-container class="md-block no-margin-top-bottom">
-        <label>תיאור המסיבה</label>
-        <textarea ng-model="event.description" name="description" ng-maxlength="150" md-maxlength="150" rows="1" md-select-on-focus></textarea>
-        <div ng-messages="eventForm.description.$error" ng-if="eventForm.description.$invalid && (eventForm.$submitted || eventForm.description.$touched || eventForm.description.$dirty)" >
-            <div ng-message="maxlength">נא להקליד עד 150 תוים !</div>
-        </div>
-    </md-input-container>
-
-</form>
-
-
-
+        <div class="modal-background"></div>
+    </modal>  
+</div>

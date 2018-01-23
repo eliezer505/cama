@@ -23,6 +23,12 @@ angular.module('app').controller('managmentPartiesCtrl',
                 $state.go('managment.parties.pending', {clubId: $stateParams.clubId, eventId: id, role: $stateParams.role});
             };
 
+            $scope.approved = function (id) {
+
+                $scope.partiesShow = false;
+                $state.go('managment.parties.approved', {clubId: $stateParams.clubId, eventId: id, role: $stateParams.role});
+            };
+
             $scope.newEvent = function () {
                 $scope.partiesShow = false;
                 $state.go('managment.parties.newevent', {clubId: $stateParams.clubId, role: $stateParams.role});

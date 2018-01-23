@@ -1,6 +1,6 @@
 angular.module('app')
 
-        .controller('managmentEditPendingCtrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog, EVENTS, ModalService) {
+        .controller('managmentPartiesApprovedCtrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog, EVENTS, ModalService) {
 
             console.log(usersInEvent);
             $scope.users = usersInEvent;
@@ -112,7 +112,7 @@ angular.module('app')
             {
                 console.log(user);
                 console.log($scope.users);
-                if (user.approved)
+                if (user.entered)
                     $scope.updated = true;
                 else
                     $scope.updated = false;
