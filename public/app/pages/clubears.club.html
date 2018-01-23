@@ -1,37 +1,19 @@
-<div layout="column" md-theme="altTheme" class="md-primary gradient content-middle" style="color:white; height:20%;">
-
-    <div layout="row" class="rtl text-middle">
-    	 
-        <div flex style="padding-right: 11px;"> 
-            <span class="md-headline">{{currentClub.name}}</span><br>
-            <span class="md-subhead" ng-bind="currentClub.address.city">{{currentClub.address.city}}</span>
-        </div>
-        <div flex>   <div  class="md-media-sm card-media "><img id="mainavatar" ng-src="{{currentClub.clubPicture}}"></div></div>
-  <div flex></div>
+<div layout="column" md-theme="altTheme" class="md-primary gradient content-middle" style="color:white; height: 20%;">
+<div class="line-inner-shadow">
+</div>
+<div class="card-media smartline">
+	
+    <div class="octo" style="background:url('{{currentClub.clubPicture}}');     background-position: center;
+    background-size: cover;">
+      <div class="octo1">
+       
+      </div>
     </div>
 </div>
 
-<md-content class="md-padding">
-    <md-nav-bar layout="row" layout-align="center end"
-                md-selected-nav-item="currentNavItem"
-                nav-bar-aria-label="navigation links">
 
-        <md-nav-item md-nav-sref="clubears.club.about" name="about">
-            <i class="material-icons">&#xE88F;</i><!-- favorites -->
-        </md-nav-item>
-        <md-nav-item md-nav-sref="clubears.club.party" name="parties">
-         <i class="material-icons">&#xE85E;</i> <!-- history -->
-        </md-nav-item>
-        <!-- these require actual routing with ui-router or ng-route, so they
-        won't work in the demo
-        <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
-        <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
-        You can also add options for the <code>ui-sref-opts</code> attribute.
-        <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
-          Page Six
-        </md-nav-item>
-        -->
-    </md-nav-bar>
+<md-content class="md-padding">
+
     <div class="ext-content">
         <div ui-view></div>
         <!--  External content for `<span>{{currentNavItem}}</span>`. -->

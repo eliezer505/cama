@@ -74,6 +74,46 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     }
                 }
             })
+                        .state('clubears.friends.search', {
+                url: "/search-friends",
+                templateUrl: "app/pages/clubears.friends.search.html",
+                controller: 'clubears.friends.search.ctrl',
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                    clubesNearBy: function (CLUBES) {
+                        return CLUBES.GetClubesNearBy();
+                    }
+                }
+            })
+                                    .state('clubears.friends.sugg', {
+                url: "/suggest-friends",
+                templateUrl: "app/pages/clubears.friends.sugg.html",
+                controller: 'clubears.friends.sugg.ctrl',
+                resolve: {
+                    currentAuth: function (Auth) {
+                        return Auth.$requireSignIn();
+                    },
+                    clubesNearBy: function (CLUBES) {
+                        return CLUBES.GetClubesNearBy();
+                    }
+                }
+            })
+                        .state('clubears.contact', {
+                url: "/contact",
+                templateUrl: "app/pages/contact.html"
+
+                        //
+                        //      }
+            })
+                                    .state('clubears.aboutus', {
+                url: "/aboutus",
+                templateUrl: "app/pages/aboutus.html"
+
+                        //
+                        //      }
+            })
             .state('clubears.main', {
 
                 url: "/main",
