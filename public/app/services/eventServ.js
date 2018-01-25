@@ -31,19 +31,19 @@
                     this.GetUsersInEvent = function (clubId, eventId) {
 
 
-                        var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("group").startAt(1);
+                        var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("sent_group").startAt("false_1");
                         array = $infiniteScrollPending(eventQuery, 15);
                         return array;
                     };
 
                     this.GetUsersInEventByMale = function (clubId, eventId) {
-                        var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("gender").equalTo("male");
+                        var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("gender_sent").startAt("male_false").endAt("male_true");
                         array = $infiniteScrollPending(eventQuery, 15);
                         return array;
                     };
 
                     this.GetUsersInEventByFemale = function (clubId, eventId) {
-                        var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("gender").equalTo("female");
+                        var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("gender_sent").startAt("female_false").endAt("female_true");
                         array = $infiniteScrollPending(eventQuery, 15);
                         return array;
                     };

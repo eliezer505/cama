@@ -35,20 +35,20 @@ angular.module('app')
                                     $rootScope.$digest();
                                 }
                             });
-
-                            main.on("child_changed", function ($snapshot, $prev) {
-                                if (result.$$updated($snapshot)) {
-                                    result.$$process("child_changed", result.$getRecord($snapshot.getKey()));
-                                    $rootScope.$digest();
-                                }
-                            });
-
-                            main.on("child_moved", function ($snapshot, $prev) {
-                                if (result.$$moved($snapshot, $prev)) {
-                                    result.$$process("child_moved", result.$getRecord($snapshot.getKey()), $prev);
-                                    $rootScope.$digest();
-                                }
-                            });
+//
+//                            main.on("child_changed", function ($snapshot, $prev) {
+//                                if (result.$$updated($snapshot)) {
+//                                    result.$$process("child_changed", result.$getRecord($snapshot.getKey()));
+//                                    $rootScope.$digest();
+//                                }
+//                            });
+//
+//                            main.on("child_moved", function ($snapshot, $prev) {
+//                                if (result.$$moved($snapshot, $prev)) {
+//                                    result.$$process("child_moved", result.$getRecord($snapshot.getKey()), $prev);
+//                                    $rootScope.$digest();
+//                                }
+//                            });
                         };
 
                         one.resolve(result);

@@ -98,6 +98,8 @@ angular.module('app')
                 $scope.users.forEach(function (user) {
                     if (!user.sent && user.approved) {
                         user.sent = true;
+                        user.sent_group = user.sent + "_" + user.group;
+                        user.gender_sent = user.gender + "_" + user.sent;
                         $scope.users.$save(user);
                     }
                 });
@@ -110,8 +112,6 @@ angular.module('app')
 
             $scope.changeState = function (user)
             {
-                console.log(user);
-                console.log($scope.users);
                 if (user.approved)
                     $scope.updated = true;
                 else
@@ -189,11 +189,6 @@ angular.module('app')
 
             $scope.$watchCollection('currentEvent', function (newVal, oldVal) {
 
-
-                console.log('in');
-                console.log($scope.currentEvent);
-                console.log(newVal);
-                console.log(oldVal);
 
                 if (newVal.pending.all !== oldVal.pending.all) {
                     console.log('in if');
