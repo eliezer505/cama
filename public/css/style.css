@@ -1224,6 +1224,13 @@ body.modal-open {
     overflow: hidden;
 }
 
+
+.search-bar { background-color: #222; }
+.search-bar * { color: white !important; }
+.search-bar input { border-bottom-color: white; }
+.md-errors-spacer { display:none; }
+
+
 .gridListdemoDynamicTiles md-icon {
   width: 50%;
   height: 30%; }

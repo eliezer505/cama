@@ -2,6 +2,8 @@ angular.module('app')
 
         .controller('managmentPartiesApprovedCtrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog, EVENTS, ModalService) {
 
+//https://codepen.io/AskYous/pen/WwZZgM
+
             console.log(usersInEvent);
             $scope.users = usersInEvent;
             $scope.isOpen = false;
@@ -14,12 +16,29 @@ angular.module('app')
             $scope.openModal = openModal;
             $scope.closeModal = closeModal;
 
+            $scope.search = null;
+            $scope.showPreSearchBar = function () {
+                return $scope.search === null;
+            };
+            $scope.initiateSearch = function () {
+                $scope.search = '';
+            };
+            $scope.showSearchBar = function () {
+                return $scope.search !== null;
+            };
+            $scope.endSearch = function () {
+                return $scope.search = null;
+            };
+            $scope.submit = function () {
+                console.error('Search function not yet implemented');
+            };
+
+
 
             $scope.config = {
                 refreshDataOnly: true, // default: true
                 deepWatchData: true
             };
-
             $scope.options = {
                 chart: {
                     type: 'pieChart',
@@ -67,8 +86,6 @@ angular.module('app')
                 }
 
             };
-
-
             function openModal(id) {
                 ModalService.Open(id);
             }
@@ -86,71 +103,22 @@ angular.module('app')
                         $scope.users.$save(user);
                     }
                 });
-
                 $scope.$parent.partiesShow = true;
                 $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});
-
                 $clubToast.show('הרשימות לא עודכנו', 'managment-content', 'error');
             };
-
-            $scope.updatePendingUsers = function ()
-            {
-                $scope.users.forEach(function (user) {
-                    if (!user.sent && user.approved) {
-                        user.sent = true;
-                        $scope.users.$save(user);
-                    }
-                });
-                $scope.$parent.partiesShow = true;
-                $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});
-
-                $clubToast.show('הרשימות עודכנו', 'managment-content', 'error');
-            };
-
+            
 
             $scope.changeState = function (user)
             {
-                console.log(user);
-                console.log($scope.users);
+
                 if (user.entered)
                     $scope.updated = true;
                 else
                     $scope.updated = false;
                 $scope.users.$save(user);
             };
-
-
-
-            $scope.checkAll = function ()
-            {
-                var count = 0;
-                if (!$scope.all)
-                {
-
-                    $scope.users.forEach(function (user) {
-                        if (!user.approved) {
-                            user.approved = true;
-                            $scope.users.$save(user);
-                            count++;
-                        }
-                    });
-                    $scope.all = true;
-                    $scope.updated = true;
-                    $clubToast.show('סומנו ' + count + ' בליינים', 'toast-content', 'success');
-                } else
-                {
-                    $scope.users.forEach(function (user) {
-                        if (!user.sent) {
-                            user.approved = false;
-                            $scope.users.$save(user);
-                            count++;
-                        }
-                    });
-                    $scope.all = false;
-                    $scope.updated = false;
-                    $clubToast.show('הוסרו ' + count + ' בליינים', 'toast-content', 'success');
-                }
-            };
+            
 
             $scope.chart = function ()
             {
@@ -169,7 +137,6 @@ angular.module('app')
                         color: "#4d94ff"
                     }
                 ];
-
                 $scope.data1 = [
                     {
                         label: "נשים",
@@ -182,11 +149,9 @@ angular.module('app')
                         color: "#4d94ff"
                     }
                 ];
-
                 $scope.openModal('pending-gender-graphs');
             };
-
-
+            
             $scope.$watchCollection('currentEvent', function (newVal, oldVal) {
 
 
@@ -194,7 +159,6 @@ angular.module('app')
                 console.log($scope.currentEvent);
                 console.log(newVal);
                 console.log(oldVal);
-
                 if (newVal.pending.all !== oldVal.pending.all) {
                     console.log('in if');
                     $scope.data = [
@@ -209,7 +173,6 @@ angular.module('app')
                             color: "#4d94ff"
                         }
                     ];
-
                     setInterval(function () {
                         $scope.$apply(); // update both chart
                     }, 500);
@@ -228,7 +191,6 @@ angular.module('app')
                             color: "#4d94ff"
                         }
                     ];
-
                     setInterval(function () {
                         $scope.$apply(); // update both chart
                     }, 500);
@@ -236,34 +198,14 @@ angular.module('app')
 
             });
 
-
-            $scope.filterByFemale = function ()
-            {
-
-                EVENTS.GetUsersInEventByFemale($stateParams.clubId, $stateParams.eventId).then(function (data) {
-                    $scope.users = data;
-                });
-
-            };
-
-            $scope.filterByMale = function ()
-            {
-
-                EVENTS.GetUsersInEventByMale($stateParams.clubId, $stateParams.eventId).then(function (data) {
-                    $scope.users = data;
-                });
-
-            };
-
             $scope.filterAll = function ()
             {
 
                 EVENTS.GetUsersInEvent($stateParams.clubId, $stateParams.eventId).then(function (data) {
                     $scope.users = data;
                 });
-
             };
-
+            
             $scope.showConfirm = function (ev, user) {
                 // Appending dialog to document.body to cover sidenav in docs app
                 var confirm = $mdDialog.confirm({
@@ -279,20 +221,16 @@ angular.module('app')
                     $scope.status = 'Confirm resolved';
                     $scope.codeRunningBeforeResolve = 'code only runs after resolve';
                 });
-
                 $scope.codeRunningBeforeResolve = 'code is running before resolve!';
             };
         });
-
-
-
+        
 function AvatarCtrl($scope, $mdDialog, User) {
     $scope.User = User;
     console.log(User);
     $scope.hide = function () {
         $mdDialog.hide();
     };
-
     $scope.cancel = function () {
         $mdDialog.cancel();
     };
