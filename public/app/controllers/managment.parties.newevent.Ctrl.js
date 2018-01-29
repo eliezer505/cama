@@ -1,5 +1,5 @@
 angular.module('app')
-        .controller('managmentNewEventCtrl', function ($scope, EVENTS, $state, $stateParams, $clubToast) {
+        .controller('managment.parties.newevent.Ctrl', function ($scope, EVENTS, $state, $stateParams, $clubToast) {
 
 
             $scope.cancel = function () {

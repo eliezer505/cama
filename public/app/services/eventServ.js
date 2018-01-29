@@ -36,6 +36,22 @@
                         return array;
                     };
 
+                    this.GetUsersInEventByName = function (clubId, eventId) {
+
+
+                        var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("name");
+                        array = $infiniteScrollPending(eventQuery, 15);
+                        return array;
+                    };
+
+                    this.SearchUsersByName = function (clubId, eventId, filter) {
+
+
+                        var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("name").startAt(filter).endAt(filter + "\uf8ff");
+                        array = $infiniteScrollPending(eventQuery, 15);
+                        return array;
+                    };
+
                     this.GetUsersInEventByMale = function (clubId, eventId) {
                         var eventQuery = EventsUsersRef.child(clubId).child(eventId).orderByChild("gender_sent").startAt("male_false").endAt("male_true");
                         array = $infiniteScrollPending(eventQuery, 15);
@@ -48,7 +64,7 @@
                         return array;
                     };
 
-                    
+
                     this.GetApprovedUsersInEvent = function (clubId, eventId) {
 
 

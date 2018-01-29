@@ -1,6 +1,29 @@
 angular.module('app')
 
-        .controller('managmentPartiesApprovedCtrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog, EVENTS, ModalService) {
+        .directive('focusMe', ['$timeout', '$parse', function ($timeout, $parse) {
+                return {
+                    //scope: true,   // optionally create a child scope
+                    link: function (scope, element, attrs) {
+                        var model = $parse(attrs.focusMe);
+                        scope.$watch(model, function (value) {
+                            console.log('value=', value);
+                            if (value === true) {
+                                $timeout(function () {
+                                    element[0].focus();
+                                });
+                            }
+                        });
+                        // to address @blesh's comment, set attribute value to 'false'
+                        // on blur event:
+//                        element.bind('blur', function () {
+//                            console.log('blur');
+//                            scope.$apply(model.assign(scope, false));
+//                        });
+                    }
+                };
+            }])
+
+        .controller('managment.parties.approved.Ctrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog, EVENTS, ModalService) {
 
 //https://codepen.io/AskYous/pen/WwZZgM
 
@@ -15,25 +38,50 @@ angular.module('app')
             $scope.currentEvent = EVENTS.GetOneEvent($stateParams.clubId, $stateParams.eventId);
             $scope.openModal = openModal;
             $scope.closeModal = closeModal;
+            $scope.noData = false;
 
             $scope.search = null;
             $scope.showPreSearchBar = function () {
                 return $scope.search === null;
             };
+
             $scope.initiateSearch = function () {
+
                 $scope.search = '';
             };
+
             $scope.showSearchBar = function () {
+
                 return $scope.search !== null;
             };
+
             $scope.endSearch = function () {
+
                 return $scope.search = null;
             };
+
             $scope.submit = function () {
                 console.error('Search function not yet implemented');
             };
 
+            $scope.$watch('search', function (nVal, oVal) {
+                if (nVal !== oVal && nVal.length > 0) {
+                    EVENTS.SearchUsersByName($stateParams.clubId, $stateParams.eventId, nVal).then(function (data) {
+                        $scope.users = data;
+                        if ($scope.users.length === 0)
+                            $scope.noData = true;
+                        else
+                            $scope.noData = false;
+                    });
+                } else if (nVal !== oVal && nVal.length === 0) {
+                   
+                    EVENTS.GetUsersInEventByName($stateParams.clubId, $stateParams.eventId).then(function (data) {
+                        $scope.noData = false;
+                        $scope.users = data;
+                    });
+                }
 
+            });
 
             $scope.config = {
                 refreshDataOnly: true, // default: true
@@ -72,12 +120,12 @@ angular.module('app')
                     defaultState: null,
                     labelsOutside: false,
                     legend: {
-                        vers: "classic",
+                        vers: "classic"
                     }
                 },
                 title: {
                     enable: true,
-                    text: "יחס הרשמה נשים גברים",
+                    text: "יחס כניסות נשים גברים",
                     className: "h4",
                     css: {
                         width: "nullpx",
@@ -95,19 +143,13 @@ angular.module('app')
             }
 
 
-            $scope.cancel = function () {
-                $scope.users.forEach(function (user) {
-                    console.log(user);
-                    if (!user.sent && user.approved) {
-                        user.approved = false;
-                        $scope.users.$save(user);
-                    }
-                });
+            $scope.back = function () {
+
                 $scope.$parent.partiesShow = true;
                 $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});
-                $clubToast.show('הרשימות לא עודכנו', 'managment-content', 'error');
+        
             };
-            
+
 
             $scope.changeState = function (user)
             {
@@ -118,7 +160,7 @@ angular.module('app')
                     $scope.updated = false;
                 $scope.users.$save(user);
             };
-            
+
 
             $scope.chart = function ()
             {
@@ -128,58 +170,29 @@ angular.module('app')
                 $scope.data = [
                     {
                         label: "נשים",
-                        value: $scope.currentEvent.pending.female,
+                        value: $scope.currentEvent.entered.female,
                         color: "#ff4d6a"
                     },
                     {
                         label: "גברים",
-                        value: $scope.currentEvent.pending.male,
+                        value: $scope.currentEvent.entered.male,
                         color: "#4d94ff"
                     }
                 ];
-                $scope.data1 = [
-                    {
-                        label: "נשים",
-                        value: $scope.currentEvent.approved.female,
-                        color: "#ff4d6a"
-                    },
-                    {
-                        label: "גברים",
-                        value: $scope.currentEvent.approved.male,
-                        color: "#4d94ff"
-                    }
-                ];
+
                 $scope.openModal('pending-gender-graphs');
             };
-            
+
             $scope.$watchCollection('currentEvent', function (newVal, oldVal) {
-
-
-                console.log('in');
-                console.log($scope.currentEvent);
-                console.log(newVal);
-                console.log(oldVal);
-                if (newVal.pending.all !== oldVal.pending.all) {
-                    console.log('in if');
-                    $scope.data = [
-                        {
-                            label: "נשים",
-                            value: newVal.pending.female,
-                            color: "#ff4d6a"
-                        },
-                        {
-                            label: "גברים",
-                            value: newVal.pending.male,
-                            color: "#4d94ff"
-                        }
-                    ];
-                    setInterval(function () {
-                        $scope.$apply(); // update both chart
-                    }, 500);
-                }
+//
+//
+//                console.log('in');
+//                console.log($scope.currentEvent);
+//                console.log(newVal);
+//                console.log(oldVal);
                 if (newVal.approved.all !== oldVal.approved.all) {
-                    console.log('in if');
-                    $scope.data1 = [
+//                    console.log('in if');
+                    $scope.data = [
                         {
                             label: "נשים",
                             value: newVal.approved.female,
@@ -195,17 +208,35 @@ angular.module('app')
                         $scope.$apply(); // update both chart
                     }, 500);
                 }
+//                if (newVal.approved.all !== oldVal.approved.all) {
+////                    console.log('in if');
+//                    $scope.data1 = [
+//                        {
+//                            label: "נשים",
+//                            value: newVal.approved.female,
+//                            color: "#ff4d6a"
+//                        },
+//                        {
+//                            label: "גברים",
+//                            value: newVal.approved.male,
+//                            color: "#4d94ff"
+//                        }
+//                    ];
+//                    setInterval(function () {
+//                        $scope.$apply(); // update both chart
+//                    }, 500);
+//                }
 
             });
 
             $scope.filterAll = function ()
             {
 
-                EVENTS.GetUsersInEvent($stateParams.clubId, $stateParams.eventId).then(function (data) {
+                EVENTS.GetUsersInEventByName($stateParams.clubId, $stateParams.eventId).then(function (data) {
                     $scope.users = data;
                 });
             };
-            
+
             $scope.showConfirm = function (ev, user) {
                 // Appending dialog to document.body to cover sidenav in docs app
                 var confirm = $mdDialog.confirm({
@@ -224,7 +255,7 @@ angular.module('app')
                 $scope.codeRunningBeforeResolve = 'code is running before resolve!';
             };
         });
-        
+
 function AvatarCtrl($scope, $mdDialog, User) {
     $scope.User = User;
     console.log(User);

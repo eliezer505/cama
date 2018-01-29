@@ -72,3 +72,29 @@ exports.user_approved_to_event = functions.database.ref('/UsersInEvent/{clubId}/
         });
     });
 });
+
+// update the entered counter in event for all + male + female when user has been entered to event
+exports.user_entered_to_event = functions.database.ref('/UsersInEvent/{clubId}/{eventId}/{userId}/entered').onUpdate(event => {
+
+    const newVal = event.data.val();
+    if (!newVal)
+        return null;
+
+    const root = event.data.ref.root;
+    var original = root.child('UsersInEvent').child(event.params.clubId).child(event.params.eventId).child(event.params.userId);
+    const events = root.child('events').child(event.params.clubId).child(event.params.eventId).child('entered').child('all');
+
+    return events.transaction(current => {
+        return (current || 0) + 1;
+    }).then(() => {
+        original.once("value", function (snapshot) {
+
+            var user = snapshot.val();
+            const gender = root.child('events').child(event.params.clubId).child(event.params.eventId).child('entered').child(user.gender);
+
+            return gender.transaction(current => {
+                return (current || 0) + 1;
+            });
+        });
+    });
+});

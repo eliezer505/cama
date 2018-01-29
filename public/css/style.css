@@ -1225,84 +1225,108 @@ body.modal-open {
 }
 
 
-.search-bar { background-color: #222; }
+.search-bar { 
+    background-color: #222; 
+    position: absolute;
+    bottom: 0;
+}
 .search-bar * { color: white !important; }
 .search-bar input { border-bottom-color: white; }
 .md-errors-spacer { display:none; }
 
 
 .gridListdemoDynamicTiles md-icon {
-  width: 50%;
-  height: 30%; }
+    width: 50%;
+    height: 30%; }
 
 .gridListdemoDynamicTiles md-icon svg {
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%; }
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%; }
 
 .gridListdemoDynamicTiles .s64 {
-  font-size: 64px; }
+    font-size: 64px; }
 
 .gridListdemoDynamicTiles .s32 {
-  font-size: 48px; }
+    font-size: 48px; }
 
 .gridListdemoDynamicTiles md-icon.fa {
-  display: block;
-  padding-left: 0; }
+    display: block;
+    padding-left: 0; }
 
 .gridListdemoDynamicTiles md-icon.s32 span {
-  padding-left: 8px; }
+    padding-left: 8px; }
 
 .gridListdemoDynamicTiles md-grid-list {
-  margin: 8px; }
+    margin: 8px; }
 
 .gridListdemoDynamicTiles .gray {
-  background: #f5f5f5; }
+    background: #f5f5f5; }
 
 .gridListdemoDynamicTiles .green {
-  background: #b9f6ca; }
+    background: #b9f6ca; }
 
 .gridListdemoDynamicTiles .yellow {
-  background: #ffff8d; }
+    background: #ffff8d; }
 
 .gridListdemoDynamicTiles .blue {
-  background: #84ffff; }
+    background: #84ffff; }
 
 .gridListdemoDynamicTiles .darkBlue {
-  background: #80d8ff; }
+    background: #80d8ff; }
 
 .gridListdemoDynamicTiles .deepBlue {
-  background: #448aff; }
+    background: #448aff; }
 
 .gridListdemoDynamicTiles .purple {
-  background: #b388ff; }
+    background: #b388ff; }
 
 .gridListdemoDynamicTiles .lightPurple {
-  background: #8c9eff; }
+    background: #8c9eff; }
 
 .gridListdemoDynamicTiles .red {
-  background: #ff8a80; }
+    background: #ff8a80; }
 
 .gridListdemoDynamicTiles .pink {
-  background: #ff80ab; }
+    background: #ff80ab; }
 
 .gridListdemoDynamicTiles md-grid-tile md-icon {
-  padding-bottom: 32px; }
+    padding-bottom: 32px; }
 
 .gridListdemoDynamicTiles md-grid-tile md-grid-tile-footer {
-  background: rgba(0, 0, 0, 0.68);
-  height: 36px; }
+    background: rgba(0, 0, 0, 0.68);
+    height: 36px; }
 
 .gridListdemoDynamicTiles md-grid-tile-footer figcaption {
-  width: 100%; }
+    width: 100%; }
 
 .gridListdemoDynamicTiles md-grid-tile-footer figcaption h3 {
-  margin: 0;
-  font-weight: 700;
-  width: 100%;
-  text-align: center; }
-  i{font-family: Roboto,Helvetica Neue,sans-serif;}
+    margin: 0;
+    font-weight: 700;
+    width: 100%;
+    text-align: center; }
+i{font-family: Roboto,Helvetica Neue,sans-serif;}
 .nomarg{
-	margin:0!important;
+    margin:0!important;
 }
 .nopad{padding:0!important;}
+
+#pending-content md-checkbox {
+
+    margin-bottom: 0px !important;
+}
+
+.no-data{
+
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    margin-left: -100px; /* margin is -0.5 * dimension */
+    margin-top: -25px; 
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+
+}

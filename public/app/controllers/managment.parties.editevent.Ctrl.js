@@ -1,5 +1,5 @@
 angular.module('app')
-        .controller('managmentEditEventCtrl', function ($scope, currentEvent, $state, $stateParams, $clubToast) {
+        .controller('managment.parties.editevent.Ctrl', function ($scope, currentEvent, $state, $stateParams, $clubToast) {
             console.log('currentEvent in ctrl');
             console.log(currentEvent);
 

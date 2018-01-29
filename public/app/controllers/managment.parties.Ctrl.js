@@ -1,5 +1,5 @@
 
-angular.module('app').controller('managmentPartiesCtrl',
+angular.module('app').controller('managment.parties.Ctrl',
         function ($scope, currentEvents, $state, $stateParams) {
 
             $scope.partiesShow = true;

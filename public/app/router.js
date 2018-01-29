@@ -74,7 +74,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     }
                 }
             })
-                        .state('clubears.friends.search', {
+            .state('clubears.friends.search', {
                 url: "/search-friends",
                 templateUrl: "app/pages/clubears.friends.search.html",
                 controller: 'clubears.friends.search.ctrl',
@@ -87,7 +87,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     }
                 }
             })
-                                    .state('clubears.friends.sugg', {
+            .state('clubears.friends.sugg', {
                 url: "/suggest-friends",
                 templateUrl: "app/pages/clubears.friends.sugg.html",
                 controller: 'clubears.friends.sugg.ctrl',
@@ -100,14 +100,14 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     }
                 }
             })
-                        .state('clubears.contact', {
+            .state('clubears.contact', {
                 url: "/contact",
                 templateUrl: "app/pages/contact.html"
 
                         //
                         //      }
             })
-                                    .state('clubears.aboutus', {
+            .state('clubears.aboutus', {
                 url: "/aboutus",
                 templateUrl: "app/pages/aboutus.html"
 
@@ -225,7 +225,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         return CLUBES.getClubesUserAssign(userClubesRoll);
                     }
                 },
-                controller: "managmentCtrl"
+                controller: "managment.Ctrl"
             })
             .state('managment.parties', {
                 url: "/parties",
@@ -247,7 +247,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     role: null
 
                 },
-                controller: "managmentPartiesCtrl"
+                controller: "managment.parties.Ctrl"
             })
             .state('managment.parties.newevent', {
                 url: "/newevent",
@@ -267,13 +267,13 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                             return $q.resolve();
                     }
                 },
-                controller: "managmentNewEventCtrl"
+                controller: "managment.parties.newevent.Ctrl"
 
             })
             .state('managment.parties.editevent', {
                 url: "/editevent",
                 templateUrl: "app/pages/managment.parties.editevent.html",
-                controller: "managmentEditEventCtrl",
+                controller: "managment.parties.editevent.Ctrl",
                 params: {
                     eventId: null,
                     clubId: null,
@@ -294,7 +294,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             .state('managment.parties.pending', {
                 url: "/editpending",
                 templateUrl: "app/pages/managment.parties.pending.html",
-                controller: "managmentEditPendingCtrl",
+                controller: "managment.parties.pending.Ctrl",
                 params: {
                     eventId: null,
                     clubId: null,
@@ -315,7 +315,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
             .state('managment.parties.approved', {
                 url: "/editapproved",
                 templateUrl: "app/pages/managment.parties.approved.html",
-                controller: "managmentPartiesApprovedCtrl",
+                controller: "managment.parties.approved.Ctrl",
                 params: {
                     eventId: null,
                     clubId: null,
@@ -329,7 +329,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                         if (!$stateParams.clubId || !$stateParams.role || !$stateParams.eventId) {
                             return $q.reject({code: 'MANAGMENT'});
                         } else
-                            return EVENTS.GetUsersInEvent($stateParams.clubId, $stateParams.eventId);
+                            return EVENTS.GetUsersInEventByName($stateParams.clubId, $stateParams.eventId);
                     }
                 }
             })
@@ -393,7 +393,7 @@ var club = angular.module("app").config(function ($stateProvider, $urlRouterProv
                     }
                 },
 
-                controller: "managmentPermmisionsCtrl"
+                controller: "managment.permmisions.Ctrl"
             })
             .state('superuser', {
                 url: "/superuser",

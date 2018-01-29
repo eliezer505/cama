@@ -1,6 +1,6 @@
 angular
         .module('app')
-        .controller('managmentCtrl', function ($scope, $state, userObj, clubesAssign, userClubesRoll) {
+        .controller('managment.Ctrl', function ($scope, $state, userObj, clubesAssign, userClubesRoll) {
             console.log(userClubesRoll);
             $scope.clubes = clubesAssign;
             $scope.roles = userClubesRoll;

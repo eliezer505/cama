@@ -5,7 +5,7 @@ angular
                 $mdIconProvider.icon('md-close', 'img/ic_close_black_24px.svg', 24);
             }])
 
-        .controller('managmentPermmisionsCtrl', function (currentAuth, $scope, $clubToast, $state, $stateParams, currentClub, $q, clubPOS, ClubManagers) {
+        .controller('managment.permmisions.Ctrl', function (currentAuth, $scope, $clubToast, $state, $stateParams, currentClub, $q, clubPOS, ClubManagers) {
 
             console.log(currentAuth);
             var root = firebase.database().ref();

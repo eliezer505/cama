@@ -8,16 +8,12 @@
 
         <span flex="" class="flex"></span>
 
-        <md-button class="md-icon-button" aria-label="Cancel" ng-click="cancel()">
+        <md-button class="md-icon-button" aria-label="back" ng-click="back()">
             <md-icon class="material-icons">
-                <i class="material-icons">&#xE5C9;</i>
+                <i class="material-icons">&#xE5C4;</i>
             </md-icon>
         </md-button>
-        <md-button ng-disabled="updated === false" class="md-icon-button" aria-label="Done" ng-click="updatePendingUsers()">
-            <md-icon class="material-icons">
-                <i class="material-icons">&#xE876;</i>
-            </md-icon>
-        </md-button>
+
 
     </div>
 
@@ -67,7 +63,7 @@
     </div>
 
 
-    <md-fab-toolbar ng-class="isOpen ? 'toolbar-open' : 'toolbar-close'" md-open="isOpen" md-direction="left" count="countt" id="fab-tool">
+    <md-fab-toolbar ng-show="!showSearchBar()"  ng-class="isOpen ? 'toolbar-open' : 'toolbar-close'" md-open="isOpen" md-direction="left" count="countt" id="fab-tool">
         <md-fab-trigger class="align-with-text" style="right: 35px;">
             <md-button aria-label="options" class="md-fab md-mini md-primary"> 
                 <md-icon style="display: unset">
@@ -102,7 +98,7 @@
         <!-- Input Text -->
         <md-input-container flex>
             <!-- <label for="search">Search</label> -->
-            <input id="search-input" type="text" ng-model="search" />
+            <input id="search-input" type="text" ng-model="search" focus-me="showSearchBar()" style="text-align: right;" ng-model-options="{debounce: 500}"/>
         </md-input-container>
 
         <md-button class="md-icon-button" ng-click="submit()">
@@ -110,6 +106,8 @@
         </md-button>
     </div>
 
+    <div ng-show="noData" class="no-data"><span>אין משתמשים תואמים</span></div>
+    
     <modal id="pending-gender-graphs" attachTo="">
         <div class="modal">
             <div class="modal-body">
@@ -117,10 +115,7 @@
                     <nvd3 options="options" data="data" class="with-3d-shadow with-transitions" config="{refreshDataOnly: false, deepWatchData: true}"></nvd3>
 
                 </div>
-                <div style="border: 1px solid">
-                    <nvd3 options="options" data="data1" class="with-3d-shadow with-transitions" config="config"></nvd3>
-
-                </div>
+    
                 <button ng-click="closeModal('pending-gender-graphs');">סגור</button>
             </div>
         </div>
