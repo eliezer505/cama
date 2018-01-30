@@ -74,7 +74,7 @@ angular.module('app')
                             $scope.noData = false;
                     });
                 } else if (nVal !== oVal && nVal.length === 0) {
-                   
+
                     EVENTS.GetUsersInEventByName($stateParams.clubId, $stateParams.eventId).then(function (data) {
                         $scope.noData = false;
                         $scope.users = data;
@@ -131,6 +131,16 @@ angular.module('app')
                         width: "nullpx",
                         textAlign: "center"
                     }
+                },
+
+                caption: {
+                    enable: true,
+                    text: "שאושרו" +  $scope.currentEvent.approved.male + "גברים נכנסו מתוך " + $scope.currentEvent.entered.male,
+                     css: {
+                        width: "nullpx",
+                        textAlign: "center"
+           
+                    }
                 }
 
             };
@@ -147,7 +157,7 @@ angular.module('app')
 
                 $scope.$parent.partiesShow = true;
                 $state.go('managment.parties', {clubId: $stateParams.clubId, role: $stateParams.role});
-        
+
             };
 
 
