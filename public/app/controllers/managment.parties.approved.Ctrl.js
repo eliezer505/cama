@@ -135,11 +135,12 @@ angular.module('app')
 
                 caption: {
                     enable: true,
-                    text: "שאושרו" +  $scope.currentEvent.approved.male + "גברים נכנסו מתוך " + $scope.currentEvent.entered.male,
-                     css: {
+                    html: "",
+                    css: {
                         width: "nullpx",
-                        textAlign: "center"
-           
+                        textAlign: "center",
+                        direction: "rtl"
+
                     }
                 }
 
@@ -175,7 +176,14 @@ angular.module('app')
             $scope.chart = function ()
             {
 
+                $scope.options.caption.html = "<hr><p>" + $scope.currentEvent.entered.male + " גברים נכנסו מתוך " + $scope.currentEvent.approved.male + " שאושרו " + "</p>" +
+                        "<p>" + $scope.currentEvent.entered.female + " נשים נכנסו מתוך " + $scope.currentEvent.approved.female + " שאושרו " + "</p><hr>" +
+                        "<p>" + "סך הכל  " + $scope.currentEvent.entered.all + " בליינים נכנסו מתוך " + $scope.currentEvent.approved.all + " שאושרו " + "</p>";
 
+//                        "<p> גברים נכנסו מתוך {{currentEvent.approved.male}} שאושרו {{currentEvent.entered.male}}<p>"
+
+//                        $scope.currentEvent.entered.male + " גברים נכנסו מתוך " + $scope.currentEvent.approved.male + " שאושרו\n "  +
+//                        $scope.currentEvent.entered.female + " נשים נכנסו מתוך " + $scope.currentEvent.approved.female + " שאושרו " + "\n";
 
                 $scope.data = [
                     {
@@ -200,8 +208,12 @@ angular.module('app')
 //                console.log($scope.currentEvent);
 //                console.log(newVal);
 //                console.log(oldVal);
-                if (newVal.approved.all !== oldVal.approved.all) {
+                if (newVal.entered.all !== oldVal.entered.all) {
 //                    console.log('in if');
+                    $scope.options.caption.html = "<hr><p>" + $scope.currentEvent.entered.male + " גברים נכנסו מתוך " + $scope.currentEvent.approved.male + " שאושרו " + "</p>" +
+                            "<p>" + $scope.currentEvent.entered.female + " נשים נכנסו מתוך " + $scope.currentEvent.approved.female + " שאושרו " + "</p><hr>" +
+                            "<p>" + "סך הכל  " + $scope.currentEvent.entered.all + " בליינים נכנסו מתוך " + $scope.currentEvent.approved.all + " שאושרו " + "</p>";
+
                     $scope.data = [
                         {
                             label: "נשים",
@@ -218,24 +230,7 @@ angular.module('app')
                         $scope.$apply(); // update both chart
                     }, 500);
                 }
-//                if (newVal.approved.all !== oldVal.approved.all) {
-////                    console.log('in if');
-//                    $scope.data1 = [
-//                        {
-//                            label: "נשים",
-//                            value: newVal.approved.female,
-//                            color: "#ff4d6a"
-//                        },
-//                        {
-//                            label: "גברים",
-//                            value: newVal.approved.male,
-//                            color: "#4d94ff"
-//                        }
-//                    ];
-//                    setInterval(function () {
-//                        $scope.$apply(); // update both chart
-//                    }, 500);
-//                }
+
 
             });
 
