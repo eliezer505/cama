@@ -23,7 +23,7 @@ angular.module('app')
                 };
             }])
 
-        .controller('managment.parties.approved.Ctrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog, EVENTS, ModalService) {
+        .controller('managment.parties.approved.Ctrl', function ($scope, usersInEvent, $state, $stateParams, $clubToast, $mdDialog, EVENTS, ModalService, $timeout) {
 
 //https://codepen.io/AskYous/pen/WwZZgM
 
@@ -83,17 +83,16 @@ angular.module('app')
 
             });
 
-            $scope.config = {
-                refreshDataOnly: true, // default: true
-                deepWatchData: true
-            };
+
             $scope.options = {
                 chart: {
                     type: 'pieChart',
                     height: 250,
-                    valueFormat: function (d) {
-                        return d3.format('.2%')(d / totalValues);
-                    },
+//                    valueFormat: function (d) {
+//                        console.log(totalValues);
+//                        console.log(d3);
+//                        return d3.format('.2%')(d / totalValues);
+//                    },
                     x: function (d) {
                         return d.label;
                     },
@@ -180,11 +179,6 @@ angular.module('app')
                         "<p>" + $scope.currentEvent.entered.female + " נשים נכנסו מתוך " + $scope.currentEvent.approved.female + " שאושרו " + "</p><hr>" +
                         "<p>" + "סך הכל  " + $scope.currentEvent.entered.all + " בליינים נכנסו מתוך " + $scope.currentEvent.approved.all + " שאושרו " + "</p>";
 
-//                        "<p> גברים נכנסו מתוך {{currentEvent.approved.male}} שאושרו {{currentEvent.entered.male}}<p>"
-
-//                        $scope.currentEvent.entered.male + " גברים נכנסו מתוך " + $scope.currentEvent.approved.male + " שאושרו\n "  +
-//                        $scope.currentEvent.entered.female + " נשים נכנסו מתוך " + $scope.currentEvent.approved.female + " שאושרו " + "\n";
-
                 $scope.data = [
                     {
                         label: "נשים",
@@ -204,35 +198,61 @@ angular.module('app')
             $scope.$watchCollection('currentEvent', function (newVal, oldVal) {
 //
 //
-//                console.log('in');
+                console.log('in event');
 //                console.log($scope.currentEvent);
 //                console.log(newVal);
 //                console.log(oldVal);
-                if (newVal.entered.all !== oldVal.entered.all) {
+                if (newVal.entered.female !== oldVal.entered.female || newVal.entered.male !== oldVal.entered.male) {
+//                    console.log('in if');
+                    $scope.options.caption.html = "<hr><p>" + $scope.currentEvent.entered.male + " גברים נכנסו מתוך " + $scope.currentEvent.approved.male + " שאושרו " + "</p>" +
+                            "<p>" + $scope.currentEvent.entered.female + " נשים נכנסו מתוך " + $scope.currentEvent.approved.female + " שאושרו " + "</p><hr>" +
+                            "<p>" + "סך הכל  " + $scope.currentEvent.entered.all + " בליינים נכנסו מתוך " + $scope.currentEvent.approved.all + " שאושרו " + "</p>";
+
+                    $scope.data = [];
+
+                    $scope.api.update();
+
+                }
+
+
+            });
+
+
+            $scope.$watchCollection('data', function (newVal, oldVal) {
+//
+//
+                console.log('in data');
+
+                if (newVal.value !== oldVal.value) {
 //                    console.log('in if');
                     $scope.options.caption.html = "<hr><p>" + $scope.currentEvent.entered.male + " גברים נכנסו מתוך " + $scope.currentEvent.approved.male + " שאושרו " + "</p>" +
                             "<p>" + $scope.currentEvent.entered.female + " נשים נכנסו מתוך " + $scope.currentEvent.approved.female + " שאושרו " + "</p><hr>" +
                             "<p>" + "סך הכל  " + $scope.currentEvent.entered.all + " בליינים נכנסו מתוך " + $scope.currentEvent.approved.all + " שאושרו " + "</p>";
 
                     $scope.data = [
-                        {
-                            label: "נשים",
-                            value: newVal.approved.female,
-                            color: "#ff4d6a"
-                        },
+
                         {
                             label: "גברים",
                             value: newVal.approved.male,
                             color: "#4d94ff"
+                        },
+                        {
+                            label: "נשים",
+                            value: newVal.approved.female,
+                            color: "#ff4d6a"
                         }
+
                     ];
-                    setInterval(function () {
+
+//                    $scope.api.update();
+                    $timeout(function () {
                         $scope.$apply(); // update both chart
-                    }, 500);
+                    });
                 }
 
 
             });
+
 
             $scope.filterAll = function ()
             {
