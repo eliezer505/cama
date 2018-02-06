@@ -223,7 +223,7 @@ angular.module('app')
 //
                 console.log('in data');
 
-                if (newVal.value !== oldVal.value) {
+                if (newVal && oldVal && newVal.value !== oldVal.value) {
 //                    console.log('in if');
                     $scope.options.caption.html = "<hr><p>" + $scope.currentEvent.entered.male + " גברים נכנסו מתוך " + $scope.currentEvent.approved.male + " שאושרו " + "</p>" +
                             "<p>" + $scope.currentEvent.entered.female + " נשים נכנסו מתוך " + $scope.currentEvent.approved.female + " שאושרו " + "</p><hr>" +
