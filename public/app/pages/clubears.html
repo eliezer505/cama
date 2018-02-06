@@ -1,42 +1,42 @@
-<div layout="column" style="height: 100%;">
 
-    <!-- Upper toolbar with bottons to serve the user -->
-    <md-toolbar md-theme="altTheme" class="md-primary gradient">
-        <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
-                <md-tooltip>
-                    Side Panel
-                </md-tooltip>
-                <md-icon class="md-default-theme material-icons">
-                    &#xE5D2;
-                </md-icon>
-            </md-button>
 
-            <span class="margin-left-1" ><h1>C</h1></span>
-            <span><h3>lu</h3></span>
-            <span><h1>B</h1></span>
-            <span><h3>ears</h3></span>
+<!-- Upper toolbar with bottons to serve the user -->
+<md-toolbar md-theme="altTheme" class="md-primary gradient">
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+            <md-tooltip>
+                Side Panel
+            </md-tooltip>
+            <md-icon class="md-default-theme material-icons">
+                &#xE5D2;
+            </md-icon>
+        </md-button>
 
-            <span flex></span>
-            <md-button class="md-icon-button" ng-click="goFriends()">                   
-                <md-icon class="md-default-theme material-icons">
-                    &#xE7FB;
-                </md-icon>
+        <span class="margin-left-1" ><h1>C</h1></span>
+        <span><h3>lu</h3></span>
+        <span><h1>B</h1></span>
+        <span><h3>ears</h3></span>
 
-            </md-button>
-            <md-button class="md-icon-button animation-target" ng-click="showDialog($event)" aria-label="Messages">
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="goFriends()">                   
+            <md-icon class="md-default-theme material-icons">
+                &#xE7FB;
+            </md-icon>
 
-                <md-icon class="md-default-theme material-icons" >
-                    &#xE7F5;
-                </md-icon>
+        </md-button>
+        <md-button class="md-icon-button animation-target" ng-click="showDialog($event)" aria-label="Messages">
 
-            </md-button>
+            <md-icon class="md-default-theme material-icons" >
+                &#xE7F5;
+            </md-icon>
 
-        </div>
-    </md-toolbar>
-    <md-content flex style="background-color: transparent;" >
-        <div ui-view></div>
-    </md-content>
-    <main-side-nav></main-side-nav>
+        </md-button>
 
-</div>
+    </div>
+</md-toolbar>
+
+
+<div style=" height:100%;"  ui-view ></div>
+
+<main-side-nav></main-side-nav>
+
