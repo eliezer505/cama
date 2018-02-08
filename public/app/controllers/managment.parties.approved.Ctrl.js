@@ -177,7 +177,6 @@ angular.module('app')
                 $scope.users.$save(user);
             };
 
-
             $scope.chart = function ()
             {
 
@@ -202,18 +201,12 @@ angular.module('app')
             };
 
             $scope.$watchCollection('currentEvent', function (newVal, oldVal) {
-
                 if (newVal.entered.female !== oldVal.entered.female || newVal.entered.male !== oldVal.entered.male) {
-                    console.log('in if');
-
-//                    $scope.api.clearElement();
-
                     $scope.options.caption.html = "<hr><p>" + $scope.currentEvent.entered.male + " גברים נכנסו מתוך " + $scope.currentEvent.approved.male + " שאושרו " + "</p>" +
                             "<p>" + $scope.currentEvent.entered.female + " נשים נכנסו מתוך " + $scope.currentEvent.approved.female + " שאושרו " + "</p><hr>" +
                             "<p>" + "סך הכל  " + $scope.currentEvent.entered.all + " בליינים נכנסו מתוך " + $scope.currentEvent.approved.all + " שאושרו " + "</p>";
 
-                    $scope.data = [
-                        
+                    $scope.data = [                        
                         {
                             label: "נשים",
                             value: newVal.entered.female,
@@ -224,16 +217,11 @@ angular.module('app')
                             value: newVal.entered.male,
                             color: "#4d94ff"
                         }
-
                     ];
-
-
                 }
 
 
             });
-
-
 
             $scope.filterAll = function ()
             {

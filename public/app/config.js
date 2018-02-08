@@ -29,88 +29,46 @@
         }
     ]);
 
-//    club.factory("currentUser",
-//            function () {
-//                return firebase.auth().currentUser;
-//            }
-//    );
 
+    club.run(function ($rootScope) {
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '569349916606060',
+                status: false,
+                cookie: true,
+                xfbml: true,
+                version: 'v2.4'
+            });
 
-//    club.service('getData', function ($q, Auth) {
-//	var service = {};
-//        
-//        this.getInitialData = function () {
-//            //define my promises
-//            var one = $q.defer();
-////		var two = $q.defer();
-////		var all = $q.all([one.promise, two.promise]);
-//
-//
-//            Auth.$onAuthStateChanged(function (authData) {
-//                if (authData)
-//                {
-//                     one.resolve(authData.uid);
-//
-//                }else
-//                {
-//                    one.resolve(null);
-//                }
-//
-//            });
-//
-//
-//
-//
-//
-//            return one.promise;
-//        };
-//
-//
-//    });
+//        FB.Event.subscribe('auth.statusChange', function(response) {
+//            $rootScope.$broadcast("fb_statusChange", {'status': response.status});
+//        });
+        };
 
-
+        (function (d) {
+            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement('script');
+            js.id = id;
+            js.async = true;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            ref.parentNode.insertBefore(js, ref);
+        }(document));
+    });
 
 
     // UI.ROUTER STUFF
     club.run(["$rootScope", "$state", function ($rootScope, $state) {
 
-//            $transitions.onStart({}, function (trans) {
-//                console.log(trans);
-//                var SpinnerService = trans.injector().get('SpinnerService');
-//                console.log(SpinnerService);
-//                SpinnerService.transitionStart();
-//                trans.promise.finally(SpinnerService.transitionEnd);
-//            });
-
-//            $rootScope.spinnerActive = true;
-//            $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
-//                console.log('enter rootscope');
-//
-//                console.log(error);
-//                if (error === "AUTH_REQUIRED") {
-//                    $state.go("login");
-//                }
-//            });
-
-//            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-//                if (toState.resolve) {
-//                    
-//                }
-//            });
-//            $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-//                if (toState.resolve) {
-//                    $rootScope.spinnerActive = false;
-//                }
-//            });
             $rootScope.$on('$stateChangeStart', function (evt, toState, toParams, fromState, fromParams) {
                 console.log("$stateChangeStart " + fromState.name + JSON.stringify(fromParams) + " -> " + toState.name + JSON.stringify(toParams));
-//                if (fromState.name==="managment.parties" && toState.name==="managment" && !toParams.clubId && !toParams.role)
-//                    $state.go('managment');
                 $rootScope.spinnerActive = true;
             });
             $rootScope.$on('$stateChangeSuccess', function (evt, toState, toParams, fromState, fromParams) {
                 console.log("$stateChangeSuccess " + fromState.name + JSON.stringify(fromParams) + " -> " + toState.name + JSON.stringify(toParams));
-                if ((fromState.name === "" && toState.name === "managment") ||(fromState.name === "managment.parties" && toState.name === "managment") || (fromState.name === "managment.profile" && toState.name === "managment"))
+                if ((fromState.name === "" && toState.name === "managment") || (fromState.name === "managment.parties" && toState.name === "managment") || (fromState.name === "managment.profile" && toState.name === "managment"))
                     $state.reload();
                 $rootScope.spinnerActive = false;
             });
@@ -142,15 +100,35 @@
                 }
 
 
-//                console.log(error);
-//
-//                if (error === "AUTH_REQUIRED") {
-//                    $state.go("login");
-//                }
             });
 
         }]);
 
 
+    club.factory('facebookService', function ($q) {
+        return {
+            getMyLastName: function (id, at) {
+                var deferred = $q.defer();
+                console.log('in fact');
+
+                FB.api('/' + id, {
+                    fields: 'last_name',
+                    access_token: at
+                }, function (response) {
+                    console.log(response);
+                    if (!response || response.error) {
+                        deferred.reject('Error occured');
+                    } else {
+                        deferred.resolve(response);
+                    }
+                });
+                return deferred.promise;
+            }
+        };
+    });
+
+
 })();
+
+
 
