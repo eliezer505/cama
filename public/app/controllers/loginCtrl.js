@@ -21,7 +21,7 @@
                 firebase.auth().getRedirectResult().then(function (result) {
                     if (result.credential && result.user && !userObj.email)
                     {
-
+                        console.log(result.credential);
                         userObj.email = result.additionalUserInfo.profile.email;
                         userObj.first_name = result.additionalUserInfo.profile.first_name;
                         userObj.last_name = result.additionalUserInfo.profile.last_name;
